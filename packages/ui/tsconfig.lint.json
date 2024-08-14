@@ -12,6 +12,7 @@
     "turbo",
     "tailwind.config.ts",
     "postcss.config.mjs",
+    "vite.config.ts",
     "index.ts"
   ],
   "exclude": [
