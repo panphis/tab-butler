@@ -1,1 +1,4 @@
-export { default } from "@repo/ui/postcss.config";
+import config from "@repo/ui/postcss.config";
+
+
+export default config

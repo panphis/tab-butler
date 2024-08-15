@@ -10,10 +10,9 @@
   "include": [
     "src",
     "turbo",
-    "tailwind.config.ts",
-    "postcss.config.mjs",
-    "vite.config.ts",
-    "index.ts"
+    "index.ts",
+    "tailwind.config.js",
+    "postcss.config.mjs"
   ],
   "exclude": [
     "node_modules",
