@@ -31,8 +31,12 @@
       "dependsOn": [
         "ready"
       ],
-      "cache": false,
-      "persistent": true
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ],
+      "persistent": true,
+      "cache": false
     }
   }
 }

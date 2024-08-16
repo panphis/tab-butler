@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/typescript-config/utils",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": [
+      "chrome"
+    ]
+  },
+  "include": [
+    "lib",
+    "index.ts",
+    "rollup.config.mjs"
+  ]
+}

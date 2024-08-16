@@ -1,0 +1,18 @@
+{
+  "extends": "@repo/typescript-config/base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "types": [
+      "chrome"
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}
