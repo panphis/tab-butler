@@ -11,9 +11,10 @@
     "./app/**/*.ts",
     "./app/**/*.tsx",
     "./tailwind.config.js",
+    "dist/types/**/*.ts",
     "next-env.d.ts",
     "next.config.mjs",
-    "dist/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
