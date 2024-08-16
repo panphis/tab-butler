@@ -10,9 +10,10 @@
   "include": [
     "./app/**/*.ts",
     "./app/**/*.tsx",
+    "./tailwind.config.js",
     "next-env.d.ts",
     "next.config.mjs",
-    "./tailwind.config.js",
+    "dist/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
