@@ -1,18 +1,27 @@
 {
-  "name": "@repo/theme",
-  "version": "1.0.0",
-  "description": "theme repo",
-  "types": "./src/index.ts",
-  "exports": {
-    ".": "./src"
-  },
-  "files": [
-    "src/**"
-  ],
-  "scripts": {},
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@repo/storage": "workspace:^"
-  }
+	"name": "@repo/theme",
+	"version": "1.0.0",
+	"description": "theme repo",
+	"types": "./src/index.ts",
+	"type": "module",
+	"exports": {
+		".": "./src"
+	},
+	"files": [
+		"src/**"
+	],
+	"scripts": {},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@repo/storage": "workspace:*",
+		"@repo/ui": "workspace:*"
+	},
+	"devDependencies": {
+		"lucide-react": "^0.427.0",
+		"react-i18next": "^15.0.1",
+		"i18next": "^23.14.0",
+		"i18next-browser-languagedetector": "^8.0.0",
+		"i18next-http-backend": "^2.6.0"
+	}
 }
