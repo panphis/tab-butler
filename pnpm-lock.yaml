@@ -225,6 +225,12 @@ importers:
 
   packages/tailwind-config: {}
 
+  packages/theme:
+    dependencies:
+      '@repo/storage':
+        specifier: workspace:^
+        version: link:../storage
+
   packages/typescript-config: {}
 
   packages/ui:

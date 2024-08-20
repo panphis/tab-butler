@@ -3,7 +3,7 @@ import { withPageConfig } from '@repo/vite-config';
 
 const rootDir = resolve(__dirname);
 
-export default withPageConfig({
+const config = withPageConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -14,3 +14,5 @@ export default withPageConfig({
     outDir: resolve(rootDir, '..', '..', 'dist', 'new-tab'),
   },
 });
+
+export default config
