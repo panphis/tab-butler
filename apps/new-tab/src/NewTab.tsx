@@ -1,8 +1,11 @@
+import React from "react";
+
 import {
 	withErrorBoundary,
 	withSuspense,
 } from "@repo/shared";
 import { Button } from "@repo/ui";
+
 
 import { Layout, ThemeSetting } from "@repo/theme";
 

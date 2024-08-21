@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { ThemeProvider, ThemeProviderContext } from "../theme";
 
@@ -5,6 +7,7 @@ import { HTMLAttributes, ReactNode, useContext, useEffect } from "react";
 
 import '../../globals.css';
 import "../assets/js/i18n";
+
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
@@ -15,20 +18,23 @@ const getSystemTheme = () =>
 
 function LayoutContainer({ children }: LayoutProps) {
 	const {
-		theme: mode,
-		themeColor,
-		themeRadius,
+		theme,
+		color,
+		radius,
 	} = useContext(ThemeProviderContext);
+
+
+
 
 	useEffect(() => {
 		const root = window.document.documentElement;
 		root.classList.remove("light", "dark");
-		if (mode === "system") {
+		if (theme === "system") {
 			const systemTheme = getSystemTheme();
 			root.classList.add(systemTheme);
 			return;
 		} else {
-			root.classList.add(mode);
+			root.classList.add(theme);
 		}
 
 		const darkModeMediaQuery = window.matchMedia(
@@ -38,10 +44,10 @@ function LayoutContainer({ children }: LayoutProps) {
 		return () => {
 			darkModeMediaQuery.removeEventListener("change", onSystemThemeChange);
 		};
-	}, [mode]);
+	}, [theme]);
 
 	const onSystemThemeChange = (e: MediaQueryListEvent) => {
-		if (mode === "system") {
+		if (theme === "system") {
 			const root = window.document.documentElement;
 			const systemTheme = getSystemTheme();
 			root.classList.remove("light", "dark");
@@ -52,10 +58,10 @@ function LayoutContainer({ children }: LayoutProps) {
 
 	return (
 		<div
-			className={`theme-${themeColor} w-full min-h-screen`}
+			className={`theme-${color} w-full min-h-screen`}
 			style={
 				{
-					"--radius": `${themeRadius}rem`,
+					"--radius": `${radius}rem`,
 				} as React.CSSProperties
 			}
 		>

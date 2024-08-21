@@ -1,10 +1,10 @@
 import { Button, Label } from "@repo/ui";
 import { useContext } from "react";
 import { ThemeProviderContext, radius } from ".";
-import React from "react";
 
+import React from "react";
 export function ThemeRadius() {
-	const { themeRadius, setThemeRadius } = useContext(ThemeProviderContext);
+	const { radius: currentRadius, setRadius } = useContext(ThemeProviderContext);
 
 	return (
 		<div className='space-y-1.5'>
@@ -17,9 +17,9 @@ export function ThemeRadius() {
 							size='sm'
 							key={value}
 							onClick={() => {
-								setThemeRadius(value);
+								setRadius(value);
 							}}
-							className={`${themeRadius === value && "border-2 border-primary"}`}
+							className={`${currentRadius === value.toString() && "border-2 border-primary"}`}
 						>
 							{value}
 						</Button>

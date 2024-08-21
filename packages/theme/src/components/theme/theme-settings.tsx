@@ -1,6 +1,6 @@
 import React, { Fragment, type FC } from "react";
 import { Button, Separator, Space } from "@repo/ui";
-import { ThemeToggle, ThemeColors } from "./";
+import { ThemeToggle, ThemeColors, ThemeRadius } from "./";
 
 type ThemeSettingProps = {};
 
@@ -10,6 +10,8 @@ export const ThemeSetting: FC<ThemeSettingProps> = ({ }) => {
 			<ThemeToggle />
 			<Separator />
 			<ThemeColors />
+			<Separator />
+			<ThemeRadius />
 			<Separator />
 			<Space >
 				<Button>测试按钮</Button>

@@ -1,23 +1,30 @@
+"use client"
+
 import React, { createContext, useState } from "react";
-import { setItem, getItem, localStorageKeys, themesEnum } from "../../utils";
+
+import { useStorageSuspense } from '@repo/shared';
+
+import { themesEnum } from "../../utils";
 import { Themes } from "../../";
+
+import { themeStorage, colorStorage, radiusStorage } from "../../storage";
 
 type ThemeProviderState = {
 	theme: Themes;
 	setTheme: (theme: Themes) => void;
-	themeColor: string;
-	setThemeColor: (key: string) => void;
-	themeRadius: string | number;
-	setThemeRadius: (radius: string | number) => void;
+	color: string;
+	setColor: (key: string) => void;
+	radius: string | number;
+	setRadius: (radius: string | number) => void;
 };
 
 const initialState: ThemeProviderState = {
 	theme: themesEnum.system,
 	setTheme: () => null,
-	themeColor: "zinc",
-	setThemeColor: () => null,
-	themeRadius: 0.5,
-	setThemeRadius: () => null,
+	color: "zinc",
+	setColor: () => null,
+	radius: 0.5,
+	setRadius: () => null,
 };
 
 export const ThemeProviderContext =
@@ -36,33 +43,20 @@ export function ThemeProvider({
 	defaultRadius = 0.5,
 	...props
 }: ThemeProviderProps) {
-	const [theme, setTheme] = useState<Themes>(
-		() => getItem(localStorageKeys.theme) || defaultTheme
-	);
 
-	const [themeColor, setThemeColor] = useState<string>(
-		() => getItem(localStorageKeys.color) || defaultColor
-	);
-	const [themeRadius, setThemeRadius] = useState<number | string>(
-		() => getItem(localStorageKeys.radius) || defaultRadius
-	);
+
+	const theme = useStorageSuspense(themeStorage);
+	const color = useStorageSuspense(colorStorage);
+	const radius = useStorageSuspense(radiusStorage);
+
 
 	const value = {
 		theme,
-		setTheme: (theme: Themes) => {
-			setItem(localStorageKeys.theme, theme);
-			setTheme(theme);
-		},
-		themeColor,
-		setThemeColor: (color: string) => {
-			setItem(localStorageKeys.color, color);
-			setThemeColor(color);
-		},
-		themeRadius,
-		setThemeRadius: (value: number | string) => {
-			setItem(localStorageKeys.radius, value);
-			setThemeRadius(value);
-		},
+		setTheme: themeStorage.setTheme,
+		color,
+		setColor: colorStorage.setColor,
+		radius,
+		setRadius: radiusStorage.setRadius,
 	};
 
 	return (

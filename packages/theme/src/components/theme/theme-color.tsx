@@ -7,8 +7,8 @@ import React from "react";
 export function ThemeColors() {
 	const {
 		theme: mode,
-		setThemeColor,
-		themeColor,
+		setColor,
+		color,
 	} = useContext(ThemeProviderContext);
 
 	return (
@@ -16,22 +16,20 @@ export function ThemeColors() {
 			<Label className='text-xs'>Color</Label>
 			<div className='flex gap-2 p-2 flex-wrap'>
 				{themes.map((theme) => {
-					const isActive = themeColor === theme.name;
-
+					const isActive = color === theme.name;
 					return (
 						<Button
 							variant={"outline"}
 							size='sm'
 							key={theme.name}
 							onClick={() => {
-								setThemeColor(theme.name);
+								setColor(theme.name);
 							}}
 							className={`justify-start ${isActive && "border-2 border-primary"}`}
 							style={
 								{
-									"--theme-primary": `hsl(${
-										theme?.activeColor[mode === "dark" ? "dark" : "light"]
-									})`,
+									"--theme-primary": `hsl(${theme?.activeColor[mode === "dark" ? "dark" : "light"]
+										})`,
 								} as React.CSSProperties
 							}
 						>

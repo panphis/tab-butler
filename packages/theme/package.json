@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "theme repo",
 	"scripts": {
+		"dev": "vite build && npm run build:styles",
 		"ready": "vite build && npm run build:styles",
 		"build": "vite build && npm run build:styles",
 		"build:styles": "postcss ./src/globals.css -o ./dist/globals.css",
@@ -20,7 +21,8 @@
 	"license": "ISC",
 	"dependencies": {
 		"@repo/storage": "workspace:*",
-		"@repo/ui": "workspace:*"
+		"@repo/ui": "workspace:*",
+		"@repo/shared": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.61",

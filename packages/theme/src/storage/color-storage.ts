@@ -1,20 +1,18 @@
 import { BaseStorage, createStorage, StorageType } from '@repo/storage';
-import { Themes } from "../";
 
-type ColorStorage = BaseStorage<Themes> & {
-  toggle: () => Promise<void>;
+
+type ColorStorage = BaseStorage<string> & {
+  setColor: (color: string) => Promise<void>;
 };
 
-const storage = createStorage<Themes>('theme-storage-key', 'light', {
+const storage = createStorage<string>('color-storage-key', 'zinc', {
   storageType: StorageType.Local,
   liveUpdate: true,
 });
 
 export const colorStorage: ColorStorage = {
   ...storage,
-  toggle: async () => {
-    await storage.set(currentTheme => {
-      return currentTheme
-    });
+  setColor: async (color) => {
+    await storage.set(() => color);
   },
 };
