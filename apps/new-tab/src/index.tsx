@@ -1,5 +1,8 @@
 import { createRoot } from 'react-dom/client';
+// style for ui components
 import '@repo/ui/dist/globals.css';
+// style for theme
+import '@repo/theme/dist/globals.css';
 import NewTab from '@/NewTab';
 
 function init() {

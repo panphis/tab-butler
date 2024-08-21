@@ -2,15 +2,20 @@
 	"name": "@repo/theme",
 	"version": "1.0.0",
 	"description": "theme repo",
-	"types": "./src/index.ts",
-	"type": "module",
-	"exports": {
-		".": "./src"
+	"scripts": {
+		"ready": "vite build && npm run build:styles",
+		"build": "vite build && npm run build:styles",
+		"build:styles": "postcss ./src/globals.css -o ./dist/globals.css",
+		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
+	"type": "module",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.es.js",
+	"types": "dist/src/index.d.ts",
+	"sideEffects": false,
 	"files": [
-		"src/**"
+		"dist"
 	],
-	"scripts": {},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
@@ -18,10 +23,22 @@
 		"@repo/ui": "workspace:*"
 	},
 	"devDependencies": {
+		"@types/react": "^18.2.61",
+		"@vitejs/plugin-react": "^4.3.1",
+		"autoprefixer": "^10.4.20",
 		"lucide-react": "^0.427.0",
 		"react-i18next": "^15.0.1",
 		"i18next": "^23.14.0",
 		"i18next-browser-languagedetector": "^8.0.0",
-		"i18next-http-backend": "^2.6.0"
+		"i18next-http-backend": "^2.6.0",
+		"eslint": "^8.57.0",
+		"postcss": "^8.4.41",
+		"postcss-cli": "^11.0.0",
+		"tailwindcss": "^3.4.10",
+		"typescript": "^5.3.3",
+		"vite-plugin-dts": "^4.0.3"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0"
 	}
 }

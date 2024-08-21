@@ -34,13 +34,13 @@ export function ThemeToggle() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={() => setTheme('light')}>
-            <Translation id={`header.color.mode.light`} />
+            <Translation id={`header.color.mode.light`} defaultValue='Light' />
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('dark')}>
-            <Translation id={`header.color.mode.dark`} />
+            <Translation id={`header.color.mode.dark`} defaultValue='Dark' />
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('system')}>
-            <Translation id={`header.color.mode.system`} />
+            <Translation id={`header.color.mode.system`} defaultValue='System' />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

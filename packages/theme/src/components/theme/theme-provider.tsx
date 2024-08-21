@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { setItem, getItem, localStorageKeys, themesEnum } from "../../utils";
-import type { Themes } from "../../utils";
+import { Themes } from "../../";
 
 type ThemeProviderState = {
 	theme: Themes;

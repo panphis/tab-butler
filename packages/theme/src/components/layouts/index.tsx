@@ -3,7 +3,7 @@ import { ThemeProvider, ThemeProviderContext } from "../theme";
 
 import { HTMLAttributes, ReactNode, useContext, useEffect } from "react";
 
-import "../assets/theme/themes.css";
+import '../../globals.css';
 import "../assets/js/i18n";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {

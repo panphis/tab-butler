@@ -28,9 +28,6 @@
       ]
     },
     "dev": {
-      "dependsOn": [
-        "ready"
-      ],
       "outputs": [
         "dist/**",
         "build/**"

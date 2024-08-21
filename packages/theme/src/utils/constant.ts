@@ -1,3 +1,5 @@
+import { Themes } from "..";
+
 export type LocalStorageKeys = "theme" | "color" | "radius";
 
 export const localStorageKeys: Record<LocalStorageKeys, LocalStorageKeys> = {
@@ -6,7 +8,6 @@ export const localStorageKeys: Record<LocalStorageKeys, LocalStorageKeys> = {
 	radius: "radius",
 };
 
-export type Themes = "light" | "dark" | "system";
 export const themesEnum: Record<Themes, Themes> = {
 	light: "light",
 	dark: "dark",

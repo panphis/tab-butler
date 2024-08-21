@@ -1,0 +1,14 @@
+{
+	"en-US": "English",
+	"zh-CN": "Chinese-Simplified",
+	"select-language": "Please select language",
+	"header": {
+		"color": {
+			"mode": {
+				"system": "With system",
+				"light": "Light",
+				"dark": "Dark"
+			}
+		}
+	}
+}

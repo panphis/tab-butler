@@ -1,0 +1,14 @@
+{
+	"en-US": "英文",
+	"zh-CN": "中文简体",
+	"select-language":"请选择语言",
+	"header": {
+		"color": {
+			"mode": {
+				"system": "跟随系统",
+				"light": "亮色模式",
+				"dark": "暗色模式"
+			}
+		}
+	}
+}
