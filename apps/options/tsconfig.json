@@ -1,12 +1,19 @@
 {
 	"files": [],
 	"extends": "@repo/typescript-config/base",
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
 		},
-		{
-			"path": "./tsconfig.node.json"
-		}
+		"jsx": "react-jsx",
+		"types": [
+			"chrome"
+		]
+	},
+	"include": [
+		"src"
 	]
 }

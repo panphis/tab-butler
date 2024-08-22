@@ -4,7 +4,7 @@ import { ThemeToggle, ThemeColors, ThemeRadius } from "./";
 
 type ThemeSettingProps = {};
 
-export const ThemeSetting: FC<ThemeSettingProps> = ({ }) => {
+export const ThemeSetting: FC<ThemeSettingProps> = ({}) => {
 	return (
 		<Fragment>
 			<ThemeToggle />
@@ -13,11 +13,11 @@ export const ThemeSetting: FC<ThemeSettingProps> = ({ }) => {
 			<Separator />
 			<ThemeRadius />
 			<Separator />
-			<Space >
+			<Space>
 				<Button>测试按钮</Button>
 				<Button variant={"secondary"}>测试按钮 secondary</Button>
 			</Space>
 			<Separator />
 		</Fragment>
 	);
-}; 
+};

@@ -1,13 +1,11 @@
-"use client"
+"use client";
 
 import React from "react";
 import { ThemeProvider, ThemeProviderContext } from "../theme";
 
 import { HTMLAttributes, ReactNode, useContext, useEffect } from "react";
 
-import '../../globals.css';
-import "../assets/js/i18n";
-
+import "../../globals.css";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
@@ -17,14 +15,7 @@ const getSystemTheme = () =>
 	window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 function LayoutContainer({ children }: LayoutProps) {
-	const {
-		theme,
-		color,
-		radius,
-	} = useContext(ThemeProviderContext);
-
-
-
+	const { theme, color, radius } = useContext(ThemeProviderContext);
 
 	useEffect(() => {
 		const root = window.document.documentElement;
