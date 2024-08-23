@@ -42,6 +42,10 @@ const manifest = deepmerge(
 			newtab: "new-tab/index.html",
 		},
 		icons: {
+			16: "icon-16.png",
+			19: "icon-19.png",
+			38: "icon-38.png",
+			48: "icon-48.png",
 			128: "icon-128.png",
 		},
 		// content_scripts: [

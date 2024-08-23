@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import '@repo/ui/dist/globals.css';
 // style for theme
 import '@repo/theme/dist/globals.css';
-import NewTab from '@/NewTab';
+import "./globals.css";
+import NewTab from '@/App';
 
 function init() {
   const appContainer = document.querySelector('#app-container');

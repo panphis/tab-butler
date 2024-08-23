@@ -11,7 +11,7 @@ const Space = React.forwardRef<HTMLDivElement, SpaceProps>(
 	({ className, gap = 2, direction = "row", ...props }, ref) => {
 		return (
 			<div
-				className={cn(`flex p-${gap} gap-${gap} flex-${direction}`, className)}
+				className={cn(`flex gap-${gap} flex-${direction}`, className)}
 				ref={ref}
 				{...props}
 			/>

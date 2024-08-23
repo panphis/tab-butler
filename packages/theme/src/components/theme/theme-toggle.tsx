@@ -1,3 +1,6 @@
+
+import React from "react";
+import { IconAuto, IconDark, IconLight } from "@/components";
 import { Moon, Sun, SunMoon } from "lucide-react";
 import { Fragment } from "react";
 import {
@@ -10,7 +13,6 @@ import {
 } from "@repo/ui";
 import { useContext } from "react";
 import { ThemeProviderContext } from ".";
-import React from "react";
 
 export function ThemeToggle() {
 	const { setTheme, theme } = useContext(ThemeProviderContext);
@@ -35,13 +37,13 @@ export function ThemeToggle() {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align='end'>
 					<DropdownMenuItem onClick={() => setTheme("light")}>
-						Light
+						<Sun className='h-[1rem] w-[1rem] transition-all' />
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("dark")}>
-						Dark
+						<Moon className='h-[1rem] w-[1rem] transition-all' />
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("system")}>
-						System
+						<SunMoon className='h-[1rem] w-[1rem] transition-all' />
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
