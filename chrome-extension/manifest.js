@@ -28,7 +28,7 @@ const manifest = deepmerge(
 		version: "1.0.0",
 		description: "extension name",
 		host_permissions: ["<all_urls>"],
-		permissions: ["storage", "scripting"],
+		permissions: ["favicon","storage", "scripting"],
 		options_page: "options/index.html",
 		background: {
 			service_worker: "background.iife.js",
@@ -68,6 +68,11 @@ const manifest = deepmerge(
 				resources: ["*.js", "*.css", "*.svg", "icon-128.png", "icon-34.png"],
 				matches: ["*://*/*"],
 			},
+			{
+			"resources": ["_favicon/*"],
+			"matches": ["<all_urls>"],
+			"extension_ids": ["*"]
+			}
 		],
 	},
 	!isFirefox && sidePanelConfig

@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 // style for ui components
 import '@repo/ui/dist/globals.css';
 // style for theme
-import '@repo/theme/dist/globals.css';
+import '@repo/common/dist/globals.css';
 import "./globals.css";
 import NewTab from '@/App';
 

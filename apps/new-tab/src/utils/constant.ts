@@ -27,3 +27,6 @@ export const searchEngines: SearchEngine[] = [
 		supportIgnore: true
 	}
 ]
+
+export const searchEnginesMap = new Map<string, SearchEngine>(searchEngines.map(item => [item.id, item]))
+

@@ -1,6 +1,6 @@
 import React, { Fragment, type FC } from "react";
 import { Button, Separator, Space } from "@repo/ui";
-import { ThemeToggle, ThemeColors, ThemeRadius } from "./";
+import { ThemeToggle, ThemeColors, ThemeRadius } from ".";
 
 type ThemeSettingProps = {};
 

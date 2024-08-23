@@ -29,20 +29,20 @@ export const Clock: FC = () => {
 	}, [date]);
 
 	return (<Fragment>
-		<Space direction="col" className="text-white justify-center drop-shadow-md hover:drop-shadow-xl" gap={1}>
-			<Space className="items-end justify-center" gap={2}>
-				<span className="text-4xl">{time.hours}</span>
+		<Space direction="col" className="text-white justify-center drop-shadow-md hover:drop-shadow-xl h-24" gap={1}>
+			<Space className="items-end justify-center group/time  h-12" gap={2}>
+				<span className="text-3xl group-hover/time:text-4xl  transition-all">{time.hours}</span>
 				<span className="text-xl leading-8">:</span>
-				<span className="text-4xl">{time.minutes}</span>
+				<span className="text-3xl group-hover/time:text-4xl  transition-all">{time.minutes}</span>
 				<span className="text-xl leading-8">:</span>
-				<span className="text-xl">{time.seconds}</span>
+				<span className="text-xl group-hover/time:text-2xl  transition-all">{time.seconds}</span>
 			</Space>
-			<Space className="items-center justify-center" gap={2}>
-				<span className="text-2xl">{time.year}</span>
+			<Space className="items-center justify-center group/date  h-12" gap={2}>
+				<span className="text-2xl group-hover/date:text-3xl transition-all">{time.year}</span>
 				<span className="text-base">/</span>
-				<span className="text-2xl">{time.month}</span>
+				<span className="text-2xl group-hover/date:text-3xl transition-all">{time.month}</span>
 				<span className="text-base">/</span>
-				<span className="text-2xl">{time.day}</span>
+				<span className="text-2xl group-hover/date:text-3xl transition-all">{time.day}</span>
 			</Space>
 		</Space>
 	</Fragment>);

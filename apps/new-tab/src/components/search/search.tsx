@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { Fragment, type FC } from "react";
+import  { Fragment, type FC, useMemo } from "react";
 import {
 	Button,
 	Form,
@@ -14,11 +14,13 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
+	Space,
 } from "@repo/ui"
+import { Search } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { searchEngines } from "@/utils";
+import { searchEngines, searchEnginesMap } from "@/utils";
 import { Favicon } from "@/components";
 
 const schema = z.object({
@@ -26,7 +28,19 @@ const schema = z.object({
 	keyWords: z.string(),
 })
 
-export const Search: FC = () => {
+
+
+interface SelectedIconProps {
+value:string
+}
+const SelectedIcon = ({ value }: SelectedIconProps) => {
+	const currentEngine = searchEnginesMap.get(value)!
+	return <Favicon className="w-4 h-4" src={currentEngine.url} title={currentEngine.title} />
+}
+
+
+
+export const SearchForm : FC = () => {
 
 	const form = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
@@ -44,44 +58,84 @@ export const Search: FC = () => {
 	return (<Fragment>
 
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-				<FormField
-					control={form.control}
-					name="keyWords"
-					render={({ field }) => (
-						<FormItem>
-							<FormControl>
-								<Input placeholder="搜索" {...field} />
-							</FormControl>
-						</FormItem>
-					)}
-				/>
+			<form onSubmit={form.handleSubmit(onSubmit)}
+				
+				 className={`
+					flex gap-2 items-center p-1 h-12
+					background-color-transparent
+					w-max max-w-[80%] text-white 
+					shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 overflow-hidden rounded-full
+				`}>
+
 				<FormField
 					control={form.control}
 					name="engine"
-					render={({ field }) => (
-						<FormItem>
-							<FormControl>
-								<Select  {...field}>
-									<SelectTrigger className="w-[180px]">
-										<SelectValue placeholder="Theme" />
-									</SelectTrigger>
+					render={({ field }) => {
+						return (
+							<FormItem>
+								<Select {...field} onValueChange={field.onChange} defaultValue={field.value}>
+									<FormControl>
+										<SelectTrigger
+											className="
+												bg-transparent border-none text-center
+												focus:shadow-none
+												focus:ring-color-transparent
+												focus:ring-offset-0
+												focus:ring-0"
+										>
+											<SelectValue asChild>
+												<SelectedIcon value={field.value} />
+											</SelectValue>
+										</SelectTrigger>
+									</FormControl>
 									<SelectContent>
 										{
-											searchEngines.map(item => (
-												<SelectItem key={item.id} value={item.id}>
-													<Favicon src={item.url} title={item.title} />
-													{item.title}
-												</SelectItem>
+										searchEngines.map(item => (
+											<SelectItem
+												key={item.id} value={item.id}
+											>
+												<Space direction="row" className="flex-nowrap items-center" gap="2">
+												<Favicon className="w-4 h-4" src={item.url} title={item.title} />
+												{item.title}
+												</Space>
+											</SelectItem>
 											))
 										}
 									</SelectContent>
 								</Select>
-							</FormControl>
-						</FormItem>
-					)}
+							</FormItem>
+						)
+					}}
 				/>
-				<Button type="submit">Submit</Button>
+				<FormField
+					control={form.control}
+					name="keyWords"
+					render={({ field }) => {
+						return (
+							<FormItem>
+								<FormControl>
+									<Input
+										className={`
+										bg-transparent border-none text-center
+										focus-visible:shadow-none
+										focus-visible:ring-color-transparent
+										focus-visible:ring-offset-0
+										focus-visible:ring-0
+										`}
+										placeholder="搜索" {...field} />
+								</FormControl>
+							</FormItem>
+						)
+					}}
+				/>
+				<Button
+					className={`
+						bg-transparent rounded-full
+						hover:shadow-[rgba(0,0,0,0.2)_0_0_10px] hover:backdrop-blur-[10px]
+						hover:bg-transparent hover:text-white
+					`} variant='ghost' size="icon" type="submit">
+					<Search className="w-4 h-4" />
+				</Button>
 			</form>
 		</Form>
 	</Fragment>);

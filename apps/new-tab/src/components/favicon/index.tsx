@@ -1,23 +1,43 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
 	Avatar,
 	AvatarFallback,
 	AvatarImage,
+
 } from "@repo/ui"
+
+
+interface FaviconProps {
+	src: string;
+	title: string;
+	[k:string]:any
+}
+
 export const Favicon = ({
 	title,
 	src,
 	...others
-}: {
-	src: string;
-	title: string;
-}) => {
-	const icon = `chrome://favicon/size/128@3x/${src}`;
-	// chrome://favicon2/?size=24&scale_factor=1x&show_fallback_monogram=&page_url=https%3A%2F%2Fdeveloper.chrome.com%2Fdocs%2Fextensions%2F
-	const iconTitle = title.trim()[0];
+}:FaviconProps) => {
+	
+	const icon = useMemo(() => {
+		const faviconUrl =	new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
+		faviconUrl.searchParams.append('pageUrl', src);
+		faviconUrl.searchParams.append('size', '32');
+		return faviconUrl.href;
+	}, [src]);
+
+	const iconTitle = useMemo(() => {
+		if (title.length < 2) {
+			return title.charAt(0).toUpperCase() + title.slice(1);
+		}
+		return title.slice(0, 2).charAt(0).toUpperCase() + title.slice(1, 2);
+	}, [title]);
+
+
+
 	return (
-		<Avatar>
-			<AvatarImage {...others} src={icon} alt="@shadcn" />
+		<Avatar {...others}>
+			<AvatarImage src={icon} alt="@shadcn" />
 			<AvatarFallback>{iconTitle}</AvatarFallback>
 		</Avatar>
 	);

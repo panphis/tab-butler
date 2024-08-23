@@ -1,5 +1,5 @@
 {
-	"name": "@repo/theme",
+	"name": "@repo/common",
 	"version": "1.0.0",
 	"description": "theme repo",
 	"scripts": {
@@ -29,7 +29,6 @@
 		"@vitejs/plugin-react": "^4.3.1",
 		"autoprefixer": "^10.4.20",
 		"lucide-react": "^0.427.0",
-		"react-i18next": "^15.0.1",
 		"eslint": "^8.57.0",
 		"postcss": "^8.4.41",
 		"postcss-cli": "^11.0.0",

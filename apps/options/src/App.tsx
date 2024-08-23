@@ -3,11 +3,11 @@ import { useState } from "react";
 // style for ui components
 import "@repo/ui/dist/globals.css";
 // style for theme
-import "@repo/theme/dist/globals.css";
+import "@repo/common/dist/globals.css";
 
 import { withErrorBoundary, withSuspense } from "@repo/shared";
 
-import { Layout, ThemeSetting } from "@repo/theme";
+import { Layout, ThemeSetting } from "@repo/common";
 import { Button } from "@repo/ui";
 
 function App() {

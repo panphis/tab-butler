@@ -1,18 +1,23 @@
 {
-  "extends": "@repo/typescript-config/base",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "jsx": "react-jsx",
-    "types": [
-      "chrome"
-    ]
-  },
-  "include": [
-    "src"
-  ]
+	"extends": "@repo/typescript-config/base",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
+		"jsx": "react-jsx",
+		"types": [
+			"chrome"
+		],
+		"lib": [
+			"ESNext",
+			"DOM"
+		],
+		"target": "ESNext"
+	},
+	"include": [
+		"src"
+	]
 }

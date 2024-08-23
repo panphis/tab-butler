@@ -5,7 +5,7 @@ import React, { createContext, useState } from "react";
 import { useStorageSuspense } from '@repo/shared';
 
 import { themesEnum } from "../../utils";
-import { Themes } from "../../";
+import { Themes } from "../..";
 
 import { themeStorage, colorStorage, radiusStorage } from "../../storage";
 
