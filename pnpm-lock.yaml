@@ -59,7 +59,13 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      react-hook-form:
+        specifier: ^7.52.2
+        version: 7.52.2(react@18.3.1)
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^3.9.0
+        version: 3.9.0(react-hook-form@7.52.2)
       '@repo/tailwindcss-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -81,6 +87,9 @@ importers:
       vite:
         specifier: ^5.4.0
         version: 5.4.2(@types/node@22.3.0)(sass@1.77.8)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
 
   apps/options:
     dependencies:
@@ -1448,7 +1457,6 @@ packages:
       react-hook-form: ^7.0.0
     dependencies:
       react-hook-form: 7.52.2(react@18.3.1)
-    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -8161,7 +8169,6 @@ packages:
       react: ^16.8.0 || ^17 || ^18 || ^19
     dependencies:
       react: 18.3.1
-    dev: false
 
   /react-i18next@15.0.1(i18next@23.14.0)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-NwxLqNM6CLbeGA9xPsjits0EnXdKgCRSS6cgkgOdNcPXqL+1fYNl8fBg1wmnnHvFy812Bt4IWTPE9zjoPmFj3w==}
@@ -9949,7 +9956,6 @@ packages:
 
   /zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
-    dev: false
 
 settings:
   autoInstallPeers: true

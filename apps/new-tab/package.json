@@ -17,15 +17,18 @@
 		"@repo/shared": "workspace:*",
 		"@repo/storage": "workspace:*",
 		"@repo/theme": "workspace:*",
-		"@repo/ui": "workspace:*"
+		"@repo/ui": "workspace:*",
+		"react-hook-form": "^7.52.2"
 	},
 	"devDependencies": {
+		"@hookform/resolvers": "^3.9.0",
 		"@repo/tailwindcss-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vite-config": "workspace:*",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",
 		"sass": "1.77.8",
-		"vite": "^5.4.0"
+		"vite": "^5.4.0",
+		"zod": "^3.23.8"
 	}
 }

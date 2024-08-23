@@ -1,4 +1,12 @@
-const searchEngines = [
+type SearchEngine = {
+	url: string
+	id: string
+	title: string
+	supportIgnore: boolean
+	ignoreKeyStr?: string
+}
+
+export const searchEngines: SearchEngine[] = [
 	{
 		url: 'https://www.google.com/search?q=',
 		id: 'google',
@@ -8,7 +16,6 @@ const searchEngines = [
 	{
 		url: 'https://cn.bing.com/search?q=',
 		id: 'bing',
-		icon: 'iconbing',
 		title: 'Bing',
 		supportIgnore: false,
 		ignoreKeyStr: '',

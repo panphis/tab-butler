@@ -8,7 +8,7 @@ import {
 
 import { Layout } from "@repo/theme";
 
-import { Wallpaper, Clock } from "@/components";
+import { Wallpaper, Clock, Search } from "@/components";
 
 const NewTab = () => {
 
@@ -16,6 +16,7 @@ const NewTab = () => {
 		<Layout>
 			<Wallpaper className="flex flex-col justify-center items-center gap-4">
 				<Clock />
+				<Search />
 			</Wallpaper>
 		</Layout>
 	);
