@@ -14,7 +14,7 @@ export const searchEngines: SearchEngine[] = [
 		supportIgnore: true
 	},
 	{
-		url: 'https://cn.bing.com/search?q=',
+		url: 'https://bing.com/search?q=',
 		id: 'bing',
 		title: 'Bing',
 		supportIgnore: false,
