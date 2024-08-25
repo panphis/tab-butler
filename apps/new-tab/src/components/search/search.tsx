@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, type FC } from 'react'
+import { Fragment, type FC, useEffect } from 'react'
 import {
 	Button,
 	Form,
@@ -15,6 +15,9 @@ import { searchEngines, searchEnginesMap } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
+import { useStorageSuspense } from '@repo/shared';
+import { engineStorage } from "@/storage";
+
 const schema = z.object({
 	engine: z.string(),
 	keyWords: z.string()
@@ -23,13 +26,30 @@ const schema = z.object({
 
 
 export const SearchForm: FC = () => {
-	const form = useForm<z.infer<typeof schema>>({
+
+
+	const engine = useStorageSuspense(engineStorage);
+
+
+	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			engine: searchEngines[0].id,
+			engine: engine,
 			keyWords: ''
 		}
 	})
+
+
+	useEffect(() => {
+		const subscription = watch((value) => {
+			const engine = value?.engine!
+			engineStorage.setEngine(engine)
+		})
+		return () => subscription.unsubscribe()
+	}, [watch])
+
+
+
 
 	function onSubmit(values: z.infer<typeof schema>) {
 		const { engine, keyWords } = values
@@ -39,10 +59,8 @@ export const SearchForm: FC = () => {
 	}
 
 	return (
-
-
 		<Fragment>
-			<Form {...form}>
+			<Form {...form} watch={watch}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className={`
