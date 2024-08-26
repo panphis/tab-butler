@@ -34,7 +34,8 @@ const manifest = deepmerge(
 			"favicon",
 			"storage",
 			"scripting",
-			"tabs"
+			"tabs",
+			"bookmarks"
 		],
 		options_page: "options/index.html",
 		background: {

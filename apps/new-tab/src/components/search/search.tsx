@@ -11,12 +11,13 @@ import { Search } from 'lucide-react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { searchEngines, searchEnginesMap } from '@/utils'
+import { searchEnginesMap } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
 import { useStorageSuspense } from '@repo/shared';
 import { engineStorage } from "@/storage";
+
 
 const schema = z.object({
 	engine: z.string(),
