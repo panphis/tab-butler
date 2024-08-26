@@ -30,12 +30,12 @@ export const Clock: FC = () => {
 
 	return (<Fragment>
 		<Space direction="col" className="text-background justify-center drop-shadow-md hover:drop-shadow-xl h-24" gap={1}>
-			<Space className="items-end justify-center group/time  h-12" gap={2}>
-				<span className="text-3xl group-hover/time:text-4xl transition-all">{time.hours}</span>
-				<span className="text-xl leading-8">:</span>
-				<span className="text-3xl group-hover/time:text-4xl transition-all">{time.minutes}</span>
-				<span className="text-xl leading-8">:</span>
-				<span className="text-xl group-hover/time:text-2xl transition-all">{time.seconds}</span>
+			<Space className="items-center justify-center group/time h-12" gap={2}>
+				<span className="text-4xl group-hover/time:text-6xl transition-all">{time.hours}</span>
+				<span className="text-4xl leading-8">:</span>
+				<span className="text-4xl group-hover/time:text-6xl transition-all">{time.minutes}</span>
+				<span className="text-4xl leading-8">:</span>
+				<span className="text-4xl group-hover/time:text-6xl transition-all">{time.seconds}</span>
 			</Space>
 			<Space className="items-center justify-center group/date  h-12" gap={2}>
 				<span className="text-2xl group-hover/date:text-3xl transition-all">{time.year}</span>

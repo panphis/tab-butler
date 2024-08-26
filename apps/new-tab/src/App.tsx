@@ -8,15 +8,17 @@ import {
 
 import { Layout } from "@repo/common";
 
-import { Wallpaper, Clock, SearchForm } from "@/components";
+import { Wallpaper, Clock, SearchForm, Sites } from "@/components";
+
 
 const NewTab = () => {
 
 	return (
 		<Layout>
-			<Wallpaper className="flex flex-col justify-center items-center gap-4">
+			<Wallpaper className="flex flex-col justify-start items-center py-20 gap-8">
 				<Clock />
 				<SearchForm />
+				<Sites />
 			</Wallpaper>
 		</Layout>
 	);

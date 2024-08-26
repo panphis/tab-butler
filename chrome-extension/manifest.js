@@ -28,7 +28,14 @@ const manifest = deepmerge(
 		version: "1.0.0",
 		description: "extension name",
 		host_permissions: ["<all_urls>"],
-		permissions: ["favicon","storage", "scripting"],
+		permissions: [
+			"topSites",
+			"history",
+			"favicon",
+			"storage",
+			"scripting",
+			"tabs"
+		],
 		options_page: "options/index.html",
 		background: {
 			service_worker: "background.iife.js",
@@ -69,9 +76,9 @@ const manifest = deepmerge(
 				matches: ["*://*/*"],
 			},
 			{
-			"resources": ["_favicon/*"],
-			"matches": ["<all_urls>"],
-			"extension_ids": ["*"]
+				"resources": ["_favicon/*"],
+				"matches": ["<all_urls>"],
+				"extension_ids": ["*"]
 			}
 		],
 	},

@@ -18,9 +18,8 @@ export function ThemeToggle() {
 	const { setTheme, theme } = useContext(ThemeProviderContext);
 
 	return (
-		<Fragment>
-			<Label className='text-xs'>Theme</Label>
-			<br></br>
+		<div>
+			<Label>Theme</Label>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<Button variant='outline' className='flex gap-2'>
@@ -47,6 +46,6 @@ export function ThemeToggle() {
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
-		</Fragment>
+		</div>
 	);
 }

@@ -14,7 +14,8 @@ export const Picture: FC<PictureProps> = ({ src, children, className }) => {
 		<div className={cn('min-h-dvh bg-fixed bg-no-repeat bg-cover', className)}
 			style={{
 				backgroundImage: `url(${src}), url('${defaultWallpaperSrc}')`
-			}}>
+			}}
+		>
 			{children}
 		</div>
 	</Fragment>);

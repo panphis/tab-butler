@@ -10,27 +10,24 @@ import {
 interface FaviconProps {
 	src: string;
 	title: string;
-	[k:string]:any
+	[k: string]: any
 }
 
 export const Favicon = ({
 	title,
 	src,
 	...others
-}:FaviconProps) => {
-	
+}: FaviconProps) => {
+
 	const icon = useMemo(() => {
-		const faviconUrl =	new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
+		const faviconUrl = new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
 		faviconUrl.searchParams.append('pageUrl', src);
 		faviconUrl.searchParams.append('size', '32');
 		return faviconUrl.href;
 	}, [src]);
 
 	const iconTitle = useMemo(() => {
-		if (title.length < 2) {
-			return title.charAt(0).toUpperCase() + title.slice(1);
-		}
-		return title.slice(0, 2).charAt(0).toUpperCase() + title.slice(1, 2);
+		return title.charAt(0).toUpperCase()
 	}, [title]);
 
 

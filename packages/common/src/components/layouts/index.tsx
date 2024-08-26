@@ -3,7 +3,7 @@
 import React from "react";
 import { ThemeProvider, ThemeProviderContext } from "../theme";
 
-import { HTMLAttributes, ReactNode, useContext, useEffect } from "react";
+import { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
 
 import "../../globals.css";
 
@@ -16,16 +16,14 @@ const getSystemTheme = () =>
 
 function LayoutContainer({ children }: LayoutProps) {
 	const { theme, color, radius } = useContext(ThemeProviderContext);
+	const [rootClassName, setRootClassName] = useState(() => getSystemTheme());
 
 	useEffect(() => {
-		const root = window.document.documentElement;
-		root.classList.remove("light", "dark");
 		if (theme === "system") {
 			const systemTheme = getSystemTheme();
-			root.classList.add(systemTheme);
-			return;
+			setRootClassName(systemTheme);
 		} else {
-			root.classList.add(theme);
+			setRootClassName(theme);
 		}
 
 		const darkModeMediaQuery = window.matchMedia(
@@ -39,17 +37,23 @@ function LayoutContainer({ children }: LayoutProps) {
 
 	const onSystemThemeChange = (e: MediaQueryListEvent) => {
 		if (theme === "system") {
-			const root = window.document.documentElement;
 			const systemTheme = getSystemTheme();
-			root.classList.remove("light", "dark");
-			root.classList.add(systemTheme);
+			setRootClassName(systemTheme);
 			return;
 		}
 	};
 
+
+	useEffect(() => {
+		const html = document.querySelector("html");
+		if (html) {
+			html.className = `theme-${color} ${rootClassName}`;
+		}
+	}, [theme, rootClassName])
+
 	return (
 		<div
-			className={`theme-${color} w-full min-h-screen`}
+			className={`w-full min-h-screen`}
 			style={
 				{
 					"--radius": `${radius}rem`,

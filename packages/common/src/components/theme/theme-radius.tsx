@@ -7,8 +7,8 @@ export function ThemeRadius() {
 	const { radius: currentRadius, setRadius } = useContext(ThemeProviderContext);
 
 	return (
-		<div className='space-y-1.5'>
-			<Label className='text-xs'>Radius</Label>
+		<div>
+			<Label>Radius</Label>
 			<div className='flex gap-2'>
 				{radius.map((value) => {
 					return (

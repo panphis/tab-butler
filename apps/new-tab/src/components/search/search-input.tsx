@@ -7,6 +7,8 @@ import {
 	Input
 } from '@repo/ui'
 
+import { useHistory } from "@repo/shared";
+
 
 type SearchInputProps = {
 	field: {
@@ -16,6 +18,10 @@ type SearchInputProps = {
 };
 
 export const SearchInput: FC<SearchInputProps> = ({ field }) => {
+
+	const history = useHistory('less', 20)
+	console.log('history', history)
+
 	return (<Fragment>
 		<FormItem>
 			<FormControl>

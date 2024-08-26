@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // style for ui components
 import "@repo/ui/dist/globals.css";
 // style for theme
@@ -8,15 +6,12 @@ import "@repo/common/dist/globals.css";
 import { withErrorBoundary, withSuspense } from "@repo/shared";
 
 import { Layout, ThemeSetting } from "@repo/common";
-import { Button } from "@repo/ui";
 
 function App() {
 	return (
 		<Layout>
-			<ThemeSetting />
-			<Button>button</Button>
-			<div>
-				<p>sassaaaaaaa</p>
+			<div className="container mx-auto px-4 mt-8 max-w-lg md:max-w-xl lg:max-w-3xl">
+				<ThemeSetting />
 			</div>
 		</Layout>
 	);

@@ -12,8 +12,8 @@ export function ThemeColors() {
 	} = useContext(ThemeProviderContext);
 
 	return (
-		<div className='space-y-1.5'>
-			<Label className='text-xs'>Color</Label>
+		<div>
+			<Label>Color</Label>
 			<div className='flex gap-2 p-2 flex-wrap'>
 				{themes.map((theme) => {
 					const isActive = color === theme.name;
