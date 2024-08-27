@@ -4,4 +4,8 @@ export * from "./wallpaper"
 
 export * from "./search"
 
+export * from "./setting"
+
 export * from "./top-site"
+
+

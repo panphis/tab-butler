@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-export const useBookMarks = (query: string) => {
+export const useBookMarkQuery = (query: string, maxResults: number = 10) => {
 	const [bookmarks, setBookmarks] = useState<chrome.bookmarks.BookmarkTreeNode[]>([])
 	useEffect(() => {
 		const getBookmarksTrees = async () => {
@@ -10,7 +10,9 @@ export const useBookMarks = (query: string) => {
 				return setBookmarks([])
 			}
 			const bookmarks = await chrome.bookmarks.search(query)
-			setBookmarks(bookmarks)
+
+			const bookmarksWithUrl = bookmarks.filter(bookmark => bookmark.url).slice(0, maxResults)
+			setBookmarks(bookmarksWithUrl)
 		}
 		getBookmarksTrees()
 	}, [query])

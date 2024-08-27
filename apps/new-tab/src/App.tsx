@@ -6,20 +6,25 @@ import {
 } from "@repo/shared";
 
 
+import { TooltipProvider } from "@repo/ui";
 import { Layout } from "@repo/common";
 
-import { Wallpaper, Clock, SearchForm, Sites } from "@/components";
+
+import { Wallpaper, Clock, SearchForm, Sites, Setting } from "@/components";
 
 
 const NewTab = () => {
 
 	return (
 		<Layout>
-			<Wallpaper className="flex flex-col justify-start items-center py-20 gap-8">
-				<Clock />
-				<SearchForm />
-				<Sites />
-			</Wallpaper>
+			<TooltipProvider>
+				<Setting />
+				<Wallpaper className="flex flex-col justify-start items-center pt-20 pb-16 gap-8">
+					<Clock />
+					<SearchForm />
+					<Sites />
+				</Wallpaper>
+			</TooltipProvider>
 		</Layout>
 	);
 };

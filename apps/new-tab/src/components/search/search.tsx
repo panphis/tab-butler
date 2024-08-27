@@ -27,11 +27,7 @@ const schema = z.object({
 
 
 export const SearchForm: FC = () => {
-
-
 	const engine = useStorageSuspense(engineStorage);
-
-
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -65,14 +61,7 @@ export const SearchForm: FC = () => {
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className={`
-					flex gap-2 items-center p-1 h-12
-					w-max max-w-[80%]
-					shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 overflow-hidden rounded-full
-					hover:shadow-[rgba(255,255,255,0.2)_0_0_10px] hover:backdrop-blur-[20px] 
-					text-background/80
-					hover:bg-foreground/50 hover:text-background
-					dark:hover:bg-background/50 dark:hover:text-foreground
-					transition-all
+					flex gap-2 items-center p-1 h-12 w-max max-w-[80%] rounded-full shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.2)_0_0_10px] hover:backdrop-blur-[20px] text-light/80 hover:bg-dark/50 hover:text-light dark:hover:bg-light/50 dark:hover:text-light transition-all
 				`}
 				>
 					<FormField
@@ -99,7 +88,7 @@ export const SearchForm: FC = () => {
 						className={`
 							bg-transparent rounded-full hover:shadow-[rgba(255,255,255,0.2)_0_0_10px]
 							hover:backdrop-blur-[10px] hover:bg-transparent
-							text-background/80 hover:text-inherit
+							text-light/80 hover:text-inherit
 						`}
 						variant='ghost'
 						size='icon'
