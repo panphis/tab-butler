@@ -29,12 +29,14 @@ const manifest = deepmerge(
 		description: "extension name",
 		host_permissions: ["<all_urls>"],
 		permissions: [
+			"downloads",
 			"topSites",
 			"history",
 			"favicon",
 			"storage",
 			"scripting",
 			"tabs",
+			"storage",
 			"bookmarks"
 		],
 		options_page: "options/index.html",
