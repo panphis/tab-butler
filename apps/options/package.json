@@ -1,0 +1,40 @@
+{
+	"name": "@repo/options",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"clean": "rimraf ./dist",
+		"build": "vite build",
+		"build:watch": "cross-env __DEV__=true vite build --mode development",
+		"dev": "pnpm build:watch",
+		"lint": "eslint .",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "^3.9.0",
+		"@repo/shared": "workspace:*",
+		"@repo/storage": "workspace:*",
+		"@repo/common": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-hook-form": "^7.52.2"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.9.0",
+		"@repo/tailwindcss-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"eslint": "^9.9.0",
+		"eslint-plugin-react-hooks": "^5.1.0-rc.0",
+		"eslint-plugin-react-refresh": "^0.4.9",
+		"globals": "^15.9.0",
+		"typescript": "^5.5.3",
+		"typescript-eslint": "^8.0.1",
+		"vite": "^5.4.1",
+		"zod": "^3.23.8"
+	}
+}
