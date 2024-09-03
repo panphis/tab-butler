@@ -38,7 +38,8 @@ export const WallpaperSetting: FC = () => {
 		}
 		const file = files[0]
 		console.log(file)
-		// todo need some way to store the file for wallpaper
+		// ! it seems that chrome downloads can only download to system downloads folder can't download to path that relates to the extension folder
+		//// need some way to store the file for wallpaper
 		// chrome.downloads.download({
 		// 	url: URL.createObjectURL(files[0]),
 		// 	filename: files[0].name,
