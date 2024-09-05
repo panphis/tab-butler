@@ -14,7 +14,7 @@ export function ThemeColors() {
 	return (
 		<div>
 			<Label>Color</Label>
-			<div className='flex gap-2 p-2 flex-wrap'>
+			<div className='flex gap-2 py-2 flex-wrap'>
 				{themes.map((theme) => {
 					const isActive = color === theme.name;
 					return (

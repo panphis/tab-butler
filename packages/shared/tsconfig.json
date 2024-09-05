@@ -1,6 +1,8 @@
 {
   "extends": "@repo/typescript-config/utils",
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
     "outDir": "dist",
     "jsx": "react-jsx",
     "baseUrl": ".",

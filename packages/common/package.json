@@ -20,16 +20,16 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@repo/shared": "workspace:*",
 		"@repo/storage": "workspace:*",
-		"@repo/ui": "workspace:*",
-		"@repo/shared": "workspace:*"
+		"@repo/ui": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.61",
 		"@vitejs/plugin-react": "^4.3.1",
 		"autoprefixer": "^10.4.20",
-		"lucide-react": "^0.427.0",
 		"eslint": "^8.57.0",
+		"lucide-react": "^0.427.0",
 		"postcss": "^8.4.41",
 		"postcss-cli": "^11.0.0",
 		"tailwindcss": "^3.4.10",
