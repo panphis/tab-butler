@@ -14,7 +14,7 @@ function App() {
 		<Layout>
 			<Space className="container mx-auto px-4 mt-8 max-w-lg md:max-w-xl lg:max-w-3xl" direction="col" gap={2}>
 				<ThemeSetting />
-				{/* <WallpaperSetting /> */}
+				<WallpaperSetting />
 			</Space>
 		</Layout>
 	);

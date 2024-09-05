@@ -1,5 +1,5 @@
 import React, { Fragment, type FC, useState, useMemo } from 'react';
-import { Input, AspectRatio, InputProps } from '@repo/ui';
+import { Input, AspectRatio, InputProps, cn } from '@repo/ui';
 
 interface PreviewImageProps {
 	file: File
@@ -17,8 +17,7 @@ interface UploadProps extends Omit<InputProps, 'onChange' | 'value'> {
 	value?: FileList
 };
 
-export const Upload: FC<UploadProps> = ({ onChange, ...others }) => {
-	;
+export const Upload: FC<UploadProps> = ({ onChange, className, ...others }) => {
 
 	const selectedFiles = useMemo<File[]>(() => {
 		const files = others?.value ?? [];
@@ -32,7 +31,10 @@ export const Upload: FC<UploadProps> = ({ onChange, ...others }) => {
 		onChange?.(files)
 	};
 	return (<Fragment>
-		<Input {...others} value={undefined} type="file" onChange={handleFileChange} accept='image/*' />
+		<div className='w-max max-w-full h-max min-h-32 bg-black'>
+
+		</div>
+		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full h-max min-h-32')} onChange={handleFileChange} accept='image/*' />
 		{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewImage key={index} file={file} />)}
 	</Fragment>);
 }; 
