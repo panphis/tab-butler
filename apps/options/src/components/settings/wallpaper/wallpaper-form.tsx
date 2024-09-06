@@ -1,4 +1,4 @@
-import React, { Fragment, type FC } from "react";
+import { type FC } from "react";
 
 
 import { Upload } from "@/components";
@@ -9,19 +9,28 @@ import {
 	FormField,
 	FormItem,
 	FormControl,
-	FormLabel
+	FormLabel,
+	Input
 } from '@repo/ui'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
+import { useWallpaperStore } from "@repo/shared";
+
+
+
+
 const schema = z.object({
+	title: z.string(),
 	files: z.instanceof(FileList).optional()
 })
 
 type FormType = z.infer<typeof schema>
 
-export const WallpaperSetting: FC = () => {
+export const WallpaperForm: FC = () => {
+
+	const { createWallpaper } = useWallpaperStore()
 
 	const form = useForm<FormType>({
 		resolver: zodResolver(schema),
@@ -32,18 +41,21 @@ export const WallpaperSetting: FC = () => {
 
 
 	const onSubmit = (value: FormType) => {
-		const { files } = value;
+		const { files, title } = value;
 		if (!files) {
 			return
 		}
 		const file = files[0]
-		console.log(file)
+		const name = title || file.name
+		createWallpaper({ title: name, file })
 		// ! it seems that chrome downloads can only download to system downloads folder can't download to path that relates to the extension folder
 		//// need some way to store the file for wallpaper
 		// chrome.downloads.download({
 		// 	url: URL.createObjectURL(files[0]),
 		// 	filename: files[0].name,
 		// })
+
+
 	}
 
 
@@ -52,6 +64,19 @@ export const WallpaperSetting: FC = () => {
 
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2 items-start">
+				<FormField
+					control={form.control}
+					name='title'
+					render={({ field }) => {
+						return (<FormItem>
+							<FormLabel>Title</FormLabel>
+							<FormControl>
+								<Input {...field} />
+							</FormControl>
+						</FormItem>
+						)
+					}}
+				/>
 				<FormField
 					control={form.control}
 					name='files'

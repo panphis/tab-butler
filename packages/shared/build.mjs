@@ -7,7 +7,7 @@ const buildOptions = {
   entryPoints: ['./index.ts', './lib/**/*.ts', './lib/**/*.tsx'],
   tsconfig: './tsconfig.json',
   bundle: false,
-  target: 'es6',
+  target: 'esnext',
   outdir: './dist',
   sourcemap: true,
 };
