@@ -2,6 +2,7 @@
 	"files": [],
 	"extends": "@repo/typescript-config/base",
 	"compilerOptions": {
+		"target": "ESNext",
 		"baseUrl": ".",
 		"paths": {
 			"@/*": [

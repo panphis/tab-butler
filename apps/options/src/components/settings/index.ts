@@ -1,1 +1,1 @@
-export * from './wallpaper-setting'
+export * from './wallpaper'

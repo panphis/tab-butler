@@ -18,6 +18,7 @@ type Action = {
 	removeWallpaper: (id: ID) => void;
 }
 
+console.log('queryAllWallpaper', queryAllWallpaper)
 
 const initValue = await queryAllWallpaper()
 

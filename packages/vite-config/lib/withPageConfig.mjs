@@ -18,26 +18,30 @@ export const watchOption = isDev ? {
  * @param {UserConfig} config
  * @returns {UserConfig}
  */
+
+const defaultConfig = {
+  base: '',
+  plugins: [react(), isDev && watchRebuildPlugin({ refresh: true })],
+  build: {
+    sourcemap: isDev,
+    minify: isProduction,
+    reportCompressedSize: isProduction,
+    emptyOutDir: isProduction,
+    watch: watchOption,
+    rollupOptions: {
+      external: ['chrome'],
+    },
+    target: ['esnext']
+  },
+  define: {
+    'process.env.NODE_ENV': isDev ? `"development"` : `"production"`,
+  },
+};
+
+
 export function withPageConfig(config) {
   return defineConfig(
-    deepmerge(
-      {
-        base: '',
-        plugins: [react(), isDev && watchRebuildPlugin({ refresh: true })],
-        build: {
-          sourcemap: isDev,
-          minify: isProduction,
-          reportCompressedSize: isProduction,
-          emptyOutDir: isProduction,
-          watch: watchOption,
-          rollupOptions: {
-            external: ['chrome'],
-          },
-        },
-        define: {
-          'process.env.NODE_ENV': isDev ? `"development"` : `"production"`,
-        },
-      },
+    deepmerge(defaultConfig,
       config,
     ),
   );
