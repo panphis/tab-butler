@@ -18,12 +18,10 @@ type Action = {
 	removeWallpaper: (id: ID) => void;
 }
 
-console.log('queryAllWallpaper', queryAllWallpaper)
-
-const initValue = await queryAllWallpaper()
+// const initValue = await queryAllWallpaper()
 
 export const useWallpaperStore = create<State & Action>((set) => ({
-	wallpapers: initValue,
+	wallpapers: [],
 	loadingWallpapers: false,
 
 	createWallpaper: async (params) => {
