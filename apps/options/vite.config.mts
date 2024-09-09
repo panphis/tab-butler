@@ -20,6 +20,8 @@ const rootDir = resolve(__dirname);
 
 
 const config = defineConfig({
+
+	base: '',
 	resolve: {
 		alias: {
 			"@": resolve(__dirname, "src"),
@@ -28,7 +30,8 @@ const config = defineConfig({
 	publicDir: resolve(rootDir, "public"),
 	build: {
 		target: 'esnext',
-		outDir: resolve(rootDir, "..", "..", "dist", "options"),
+		// outDir: resolve(rootDir, "..", "..", "dist", "options"),
+		minify: false,
 	},
 });
 
