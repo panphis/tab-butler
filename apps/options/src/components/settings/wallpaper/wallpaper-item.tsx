@@ -1,20 +1,32 @@
-import { Fragment } from "react";
-import { Wallpaper } from "@repo/shared";
+
+import { Wallpaper, formatFileSize } from "@repo/shared";
 import {
 	AspectRatio,
+	Separator,
+	Button,
 	Card,
 	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
+	Space,
 	cn,
 } from "@repo/ui";
+
+
+const FileSize = ({ size }: { size: number }) => {
+	const sizeStr = formatFileSize(size)
+	return <span className="text-xs text-muted-foreground">
+		{sizeStr}
+	</span>
+}
 
 
 interface WallpaperItemProps {
 	wallpaper: Wallpaper
 }
+
 export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 
 	const previewUrl = URL.createObjectURL(wallpaper.file)
@@ -22,10 +34,25 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 	return <Card className={cn("w-[380px]")} >
 		<CardHeader className="p-2">
 			<CardTitle>{wallpaper.title}</CardTitle>
-			<CardDescription>{wallpaper.file.name}</CardDescription>
+			<CardDescription className="flex justify-between">
+				<span>
+					{wallpaper.file.name}
+				</span>
+				<FileSize size={wallpaper.file.size} />
+			</CardDescription>
 		</CardHeader>
-		<AspectRatio ratio={16 / 9} className="bg-muted" >
-			<img src={previewUrl} alt={wallpaper.title} />
-		</AspectRatio>
+		<Separator />
+		<CardContent className="p-0">
+			<AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
+				<img className='max-w-full max-h-full' src={previewUrl} alt={wallpaper.title} title={wallpaper.title} />
+			</AspectRatio>
+		</CardContent>
+		<Separator />
+		<CardFooter className="p-2">
+			<Space>
+				<Button>Update</Button>
+				<Button variant="outline">Delete</Button>
+			</Space>
+		</CardFooter>
 	</Card>;
 };

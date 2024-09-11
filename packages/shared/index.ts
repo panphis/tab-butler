@@ -1,9 +1,12 @@
 
 export {
+	// indexed db
 	db, dbName,
 	storeWallpaperDBName,
 	storeSearchEngineName,
 
+
+	// store
 	queryAllWallpaper,
 	createWallpaper,
 	deleteWallpaper,
@@ -15,18 +18,25 @@ export {
 	deleteSearchEngine,
 	getSearchEngineById,
 	queryAllSearchEngine,
-	useWallpaperStore, useSearchEngines,
+	useWallpaperStore,
+	useSearchEngines,
 	withSuspense, withErrorBoundary,
 
 
+	// hooks
+	useBookMarkQuery,
+	useHistory,
+	useStorage,
+	useStorageSuspense,
+	useTopSites,
 
-	useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSites
-} from './lib';
 
-
+	// utils
+	formatFileSize
+} from './src'
 
 export type {
 	ID,
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine
-} from './lib';
+} from './src';

@@ -3,6 +3,7 @@ import "@repo/ui/dist/globals.css";
 // style for theme
 import "@repo/common/dist/globals.css";
 
+import "./globals.css";
 import { withErrorBoundary, withSuspense } from "@repo/shared";
 
 import { Layout, ThemeSetting } from "@repo/common";
@@ -13,7 +14,7 @@ import { WallpaperForm, WallpaperList } from "@/components";
 function App() {
 	return (
 		<Layout>
-			<Space className="container mx-auto px-4 mt-8 max-w-lg md:max-w-xl lg:max-w-3xl" direction="col" gap={2}>
+			<Space className="container mx-auto px-4 md:max-w-xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl" direction="col" gap={2}>
 				<ThemeSetting />
 				<WallpaperForm />
 				<WallpaperList />

@@ -20,7 +20,7 @@ export { withSuspense, withErrorBoundary } from './hoc';
 export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSites } from './hooks';
 
 
-
+export { formatFileSize } from "./utils"
 
 
 export type {
@@ -28,3 +28,7 @@ export type {
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine
 } from './types';
+
+
+
+

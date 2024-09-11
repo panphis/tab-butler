@@ -6,8 +6,8 @@ interface PreviewImageProps {
 }
 const PreviewImage = ({ file }: PreviewImageProps) => {
 	const previewUrl = useMemo(() => URL.createObjectURL(file), [file]);
-	return <AspectRatio ratio={16 / 9} className="bg-muted" >
-		<img src={previewUrl} alt="预览" />
+	return <AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
+		<img className='max-w-full max-h-full' src={previewUrl} alt={file.name} title={file.name} />
 	</AspectRatio>
 }
 
@@ -31,10 +31,9 @@ export const Upload: FC<UploadProps> = ({ onChange, className, ...others }) => {
 		onChange?.(files)
 	};
 	return (<Fragment>
-		<div className='w-max max-w-full h-max min-h-32 bg-black'>
-
-		</div>
-		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full h-max min-h-32')} onChange={handleFileChange} accept='image/*' />
-		{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewImage key={index} file={file} />)}
+		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full')} onChange={handleFileChange} accept='image/*' />
+		<section className='h-max'>
+			{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewImage key={index} file={file} />)}
+		</section>
 	</Fragment>);
 }; 
