@@ -8,11 +8,8 @@
 		"dist/**"
 	],
 	"types": "index.ts",
-	"main": "./dist/index.js",
+	"main": "index.ts",
 	"scripts": {
-		"clean": "rimraf ./dist",
-		"dev": "node build.mjs",
-		"ready": "node build.mjs",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "pnpm lint --fix",
 		"prettier": "prettier . --write --ignore-path ../../.prettierignore",

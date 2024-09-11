@@ -1,4 +1,4 @@
-import { ID } from "./commom"
+import { ID } from "./common"
 export interface CreateSearchEngineParams {
 
 	title: string

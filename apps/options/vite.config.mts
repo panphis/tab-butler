@@ -21,6 +21,7 @@ const rootDir = resolve(__dirname);
 
 const config = defineConfig({
 
+	plugins: [react()],
 	base: '',
 	resolve: {
 		alias: {

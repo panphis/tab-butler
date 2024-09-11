@@ -5,4 +5,4 @@ export * from "./search-engine"
 
 export * from './wallpaper'
 
-export * from "./commom"
+export * from "./common"

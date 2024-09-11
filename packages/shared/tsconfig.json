@@ -2,10 +2,13 @@
   "extends": "@repo/typescript-config/utils",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "commonjs",
-    "outDir": "dist",
+    "module": "ESNext",
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
     "types": [
       "chrome"
     ]
