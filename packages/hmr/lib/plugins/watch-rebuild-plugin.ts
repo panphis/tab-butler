@@ -45,21 +45,21 @@ export function watchRebuildPlugin(config: PluginConfig): PluginOption {
 
   return {
     name: 'watch-rebuild',
-    // writeBundle() {
-    //   config.onStart?.();
-    //   if (!ws) {
-    //     initializeWebSocket();
-    //     return;
-    //   }
-    //   /**
-    //    * When the build is complete, send a message to the reload server.
-    //    * The reload server will send a message to the client to reload or refresh the extension.
-    //    */
-    //   if (!ws) {
-    //     throw new Error('WebSocket is not initialized');
-    //   }
-    //   ws.send(MessageInterpreter.send({ type: 'build_complete', id }));
-    // },
+    writeBundle() {
+      config.onStart?.();
+      if (!ws) {
+        initializeWebSocket();
+        return;
+      }
+      /**
+       * When the build is complete, send a message to the reload server.
+       * The reload server will send a message to the client to reload or refresh the extension.
+       */
+      if (!ws) {
+        throw new Error('WebSocket is not initialized');
+      }
+      ws.send(MessageInterpreter.send({ type: 'build_complete', id }));
+    },
     // configResolved(config) {
     //   fs.writeFileSync(path.resolve(__dirname, './config.json'), JSON.stringify(config, null, 2));
     //   inputConfig = config.build.rollupOptions.input;
@@ -93,15 +93,15 @@ export function watchRebuildPlugin(config: PluginConfig): PluginOption {
     //   return null; // 不处理其他文件
     // }
 
-    // generateBundle(_options, bundle) {
+    generateBundle(_options, bundle) {
 
-    //   fs.writeFileSync(path.resolve(__dirname, './options.json'), JSON.stringify(_options, null, 2));
-    //   fs.writeFileSync(path.resolve(__dirname, './bundle.json'), JSON.stringify(bundle, null, 2));
-    //   for (const module of Object.values(bundle)) {
-    //     if (module.type === 'chunk') {
-    //       module.code = `(function() {let __HMR_ID = "${id}";\n${hmrCode}})();\n${module.code}`;
-    //     }
-    //   }
-    // },
+      fs.writeFileSync(path.resolve(__dirname, './options.json'), JSON.stringify(_options, null, 2));
+      fs.writeFileSync(path.resolve(__dirname, './bundle.json'), JSON.stringify(bundle, null, 2));
+      for (const module of Object.values(bundle)) {
+        if (module.type === 'chunk') {
+          module.code = `(function() {let __HMR_ID = "${id}";\n${hmrCode}})();\n${module.code}`;
+        }
+      }
+    },
   };
 }

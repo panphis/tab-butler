@@ -5,11 +5,13 @@
 	"private": true,
 	"sideEffects": false,
 	"files": [
-		"dist/**"
+		"src/**"
 	],
 	"types": "index.ts",
-	"main": "index.ts",
+	"main": "/dist/index.mjs",
 	"scripts": {
+		"ready": "vite build --mode development",
+		"build": "vite build",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "pnpm lint --fix",
 		"prettier": "prettier . --write --ignore-path ../../.prettierignore",

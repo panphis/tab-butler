@@ -1,9 +1,9 @@
-export * from "./useBookMarks"
+export { useBookMarkQuery } from "./useBookMarks"
 
-export * from "./useHistory"
+export { useHistory } from "./useHistory"
 
-export * from './useStorage';
+export { useStorage, useStorageSuspense } from './useStorage';
 
-export * from './useTopSites';
+export { useTopSites } from './useTopSites';
 
 

@@ -1,4 +1,4 @@
 
-export * from "./search-engine"
+export { useSearchEngines } from "./search-engine"
 
-export * from './wallpaper'
+export { useWallpaperStore } from './wallpaper'

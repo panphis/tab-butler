@@ -1,8 +1,8 @@
 
 
-export * from "./search-engine"
+export type { CreateSearchEngineParams, SearchEngine } from "./search-engine"
 
 
-export * from './wallpaper'
+export type { CreateWallpaperParams, Wallpaper } from './wallpaper'
 
-export * from "./common"
+export type { ID } from "./common"
