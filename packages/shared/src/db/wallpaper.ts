@@ -3,32 +3,32 @@
 import {
 	CreateWallpaperParams,
 	ID
-} from "../";
-import { storeWallpaperDBName, db } from "./";
+} from "@/types";
+import { wallpaperDB } from "./";
 
 
 
-export const createWallpaper = async (wallpaper: CreateWallpaperParams) => {
+export const createWallpaper = (wallpaper: CreateWallpaperParams) => {
 	// const { title, file } = wallpaper
-	const result = await db.add(storeWallpaperDBName, wallpaper)
+	const result = wallpaperDB.add(wallpaper)
 	console.log(result)
 }
 
-export const queryAllWallpaper = async () => {
-	return await db.getAll(storeWallpaperDBName)
+export const queryAllWallpaper = () => {
+	return wallpaperDB.toArray()
 }
 
-export const getWallpaperById = async (id: ID) => {
-	const result = await db.get(storeWallpaperDBName, id)
+export const getWallpaperById = (id: ID) => {
+	const result = wallpaperDB.get(id)
 	return result
 }
 
-export const updateWallpaperById = async (id: ID, params: CreateWallpaperParams) => {
-	return await db.put(storeWallpaperDBName, { id, ...params })
+export const updateWallpaperById = (id: ID, params: CreateWallpaperParams) => {
+	return wallpaperDB.update(id, { ...params })
 }
 
-export const deleteWallpaper = async (id: ID) => {
-	return await db.delete(storeWallpaperDBName, id)
+export const deleteWallpaper = (id: ID) => {
+	return wallpaperDB.delete(id)
 }
 
 

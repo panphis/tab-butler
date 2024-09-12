@@ -13,7 +13,7 @@ export {
 
 
 export {
-	db, dbName, storeWallpaperDBName, storeSearchEngineName,
+	dbVersion, dbName, searchEngineDB, wallpaperDB,
 
 	queryAllWallpaper,
 	createWallpaper,

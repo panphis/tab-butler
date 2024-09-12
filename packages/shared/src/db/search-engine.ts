@@ -1,29 +1,29 @@
 
 
 import { CreateSearchEngineParams, ID } from "../";
-import { storeSearchEngineName, db, } from "./";
+
+import { searchEngineDB } from "./";
 
 
-
-export const createSearchEngine = async (searchEngine: CreateSearchEngineParams) => {
-	return await db.add(storeSearchEngineName, searchEngine)
+export const createSearchEngine = (searchEngine: CreateSearchEngineParams) => {
+	return searchEngineDB.add(searchEngine)
 }
 
-export const queryAllSearchEngine = async () => {
-	return await db.getAll(storeSearchEngineName)
+export const queryAllSearchEngine = () => {
+	return searchEngineDB.toArray()
 }
 
 export const getSearchEngineById = async (id: ID) => {
-	const result = await db.get(storeSearchEngineName, id)
+	const result = searchEngineDB.get(id)
 	return result
 }
 
 export const updateSearchEngineById = async (id: ID, params: CreateSearchEngineParams) => {
-	return await db.put(storeSearchEngineName, { id, ...params })
+	return searchEngineDB.update(id, { ...params })
 }
 
 export const deleteSearchEngine = async (id: ID) => {
-	return await db.delete(storeSearchEngineName, id)
+	return searchEngineDB.delete(id)
 }
 
 

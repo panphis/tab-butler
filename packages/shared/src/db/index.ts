@@ -1,6 +1,6 @@
 
 
-export { db, dbName, storeWallpaperDBName, storeSearchEngineName } from "./db"
+export { dbName, searchEngineDB, wallpaperDB, dbVersion } from "./db"
 export {
 	queryAllWallpaper,
 	createWallpaper,

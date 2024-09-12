@@ -1,32 +1,29 @@
 
 
-import { openDB } from "idb";
+import { Wallpaper, SearchEngine } from "@/types";
+import Dexie, { type EntityTable } from 'dexie';
 
 export const dbName = 'indexed_db'
 
+export const dbVersion = 1;
 
-export const storeSearchEngineName = 'searchEngine'
-export const storeWallpaperDBName = 'wallpaper'
+interface DexieType extends Dexie {
+	searchEngine: EntityTable<SearchEngine, 'id'>;
+	wallpaper: EntityTable<Wallpaper, 'id'>;
+}
 
-const tableNames = [storeSearchEngineName, storeWallpaperDBName]
 
 
 
-const dbVersion = 1;
 
-const dbInstance = openDB(dbName, dbVersion, {
-	upgrade(db) {
-		// 如果数据库不存在，则创建一个 objectStore
-		console.log('dbInstance', db)
-		tableNames.forEach(name => {
-			if (!db.objectStoreNames.contains(name)) {
-				db.createObjectStore(name, {
-					keyPath: 'id',
-					autoIncrement: true
-				});
-			}
-		})
-	},
+const db = new Dexie(dbName) as DexieType;
+
+db.version(dbVersion).stores({
+	wallpaper: "++id, title",
+	searchEngine: "++id, title, url",
 });
 
-export const db = await dbInstance
+
+export const { searchEngine: searchEngineDB, wallpaper: wallpaperDB } = db
+
+

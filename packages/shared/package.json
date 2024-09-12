@@ -20,7 +20,8 @@
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
-		"idb": "^8.0.0",
+		"dexie": "^4.0.8",
+		"dexie-react-hooks": "^1.1.7",
 		"zustand": "^4.5.5"
 	},
 	"devDependencies": {

@@ -1,9 +1,9 @@
 
 export {
 	// indexed db
-	db, dbName,
-	storeWallpaperDBName,
-	storeSearchEngineName,
+	dbVersion, dbName,
+	searchEngineDB,
+	wallpaperDB,
 
 
 
