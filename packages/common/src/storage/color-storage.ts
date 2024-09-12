@@ -1,4 +1,4 @@
-import { BaseStorage, createStorage, StorageType } from '@repo/storage';
+import { BaseStorage, createStorage, StorageType } from '@repo/shared';
 
 
 type ColorStorage = BaseStorage<string> & {

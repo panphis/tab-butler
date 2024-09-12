@@ -1,4 +1,4 @@
-import { Fragment, type FC } from "react";
+import { type FC } from "react";
 
 
 import { useWallpaperStore } from "@repo/shared";
@@ -14,9 +14,7 @@ type WallpaperListProps = {
 export const WallpaperList: FC<WallpaperListProps> = ({ }) => {
 
 	const { wallpapers } = useWallpaperStore()
-	console.log(wallpapers)
-
-	return (<Space>
+	return (<Space className="flex flex-wrap gap-4">
 		{
 			wallpapers.map((wallpaper) => <WallpaperItem wallpaper={wallpaper} />)
 		}

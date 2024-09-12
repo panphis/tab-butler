@@ -22,7 +22,6 @@
 		"zustand": "^4.5.5"
 	},
 	"devDependencies": {
-		"@repo/storage": "workspace:*",
 		"@repo/typescript-config": "workspace:*"
 	}
 }

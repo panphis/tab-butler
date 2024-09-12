@@ -21,14 +21,12 @@
 	"license": "ISC",
 	"dependencies": {
 		"@repo/shared": "workspace:*",
-		"@repo/storage": "workspace:*",
 		"@repo/ui": "workspace:*"
 	},
 	"devDependencies": {
 		"eslint": "^8.57.0",
 		"lucide-react": "^0.427.0",
-		"typescript": "^5.3.3",
-		"vite-plugin-dts": "^4.0.3"
+		"typescript": "^5.3.3"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0"

@@ -23,10 +23,17 @@ export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSit
 export { formatFileSize } from "./utils"
 
 
+export { createStorage, StorageType, SessionAccessLevel } from "./storage"
+
+
 export type {
 	ID,
 	Wallpaper, CreateWallpaperParams,
-	CreateSearchEngineParams, SearchEngine
+	CreateSearchEngineParams, SearchEngine,
+
+
+	// stores
+	BaseStorage, ValueOrUpdate
 } from './types';
 
 

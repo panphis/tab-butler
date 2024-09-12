@@ -32,11 +32,16 @@ export {
 
 
 	// utils
-	formatFileSize
+	formatFileSize,
+
+
+	// storage
+	createStorage, StorageType, SessionAccessLevel,
 } from './src'
 
 export type {
 	ID,
 	Wallpaper, CreateWallpaperParams,
-	CreateSearchEngineParams, SearchEngine
+	CreateSearchEngineParams, SearchEngine,
+	BaseStorage
 } from './src';

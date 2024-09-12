@@ -1,8 +1,22 @@
+import type { BaseStorage, ValueOrUpdate } from "../types/storage";
+
+
 /**
- * Chrome reference error while running `processTailwindFeatures` in tailwindcss.
- *  To avoid this, we need to check if the globalThis.chrome is available and add fallback logic.
+ * Global access level requirement for the {@link StorageType.Session} Storage Area.
+ * @implements Chromes [Session Access Level](https://developer.chrome.com/docs/extensions/reference/storage/#method-StorageArea-setAccessLevel)
  */
-const chrome = globalThis.chrome;
+export enum SessionAccessLevel {
+  /**
+   * Storage can only be accessed by Extension pages (not Content scripts).
+   * @default
+   */
+  ExtensionPagesOnly = 'TRUSTED_CONTEXTS',
+  /**
+   * Storage can be accessed by both Extension pages and Content scripts.
+   */
+  ExtensionPagesAndContentScripts = 'TRUSTED_AND_UNTRUSTED_CONTEXTS',
+}
+
 
 /**
  * Storage area type for persisting and exchanging data.
@@ -31,30 +45,14 @@ export enum StorageType {
   Session = 'session',
 }
 
+
+
 /**
- * Global access level requirement for the {@link StorageType.Session} Storage Area.
- * @implements Chromes [Session Access Level](https://developer.chrome.com/docs/extensions/reference/storage/#method-StorageArea-setAccessLevel)
+ * Chrome reference error while running `processTailwindFeatures` in tailwindcss.
+ *  To avoid this, we need to check if the globalThis.chrome is available and add fallback logic.
  */
-export enum SessionAccessLevel {
-  /**
-   * Storage can only be accessed by Extension pages (not Content scripts).
-   * @default
-   */
-  ExtensionPagesOnly = 'TRUSTED_CONTEXTS',
-  /**
-   * Storage can be accessed by both Extension pages and Content scripts.
-   */
-  ExtensionPagesAndContentScripts = 'TRUSTED_AND_UNTRUSTED_CONTEXTS',
-}
+const chrome = globalThis.chrome;
 
-type ValueOrUpdate<D> = D | ((prev: D) => Promise<D> | D);
-
-export type BaseStorage<D> = {
-  get: () => Promise<D>;
-  set: (value: ValueOrUpdate<D>) => Promise<void>;
-  getSnapshot: () => D | null;
-  subscribe: (listener: () => void) => () => void;
-};
 
 type StorageConfig<D = string> = {
   /**

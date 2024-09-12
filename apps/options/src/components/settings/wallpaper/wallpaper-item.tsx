@@ -14,6 +14,8 @@ import {
 	cn,
 } from "@repo/ui";
 
+import { useWallpaperStore } from "@repo/shared";
+
 
 const FileSize = ({ size }: { size: number }) => {
 	const sizeStr = formatFileSize(size)
@@ -31,7 +33,12 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 
 	const previewUrl = URL.createObjectURL(wallpaper.file)
 
-	return <Card className={cn("w-[380px]")} >
+	const { removeWallpaper } = useWallpaperStore()
+
+	const onSelect = () => {
+	}
+
+	return <Card className={cn("w-[380px]")} onClick={onSelect} >
 		<CardHeader className="p-2">
 			<CardTitle>{wallpaper.title}</CardTitle>
 			<CardDescription className="flex justify-between">
@@ -51,8 +58,8 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 		<CardFooter className="p-2">
 			<Space>
 				<Button>Update</Button>
-				<Button variant="outline">Delete</Button>
+				<Button variant="outline" onClick={() => removeWallpaper(wallpaper.id)}>Delete</Button>
 			</Space>
 		</CardFooter>
-	</Card>;
+	</Card >;
 };

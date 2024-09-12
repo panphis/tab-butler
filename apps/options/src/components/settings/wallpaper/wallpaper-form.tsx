@@ -49,8 +49,7 @@ export const WallpaperForm: FC = () => {
 		const file = files[0]
 		const name = title || file.name
 		createWallpaper({ title: name, file })
-
-
+		form.reset()
 	}
 
 
