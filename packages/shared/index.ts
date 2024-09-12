@@ -37,6 +37,8 @@ export {
 
 	// storage
 	createStorage, StorageType, SessionAccessLevel,
+
+	colorStorage, radiusStorage, themeStorage
 } from './src'
 
 export type {

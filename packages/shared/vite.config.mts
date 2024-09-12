@@ -1,19 +1,37 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts';
+import { peerDependencies, devDependencies, dependencies } from './package.json'
 
 
 const config = defineConfig({
   base: '',
-  plugins: [react()],
+  plugins: [
+    react({
+      'jsxRuntime': 'classic'
+    }),
+    dts({
+      include: ['src/**/*'],
+    })
+  ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    }
+  },
   build: {
     sourcemap: true,
     minify: false,
     target: ['esnext'],
+
     lib: {
-      entry: './index.ts',
-      name: 'index',
-      fileName: 'index',
-      formats: ['es'],
+      entry: resolve(__dirname, 'src', 'index.ts'),
+      formats: ['es', 'cjs'],
+      name: "theme",
+      fileName: (format, entryName) => {
+        return `${entryName}.${format}.js`
+      },
     },
     rollupOptions: {
       // 将 React 和 ReactDOM 作为外部依赖

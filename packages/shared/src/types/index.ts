@@ -8,4 +8,13 @@ export type { CreateWallpaperParams, Wallpaper } from './wallpaper'
 export type { ID } from "./common"
 
 
-export type { BaseStorage, ValueOrUpdate } from './storage';
+export type {
+	BaseStorage, ValueOrUpdate,
+	LocalStorageKeys
+} from './storage';
+
+
+export type { Themes } from "./themes"
+
+
+

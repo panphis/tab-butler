@@ -10,3 +10,10 @@ export type BaseStorage<D> = {
 	getSnapshot: () => D | null;
 	subscribe: (listener: () => void) => () => void;
 };
+
+
+
+export type LocalStorageKeys = "theme" | "color" | "radius";
+
+
+

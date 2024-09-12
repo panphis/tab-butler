@@ -7,7 +7,7 @@ import {
 
 
 import { TooltipProvider } from "@repo/ui";
-import { Layout } from "@repo/common";
+import { Layout } from "@repo/shared";
 
 
 import { Wallpaper, Clock, SearchForm, Sites, Setting } from "@/components";

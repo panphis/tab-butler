@@ -1,12 +1,10 @@
 // style for ui components
 import "@repo/ui/dist/globals.css";
 // style for theme
-import "@repo/common/dist/globals.css";
+import "@repo/shared/dist/globals.css";
 
 import "./globals.css";
-import { withErrorBoundary, withSuspense } from "@repo/shared";
-
-import { Layout, ThemeSetting } from "@repo/common";
+import { withErrorBoundary, withSuspense, Layout, ThemeSetting } from "@repo/shared";
 import { Space } from "@repo/ui";
 import { WallpaperForm, WallpaperList } from "@/components";
 

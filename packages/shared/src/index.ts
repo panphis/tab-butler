@@ -23,7 +23,10 @@ export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSit
 export { formatFileSize } from "./utils"
 
 
-export { createStorage, StorageType, SessionAccessLevel } from "./storage"
+export {
+	createStorage, StorageType, SessionAccessLevel,
+	colorStorage, radiusStorage, themeStorage
+} from "./storage"
 
 
 export type {
