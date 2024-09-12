@@ -9,7 +9,7 @@ const config = defineConfig({
   base: '',
   plugins: [
     react({
-      'jsxRuntime': 'classic'
+      'jsxRuntime': 'automatic'
     }),
     dts({
       include: ['src/**/*'],
@@ -27,22 +27,24 @@ const config = defineConfig({
 
     lib: {
       entry: resolve(__dirname, 'src', 'index.ts'),
-      formats: ['es', 'cjs'],
+      formats: ['es'],
       name: "theme",
       fileName: (format, entryName) => {
         return `${entryName}.${format}.js`
       },
     },
     rollupOptions: {
-      // 将 React 和 ReactDOM 作为外部依赖
-      external: ['react', 'react-dom', 'chrome'],
+      external: [...Object.keys(devDependencies), ...Object.keys(peerDependencies), ...Object.keys(dependencies), 'react', 'react-dom'],
       output: {
         // 定义外部依赖的全局变量（适用于 UMD 格式）
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
         },
-      },
+        preserveModules: true,
+        preserveModulesRoot: resolve(__dirname, 'src'),
+        exports: 'auto'
+      }
     },
   },
 });

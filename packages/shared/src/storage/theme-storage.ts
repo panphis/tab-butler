@@ -1,5 +1,5 @@
-import { BaseStorage, createStorage, StorageType } from '@repo/shared';
-import { Themes, themesEnum } from "..";
+import { BaseStorage, createStorage, StorageType } from '../';
+import { Themes, themesEnum } from "../";
 
 type ThemeStorage = BaseStorage<Themes> & {
   setTheme: (theme: Themes) => Promise<void>;

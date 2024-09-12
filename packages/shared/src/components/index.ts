@@ -5,7 +5,7 @@ export { IconDark, IconLight, IconAuto } from "./icons";
 export {
 	themes,
 	radius,
-	Theme,
+	type Theme,
 	ThemeColors,
 	ThemeProvider,
 	ThemeProviderContext,

@@ -6,6 +6,19 @@ export {
 	storeSearchEngineName,
 
 
+
+	// components
+	Layout,
+	IconDark, IconLight, IconAuto,
+	themes,
+	radius,
+	ThemeColors,
+	ThemeProvider,
+	ThemeProviderContext,
+	ThemeRadius,
+	ThemeSetting,
+	ThemeToggle,
+
 	// store
 	queryAllWallpaper,
 	createWallpaper,
@@ -45,5 +58,5 @@ export type {
 	ID,
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine,
-	BaseStorage
+	BaseStorage, Theme
 } from './src';

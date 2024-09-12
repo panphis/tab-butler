@@ -5,13 +5,15 @@
 	"private": true,
 	"sideEffects": false,
 	"files": [
-		"src/**"
+		"src/**",
+		"dist/**"
 	],
 	"types": "index.ts",
-	"main": "/dist/index.mjs",
+	"main": "/dist/index.es.js",
 	"scripts": {
-		"ready": "vite build --mode development",
-		"build": "vite build",
+		"ready": "vite build --mode development && npm run build:styles",
+		"build": "vite build && npm run build:styles",
+		"build:styles": "postcss ./src/globals.css -o ./dist/globals.css",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "pnpm lint --fix",
 		"prettier": "prettier . --write --ignore-path ../../.prettierignore",
@@ -26,6 +28,8 @@
 		"@repo/typescript-config": "workspace:*"
 	},
 	"peerDependencies": {
-		"react": "^18.2.0"
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"react-router-dom": "^6.26.1"
 	}
 }
