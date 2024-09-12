@@ -36,6 +36,7 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 	const { removeWallpaper } = useWallpaperStore()
 
 	const onSelect = () => {
+
 	}
 
 	return <Card className={cn("w-[380px]")} onClick={onSelect} >

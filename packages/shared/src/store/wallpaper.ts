@@ -62,5 +62,7 @@ export const useWallpaperStore = create<State & Action>((set) => ({
 		return await getWallpaperById(currentWallpaperID)
 	},
 
+
+
 }))
 
