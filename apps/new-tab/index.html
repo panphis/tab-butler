@@ -36,13 +36,11 @@
         left: 0;
         bottom: 0;
         right: 0;
-        /* 可以是你的背景颜色或图片 */
         display: flex;
         justify-content: center;
         align-items: center;
-        animation: fadeOut 800ms ease forwards;
+        animation: fadeOut 0.5s ease forwards 0.3s;
         z-index: 9999;
-        /* 确保开屏在所有内容之上 */
       }
 
 
@@ -59,7 +57,7 @@
             rgb(153, 64, 255) 30%,
             rgb(238, 55, 255) 60%,
             rgb(255, 0, 76) 100%);
-        animation: rotate 1s linear infinite;
+        animation: rotate 0.8s linear infinite;
         --background: white;
       }
 
@@ -82,7 +80,7 @@
         position: absolute;
         width: 150px;
         height: 150px;
-        background: white;
+        background: rgba(210, 210, 210, 0.83);
         border-radius: 50%;
         background: var(--background-loading);
 
@@ -105,8 +103,7 @@
       @media (prefers-color-scheme: dark) {
         #loading-screen {
           background-color: #121212;
-          color: white;
-
+          color: rgba(255, 255, 255, 0.75);
         }
 
         .circle-loading {
@@ -117,12 +114,14 @@
       /* 浅色模式 */
       @media (prefers-color-scheme: light) {
         #loading-screen {
-          background-color: white;
+          background-color: rgba(255, 255, 255, 0.75);
+          ;
           color: black;
         }
 
         .circle-loading {
-          --background-loading: white;
+          --background-loading: rgba(255, 255, 255, 0.75);
+          ;
         }
       }
     </style>

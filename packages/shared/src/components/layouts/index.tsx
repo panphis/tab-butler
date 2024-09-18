@@ -18,6 +18,7 @@ function LayoutContainer({ children }: LayoutProps) {
 	const { theme, color, radius } = useContext(ThemeProviderContext);
 	const [rootClassName, setRootClassName] = useState(() => getSystemTheme());
 
+
 	useEffect(() => {
 		if (theme === "system") {
 			const systemTheme = getSystemTheme();
@@ -49,7 +50,7 @@ function LayoutContainer({ children }: LayoutProps) {
 		if (html) {
 			html.className = `theme-${color} ${rootClassName}`;
 		}
-	}, [theme, rootClassName])
+	}, [rootClassName, color])
 
 	return (
 		<div
