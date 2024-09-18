@@ -10,6 +10,57 @@
 
 <body>
   <div id="app-container"></div>
+  <div id="loading">
+    <style>
+      /* 定义开屏动画 */
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* 深色模式 */
+      @media (prefers-color-scheme: dark) {
+        #loading-screen {
+          background-color: #121212;
+          color: white;
+        }
+      }
+
+      /* 浅色模式 */
+      @media (prefers-color-scheme: light) {
+        #loading-screen {
+          background-color: white;
+          color: black;
+        }
+      }
+
+      /* 初始样式 */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: white;
+        color: black;
+        /* 可以是你的背景颜色或图片 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeOut 0.5s ease forwards;
+        z-index: 9999;
+        /* 确保开屏在所有内容之上 */
+      }
+    </style>
+    <div id="loading-screen">loading</div>
+    <script type="module" src="./src/bg.ts">
+    </script>
+  </div>
   <script type="module" src="./src/index.tsx"></script>
 </body>
 
