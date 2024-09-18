@@ -5,7 +5,7 @@ export interface CreateWallpaperParams {
 	title: string
 	file: File
 	selected: number,
-	createdAt: number
+	createdAt: Date
 }
 
 

@@ -11,12 +11,12 @@ import { wallpaperDB } from "./";
 export const createWallpaper = async (wallpaper: CreateWallpaperParams) => {
 	const preSelected = await wallpaperDB.where('selected').equals(1)
 	await preSelected.modify({ selected: 0 })
-	const params = { ...wallpaper, selected: 1, createdAt: Date.now() }
+	const params = { ...wallpaper, selected: 1, createdAt: new Date() }
 	await wallpaperDB.add(params)
 }
 
 export const queryAllWallpaper = () => {
-	return wallpaperDB.orderBy('createdAt').toArray()
+	return wallpaperDB.orderBy('createdAt').reverse().toArray()
 }
 
 export const getWallpaperById = (id: ID) => {

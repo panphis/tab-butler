@@ -72,7 +72,6 @@ const manifest = deepmerge(
 		// ],
 		// devtools_page: 'devtools/index.html',
 		content_security_policy: {
-			"extension_pages": "script-src 'self' sha256-wmzHKMX5YACm1VdW8ecEpPuKjHju5z6wS8LONMeHx9g= object-src 'self';"
 		},
 		web_accessible_resources: [
 			{

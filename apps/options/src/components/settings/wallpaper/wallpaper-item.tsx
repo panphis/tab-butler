@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 
 
 import { Wallpaper, formatFileSize } from "@repo/shared";
@@ -19,6 +19,19 @@ import {
 import { useWallpaperStore, IconStar } from "@repo/shared";
 
 
+interface ImageContainerProps {
+	file: File,
+	title: string
+}
+const ImageContainer = ({ file, title }: ImageContainerProps) => {
+
+	const previewUrl = useMemo(() => {
+		const url = URL.createObjectURL(file)
+		return url
+	}, [])
+
+	return <img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={title} title={title} />
+}
 
 
 const FileSize = ({ size }: { size: number }) => {
@@ -35,13 +48,8 @@ interface WallpaperItemProps {
 
 export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 
-	const previewUrl = useMemo(() => {
-		const url = URL.createObjectURL(wallpaper.file)
-		return url
-	}, [wallpaper.file])
-
 	const isSelectCurrent = useMemo(() => {
-		return wallpaper.selected
+		return !!wallpaper.selected
 	}, [wallpaper.selected])
 
 
@@ -54,7 +62,7 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 
 
 
-	return <Card className={cn("w-[380px] overflow-hidden", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
+	return <Card className={cn("w-[380px] overflow-hidden cursor-pointer", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
 		<CardHeader className="p-2 relative overflow-hidden">
 			<CardTitle>
 				{wallpaper.title}
@@ -77,7 +85,7 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 		<Separator />
 		<CardContent className="p-0">
 			<AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
-				<img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={wallpaper.title} title={wallpaper.title} />
+				<ImageContainer file={wallpaper.file} title={wallpaper.title} />
 			</AspectRatio>
 		</CardContent>
 		<Separator />

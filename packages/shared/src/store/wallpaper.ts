@@ -9,7 +9,7 @@ import {
 
 
 type State = {
-	currentWallpaper: null | Wallpaper,
+	currentWallpaper: undefined | Wallpaper,
 	wallpapers: Wallpaper[],
 	loadingWallpapers: boolean,
 }
@@ -27,11 +27,12 @@ type Action = {
 }
 
 const initValue = await queryAllWallpaper()
+const currentWallpaper = await getCurrentWallpaper()
 
 export const useWallpaperStore = create<State & Action>((set, get) => ({
 	wallpapers: initValue,
 	loadingWallpapers: false,
-	currentWallpaper: null,
+	currentWallpaper,
 
 	createWallpaper: async (params) => {
 		await createWallpaper(params)
@@ -53,8 +54,10 @@ export const useWallpaperStore = create<State & Action>((set, get) => ({
 
 	setCurrentWallpaper: async (id) => {
 		await setCurrentWallpaper(id)
-		const { getWallpapers } = get()
-		await getWallpapers()
+		const { getWallpapers, getCurrentWallpaper } = get()
+		const currentWallpaper = await getCurrentWallpaper()
+		set({ currentWallpaper })
+		getWallpapers()
 	},
 
 
