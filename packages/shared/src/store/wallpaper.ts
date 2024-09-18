@@ -2,13 +2,14 @@ import { create } from 'zustand'
 
 import {
 	createWallpaper, queryAllWallpaper,
-	getWallpaperById, updateWallpaperById,
-	deleteWallpaper, Wallpaper, CreateWallpaperParams, ID
+	getWallpaperById, updateWallpaperById, getCurrentWallpaper,
+	deleteWallpaper, Wallpaper, CreateWallpaperParams, ID,
+	setCurrentWallpaper
 } from "../";
 
 
 type State = {
-	currentWallpaper: null | ID,
+	currentWallpaper: null | Wallpaper,
 	wallpapers: Wallpaper[],
 	loadingWallpapers: boolean,
 }
@@ -20,13 +21,14 @@ type Action = {
 	createWallpaper: (params: CreateWallpaperParams) => void;
 	getWallpapers: () => void;
 	removeWallpaper: (id: ID) => void;
-	setWallpaper: (id: ID) => void;
+	setCurrentWallpaper: (id: ID) => void;
 	getWallpaper: (id: ID) => void;
+	getCurrentWallpaper: () => Promise<Wallpaper | undefined>;
 }
 
 const initValue = await queryAllWallpaper()
 
-export const useWallpaperStore = create<State & Action>((set) => ({
+export const useWallpaperStore = create<State & Action>((set, get) => ({
 	wallpapers: initValue,
 	loadingWallpapers: false,
 	currentWallpaper: null,
@@ -49,20 +51,22 @@ export const useWallpaperStore = create<State & Action>((set) => ({
 		set({ wallpapers: list })
 	},
 
-	setWallpaper: async (id) => {
-		set({ currentWallpaper: id })
+	setCurrentWallpaper: async (id) => {
+		await setCurrentWallpaper(id)
+		const { getWallpapers } = get()
+		await getWallpapers()
 	},
 
 
-	getWallpaper: async () => {
-		const currentWallpaperID = useWallpaperStore.getState().currentWallpaper
-		if (!currentWallpaperID) {
-			return
-		}
-		return await getWallpaperById(currentWallpaperID)
+	getWallpaper: async (id) => {
+		return await getWallpaperById(id)
 	},
 
-
+	getCurrentWallpaper: async () => {
+		const wallpaper = await getCurrentWallpaper()
+		set({ currentWallpaper: wallpaper })
+		return wallpaper
+	}
 
 }))
 

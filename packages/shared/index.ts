@@ -9,7 +9,7 @@ export {
 
 	// components
 	Layout,
-	IconDark, IconLight, IconAuto,
+	IconDark, IconLight, IconAuto, IconStar,
 	themes,
 	radius,
 	ThemeColors,
@@ -25,6 +25,7 @@ export {
 	deleteWallpaper,
 	getWallpaperById,
 	updateWallpaperById,
+	getCurrentWallpaper,
 
 	createSearchEngine,
 	updateSearchEngineById,
@@ -45,6 +46,7 @@ export {
 
 
 	// utils
+	Duration,
 	formatFileSize,
 
 

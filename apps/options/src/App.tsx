@@ -1,12 +1,14 @@
+
+import { withErrorBoundary, withSuspense, Layout, ThemeSetting } from "@repo/shared";
+import { Space } from "@repo/ui";
+import { WallpaperForm, WallpaperList } from "@/components";
+
 // style for ui components
 import "@repo/ui/dist/globals.css";
 // style for theme
 import "@repo/shared/dist/globals.css";
 
 import "./globals.css";
-import { withErrorBoundary, withSuspense, Layout, ThemeSetting } from "@repo/shared";
-import { Space } from "@repo/ui";
-import { WallpaperForm, WallpaperList } from "@/components";
 
 
 function App() {

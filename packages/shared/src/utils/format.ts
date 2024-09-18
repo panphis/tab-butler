@@ -28,3 +28,35 @@ export function formatFileSize(sizeInBytes: number): string {
 	}
 	return `${formattedSize} TB`;
 }
+
+
+interface DurationProps {
+	title: string;
+	endTime?: number;
+	startTime?: number;
+}
+export class Duration {
+	private startTime?: number;
+	private endTime?: number;
+	public duration!: number;
+	public readonly title: string;
+	constructor({ title, endTime, startTime }: DurationProps) {
+		this.title = title;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	start() {
+		this.startTime = Date.now();
+		return this;
+	}
+
+	end() {
+		this.endTime = this.endTime ?? Date.now();
+		this.duration = this.endTime - this.startTime!;
+		console.log(`${this.title} 耗时：${this.duration}ms`)
+		return this.duration
+	}
+
+}
+

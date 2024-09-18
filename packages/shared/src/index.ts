@@ -1,6 +1,11 @@
 export {
+	// layout
 	Layout,
+	// icon
 	IconDark, IconLight, IconAuto,
+	IconStar,
+
+	// common components
 	themes,
 	radius,
 	ThemeColors,
@@ -20,6 +25,8 @@ export {
 	deleteWallpaper,
 	getWallpaperById,
 	updateWallpaperById,
+	getCurrentWallpaper,
+	setCurrentWallpaper,
 
 	createSearchEngine,
 	updateSearchEngineById,
@@ -35,7 +42,7 @@ export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSit
 
 export { useWallpaperStore, useSearchEngines } from './store';
 
-export { formatFileSize, themesEnum } from "./utils"
+export { formatFileSize, Duration, themesEnum, } from "./utils"
 
 
 export {

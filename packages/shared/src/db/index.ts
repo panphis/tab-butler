@@ -6,7 +6,9 @@ export {
 	createWallpaper,
 	deleteWallpaper,
 	getWallpaperById,
-	updateWallpaperById
+	updateWallpaperById,
+	getCurrentWallpaper,
+	setCurrentWallpaper
 } from "./wallpaper"
 
 export {

@@ -5,7 +5,7 @@ import { ThemeProvider, ThemeProviderContext } from "../theme";
 
 import { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
 
-import "../../globals.css";
+import "../../styles/globals.css";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;

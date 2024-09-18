@@ -1,6 +1,6 @@
 export { Layout } from "./layouts";
 
-export { IconDark, IconLight, IconAuto } from "./icons";
+export { IconDark, IconLight, IconAuto, IconStar } from "./icons";
 
 export {
 	themes,

@@ -19,8 +19,8 @@ interface DexieType extends Dexie {
 const db = new Dexie(dbName) as DexieType;
 
 db.version(dbVersion).stores({
-	wallpaper: "++id, title",
-	searchEngine: "++id, title, url",
+	wallpaper: "++id, title, selected, createdAt",
+	searchEngine: "++id, title, url, selected",
 });
 
 

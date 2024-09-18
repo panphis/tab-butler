@@ -16,7 +16,7 @@ export const WallpaperList: FC<WallpaperListProps> = ({ }) => {
 	const { wallpapers } = useWallpaperStore()
 	return (<Space className="flex flex-wrap gap-4">
 		{
-			wallpapers.map((wallpaper) => <WallpaperItem wallpaper={wallpaper} />)
+			wallpapers.map((wallpaper) => <WallpaperItem key={wallpaper.id} wallpaper={wallpaper} />)
 		}
 	</Space>);
 };

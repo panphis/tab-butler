@@ -16,7 +16,9 @@ import {
 	cn,
 } from "@repo/ui";
 
-import { useWallpaperStore } from "@repo/shared";
+import { useWallpaperStore, IconStar } from "@repo/shared";
+
+
 
 
 const FileSize = ({ size }: { size: number }) => {
@@ -33,24 +35,35 @@ interface WallpaperItemProps {
 
 export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 
-	const previewUrl = URL.createObjectURL(wallpaper.file)
-	const isSelectCurrent = useMemo(() => { return wallpaper.id === 3 }, [wallpaper])
+	const previewUrl = useMemo(() => {
+		const url = URL.createObjectURL(wallpaper.file)
+		return url
+	}, [wallpaper.file])
+
+	const isSelectCurrent = useMemo(() => {
+		return wallpaper.selected
+	}, [wallpaper.selected])
+
+
 	const { removeWallpaper } = useWallpaperStore()
 
+	const { setCurrentWallpaper } = useWallpaperStore()
 	const onSelect = () => {
-
+		setCurrentWallpaper(wallpaper.id)
 	}
 
 
 
-	return <Card className={cn("w-[380px]", isSelectCurrent && `border-[--primary] shadow-lg shadow-[--primary]`)} onClick={onSelect} >
+	return <Card className={cn("w-[380px] overflow-hidden", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
 		<CardHeader className="p-2 relative overflow-hidden">
 			<CardTitle>
 				{wallpaper.title}
 				{
 					isSelectCurrent &&
-					<div className={`absolute right-0 top-0 w-8 h-8 bg-[--primary] text-[--primary]`} >
-						啊撒打发
+					<div
+						className={`absolute p-1 flex justify-end items-start right-0 top-0 w-8 h-8 bg-primary  text-primary-foreground`}
+						style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }}>
+						<IconStar size={'0.8rem'} />
 					</div>
 				}
 			</CardTitle>
@@ -64,7 +77,7 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 		<Separator />
 		<CardContent className="p-0">
 			<AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
-				<img className='max-w-full max-h-full' src={previewUrl} alt={wallpaper.title} title={wallpaper.title} />
+				<img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={wallpaper.title} title={wallpaper.title} />
 			</AspectRatio>
 		</CardContent>
 		<Separator />

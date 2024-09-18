@@ -8,14 +8,15 @@ import { wallpaperDB } from "./";
 
 
 
-export const createWallpaper = (wallpaper: CreateWallpaperParams) => {
-	// const { title, file } = wallpaper
-	const result = wallpaperDB.add(wallpaper)
-	console.log(result)
+export const createWallpaper = async (wallpaper: CreateWallpaperParams) => {
+	const preSelected = await wallpaperDB.where('selected').equals(1)
+	await preSelected.modify({ selected: 0 })
+	const params = { ...wallpaper, selected: 1, createdAt: Date.now() }
+	await wallpaperDB.add(params)
 }
 
 export const queryAllWallpaper = () => {
-	return wallpaperDB.toArray()
+	return wallpaperDB.orderBy('createdAt').toArray()
 }
 
 export const getWallpaperById = (id: ID) => {
@@ -31,5 +32,15 @@ export const deleteWallpaper = (id: ID) => {
 	return wallpaperDB.delete(id)
 }
 
+export const getCurrentWallpaper = () => {
+	return wallpaperDB.where({
+		selected: 1
+	}).first()
+}
 
 
+export const setCurrentWallpaper = async (id: ID) => {
+	const preSelected = await wallpaperDB.where('selected').equals(1)
+	await preSelected.modify({ selected: 0 })
+	wallpaperDB.update(id, { selected: 1 })
+}
