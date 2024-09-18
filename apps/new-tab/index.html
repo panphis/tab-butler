@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Tab</title>
   <link rel="icon" href="/icon.png">
+
+
 </head>
 
 <body>
@@ -23,20 +25,8 @@
         }
       }
 
-      /* 深色模式 */
-      @media (prefers-color-scheme: dark) {
-        #loading-screen {
-          background-color: #121212;
-          color: white;
-        }
-      }
-
-      /* 浅色模式 */
-      @media (prefers-color-scheme: light) {
-        #loading-screen {
-          background-color: white;
-          color: black;
-        }
+      #loading {
+        position: relative;
       }
 
       /* 初始样式 */
@@ -46,21 +36,103 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: white;
-        color: black;
         /* 可以是你的背景颜色或图片 */
         display: flex;
         justify-content: center;
         align-items: center;
-        animation: fadeOut 0.5s ease forwards;
+        animation: fadeOut 800ms ease forwards;
         z-index: 9999;
         /* 确保开屏在所有内容之上 */
       }
+
+
+      .circle-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-image: linear-gradient(0deg,
+            rgb(47, 102, 255),
+            rgb(153, 64, 255) 30%,
+            rgb(238, 55, 255) 60%,
+            rgb(255, 0, 76) 100%);
+        animation: rotate 1s linear infinite;
+        --background: white;
+      }
+
+      .circle-loading::before {
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-image: linear-gradient(0deg,
+            rgb(47, 102, 255),
+            rgb(153, 64, 255) 30%,
+            rgb(238, 55, 255) 60%,
+            rgb(255, 0, 76) 100%);
+        filter: blur(35px);
+      }
+
+      .circle-loading::after {
+        content: "";
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: white;
+        border-radius: 50%;
+        background: var(--background-loading);
+
+        box-shadow: 0 0 15px rgba(255, 254, 255, 0);
+        /* 向内的半透明阴影 */
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+
+      /* 深色模式 */
+      @media (prefers-color-scheme: dark) {
+        #loading-screen {
+          background-color: #121212;
+          color: white;
+
+        }
+
+        .circle-loading {
+          --background-loading: #121212;
+        }
+      }
+
+      /* 浅色模式 */
+      @media (prefers-color-scheme: light) {
+        #loading-screen {
+          background-color: white;
+          color: black;
+        }
+
+        .circle-loading {
+          --background-loading: white;
+        }
+      }
     </style>
-    <div id="loading-screen">loading</div>
-    <script type="module" src="./src/bg.ts">
-    </script>
+
+    <div id="loading-screen">
+      <div class="circle-loading"></div>
+    </div>
+
   </div>
+  <script type="module" src="./src/bg.ts"></script>
   <script type="module" src="./src/index.tsx"></script>
 </body>
 
