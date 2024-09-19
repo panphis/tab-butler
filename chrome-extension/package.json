@@ -19,8 +19,7 @@
   "type": "module",
   "dependencies": {
     "webextension-polyfill": "^0.12.0",
-    "@repo/shared": "workspace:*",
-    "@repo/storage": "workspace:*"
+    "@repo/shared": "workspace:*"
   },
   "devDependencies": {
     "@repo/dev-utils": "workspace:*",

@@ -15,10 +15,7 @@
 	},
 	"dependencies": {
 		"@repo/shared": "workspace:*",
-		"@repo/storage": "workspace:*",
-		"@repo/common": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"lucide-react": "^0.427.0",
 		"react-hook-form": "^7.52.2"
 	},
 	"devDependencies": {

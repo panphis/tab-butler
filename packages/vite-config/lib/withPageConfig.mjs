@@ -41,7 +41,8 @@ const defaultConfig = {
 
 export function withPageConfig(config) {
   return defineConfig(
-    deepmerge(defaultConfig,
+    deepmerge(
+      defaultConfig,
       config,
     ),
   );

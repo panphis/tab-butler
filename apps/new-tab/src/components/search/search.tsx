@@ -50,9 +50,11 @@ export const SearchForm: FC = () => {
 
 	function onSubmit(values: z.infer<typeof schema>) {
 		const { engine, keyWords } = values
+		if (!engine || !keyWords) {
+			return;
+		}
 		const searchEngine = searchEnginesMap.get(engine)!
 		const url = searchEngine.url + keyWords
-		window.open(url)
 	}
 
 	return (

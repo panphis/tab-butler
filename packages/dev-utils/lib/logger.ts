@@ -21,8 +21,6 @@ export function colorLog(message: string, type: ColorType) {
       color = COLORS[type];
       break;
   }
-
-  console.log(color, message);
 }
 
 const COLORS = {

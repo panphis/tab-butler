@@ -1,7 +1,5 @@
-import fs from "node:fs";
 import deepmerge from "deepmerge";
 
-const packageJson = JSON.parse(fs.readFileSync("../package.json", "utf8"));
 
 const isFirefox = process.env.__FIREFOX__ === "true";
 
@@ -73,6 +71,8 @@ const manifest = deepmerge(
 		//   },
 		// ],
 		// devtools_page: 'devtools/index.html',
+		content_security_policy: {
+		},
 		web_accessible_resources: [
 			{
 				resources: ["*.js", "*.css", "*.svg", "*.png", "*.ico"],

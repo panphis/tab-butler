@@ -1,21 +1,23 @@
+
+import { withErrorBoundary, withSuspense, Layout, ThemeSetting } from "@repo/shared";
+import { Space } from "@repo/ui";
+import { WallpaperForm, WallpaperList } from "@/components";
+
 // style for ui components
 import "@repo/ui/dist/globals.css";
 // style for theme
-import "@repo/common/dist/globals.css";
+import "@repo/shared/dist/globals.css";
 
-import { withErrorBoundary, withSuspense } from "@repo/shared";
-
-import { Layout, ThemeSetting } from "@repo/common";
-import { Space } from "@repo/ui";
-import { WallpaperForm } from "@/components";
+import "./globals.css";
 
 
 function App() {
 	return (
 		<Layout>
-			<Space className="container mx-auto px-4 mt-8 max-w-lg md:max-w-xl lg:max-w-3xl" direction="col" gap={2}>
+			<Space className="container mx-auto p-4 md:max-w-xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl" direction="col" gap={2}>
 				<ThemeSetting />
 				<WallpaperForm />
+				<WallpaperList />
 			</Space>
 		</Layout>
 	);

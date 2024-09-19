@@ -1,10 +1,11 @@
-import { defineConfig } from "vite";
+
 import { resolve } from "path";
 import { withPageConfig } from "@repo/vite-config";
-
 const rootDir = resolve(__dirname);
 
-const config = withPageConfig(defineConfig({
+
+
+const config = withPageConfig({
 	resolve: {
 		alias: {
 			"@": resolve(__dirname, "src"),
@@ -14,5 +15,7 @@ const config = withPageConfig(defineConfig({
 	build: {
 		outDir: resolve(rootDir, "..", "..", "dist", "options"),
 	},
-}));
+});
+
+
 export default config;

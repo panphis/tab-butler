@@ -35,7 +35,8 @@ export const WallpaperForm: FC = () => {
 	const form = useForm<FormType>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			files: undefined,
+			title: '',
+			files: undefined
 		}
 	})
 
@@ -48,14 +49,7 @@ export const WallpaperForm: FC = () => {
 		const file = files[0]
 		const name = title || file.name
 		createWallpaper({ title: name, file })
-		// ! it seems that chrome downloads can only download to system downloads folder can't download to path that relates to the extension folder
-		//// need some way to store the file for wallpaper
-		// chrome.downloads.download({
-		// 	url: URL.createObjectURL(files[0]),
-		// 	filename: files[0].name,
-		// })
-
-
+		form.reset()
 	}
 
 

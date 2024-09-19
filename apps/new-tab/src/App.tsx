@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import {
 	withErrorBoundary,
@@ -7,10 +7,17 @@ import {
 
 
 import { TooltipProvider } from "@repo/ui";
-import { Layout } from "@repo/common";
+import { Layout } from "@repo/shared";
 
 
 import { Wallpaper, Clock, SearchForm, Sites, Setting } from "@/components";
+
+
+// style for ui components
+import '@repo/ui/dist/globals.css';
+// style for theme
+import '@repo/shared/dist/globals.css';
+import "./globals.css";
 
 
 const NewTab = () => {
