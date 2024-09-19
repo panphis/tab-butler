@@ -1,31 +1,26 @@
 import React, { Fragment, MouseEvent, type FC } from "react";
 import { Space, Button } from "@repo/ui";
 
-import { History, Pin } from 'lucide-react'
+import { PinOff, Star } from 'lucide-react'
 import { Favicon } from "@/components";
-import { useWebSiteStore } from "@repo/shared";
+import { useWebSiteStore, WebSite } from "@repo/shared";
 
 
 
-type SiteItemProps = {
-	site: chrome.topSites.MostVisitedURL
+type FixedSiteIProps = {
+	site: WebSite
 };
 
-export const SiteItem: FC<SiteItemProps> = ({ site }) => {
+export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 	const onSiteClick = () => {
 		chrome.tabs.create({ url: site.url });
 	};
 
-	const { createWebSite } = useWebSiteStore()
+	const { removeWebSite } = useWebSiteStore()
 
-	const fixedSite = (e: MouseEvent<HTMLButtonElement>) => {
+	const unfixedSite = (e: MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation()
-		console.log(site)
-		createWebSite({
-			url: site.url,
-			title: site.title,
-			createdAt: new Date()
-		})
+		removeWebSite(site.id)
 	}
 
 
@@ -35,10 +30,10 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 			onClick={onSiteClick}
 		>
 			<Space>
-				<History size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
+				<Star size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
 				<Favicon src={site.url} title={site.title} className="rounded-md" />
-				<Button asChild className="p-0 w-fit h-fit bg-transparent hover:bg-black/20" onClick={fixedSite}>
-					<Pin size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
+				<Button asChild className="p-0 w-fit h-fit bg-transparent hover:bg-black/20" onClick={unfixedSite}>
+					<PinOff size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
 				</Button>
 			</Space>
 			<p className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>

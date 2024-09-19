@@ -12,7 +12,6 @@
 	"main": "/dist/index.es.js",
 	"scripts": {
 		"ready": "vite build --mode development && npm run build:styles",
-		"dev": "vite build --mode development",
 		"build": "vite build && npm run build:styles",
 		"build:styles": "postcss ./src/styles/globals.css -o ./dist/globals.css",
 		"lint": "eslint . --ext .ts,.tsx",

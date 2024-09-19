@@ -1,10 +1,10 @@
 
 
-export { dbName, searchEngineDB, wallpaperDB, dbVersion } from "./db"
+export { dbName, searchEngineDB, wallpaperDB, dbVersion, websiteDB } from "./db"
 export {
-	queryAllWallpaper,
-	createWallpaper,
-	deleteWallpaper,
+	queryAllWebSite as queryAllWallpaper,
+	createWebSite as createWallpaper,
+	deleteWebSite as deleteWallpaper,
 	getWallpaperById,
 	updateWallpaperById,
 	getCurrentWallpaper,
@@ -15,4 +15,6 @@ export {
 	createSearchEngine, updateSearchEngineById,
 	deleteSearchEngine, getSearchEngineById, queryAllSearchEngine
 } from './search-engine'
+
+export { createWebSite, queryAllWebSite, updateWebSiteById, deleteWebSite, } from "./website"
 

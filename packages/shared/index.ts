@@ -19,7 +19,7 @@ export {
 	ThemeSetting,
 	ThemeToggle,
 
-	// store
+	// db
 	queryAllWallpaper,
 	createWallpaper,
 	deleteWallpaper,
@@ -32,8 +32,17 @@ export {
 	deleteSearchEngine,
 	getSearchEngineById,
 	queryAllSearchEngine,
+	createWebSite, queryAllWebSite, updateWebSiteById, deleteWebSite,
+
+
+	// hooks
 	useWallpaperStore,
 	useSearchEngines,
+	useWebSiteStore,
+
+
+
+	// hoc
 	withSuspense, withErrorBoundary,
 
 
@@ -53,12 +62,13 @@ export {
 	// storage
 	createStorage, StorageType, SessionAccessLevel,
 
-	colorStorage, radiusStorage, themeStorage
+	colorStorage, radiusStorage, themeStorage, wallpaperStorage
 } from './src'
 
 export type {
 	ID,
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine,
-	BaseStorage, Theme
+	BaseStorage, Theme,
+	CreateWebSiteParams, WebSite
 } from './src';

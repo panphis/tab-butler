@@ -1,9 +1,11 @@
-import React, { Fragment, type FC, useMemo } from "react";
+import React, { Fragment, type FC, useMemo, useEffect } from "react";
 
 import defaultWallpaperSrc from "@/assets/images/wallpaper.png";
 
 import { Picture } from "./picture";
-import { useWallpaperStore } from "@repo/shared";
+
+import { useWallpaperStore, wallpaperStorage, useStorageSuspense } from "@repo/shared";
+
 
 
 
@@ -17,8 +19,13 @@ type WallpaperProps = {
 
 export const Wallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc, children, className = '' }) => {
 
-	const { currentWallpaper } = useWallpaperStore()
-	console.log(currentWallpaper)
+	const wallpaper = useStorageSuspense(wallpaperStorage)
+	const { currentWallpaper, getCurrentWallpaper } = useWallpaperStore()
+
+
+	useEffect(() => {
+		getCurrentWallpaper()
+	}, [wallpaper])
 
 	const previewUrl = useMemo(() => {
 		if (currentWallpaper?.file) {

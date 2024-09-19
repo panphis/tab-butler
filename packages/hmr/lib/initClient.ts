@@ -8,9 +8,7 @@ export default function initReloadClient({ id, onUpdate }: { id: string; onUpdat
     ws.onopen = () => {
       ws?.addEventListener('message', event => {
         const message = MessageInterpreter.receive(String(event.data));
-        if (message.type === 'ping') {
-          console.log('[HMR] Client OK');
-        }
+        if (message.type === 'ping') { }
         if (message.type === 'do_update' && message.id === id) {
           sendUpdateCompleteMessage();
           onUpdate();

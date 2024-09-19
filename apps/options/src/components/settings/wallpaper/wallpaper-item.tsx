@@ -1,7 +1,7 @@
-import { useMemo, memo } from "react";
+import { useMemo } from "react";
 
 
-import { Wallpaper, formatFileSize } from "@repo/shared";
+import { ID, Wallpaper, formatFileSize } from "@repo/shared";
 import {
 	AspectRatio,
 	Separator,
@@ -43,10 +43,11 @@ const FileSize = ({ size }: { size: number }) => {
 
 
 interface WallpaperItemProps {
-	wallpaper: Wallpaper
+	wallpaper: Wallpaper,
+	onSelect: (wallpaper: ID) => void
 }
 
-export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
+export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }: WallpaperItemProps) => {
 
 	const isSelectCurrent = useMemo(() => {
 		return !!wallpaper.selected
@@ -56,8 +57,9 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 	const { removeWallpaper } = useWallpaperStore()
 
 	const { setCurrentWallpaper } = useWallpaperStore()
-	const onSelect = () => {
-		setCurrentWallpaper(wallpaper.id)
+	const onSelect = async () => {
+		await setCurrentWallpaper(wallpaper.id)
+		onSelectCurrentWallpaper(wallpaper.id)
 	}
 
 
@@ -69,8 +71,8 @@ export const WallpaperItem = ({ wallpaper }: WallpaperItemProps) => {
 				{
 					isSelectCurrent &&
 					<div
-						className={`absolute p-1 flex justify-end items-start right-0 top-0 w-8 h-8 bg-primary  text-primary-foreground`}
-						style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }}>
+						className={`absolute p-1 flex justify-end items-start border-none box-content right-0 top-0 w-8 h-8 bg-primary text-primary-foreground`}
+						style={{ clipPath: 'polygon(0 0, calc(100% + 1px) 0, calc(100% + 1px) 100%)' }}>
 						<IconStar size={'0.8rem'} />
 					</div>
 				}

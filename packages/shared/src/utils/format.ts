@@ -57,6 +57,5 @@ export class Duration {
 		console.log(`${this.title} 耗时：${this.duration}ms`)
 		return this.duration
 	}
-
 }
 

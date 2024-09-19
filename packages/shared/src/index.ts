@@ -32,7 +32,9 @@ export {
 	updateSearchEngineById,
 	deleteSearchEngine,
 	getSearchEngineById,
-	queryAllSearchEngine
+	queryAllSearchEngine,
+
+	createWebSite, queryAllWebSite, updateWebSiteById, deleteWebSite,
 } from './db';
 
 export { withSuspense, withErrorBoundary } from './hoc';
@@ -40,14 +42,14 @@ export { withSuspense, withErrorBoundary } from './hoc';
 export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSites } from './hooks';
 
 
-export { useWallpaperStore, useSearchEngines } from './store';
+export { useWallpaperStore, useSearchEngines, useWebSiteStore } from './store';
 
 export { formatFileSize, Duration, themesEnum, } from "./utils"
 
 
 export {
 	createStorage, StorageType, SessionAccessLevel,
-	colorStorage, radiusStorage, themeStorage,
+	colorStorage, radiusStorage, themeStorage, wallpaperStorage
 } from "./storage"
 
 
@@ -56,7 +58,8 @@ export type {
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine,
 	// stores
-	BaseStorage, ValueOrUpdate, Themes
+	BaseStorage, ValueOrUpdate, Themes,
+	CreateWebSiteParams, WebSite
 } from './types';
 export type {
 	Theme
