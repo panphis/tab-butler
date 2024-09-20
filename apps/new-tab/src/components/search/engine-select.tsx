@@ -1,6 +1,7 @@
 'use client'
 
 import {
+	cn,
 	FormControl,
 	FormItem,
 	Select,
@@ -10,7 +11,8 @@ import {
 	SelectValue,
 	Space
 } from '@repo/ui'
-import { searchEngines } from '@/utils'
+import { searchEngines, bg_transparent } from '@/utils'
+
 import { Favicon } from '@/components'
 import { SelectedEngineIcon } from "./";
 
@@ -31,7 +33,7 @@ export const EngineSelect = ({ field }: EngineSelectProps) => {
 			>
 				<FormControl>
 					<SelectTrigger
-						className={`bg-transparent border-none text-center focus:shadow-none focus:ring-color-transparent focus:ring-offset-0 focus:ring-0 text-inherit placeholder:text-inherit interactive:bg-transparent`}
+						className={cn(`bg-transparent border-none text-center focus:shadow-none focus:ring-color-transparent focus:ring-offset-0 focus:ring-0 text-inherit placeholder:text-inherit interactive:bg-transparent`)}
 					>
 						<SelectValue asChild>
 							<SelectedEngineIcon value={field.value} />

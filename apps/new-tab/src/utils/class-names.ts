@@ -1,0 +1,1 @@
+export const bg_transparent = `drop-shadow-md hover:drop-shadow-xl bg-transparent shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[4px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.5)_0_0_10px] hover:backdrop-blur-[16px] bg-light/20 hover:bg-light/40  text-light dark:text-light transition-all`

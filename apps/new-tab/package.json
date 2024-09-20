@@ -18,7 +18,6 @@
 		"@repo/ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@hookform/resolvers": "^3.9.0",
 		"@repo/tailwindcss-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vite-config": "workspace:*",

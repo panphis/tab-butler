@@ -8,9 +8,14 @@ import { websiteDB } from ".";
 
 
 
-export const createWebSite = async (website: CreateWebSiteParams) => {
-	const params = { ...website, createdAt: new Date() }
-	await websiteDB.add(params)
+export const createOrUpdateWebSite = async (website: CreateWebSiteParams) => {
+	const preSite = await websiteDB.where({ url: website.url }).first()
+	if (preSite) {
+		await updateWebSiteById(preSite.id, website)
+	} else {
+		const params = { ...website }
+		await websiteDB.add(params)
+	}
 }
 
 export const queryAllWebSite = () => {

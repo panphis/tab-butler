@@ -30,3 +30,8 @@ export const searchEngines: SearchEngine[] = [
 
 export const searchEnginesMap = new Map<string, SearchEngine>(searchEngines.map(item => [item.id, item]))
 
+
+
+
+
+

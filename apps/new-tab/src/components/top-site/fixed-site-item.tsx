@@ -1,9 +1,33 @@
-import React, { Fragment, MouseEvent, type FC } from "react";
-import { Space, Button } from "@repo/ui";
+import { Fragment, MouseEvent, useState, type FC } from "react";
+import {
+	cn,
+	Space, Button,
+	ContextMenu,
+	ContextMenuContent,
+	ContextMenuItem,
+	ContextMenuSeparator,
+	ContextMenuTrigger,
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	useToast,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@repo/ui";
 
-import { PinOff, Star } from 'lucide-react'
+import { PinOff, Star, Ellipsis } from 'lucide-react'
 import { Favicon } from "@/components";
-import { useWebSiteStore, WebSite } from "@repo/shared";
+import {
+	useWebSiteStore, WebSite,
+	useCopy,
+	SiteFormValues,
+	SiteForm
+} from "@repo/shared";
+import { EditSite } from "./";
+import { bg_transparent } from "@/utils";
 
 
 
@@ -16,27 +40,105 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 		chrome.tabs.create({ url: site.url });
 	};
 
+	const { toast } = useToast()
 	const { removeWebSite } = useWebSiteStore()
+	const copy = useCopy({
+		text: site.url,
+		onSuccess: () => {
+			toast({
+				title: "Copied!",
+				description: site.url
+			})
+		},
+		onError: () => {
+			toast({
+				title: "Copy failed",
+				variant: "destructive",
+				description: site.url,
+				action: <Button variant="outline" onClick={copy}>Try Again</Button>
+			})
+		}
+	})
 
-	const unfixedSite = (e: MouseEvent<HTMLButtonElement>) => {
-		e.stopPropagation()
+	const unfixedSite = (e?: MouseEvent<HTMLButtonElement>) => {
+		e?.stopPropagation()
 		removeWebSite(site.id)
+	}
+	const [open, setOpen] = useState<boolean>(false)
+
+	const { createOrUpdateWebSite } = useWebSiteStore()
+	async function onSubmit(data: SiteFormValues) {
+		const params = {
+			url: data.url,
+			title: data.title,
+			createdAt: new Date()
+		}
+		await createOrUpdateWebSite(params)
+		setOpen(false)
 	}
 
 
 
 	return (<Fragment>
-		<Space className="h-24 p-2 flex flex-col items-center justify-center group/site drop-shadow-md hover:drop-shadow-xl rounded-md cursor-pointer shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[4px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.5)_0_0_10px] hover:backdrop-blur-[16px] bg-light/20 transition-all"
-			onClick={onSiteClick}
-		>
-			<Space>
-				<Star size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
-				<Favicon src={site.url} title={site.title} className="rounded-md" />
-				<Button asChild className="p-0 w-fit h-fit bg-transparent hover:bg-black/20" onClick={unfixedSite}>
-					<PinOff size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
-				</Button>
-			</Space>
-			<p className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
-		</Space>
+		<ContextMenu modal={false}>
+			<ContextMenuTrigger asChild>
+				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
+					onClick={onSiteClick}
+				>
+					<Space className="items-start">
+						<span className="p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
+							<Star size={16} />
+						</span>
+						<Favicon src={site.url} title={site.title} className="rounded-md" />
+
+
+						<Popover>
+							<PopoverTrigger onClick={(e) => { e.stopPropagation() }} >
+								<Button asChild className="p-1 w-fit h-fit bg-transparent hover:bg-black/20"  >
+									<Ellipsis size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
+								</Button>
+							</PopoverTrigger>
+							<PopoverContent onClick={(e) => { e.stopPropagation() }} className={cn(bg_transparent, "w-fit h-fit")}>
+								<Space direction="col">
+									<Button size={'icon'} onClick={unfixedSite}>
+										<PinOff size={16} />
+									</Button>
+									<EditSite website={site} />
+								</Space>
+							</PopoverContent>
+						</Popover>
+					</Space>
+					<p className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
+				</Space>
+			</ContextMenuTrigger>
+
+			<ContextMenuContent className={cn(bg_transparent, "w-fit")}>
+				<ContextMenuItem inset onSelect={() => setOpen(true)}>
+					Edit website
+				</ContextMenuItem>
+				<ContextMenuSeparator />
+				<ContextMenuItem inset onSelect={() => onSiteClick()}>
+					Open website
+				</ContextMenuItem>
+				<ContextMenuItem inset onSelect={() => unfixedSite()}>
+					Unfixed website
+				</ContextMenuItem>
+				<ContextMenuSeparator />
+				<ContextMenuItem inset onSelect={() => copy()}>
+					Copy website url
+				</ContextMenuItem>
+			</ContextMenuContent>
+		</ContextMenu>
+		<Dialog open={open} onOpenChange={setOpen}>
+			<DialogTrigger className="hidden">
+				Edit website
+			</DialogTrigger>
+			<DialogContent className="sm:max-w-[425px]">
+				<DialogHeader>
+					<DialogTitle>Edit website</DialogTitle>
+				</DialogHeader>
+				<SiteForm defaultValues={site} onSubmit={onSubmit} />
+			</DialogContent>
+		</Dialog>
 	</Fragment>);
 };

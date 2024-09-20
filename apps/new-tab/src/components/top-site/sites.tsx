@@ -2,6 +2,9 @@ import React, { Fragment, type FC, useMemo } from "react";
 import { useTopSites, useWebSiteStore } from "@repo/shared";
 
 import { SiteItem, FixedSiteItem } from "./";
+import { CreateSite } from "./create-site";
+
+
 
 export const Sites: FC = () => {
 	const topSites = useTopSites();
@@ -25,6 +28,7 @@ export const Sites: FC = () => {
 			{
 				list.map((site) => <SiteItem site={site} key={site.url} />)
 			}
+			<CreateSite />
 		</div>
 	</Fragment>);
 };
