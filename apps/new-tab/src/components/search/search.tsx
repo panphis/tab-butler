@@ -55,6 +55,7 @@ export const SearchForm: FC = () => {
 		}
 		const searchEngine = searchEnginesMap.get(engine)!
 		const url = searchEngine.url + keyWords
+		chrome.tabs.create({ url });
 	}
 
 	return (
