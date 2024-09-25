@@ -71,7 +71,7 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 							<History size={16} />
 						</span>
 						<Favicon src={site.url} title={site.title} className="rounded-md" />
-						<Button asChild className="p-1 w-fit h-fit bg-transparent hover:bg-black/20" onClick={fixedSite}>
+						<Button className="p-1 w-fit h-fit bg-transparent hover:bg-black/20" onClick={fixedSite}>
 							<Pin size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
 						</Button>
 					</Space>
