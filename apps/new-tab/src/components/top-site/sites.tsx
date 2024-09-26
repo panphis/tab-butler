@@ -1,9 +1,8 @@
-import React, { Fragment, type FC, useMemo } from "react";
+import { Fragment, type FC, useMemo } from "react";
 import { useTopSites, useWebSiteStore } from "@repo/shared";
 
 import { SiteItem, FixedSiteItem } from "./";
 import { CreateSite } from "./create-site";
-
 
 
 export const Sites: FC = () => {

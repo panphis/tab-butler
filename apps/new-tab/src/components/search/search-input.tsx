@@ -103,7 +103,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 					<FormControl>
 						<Input
 							autoComplete='off'
-							className={`bg-transparent placeholder:text-light/50 border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
+							className={`bg-transparent placeholder:text-inherit border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
 							placeholder='Search'
 							{...field}
 						/>

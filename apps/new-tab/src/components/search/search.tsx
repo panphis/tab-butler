@@ -5,7 +5,8 @@ import {
 	Button,
 	Form,
 	FormField,
-	FormItem
+	FormItem,
+	cn
 } from '@repo/ui'
 import { Search } from 'lucide-react'
 import { z } from 'zod'
@@ -17,6 +18,8 @@ import { EngineSelect, SearchInput } from "./";
 
 import { useStorageSuspense } from '@repo/shared';
 import { engineStorage } from "@/storage";
+
+import { bg_transparent } from "@/utils";
 
 
 const schema = z.object({
@@ -63,9 +66,7 @@ export const SearchForm: FC = () => {
 			<Form {...form} watch={watch}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className={`
-					flex gap-2 items-center p-1 h-12 w-max max-w-[80%] rounded-full shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.2)_0_0_10px] hover:backdrop-blur-[20px] text-light/80 hover:bg-dark/50 hover:text-light dark:hover:bg-light/50 dark:hover:text-light transition-all
-				`}
+					className={cn(bg_transparent, `flex gap-2 items-center p-1 h-12 w-max max-w-[80%] rounded-full hover:text-light dark:hover:bg-light/50`)}
 				>
 					<FormField
 						control={form.control}
@@ -91,7 +92,7 @@ export const SearchForm: FC = () => {
 						className={`
 							bg-transparent rounded-full hover:shadow-[rgba(255,255,255,0.2)_0_0_10px]
 							hover:backdrop-blur-[10px] hover:bg-transparent
-							text-light/80 hover:text-inherit
+							hover:text-inherit
 						`}
 						variant='ghost'
 						size='icon'

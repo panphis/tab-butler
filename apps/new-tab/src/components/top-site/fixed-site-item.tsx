@@ -94,8 +94,8 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 
 						<Popover>
 							<PopoverTrigger onClick={(e) => { e.stopPropagation() }} >
-								<Button className="p-1 w-fit h-fit bg-transparent hover:bg-black/20"  >
-									<Ellipsis size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
+								<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
+									<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
 								</Button>
 							</PopoverTrigger>
 							<PopoverContent onClick={(e) => { e.stopPropagation() }} className={cn(bg_transparent, "w-fit h-fit")}>

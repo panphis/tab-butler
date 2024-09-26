@@ -63,7 +63,7 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 	return (<Fragment>
 		<ContextMenu>
 			<ContextMenuTrigger asChild>
-				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer  transition-all")}
+				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
 					<Space>
@@ -71,7 +71,7 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 							<History size={16} />
 						</span>
 						<Favicon src={site.url} title={site.title} className="rounded-md" />
-						<Button className="p-1 w-fit h-fit bg-transparent hover:bg-black/20" onClick={fixedSite}>
+						<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20" onClick={fixedSite}>
 							<Pin size={16} className="text-light opacity-0 group-hover/site:opacity-100 transition-all" />
 						</Button>
 					</Space>
