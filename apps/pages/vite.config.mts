@@ -11,7 +11,13 @@ const config = withPageConfig({
   },
   publicDir: resolve(rootDir, 'public'),
   build: {
-    outDir: resolve(rootDir, '..', '..', 'dist', 'new-tab'),
+    outDir: resolve(rootDir, '..', '..', 'dist', 'pages'),
+    rollupOptions: {
+      input: {
+        "new-tab": resolve(__dirname, 'new-tab.html'),
+        options: resolve(__dirname, 'options.html')
+      }
+    }
   },
 });
 

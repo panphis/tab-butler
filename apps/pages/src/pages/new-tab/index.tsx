@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import NewTab from '@/App';
+import NewTab from './App';
 
 function init() {
   const rootElementId = 'root';

@@ -9,3 +9,5 @@ export * from "./top-site"
 
 export * from "./wallpaper"
 
+export * from './settings'
+export * from './upload'

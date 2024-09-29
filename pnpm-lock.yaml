@@ -176,6 +176,37 @@ importers:
         specifier: ^5.4.1
         version: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
 
+  apps/pages:
+    dependencies:
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+    devDependencies:
+      '@repo/tailwindcss-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@repo/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.3.4
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.3.0
+      sass:
+        specifier: 1.77.8
+        version: 1.77.8
+      vite:
+        specifier: ^5.4.0
+        version: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
+
   chrome-extension:
     dependencies:
       '@repo/shared':
