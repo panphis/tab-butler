@@ -6,4 +6,4 @@ export { useStorage, useStorageSuspense } from './useStorage';
 
 export { useTopSites } from './useTopSites';
 
-
+export { useCopy } from "./useCopy"

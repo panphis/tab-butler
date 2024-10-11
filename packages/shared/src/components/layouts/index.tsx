@@ -4,7 +4,7 @@ import React from "react";
 import { ThemeProvider, ThemeProviderContext } from "../theme";
 
 import { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
-
+import { Toaster } from "@repo/ui"
 import "../../styles/globals.css";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
@@ -52,17 +52,19 @@ function LayoutContainer({ children }: LayoutProps) {
 		}
 	}, [rootClassName, color])
 
+
+	useEffect(() => {
+		const root = document.documentElement;
+		root.style.setProperty('--radius', `${radius}rem`);
+	}, [radius])
+
 	return (
-		<div
+		<main
 			className={`w-full min-h-screen`}
-			style={
-				{
-					"--radius": `${radius}rem`,
-				} as React.CSSProperties
-			}
+			id="layout"
 		>
 			{children}
-		</div>
+		</main>
 	);
 }
 
@@ -70,6 +72,7 @@ export function Layout({ children }: LayoutProps) {
 	return (
 		<ThemeProvider>
 			<LayoutContainer>{children}</LayoutContainer>
+			<Toaster />
 		</ThemeProvider>
 	);
 }

@@ -35,9 +35,11 @@ const manifest = deepmerge(
 			"scripting",
 			"tabs",
 			"storage",
-			"bookmarks"
+			"bookmarks",
+			"clipboardRead",
+			"clipboardWrite"
 		],
-		options_page: "options/index.html",
+		options_page: "pages/options.html",
 		background: {
 			service_worker: "background.iife.js",
 			type: "module",
@@ -47,7 +49,7 @@ const manifest = deepmerge(
 		//   default_icon: 'icon-34.png',
 		// },
 		chrome_url_overrides: {
-			newtab: "new-tab/index.html",
+			newtab: "pages/new-tab.html",
 		},
 		icons: {
 			16: "icon-16.png",

@@ -8,7 +8,7 @@ import { wallpaperDB } from "./";
 
 
 
-export const createWebSite = async (wallpaper: CreateWallpaperParams) => {
+export const createOrUpdateWebSite = async (wallpaper: CreateWallpaperParams) => {
 	const preSelected = await wallpaperDB.where('selected').equals(1)
 	await preSelected.modify({ selected: 0 })
 	const params = { ...wallpaper, selected: 1, createdAt: new Date() }
