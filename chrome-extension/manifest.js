@@ -44,10 +44,10 @@ const manifest = deepmerge(
 			service_worker: "background.iife.js",
 			type: "module",
 		},
-		// action: {
-		//   default_popup: 'popup/index.html',
-		//   default_icon: 'icon-34.png',
-		// },
+		action: {
+			default_popup: 'pages/popup.html',
+			default_icon: 'icon-38.png',
+		},
 		chrome_url_overrides: {
 			newtab: "pages/new-tab.html",
 		},

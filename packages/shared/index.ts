@@ -55,6 +55,7 @@ export {
 	useStorage,
 	useStorageSuspense,
 	useTopSites,
+	useBookMarks,
 
 
 	// utils

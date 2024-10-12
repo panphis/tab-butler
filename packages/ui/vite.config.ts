@@ -18,9 +18,6 @@ export default defineConfig({
 			entry: resolve(__dirname, 'src', 'index.ts'),
 			formats: ['es', 'cjs'],
 			name: "ShadcnUI",
-			fileName: (format, entryName) => {
-				return `${entryName}.${format}.js`
-			},
 		},
 		rollupOptions: {
 			external: [...Object.keys(peerDependencies), ...Object.keys(dependencies)],
@@ -28,7 +25,7 @@ export default defineConfig({
 				preserveModules: true,
 				preserveModulesRoot: resolve(__dirname, 'src'),
 				exports: 'auto'
-			}
+			},
 		},
 		target: 'esnext',
 		sourcemap: true

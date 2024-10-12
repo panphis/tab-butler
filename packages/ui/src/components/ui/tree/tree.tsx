@@ -1,3 +1,5 @@
+//eslint-ignore-file
+
 import React from "react";
 import RCTree from "rc-tree";
 import type { TreeProps } from "rc-tree";
@@ -6,14 +8,14 @@ import { BasicDataNode, DataNode, EventDataNode } from "rc-tree/lib/interface";
 import styles from "./tree.module.css";
 import { ChevronRight, GripVertical } from 'lucide-react';
 
-export type Key = string | number;
+export type Key = React.Key;
 
-export type DropInfo = NodeDragEventParams & {
+export type DropInfo = NodeDragEventParams<TreeDataType> & {
 	dragNode: EventDataNode<TreeDataType>;
 	dragNodesKeys: Key[];
 	dropPosition: number;
 	dropToGap: boolean;
-};
+}
 
 export interface CheckInfo<TreeDataType extends BasicDataNode = DataNode> {
 	event: "check";
@@ -50,7 +52,7 @@ interface TreeComponentProps {
 	checked?: Key[] | { checked: Key[]; halfChecked: Key[] };
 	selected?: Key[];
 	defaultExpandAll?: boolean;
-	onCheck?: (keys: Key[], info: CheckInfo | undefined) => void;
+	onCheck?: (keys: Key[], info: CheckInfo<TreeDataType>) => void;
 	onSelect?: (keys: Key[], info: SelectInfo) => void;
 	draggable?: boolean | React.ReactNode;
 	onDrop?: (info: DropInfo) => void;
@@ -73,6 +75,7 @@ export const Tree: React.FC<TreeComponentProps> = ({
 	rcTreeProps,
 	allowDrop
 }) => {
+	console.log('styles', styles);
 
 	const handleCheck = (
 		checked:
@@ -94,7 +97,6 @@ export const Tree: React.FC<TreeComponentProps> = ({
 			onSelect(selectedKeys, info);
 		}
 	};
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const switcherIcon = (obj: any) => {
 		if (obj.isLeaf) {
 			return;
@@ -121,6 +123,7 @@ export const Tree: React.FC<TreeComponentProps> = ({
 					<p>暂无数据</p>
 				</div>
 			) : (
+				// @ts-ignore
 				<RCTree
 					{...rcTreeProps}
 					checkable={

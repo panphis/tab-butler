@@ -1,4 +1,4 @@
-import { Fragment, useState, type FC } from "react";
+import { Fragment, SetStateAction, useState, type FC } from "react";
 
 // import styles from "./tree.module.css";
 import { TreeDataType } from "./tree";
@@ -19,13 +19,13 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 
 	const [value, setValue] = useState(undefined)
 
-	function onChange(value, ...rest) {
+	function onChange(value: SetStateAction<undefined>, ...rest: any[]) {
 		console.log('onChange', value, rest);
 		setValue(value)
 	}
 
 
-	function onSelect(value, ...args) {
+	function onSelect(value: any, ...args: any[]) {
 		console.log('onSelect:', value, args);
 	}
 
