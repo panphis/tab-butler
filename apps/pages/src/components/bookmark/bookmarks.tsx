@@ -16,9 +16,7 @@ type BookmarksProps = {
 export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 
 	const [queryStr, setQueryStr] = useState('')
-	const { tree, loading } = useBookMarks(queryStr)
-	console.log(tree)
-
+	const { tree, loading, updateOrder } = useBookMarks(queryStr)
 	const allowDrop = ({ dropNode, dropPosition }: any) => {
 		return (dropNode.children && !dropNode.url) || dropPosition;
 	};
@@ -43,6 +41,7 @@ export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 			},
 			id,
 		};
+		updateOrder(payload)
 	};
 
 

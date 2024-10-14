@@ -6,7 +6,8 @@ type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode
 
 interface UseBookMarksReturn {
 	tree: BookmarkTreeNode[],
-	loading: boolean
+	loading: boolean,
+	updateOrder: (params: { id: any; destination: any }) => Promise<void>
 }
 
 export const useBookMarks = (query: string): UseBookMarksReturn => {
@@ -59,10 +60,18 @@ export const useBookMarks = (query: string): UseBookMarksReturn => {
 		return filterTree(bookmarkTree)
 	}, [bookmarkTree, query])
 
+	async function updateOrder(params: { id: any; destination: any }) {
+		const { id, destination } = params;
+		const chrome = window?.chrome;
+		const { bookmarks } = chrome;
+		await bookmarks.move(id, destination);
+		getBookmarksTrees()
+	}
 
 	return {
 		tree: filteredTree,
 		loading,
+		updateOrder
 	}
 }
 
