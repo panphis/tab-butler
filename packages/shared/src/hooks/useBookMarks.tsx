@@ -2,12 +2,17 @@ import { useEffect, useState, useMemo } from "react";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode
 
-
+type BookmarkChangesArg = chrome.bookmarks.BookmarkChangesArg
+type BookmarkCreateArg = chrome.bookmarks.BookmarkCreateArg
+type BookmarkDestinationArg = chrome.bookmarks.BookmarkDestinationArg
 
 interface UseBookMarksReturn {
 	tree: BookmarkTreeNode[],
 	loading: boolean,
-	updateOrder: (params: { id: any; destination: any }) => Promise<void>
+	updateOrder: (params: { id: string; destination: BookmarkDestinationArg }) => Promise<void>
+	deleteBookmark: (id: string) => Promise<void>
+	updateBookmark: (id: string, changes: BookmarkChangesArg) => Promise<void>
+	createBookmark: (params: BookmarkCreateArg) => Promise<void>
 }
 
 export const useBookMarks = (query: string): UseBookMarksReturn => {
@@ -60,7 +65,7 @@ export const useBookMarks = (query: string): UseBookMarksReturn => {
 		return filterTree(bookmarkTree)
 	}, [bookmarkTree, query])
 
-	async function updateOrder(params: { id: any; destination: any }) {
+	async function updateOrder(params: { id: any; destination: BookmarkDestinationArg }) {
 		const { id, destination } = params;
 		const chrome = window?.chrome;
 		const { bookmarks } = chrome;
@@ -68,10 +73,36 @@ export const useBookMarks = (query: string): UseBookMarksReturn => {
 		getBookmarksTrees()
 	}
 
+	async function createBookmark(params: BookmarkCreateArg) {
+		const chrome = window?.chrome;
+		const { bookmarks } = chrome;
+		await bookmarks.create(params);
+	}
+
+
+	async function deleteBookmark(id: string) {
+		const chrome = window?.chrome;
+		const { bookmarks } = chrome;
+		await bookmarks.remove(id);
+		getBookmarksTrees()
+	}
+
+
+	async function updateBookmark(id: string, changes: BookmarkChangesArg) {
+		const chrome = window?.chrome;
+		const { bookmarks } = chrome;
+		await bookmarks.update(id, changes);
+		getBookmarksTrees()
+	}
+
+
 	return {
 		tree: filteredTree,
 		loading,
-		updateOrder
+		createBookmark,
+		updateOrder,
+		deleteBookmark,
+		updateBookmark
 	}
 }
 

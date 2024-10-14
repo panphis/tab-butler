@@ -60,7 +60,7 @@ function LayoutContainer({ children }: LayoutProps) {
 
 	return (
 		<main
-			className={`w-full min-h-screen`}
+			className={`w-full min-h-screen h-full`}
 			id="layout"
 		>
 			{children}

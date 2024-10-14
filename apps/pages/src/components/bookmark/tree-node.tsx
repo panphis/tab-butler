@@ -1,12 +1,18 @@
 import { useMemo, type FC } from "react";
 import { Favicon } from "..";
+import {
+	ContextMenu,
+	ContextMenuContent,
+	ContextMenuItem,
+	ContextMenuTrigger,
+} from "@repo/ui";
 
 type TreeNodeProps = {
 	item: chrome.bookmarks.BookmarkTreeNode
 };
 
-export const TreeNode: FC<TreeNodeProps> = ({ item }: TreeNodeProps) => {
 
+const TreeNodeTrigger = ({ item }: TreeNodeProps) => {
 	const { title, children, url } = item;
 	const domain = useMemo(() => url ? new URL(url!).hostname : '', [url]);
 	if (children) {
@@ -26,4 +32,23 @@ export const TreeNode: FC<TreeNodeProps> = ({ item }: TreeNodeProps) => {
 			</div>
 		</a>
 	);
-}; 
+};
+
+
+export const TreeNode: FC<TreeNodeProps> = ({ item }: TreeNodeProps) => {
+	return <ContextMenu>
+		<ContextMenuTrigger>
+			<TreeNodeTrigger item={item} />
+		</ContextMenuTrigger>
+		<ContextMenuContent>
+			<ContextMenuItem>Profile</ContextMenuItem>
+			<ContextMenuItem>Billing</ContextMenuItem>
+			<ContextMenuItem>Team</ContextMenuItem>
+			<ContextMenuItem>Subscription</ContextMenuItem>
+		</ContextMenuContent>
+	</ContextMenu>
+
+};
+
+
+
