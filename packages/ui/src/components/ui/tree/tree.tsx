@@ -1,12 +1,14 @@
 //eslint-ignore-file
 
-import React from "react";
+import React, { ReactNode } from "react";
 import RCTree from "rc-tree";
 import type { TreeProps } from "rc-tree";
 import { NodeDragEventParams } from "rc-tree/lib/contextTypes";
 import { BasicDataNode, DataNode, EventDataNode } from "rc-tree/lib/interface";
 import styles from "./tree.module.css";
 import { ChevronRight, GripVertical } from 'lucide-react';
+
+
 
 export type Key = React.Key;
 
@@ -47,6 +49,8 @@ export interface TreeDataType {
 
 interface TreeComponentProps {
 	loading?: boolean;
+	loadingText?: ReactNode;
+	emptyText?: ReactNode;
 	treeData: TreeDataType[];
 	checkable?: boolean;
 	checked?: Key[] | { checked: Key[]; halfChecked: Key[] };
@@ -57,8 +61,8 @@ interface TreeComponentProps {
 	draggable?: boolean | React.ReactNode;
 	onDrop?: (info: DropInfo) => void;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	allowDrop: (v: any) => boolean;
-	rcTreeProps?: TreeProps;
+	allowDrop?: (v: any) => boolean;
+	rcTreeProps?: Omit<TreeProps, 'prefixCls'>;
 }
 
 export const Tree: React.FC<TreeComponentProps> = ({
@@ -73,9 +77,10 @@ export const Tree: React.FC<TreeComponentProps> = ({
 	loading = false,
 	draggable = false,
 	rcTreeProps,
-	allowDrop
+	allowDrop,
+	loadingText,
+	emptyText
 }) => {
-	console.log('styles', styles);
 
 	const handleCheck = (
 		checked:
@@ -115,11 +120,11 @@ export const Tree: React.FC<TreeComponentProps> = ({
 	return (
 		<div className={styles.container}>
 			{loading ? (
-				<div className="flex justify-center items-center h-full">
+				loadingText ?? <div className="flex justify-center items-center h-full">
 					<p>加载中...</p>
 				</div>
 			) : treeData.length === 0 ? (
-				<div className="flex justify-center items-center h-full">
+				emptyText ?? <div className="flex justify-center items-center h-full">
 					<p>暂无数据</p>
 				</div>
 			) : (

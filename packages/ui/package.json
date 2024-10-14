@@ -11,7 +11,7 @@
 	},
 	"type": "module",
 	"main": "dist/ui.js",
-	"module": "dist/ui.es.js",
+	"module": "dist/ui.js",
 	"types": "dist/src/index.d.ts",
 	"sideEffects": false,
 	"files": [

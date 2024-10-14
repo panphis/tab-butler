@@ -5,12 +5,15 @@ import { Bookmarks } from "@/components";
 
 // style for ui components
 import "@repo/ui/dist/globals.css";
+
 // style for theme
 import "@repo/shared/dist/globals.css";
 
 import "@/styles/globals.css";
 
 import './styles.css';
+
+
 
 function App() {
 	return (

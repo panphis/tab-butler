@@ -1,7 +1,7 @@
 .container :global(.rc-tree) {
 	margin: 0;
 	border: 1px solid transparent;
-	max-width: 100;
+	max-width: 100%;
 }
 
 .container :global(.rc-tree .rc-tree-treenode) {
@@ -66,7 +66,8 @@
 .container :global(.rc-tree .rc-tree-treenode .rc-tree-node-content-wrapper) {
 	position: relative;
 	display: block;
-	height: 24px;
+	min-height: 24px;
+	line-height: 24px;
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
