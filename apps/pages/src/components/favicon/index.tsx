@@ -37,7 +37,7 @@ export const Favicon = ({
 
 	return (
 		<Avatar {...others} className={cn(className, 'rounded-md')}>
-			<AvatarImage src={icon} alt="@shadcn" />
+			<AvatarImage className='z-50' src={icon} alt="@shadcn" />
 			<AvatarFallback>{iconTitle}</AvatarFallback>
 		</Avatar>
 	);

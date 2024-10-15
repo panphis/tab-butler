@@ -1,4 +1,4 @@
-import React, { Fragment, type FC } from "react";
+import { Fragment, type FC } from "react";
 import { BookmarkTreeNode } from "@repo/shared";
 
 import {
@@ -15,7 +15,7 @@ import {
 } from "@repo/ui"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { FormProps, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 type Props = {
@@ -38,6 +38,20 @@ const bookMarkFormSchema = z.object({
 type BookMarkFormValues = z.infer<typeof bookMarkFormSchema>
 
 const buttonSize = 'sm'
+
+type FormFooterProps = {
+	onDelete: () => void;
+	onCancel: () => void;
+};
+const FormFooter = ({ onDelete, onCancel }: FormFooterProps) => {
+	return (
+		<Space className="justify-end">
+			<Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>
+			<Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>
+			<Button type="submit" size={buttonSize}>Save</Button>
+		</Space>
+	)
+}
 
 
 export const BookMarkForm: FC<Props> = ({ item, onSubmit: submit, onDelete, onCancel }) => {
@@ -84,11 +98,7 @@ export const BookMarkForm: FC<Props> = ({ item, onSubmit: submit, onDelete, onCa
 						</FormItem>
 					)}
 				/>
-				<Space className="justify-end">
-					<Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>
-					<Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>
-					<Button type="submit" size={buttonSize}>Save</Button>
-				</Space >
+				<FormFooter onDelete={onDelete} onCancel={onCancel} />
 			</form>
 		</Form>
 	</Fragment>);
@@ -135,11 +145,7 @@ export const BookMarkDirForm: FC<Props> = ({ item, onSubmit: submit, onCancel, o
 						</FormItem>
 					)}
 				/>
-				<Space className="justify-end">
-					<Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>
-					<Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>
-					<Button type="submit" size={buttonSize}>Save</Button>
-				</Space >
+				<FormFooter onDelete={onDelete} onCancel={onCancel} />
 			</form>
 		</Form>
 	</Fragment >);

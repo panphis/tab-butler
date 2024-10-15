@@ -1,17 +1,18 @@
 import { Fragment, type FC, useState } from "react";
 
-import { Tree, Input } from "@repo/ui";
+import {
+	cn, Tree, Input
+} from "@repo/ui";
 import "@repo/ui/dist/style.css";
 
 import { useBookMarks } from "@repo/shared";
 import { TreeNode } from "./";
 
 import { Loading } from "./";
+import { bg_transparent } from "@/utils";
 
 
-type BookmarksProps = {
-
-};
+type BookmarksProps = {};
 
 export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 
@@ -47,7 +48,9 @@ export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 
 
 	return (<Fragment>
-		<Input onChange={e => setQueryStr(e.target.value)} />
+		<div className={cn("w-full sticky top-0 bg-background z-[500]")}>
+			<Input className="w-full" onChange={e => setQueryStr(e.target.value)} />
+		</div>
 		<Tree
 			loading={loading}
 			treeData={tree[0]?.children || []}
