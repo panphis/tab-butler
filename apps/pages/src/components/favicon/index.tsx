@@ -3,19 +3,22 @@ import {
 	Avatar,
 	AvatarFallback,
 	AvatarImage,
-
+	cn
 } from "@repo/ui"
+
 
 
 interface FaviconProps {
 	src: string;
 	title: string;
+	className?: string;
 	[k: string]: any
 }
 
 export const Favicon = ({
 	title,
 	src,
+	className,
 	...others
 }: FaviconProps) => {
 
@@ -33,8 +36,8 @@ export const Favicon = ({
 
 
 	return (
-		<Avatar {...others}>
-			<AvatarImage src={icon} alt="@shadcn" />
+		<Avatar {...others} className={cn(className, 'rounded-md')}>
+			<AvatarImage className='z-50' src={icon} alt="@shadcn" />
 			<AvatarFallback>{iconTitle}</AvatarFallback>
 		</Avatar>
 	);

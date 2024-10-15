@@ -27,6 +27,7 @@
   },
   "include": [
     "./src",
+    "../../apps/pages/src/components/bookmark/loading.tsx",
   ],
   "exclude": [
     "node_modules",

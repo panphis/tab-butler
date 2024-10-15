@@ -11,3 +11,5 @@ export * from "./wallpaper"
 
 export * from './settings'
 export * from './upload'
+
+export * from './bookmark'

@@ -15,7 +15,8 @@ const config = withPageConfig({
     rollupOptions: {
       input: {
         "new-tab": resolve(__dirname, 'new-tab.html'),
-        options: resolve(__dirname, 'options.html')
+        options: resolve(__dirname, 'options.html'),
+        popup: resolve(__dirname, 'popup.html')
       }
     }
   },

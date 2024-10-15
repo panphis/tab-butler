@@ -1,4 +1,6 @@
-export { useBookMarkQuery } from "./useBookMarks"
+export { useBookMarkQuery } from "./useBookMarkQuery"
+export { useBookMarks } from "./useBookMarks"
+
 
 export { useHistory } from "./useHistory"
 

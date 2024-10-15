@@ -3,14 +3,15 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"tsc": "tsc --pretty",
 		"ready": "vite build && npm run build:styles",
 		"build": "vite build && npm run build:styles",
 		"build:styles": "postcss ./src/globals.css -o ./dist/globals.css",
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"type": "module",
-	"main": "dist/index.cjs.js",
-	"module": "dist/index.es.js",
+	"main": "dist/ui.js",
+	"module": "dist/ui.js",
 	"types": "dist/src/index.d.ts",
 	"sideEffects": false,
 	"files": [
@@ -28,6 +29,7 @@
 		"eslint": "^8.57.0",
 		"postcss": "^8.4.41",
 		"postcss-cli": "^11.0.0",
+		"rollup-plugin-postcss": "^4.0.2",
 		"tailwind-merge": "^2.5.2",
 		"tailwindcss": "^3.4.10",
 		"tailwindcss-animate": "^1.0.7",
@@ -68,9 +70,10 @@
 		"embla-carousel-react": "^8.1.8",
 		"input-otp": "^1.2.4",
 		"next-themes": "^0.3.0",
+		"rc-tree": "^5.9.0",
+		"rc-tree-select": "^5.23.0",
 		"react-day-picker": "8.10.1",
 		"react-resizable-panels": "^2.0.23",
-		"recharts": "^2.12.7",
 		"sonner": "^1.5.0",
 		"vaul": "^0.9.1"
 	},

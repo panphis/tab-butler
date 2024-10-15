@@ -41,7 +41,7 @@ export {
 
 export { withSuspense, withErrorBoundary } from './hoc';
 
-export { useBookMarkQuery, useHistory, useStorage, useStorageSuspense, useTopSites, useCopy } from './hooks';
+export { useBookMarkQuery, useBookMarks, useHistory, useStorage, useStorageSuspense, useTopSites, useCopy } from './hooks';
 
 
 export { useWallpaperStore, useSearchEngines, useWebSiteStore } from './store';
@@ -61,7 +61,8 @@ export type {
 	CreateSearchEngineParams, SearchEngine,
 	// stores
 	BaseStorage, ValueOrUpdate, Themes,
-	CreateWebSiteParams, WebSite
+	CreateWebSiteParams, WebSite,
+	BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg
 } from './types';
 export type {
 	Theme,

@@ -55,6 +55,7 @@ export {
 	useStorage,
 	useStorageSuspense,
 	useTopSites,
+	useBookMarks,
 
 
 	// utils
@@ -74,5 +75,6 @@ export type {
 	Wallpaper, CreateWallpaperParams,
 	CreateSearchEngineParams, SearchEngine,
 	BaseStorage, Theme,
-	CreateWebSiteParams, WebSite, SiteFormValues
+	CreateWebSiteParams, WebSite, SiteFormValues,
+	BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg
 } from './src';

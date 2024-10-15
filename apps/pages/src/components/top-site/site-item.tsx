@@ -16,10 +16,11 @@ import { useWebSiteStore, useCopy } from "@repo/shared";
 
 import { bg_transparent } from "@/utils";
 
+import type { MostVisitedURL } from '@repo/shared';
 
 
 type SiteItemProps = {
-	site: chrome.topSites.MostVisitedURL
+	site: MostVisitedURL
 };
 
 export const SiteItem: FC<SiteItemProps> = ({ site }) => {
