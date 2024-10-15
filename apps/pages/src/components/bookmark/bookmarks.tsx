@@ -16,7 +16,7 @@ type BookmarksProps = {
 export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 
 	const [queryStr, setQueryStr] = useState('')
-	const { tree, loading, updateOrder } = useBookMarks(queryStr)
+	const { tree, loading, updateOrder, deleteBookmark, updateBookmark } = useBookMarks(queryStr)
 	const allowDrop = ({ dropNode, dropPosition }: any) => {
 		return (dropNode.children && !dropNode.url) || dropPosition;
 	};
@@ -58,7 +58,7 @@ export const Bookmarks: FC<BookmarksProps> = ({ }) => {
 					children: 'children',
 				},
 				// ts-ignore
-				titleRender: (node: any) => <TreeNode item={node} />
+				titleRender: (node: any) => <TreeNode item={node} deleteBookmark={deleteBookmark} updateBookmark={updateBookmark} />
 			}}
 			draggable={true}
 			allowDrop={allowDrop}

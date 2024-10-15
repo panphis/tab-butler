@@ -1,8 +1,9 @@
+import { BookmarkTreeNode } from "@/types";
 import { useEffect, useState } from "react";
 
 
 export const useBookMarkQuery = (query: string, maxResults: number = 10) => {
-	const [bookmarks, setBookmarks] = useState<chrome.bookmarks.BookmarkTreeNode[]>([])
+	const [bookmarks, setBookmarks] = useState<BookmarkTreeNode[]>([])
 	useEffect(() => {
 		const getBookmarksTrees = async () => {
 

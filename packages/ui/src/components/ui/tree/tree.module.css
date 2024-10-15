@@ -15,7 +15,7 @@
 	width: 100%;
 	overflow: hidden;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: baseline;
 }
 
 .container :global(.rc-tree .rc-tree-treenode .draggable) {

@@ -1,18 +1,16 @@
-import { useMemo, type FC } from "react";
+import { useMemo, type FC, useState, useRef, useEffect } from "react";
 import { Favicon } from "..";
 import {
-	ContextMenu,
-	ContextMenuContent,
-	ContextMenuItem,
-	ContextMenuTrigger,
+	Dialog,
+	DialogContent,
+	DialogTrigger
 } from "@repo/ui";
-
-type TreeNodeProps = {
-	item: chrome.bookmarks.BookmarkTreeNode
-};
+import type { BookmarkTreeNode, BookmarkChangesArg } from "@repo/shared";
+import { BookMarkForm, BookMarkDirForm } from "./";
 
 
-const TreeNodeTrigger = ({ item }: TreeNodeProps) => {
+
+const TreeNodeTrigger = ({ item }: { item: BookmarkTreeNode }) => {
 	const { title, children, url } = item;
 	const domain = useMemo(() => url ? new URL(url!).hostname : '', [url]);
 	if (children) {
@@ -34,19 +32,63 @@ const TreeNodeTrigger = ({ item }: TreeNodeProps) => {
 	);
 };
 
+type TreeNodeProps = {
+	item: BookmarkTreeNode,
+	deleteBookmark: (id: string) => Promise<void>,
+	updateBookmark: (id: string, changes: BookmarkChangesArg) => Promise<void>
+};
 
-export const TreeNode: FC<TreeNodeProps> = ({ item }: TreeNodeProps) => {
-	return <ContextMenu>
-		<ContextMenuTrigger>
-			<TreeNodeTrigger item={item} />
-		</ContextMenuTrigger>
-		<ContextMenuContent>
-			<ContextMenuItem>Profile</ContextMenuItem>
-			<ContextMenuItem>Billing</ContextMenuItem>
-			<ContextMenuItem>Team</ContextMenuItem>
-			<ContextMenuItem>Subscription</ContextMenuItem>
-		</ContextMenuContent>
-	</ContextMenu>
+export const TreeNode: FC<TreeNodeProps> = ({ item, updateBookmark, deleteBookmark }: TreeNodeProps) => {
+
+	const [open, setOpen] = useState(false)
+	const trigger = useRef<HTMLDivElement | null>(null)
+
+	useEffect(() => {
+		function openHandler(e: MouseEvent) {
+			e.preventDefault()
+			setOpen(true)
+		}
+		trigger.current?.addEventListener('contextmenu', openHandler)
+		return () => {
+			trigger.current?.removeEventListener('contextmenu', openHandler)
+		}
+	}, [])
+
+	async function onSubmit(values: BookmarkChangesArg) {
+		try {
+			await updateBookmark(item.id, values)
+		} catch (error) {
+			console.error(error)
+		}
+		onCancel()
+	}
+
+	async function onDelete() {
+		await deleteBookmark(item.id)
+		onCancel()
+	}
+
+	function onCancel() {
+		setOpen(false)
+	}
+
+
+	return (
+		<Dialog open={open} onOpenChange={setOpen}>
+			<DialogTrigger asChild>
+				<div ref={trigger}>
+					<TreeNodeTrigger item={item} />
+				</div>
+			</DialogTrigger>
+			<DialogContent>
+				{
+					item.children && !item.url ? (
+						<BookMarkDirForm item={item} onCancel={onCancel} onDelete={onDelete} onSubmit={onSubmit} />
+					) : (<BookMarkForm item={item} onCancel={onCancel} onDelete={onDelete} onSubmit={onSubmit} />)
+				}
+			</DialogContent>
+		</Dialog >
+	)
 
 };
 

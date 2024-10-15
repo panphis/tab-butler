@@ -19,6 +19,7 @@ import {
 import { useHistory, useBookMarkQuery } from "@repo/shared";
 
 import { History, Bookmark } from 'lucide-react'
+import type { BookmarkTreeNode, HistoryItem } from '@repo/shared';
 
 
 
@@ -30,10 +31,10 @@ type SearchInputProps = {
 };
 
 interface HistoryProps {
-	history: chrome.history.HistoryItem[]
+	history: HistoryItem[]
 }
 const HistoryList = ({ history }: HistoryProps) => {
-	const onClick = (history: chrome.history.HistoryItem) => {
+	const onClick = (history: HistoryItem) => {
 		chrome.tabs.create({ url: history.url });
 	};
 	return history.length > 0 && (<Space direction='col' gap={0}>
@@ -56,10 +57,10 @@ const HistoryList = ({ history }: HistoryProps) => {
 
 
 interface BookMarkProps {
-	bookMarks: chrome.bookmarks.BookmarkTreeNode[]
+	bookMarks: BookmarkTreeNode[]
 }
 const BookMarkList = ({ bookMarks }: BookMarkProps) => {
-	const onClick = (bookMark: chrome.history.HistoryItem) => {
+	const onClick = (bookMark: HistoryItem) => {
 		chrome.tabs.create({ url: bookMark.url });
 	};
 	return bookMarks.length > 0 && <Fragment>

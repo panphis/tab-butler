@@ -47,6 +47,7 @@ const manifest = deepmerge(
 		action: {
 			default_popup: 'pages/popup.html',
 			default_icon: 'icon-38.png',
+			default_title: "Bookmark",
 		},
 		chrome_url_overrides: {
 			newtab: "pages/new-tab.html",

@@ -1,10 +1,8 @@
+import { BookmarkTreeNode, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg } from "@/types";
 import { useEffect, useState, useMemo } from "react";
 
-type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode
 
-type BookmarkChangesArg = chrome.bookmarks.BookmarkChangesArg
-type BookmarkCreateArg = chrome.bookmarks.BookmarkCreateArg
-type BookmarkDestinationArg = chrome.bookmarks.BookmarkDestinationArg
+
 
 interface UseBookMarksReturn {
 	tree: BookmarkTreeNode[],

@@ -61,7 +61,8 @@ export type {
 	CreateSearchEngineParams, SearchEngine,
 	// stores
 	BaseStorage, ValueOrUpdate, Themes,
-	CreateWebSiteParams, WebSite
+	CreateWebSiteParams, WebSite,
+	BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg
 } from './types';
 export type {
 	Theme,
