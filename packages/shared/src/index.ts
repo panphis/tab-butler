@@ -62,7 +62,13 @@ export type {
 	// stores
 	BaseStorage, ValueOrUpdate, Themes,
 	CreateWebSiteParams, WebSite,
-	BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg
+	BookmarkTreeNode,
+	MostVisitedURL,
+	HistoryItem,
+	BookmarkDestinationArg,
+	BookmarkChangesArg,
+	BookmarkCreateArg,
+	CreateProperties
 } from './types';
 export type {
 	Theme,

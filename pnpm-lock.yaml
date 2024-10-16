@@ -87,6 +87,43 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
 
+  apps/chrome-extension:
+    dependencies:
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      webextension-polyfill:
+        specifier: ^0.12.0
+        version: 0.12.0
+    devDependencies:
+      '@laynezh/vite-plugin-lib-assets':
+        specifier: ^0.5.23
+        version: 0.5.23(vite@5.4.2)
+      '@repo/dev-utils':
+        specifier: workspace:*
+        version: link:../../packages/dev-utils
+      '@repo/hmr':
+        specifier: workspace:*
+        version: link:../../packages/hmr
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@repo/vite-config':
+        specifier: workspace:*
+        version: link:../../packages/vite-config
+      '@types/ws':
+        specifier: ^8.5.11
+        version: 8.5.12
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
+      magic-string:
+        specifier: ^0.30.10
+        version: 0.30.11
+      ts-loader:
+        specifier: ^9.5.1
+        version: 9.5.1(typescript@5.5.4)(webpack@5.94.0)
+
   apps/pages:
     dependencies:
       '@repo/shared':
@@ -117,43 +154,6 @@ importers:
       vite:
         specifier: ^5.4.0
         version: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
-
-  chrome-extension:
-    dependencies:
-      '@repo/shared':
-        specifier: workspace:*
-        version: link:../packages/shared
-      webextension-polyfill:
-        specifier: ^0.12.0
-        version: 0.12.0
-    devDependencies:
-      '@laynezh/vite-plugin-lib-assets':
-        specifier: ^0.5.23
-        version: 0.5.23(vite@5.4.2)
-      '@repo/dev-utils':
-        specifier: workspace:*
-        version: link:../packages/dev-utils
-      '@repo/hmr':
-        specifier: workspace:*
-        version: link:../packages/hmr
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../packages/typescript-config
-      '@repo/vite-config':
-        specifier: workspace:*
-        version: link:../packages/vite-config
-      '@types/ws':
-        specifier: ^8.5.11
-        version: 8.5.12
-      deepmerge:
-        specifier: ^4.3.1
-        version: 4.3.1
-      magic-string:
-        specifier: ^0.30.10
-        version: 0.30.11
-      ts-loader:
-        specifier: ^9.5.1
-        version: 9.5.1(typescript@5.5.4)(webpack@5.94.0)
 
   packages/dev-utils:
     devDependencies:

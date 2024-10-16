@@ -19,7 +19,15 @@ export type {
 export type { Themes } from "./themes"
 
 
-export type { BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg } from "./chrome"
+export type {
+	BookmarkTreeNode,
+	MostVisitedURL,
+	HistoryItem,
+	BookmarkDestinationArg,
+	BookmarkChangesArg,
+	BookmarkCreateArg,
+	CreateProperties
+} from "./chrome"
 
 
 

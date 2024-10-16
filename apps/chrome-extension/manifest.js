@@ -37,7 +37,13 @@ const manifest = deepmerge(
 			"storage",
 			"bookmarks",
 			"clipboardRead",
-			"clipboardWrite"
+			"clipboardWrite",
+			"contextMenus",
+			'activeTab',
+			'tabCapture',
+			'tabGroups',
+			'tabs',
+			'contentSettings',
 		],
 		options_page: "pages/options.html",
 		background: {

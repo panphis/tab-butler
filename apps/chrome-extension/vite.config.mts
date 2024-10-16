@@ -6,15 +6,11 @@ import { watchPublicPlugin, watchRebuildPlugin } from '@repo/hmr';
 import { isDev, isProduction, watchOption } from '@repo/vite-config';
 
 const rootDir = resolve(__dirname);
-const libDir = resolve(rootDir, 'lib');
 
-const outDir = resolve(rootDir, '..', 'dist');
+const outDir = resolve(rootDir, '..', '..', 'dist');
 export default defineConfig({
   resolve: {
     alias: {
-      '@root': rootDir,
-      '@lib': libDir,
-      '@assets': resolve(libDir, 'assets'),
     },
   },
   plugins: [

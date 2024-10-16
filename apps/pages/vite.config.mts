@@ -16,7 +16,8 @@ const config = withPageConfig({
       input: {
         "new-tab": resolve(__dirname, 'new-tab.html'),
         options: resolve(__dirname, 'options.html'),
-        popup: resolve(__dirname, 'popup.html')
+        popup: resolve(__dirname, 'popup.html'),
+        "bookmark-popup": resolve(__dirname, 'bookmark-popup.html')
       }
     }
   },
