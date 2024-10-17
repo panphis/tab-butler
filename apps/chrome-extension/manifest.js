@@ -35,6 +35,7 @@ const manifest = deepmerge(
 			"scripting",
 			"tabs",
 			"storage",
+			"scripting",
 			"bookmarks",
 			"clipboardRead",
 			"clipboardWrite",
@@ -42,12 +43,11 @@ const manifest = deepmerge(
 			'activeTab',
 			'tabCapture',
 			'tabGroups',
-			'tabs',
 			'contentSettings',
 		],
 		options_page: "pages/options.html",
 		background: {
-			service_worker: "background.iife.js",
+			service_worker: "background.js",
 			type: "module",
 		},
 		action: {
@@ -88,7 +88,7 @@ const manifest = deepmerge(
 				matches: ["*://*/*"],
 			},
 			{
-				"resources": ["_favicon/*"],
+				"resources": ["_favicon/*", "*"],
 				"matches": ["<all_urls>"],
 				"extension_ids": ["*"]
 			}

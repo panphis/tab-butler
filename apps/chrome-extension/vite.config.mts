@@ -24,10 +24,10 @@ export default defineConfig({
   publicDir: resolve(rootDir, 'public'),
   build: {
     lib: {
-      formats: ['iife'],
-      entry: resolve(__dirname, 'lib/background/index.ts'),
-      name: 'BackgroundScript',
-      fileName: 'background',
+      entry: [
+        resolve(__dirname, 'lib/background.ts'),
+        resolve(__dirname, 'lib/scriptCreateBookMark.ts')
+      ]
     },
     outDir,
     emptyOutDir: false,

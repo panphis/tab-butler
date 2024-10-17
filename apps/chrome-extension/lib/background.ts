@@ -4,9 +4,13 @@ import 'webextension-polyfill';
 
 console.log('background loaded');
 
-const closeCreateBookmark = () => { };
+const closeCreateBookmark = () => {
+	const ele = document.getElementById('extensions_bookmark_create');
+	if (ele) {
+		ele.remove();
+	}
+};
 
-function scriptCreateBookMark() { }
 
 const runtimeKey = {
 	bookMarkOpen: 'book_mark_open',
@@ -32,6 +36,21 @@ const menus: CreateProperties[] = [
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
 	console.log(param, tabs);
 	const { frameId } = param;
+	/**
+	 * 
+
+		{
+			frameId,
+			runAt: 'document_start',
+			file: './scriptCreateBookMark.js',
+		},
+	 */
+	chrome.scripting.executeScript(
+		{
+			target: { tabId: tabs?.id! },
+			files: ['./scriptCreateBookMark.js'],
+		},
+	);
 };
 
 const init = () => {
