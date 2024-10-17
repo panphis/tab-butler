@@ -9,7 +9,6 @@ import { useBookMarks } from "@repo/shared";
 import { TreeNode } from "./";
 
 import { Loading } from "./";
-import { bg_transparent } from "@/utils";
 
 
 type BookmarksProps = {};
