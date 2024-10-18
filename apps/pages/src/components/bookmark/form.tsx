@@ -1,5 +1,5 @@
 import { Fragment, type FC } from "react";
-import { BookmarkTreeNode } from "@repo/shared";
+import { BookmarkCreateArg, BookmarkTreeNode } from "@repo/shared";
 
 import {
 	Button,
@@ -19,10 +19,10 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 type Props = {
-	item: BookmarkTreeNode;
+	item: BookmarkTreeNode | BookmarkCreateArg;
 	onSubmit: (data: BookMarkFormValues | BookMarkDirFormValues) => void;
-	onDelete: () => void;
-	onCancel: () => void;
+	onDelete?: () => void;
+	onCancel?: () => void;
 };
 
 
@@ -39,15 +39,13 @@ type BookMarkFormValues = z.infer<typeof bookMarkFormSchema>
 
 const buttonSize = 'sm'
 
-type FormFooterProps = {
-	onDelete: () => void;
-	onCancel: () => void;
-};
-const FormFooter = ({ onDelete, onCancel }: FormFooterProps) => {
+type FormFooterProps = Pick<Props, 'onDelete' | 'onCancel'>
+
+export const FormFooter = ({ onDelete, onCancel }: FormFooterProps) => {
 	return (
 		<Space className="justify-end">
-			<Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>
-			<Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>
+			{!!onDelete && <Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>}
+			{!!onCancel && <Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>}
 			<Button type="submit" size={buttonSize}>Save</Button>
 		</Space>
 	)

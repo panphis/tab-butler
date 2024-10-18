@@ -36,15 +36,6 @@ const menus: CreateProperties[] = [
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
 	console.log(param, tabs);
 	const { frameId } = param;
-	/**
-	 * 
-
-		{
-			frameId,
-			runAt: 'document_start',
-			file: './scriptCreateBookMark.js',
-		},
-	 */
 	chrome.scripting.executeScript(
 		{
 			target: { tabId: tabs?.id! },
