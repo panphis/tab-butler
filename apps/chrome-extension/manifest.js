@@ -1,4 +1,5 @@
 import deepmerge from "deepmerge";
+import { off } from "process";
 
 
 const isFirefox = process.env.__FIREFOX__ === "true";
@@ -18,6 +19,7 @@ const manifest = deepmerge(
 	{
 		manifest_version: 3,
 		default_locale: "en",
+		offline_enabled: true,
 		/**
 		 * if you want to support multiple languages, you can use the following reference
 		 * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization

@@ -22,7 +22,6 @@
 		"@repo/vite-config": "workspace:*",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",
-		"sass": "1.77.8",
 		"vite": "^5.4.0"
 	}
 }
