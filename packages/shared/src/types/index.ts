@@ -26,7 +26,8 @@ export type {
 	BookmarkDestinationArg,
 	BookmarkChangesArg,
 	BookmarkCreateArg,
-	CreateProperties
+	CreateProperties,
+	Tab
 } from "./chrome"
 
 

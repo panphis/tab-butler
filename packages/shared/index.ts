@@ -80,5 +80,6 @@ export type {
 	BookmarkDestinationArg,
 	BookmarkChangesArg,
 	BookmarkCreateArg,
-	CreateProperties
+	CreateProperties,
+	Tab
 } from './src';

@@ -2,22 +2,18 @@ import type { CreateProperties } from '@repo/shared';
 import 'webextension-polyfill';
 
 
-console.log('background loaded');
-
-const closeCreateBookmark = () => {
-	const ele = document.getElementById('extensions_bookmark_create');
-	if (ele) {
-		ele.remove();
-	}
-};
-
-
 const runtimeKey = {
 	bookMarkOpen: 'book_mark_open',
 	bookMarkClose: 'book_mark_close',
 };
 
-const bookMarkClose = () => { };
+const bookMarkClose = (sender: chrome.runtime.MessageSender) => {
+	chrome.scripting.executeScript({
+
+		target: { tabId: sender?.tab?.id! },
+		files: ['./scriptCloseBookmark.js'],
+	});
+};
 
 const menuIds = {
 	save_to_bookmark: 'save_to_bookmark',
@@ -34,7 +30,6 @@ const menus: CreateProperties[] = [
 
 // 打开书签保存弹框
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
-	console.log(param, tabs);
 	const { frameId } = param;
 	chrome.scripting.executeScript(
 		{
@@ -44,25 +39,32 @@ const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tab
 	);
 };
 
+function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
+	console.log('handlerMessage');
+	console.log('request', request);
+	console.log('sender', sender);
+	console.log('response', response);
+	const { method } = request;
+	switch (method) {
+		case runtimeKey.bookMarkClose:
+			bookMarkClose(sender);
+			response();
+			break;
+		default:
+			break;
+	}
+}
+
+
+
 const init = () => {
-	chrome.runtime.onMessage.addListener((request, sender, response) => {
-		const { method } = request;
-		switch (method) {
-			case runtimeKey.bookMarkClose:
-				bookMarkClose();
-				break;
-			default:
-				break;
-		}
-	});
+	chrome.runtime.onMessage.addListener(handlerMessage);
 
 	menus.forEach((config) => {
-		console.log('config', config);
 		chrome.contextMenus.create(config);
 	});
 
-	const menusHandler = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined
-	) => {
+	const menusHandler = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
 		console.log(param, tabs);
 		const { menuItemId } = param;
 		switch (menuItemId) {

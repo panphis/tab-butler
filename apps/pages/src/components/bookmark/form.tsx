@@ -39,14 +39,14 @@ type BookMarkFormValues = z.infer<typeof bookMarkFormSchema>
 
 const buttonSize = 'sm'
 
-type FormFooterProps = Pick<Props, 'onDelete' | 'onCancel'>
+type FormFooterProps = Pick<Props, 'onDelete' | 'onCancel'> & { loading?: boolean }
 
-export const FormFooter = ({ onDelete, onCancel }: FormFooterProps) => {
+export const FormFooter = ({ onDelete, onCancel, loading = false }: FormFooterProps) => {
 	return (
 		<Space className="justify-end">
-			{!!onDelete && <Button type="button" size={buttonSize} variant={'destructive'} onClick={onDelete}>Delete</Button>}
-			{!!onCancel && <Button type="reset" size={buttonSize} variant={'secondary'} onClick={onCancel}>Cancel</Button>}
-			<Button type="submit" size={buttonSize}>Save</Button>
+			{!!onDelete && <Button type="button" size={buttonSize} variant={'destructive'} disabled={loading} onClick={onDelete}>Delete</Button>}
+			{!!onCancel && <Button type="reset" size={buttonSize} variant={'secondary'} disabled={loading} onClick={onCancel}>Cancel</Button>}
+			<Button type="submit" loading={loading} size={buttonSize}>Save</Button>
 		</Space>
 	)
 }

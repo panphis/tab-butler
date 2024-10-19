@@ -1,10 +1,18 @@
 
+import { useState, useEffect } from "react";
 import {
 	withErrorBoundary,
 	withSuspense,
+	Layout,
 } from "@repo/shared";
 
-import { Layout } from "@repo/shared";
+
+import type {
+	BookmarkTreeNode, Tab
+} from "@repo/shared";
+
+import { Skeleton } from "@repo/ui";
+
 import { Context } from "@/components/bookmark-popup";
 
 // style for ui components
@@ -14,13 +22,32 @@ import '@repo/shared/dist/globals.css';
 import "@/styles/globals.css";
 import { Space } from "@repo/ui";
 
+import { queryBookMarker, getCurrentTab } from "@/utils";
 
 const BookmarkPopup = () => {
+
+	const [currentTab, setCurrentTab] = useState<BookmarkTreeNode | undefined | Tab>();
+	async function init() {
+		const tab = await getCurrentTab()
+		const bookmark = await queryBookMarker({ url: tab?.url })
+		bookmark.length > 0 ? setCurrentTab(bookmark[0]) : setCurrentTab(tab)
+	}
+
+
+	useEffect(() => {
+		init()
+	}, [])
 
 	return (
 		<Layout>
 			<Space className="container mx-auto p-4 md:max-w-xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl" direction="col" gap={2}>
-				<Context />
+				{currentTab ?
+					<Context currentTab={currentTab} /> :
+					<div className="space-y-2">
+						<Skeleton className="h-4" />
+						<Skeleton className="h-4" />
+						<Skeleton className="h-4" />
+					</div>}
 			</Space>
 		</Layout>
 	);

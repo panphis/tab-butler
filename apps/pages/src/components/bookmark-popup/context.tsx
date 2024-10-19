@@ -1,7 +1,6 @@
 
-import { Fragment, type FC } from "react";
+import { Fragment, useMemo, type FC } from "react";
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -16,9 +15,10 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import type { BookmarkCreateArg } from "@repo/shared";
+import { useBookMarks } from "@repo/shared";
+import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@repo/shared";
 import { FormFooter } from "../bookmark";
-
+import { sendMessage, MessageTypes } from "@/utils";
 
 
 const bookMarkFormSchema = z.object({
@@ -35,26 +35,64 @@ type BookMarkFormValues = z.infer<typeof bookMarkFormSchema>
 
 
 type ContextProps = {
-
+	currentTab: BookmarkTreeNode | Tab
 };
-export const Context: FC<ContextProps> = () => {
+export const Context: FC<ContextProps> = ({ currentTab }) => {
 
+
+	const isBookmarkTreeNode = (tab: BookmarkTreeNode | Tab): tab is BookmarkTreeNode => {
+		return (tab as BookmarkTreeNode).parentId !== undefined;
+	}
+
+	const { tree, loading, createBookmark } = useBookMarks()
 	const form = useForm<BookMarkFormValues>({
 		resolver: zodResolver(bookMarkFormSchema),
 		defaultValues: {
-			url: '',
-			title: '',
-			parentId: undefined,
+			url: currentTab.url,
+			title: currentTab.title,
+			parentId: isBookmarkTreeNode(currentTab) ? currentTab.parentId : undefined,
 		},
 	})
 
 
-	function onSubmit(values: BookmarkCreateArg) {
-		console.log(values)
+
+	const filterFolder = (list: BookmarkTreeNode[]): any[] => {
+		// 过滤一下
+		const result: any[] = list.reduce((pre, cur) => {
+			if (!cur.url) {
+				const children = filterFolder(cur?.children! || [])
+				if (children) {
+					pre.push({
+						...cur,
+						label: cur.title,
+						key: cur.id,
+						value: cur.id,
+						children
+					})
+				}
+				return pre
+			} else {
+				return pre
+			}
+		}, [] as any[])
+		return result
 	}
 
-	function onCancel() {
-		console.log('cancel')
+
+	const treeData = useMemo(() => {
+		const result = filterFolder(tree)
+		return result
+	}, [tree])
+
+
+	async function onSubmit(values: BookmarkCreateArg) {
+		await createBookmark(values)
+		await onCancel()
+	}
+
+	async function onCancel() {
+		const payload = { method: MessageTypes.bookMarkClose }
+		await sendMessage(payload)
 	}
 
 
@@ -87,7 +125,20 @@ export const Context: FC<ContextProps> = () => {
 						</FormItem>
 					)}
 				/>
-				<FormFooter onCancel={onCancel} />
+				<FormField
+					control={form.control}
+					name="parentId"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Folder</FormLabel>
+							<FormControl>
+								<TreeSelect loading={loading} treeData={treeData[0]?.children || []} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormFooter loading={loading} onCancel={onCancel} />
 			</form>
 		</Form>
 	</Fragment>);

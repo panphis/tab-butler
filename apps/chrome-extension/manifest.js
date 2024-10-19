@@ -1,6 +1,4 @@
 import deepmerge from "deepmerge";
-import { off } from "process";
-
 
 const isFirefox = process.env.__FIREFOX__ === "true";
 
@@ -46,6 +44,7 @@ const manifest = deepmerge(
 			'tabCapture',
 			'tabGroups',
 			'contentSettings',
+			'nativeMessaging'
 		],
 		options_page: "pages/options.html",
 		background: {
@@ -67,20 +66,20 @@ const manifest = deepmerge(
 			48: "icon-48.png",
 			128: "icon-128.png",
 		},
-		// content_scripts: [
-		//   {
-		//     matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-		//     js: ['content/index.iife.js'],
-		//   },
-		//   {
-		//     matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-		//     js: ['content-ui/index.iife.js'],
-		//   },
-		//   {
-		//     matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-		//     css: ['content.css'], // public folder
-		//   },
-		// ],
+		content_scripts: [
+			// {
+			// 	// matches: ['http://*/*', 'https://*/*', '<all_urls>'],
+			// 	// js: ['content/index.iife.js'],
+			// },
+			// {
+			// 	matches: ['http://*/*', 'https://*/*', '<all_urls>'],
+			// 	// js: ['content-ui/index.iife.js'],
+			// },
+			// {
+			// 	matches: ['http://*/*', 'https://*/*', '<all_urls>'],
+			// 	// css: ['content.css'], // public folder
+			// },
+		],
 		// devtools_page: 'devtools/index.html',
 		content_security_policy: {
 		},

@@ -9,34 +9,35 @@ const rootDir = resolve(__dirname);
 
 const outDir = resolve(rootDir, '..', '..', 'dist');
 export default defineConfig({
-  resolve: {
-    alias: {
-    },
-  },
-  plugins: [
-    libAssetsPlugin({
-      outputPath: outDir,
-    }),
-    watchPublicPlugin(),
-    makeManifestPlugin({ outDir }),
-    isDev && watchRebuildPlugin({ reload: true }),
-  ],
-  publicDir: resolve(rootDir, 'public'),
-  build: {
-    lib: {
-      entry: [
-        resolve(__dirname, 'lib/background.ts'),
-        resolve(__dirname, 'lib/scriptCreateBookMark.ts')
-      ]
-    },
-    outDir,
-    emptyOutDir: false,
-    sourcemap: isDev,
-    minify: isProduction,
-    reportCompressedSize: isProduction,
-    watch: watchOption,
-    rollupOptions: {
-      external: ['chrome'],
-    },
-  },
+	resolve: {
+		alias: {
+		},
+	},
+	plugins: [
+		libAssetsPlugin({
+			outputPath: outDir,
+		}),
+		watchPublicPlugin(),
+		makeManifestPlugin({ outDir }),
+		isDev && watchRebuildPlugin({ reload: true }),
+	],
+	publicDir: resolve(rootDir, 'public'),
+	build: {
+		lib: {
+			entry: [
+				resolve(__dirname, 'lib/background.ts'),
+				resolve(__dirname, 'lib/scriptCreateBookMark.ts'),
+				resolve(__dirname, 'lib/scriptCloseBookmark.ts')
+			]
+		},
+		outDir,
+		emptyOutDir: false,
+		sourcemap: isDev,
+		minify: isProduction,
+		reportCompressedSize: isProduction,
+		watch: watchOption,
+		rollupOptions: {
+			external: ['chrome'],
+		},
+	},
 });

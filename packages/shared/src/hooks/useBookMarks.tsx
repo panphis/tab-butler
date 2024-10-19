@@ -13,7 +13,7 @@ interface UseBookMarksReturn {
 	createBookmark: (params: BookmarkCreateArg) => Promise<void>
 }
 
-export const useBookMarks = (query: string): UseBookMarksReturn => {
+export const useBookMarks = (query?: string): UseBookMarksReturn => {
 	const [bookmarkTree, setBookmarks] = useState<BookmarkTreeNode[]>([])
 	const [loading, setLoading] = useState(false)
 	const getBookmarksTrees = async () => {
@@ -74,7 +74,33 @@ export const useBookMarks = (query: string): UseBookMarksReturn => {
 	async function createBookmark(params: BookmarkCreateArg) {
 		const chrome = window?.chrome;
 		const { bookmarks } = chrome;
-		await bookmarks.create(params);
+
+		const preBookmarks = await bookmarks.search({
+			url: params.url
+		})
+
+		if (preBookmarks.length) {
+			const premark = preBookmarks[0]
+
+			if (premark.title !== params.title || premark.url !== params.url) {
+				await updateBookmark(premark.id, { url: params.url, title: params.title })
+			}
+
+			if (premark.parentId !== params.parentId) {
+				await updateOrder({
+					id: premark.id,
+					destination: {
+						parentId: params.parentId
+					}
+				})
+			}
+
+		} else {
+			await bookmarks.create(params);
+		}
+
+		getBookmarksTrees()
+
 	}
 
 
