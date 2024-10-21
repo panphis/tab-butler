@@ -132,7 +132,7 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 						<FormItem>
 							<FormLabel>Folder</FormLabel>
 							<FormControl>
-								<TreeSelect loading={loading} treeData={treeData[0]?.children || []} {...field} />
+								<TreeSelect placeholder="please select folder" loading={loading} treeData={treeData[0]?.children || []} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

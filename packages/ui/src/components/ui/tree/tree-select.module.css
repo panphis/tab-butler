@@ -55,26 +55,16 @@
 }
 
 .container :global(.rc-tree-select-single .rc-tree-select-selector) {
+	display: flex;
 	position: relative;
 	flex: 1;
 }
 
-.container :global(.rc-tree-select-selector .rc-tree-select-selection-search) {
-	width: 0;
-}
-.container :global(.rc-tree-select-selector .rc-tree-select-selection-search) {
-	width: 0;
-}
-
-
-
-.container :global(.rc-tree-select-focused .rc-tree-select-selector .rc-tree-select-selection-search) {
-
-	width: 0;
-}
-
-.container :global(.rc-tree-select-focused .rc-tree-select-selector .rc-tree-select-selection-placeholder) {
-	display: none;
+.container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search) {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
 }
 
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search-input) {
@@ -84,6 +74,7 @@
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-item),
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-placeholder) {
 	pointer-events: none;
+	position: relative;
 }
 
 .container :global(.rc-tree-select-single:not(.rc-tree-select-customize-input) .rc-tree-select-selector) {
@@ -99,10 +90,9 @@
 }
 
 .container :global(.rc-tree-select-multiple .rc-tree-select-selector) {
-	flex-wrap: wrap;
-}
-.container :global(.rc-tree-select-selector .rc-tree-select-selection-wrap) {
 	display: flex;
+	flex-wrap: wrap;
+	padding: 1px;
 }
 
 .container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-item) {

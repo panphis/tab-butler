@@ -15,16 +15,16 @@ const sidePanelConfig = {
  */
 const manifest = deepmerge(
 	{
+		name: "__MSG_appName__",
+		description: "__MSG_appDesc__",
 		manifest_version: 3,
-		default_locale: "en",
+		default_locale: "zh_CN",
 		offline_enabled: true,
 		/**
 		 * if you want to support multiple languages, you can use the following reference
 		 * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization
 		 */
-		name: "extension name",
 		version: "1.0.0",
-		description: "extension name",
 		host_permissions: ["<all_urls>"],
 		permissions: [
 			"downloads",

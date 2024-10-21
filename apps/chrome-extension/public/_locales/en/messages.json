@@ -1,10 +1,8 @@
 {
-  "extensionDescription": {
-    "description": "Extension description",
-    "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
+  "appName": {
+    "message": "chrome extension name"
   },
-  "extensionName": {
-    "description": "Extension name",
-    "message": "Chrome extension boilerplate"
+  "appDesc": {
+    "message": "chrome extension description"
   }
 }
