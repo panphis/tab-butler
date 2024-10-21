@@ -1,4 +1,3 @@
 packages:
-  - "chrome-extension"
   - "apps/*"
   - "packages/*"

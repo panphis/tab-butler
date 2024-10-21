@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "chrome extension name"
+  },
+  "appDesc": {
+    "message": "chrome extension description"
+  }
+}

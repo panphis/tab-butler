@@ -3,7 +3,6 @@
   "version": "0.2.2",
   "description": "chrome extension",
   "scripts": {
-    "clean": "rimraf ../../dist",
     "build": "tsc --noEmit && vite build",
     "build:firefox": "tsc --noEmit && cross-env __FIREFOX__=true vite build",
     "build:watch": "cross-env __DEV__=true vite build --mode development",
@@ -13,7 +12,7 @@
     "test": "vitest run",
     "lint": "eslint ./ --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write --ignore-path ../.prettierignore",
+    "prettier": "prettier . --write --ignore-path ../../.prettierignore",
     "type-check": "tsc --noEmit"
   },
   "type": "module",

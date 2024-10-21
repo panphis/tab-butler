@@ -9,14 +9,7 @@
       "node",
       "chrome"
     ],
-    "paths": {
-      "@root/*": [
-        "./*"
-      ],
-      "@lib/*": [
-        "lib/*"
-      ]
-    }
+    "paths": {}
   },
   "include": [
     "lib",

@@ -1,5 +1,20 @@
 .container :global(.rc-tree-select) {
 	position: relative;
+	border-radius: 0.375rem;
+	border-width: 1px;
+	background-color: transparent;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-weight: 500;
+	border-color: hsl(var(--input));
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	display: flex;
+	justify-content: start;
+	align-items: center;
 }
 
 .container :global(.rc-tree-select-disabled),
@@ -42,39 +57,24 @@
 .container :global(.rc-tree-select-single .rc-tree-select-selector) {
 	display: flex;
 	position: relative;
-	border-radius: 0.375rem;
-	border-width: 1px;
-	background-color: transparent;
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	font-weight: 500;
-	border-color: hsl(var(--input));
-	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	flex: 1;
 }
 
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search) {
 	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
 }
 
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search-input) {
-	width: 100%;
+	width: 0;
 }
 
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-item),
 .container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-placeholder) {
-	position: absolute;
 	pointer-events: none;
-	display: flex;
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
+	position: relative;
 }
 
 .container :global(.rc-tree-select-single:not(.rc-tree-select-customize-input) .rc-tree-select-selector) {
@@ -86,8 +86,6 @@
 	outline: none;
 	border: none;
 	display: flex;
-	height: 2.5rem;
-	line-height: 2.5rem;
 	width: 100%;
 }
 
@@ -124,6 +122,7 @@
 .container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search) {
 	position: relative;
 	max-width: 100%;
+	width: 0;
 }
 
 .container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search-input),
@@ -150,12 +149,6 @@
 
 .container :global(.rc-tree-select-allow-clear.rc-tree-select-multiple .rc-tree-select-selector) {
 	padding-right: 20px;
-}
-
-.container :global(.rc-tree-select-allow-clear .rc-tree-select-clear) {
-	position: absolute;
-	right: 20px;
-	top: 0;
 }
 
 .container :global(.rc-tree-select-show-arrow.rc-tree-select-multiple .rc-tree-select-selector) {
@@ -328,7 +321,7 @@
 	outline: 0;
 	display: flex;
 	gap: 4px;
-	min-height: 24px;
+	height: 24px;
 	flex-direction: row;
 	width: max-content;
 	justify-content: flex-start;
@@ -382,7 +375,7 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	min-height: 24px;
+	height: 24px;
 	margin: 0;
 	padding: 2px 4px;
 	text-decoration: none;
@@ -395,7 +388,7 @@
 .container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox) {
 	display: inline-block;
 	width: 24px;
-	min-height: 24px;
+	height: 24px;
 	margin-right: 2px;
 	background-color: transparent;
 	background-attachment: scroll;

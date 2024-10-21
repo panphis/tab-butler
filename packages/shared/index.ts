@@ -76,5 +76,10 @@ export type {
 	CreateSearchEngineParams, SearchEngine,
 	BaseStorage, Theme,
 	CreateWebSiteParams, WebSite, SiteFormValues,
-	BookmarkTreeNode, MostVisitedURL, HistoryItem, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg
+	BookmarkTreeNode, MostVisitedURL, HistoryItem,
+	BookmarkDestinationArg,
+	BookmarkChangesArg,
+	BookmarkCreateArg,
+	CreateProperties,
+	Tab
 } from './src';
