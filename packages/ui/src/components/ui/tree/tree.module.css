@@ -1,0 +1,202 @@
+.container :global(.rc-tree) {
+	margin: 0;
+	border: 1px solid transparent;
+	max-width: 100%;
+}
+
+.container :global(.rc-tree .rc-tree-treenode) {
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	list-style: none;
+	outline: 0;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	overflow: hidden;
+	justify-content: flex-start;
+	align-items: baseline;
+}
+
+.container :global(.rc-tree .rc-tree-treenode .draggable) {
+	color: #333;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+}
+
+.container :global(.rc-tree .rc-tree-treenode.dragging) {
+	background: rgba(100, 100, 255, 0.1);
+}
+
+.container :global(.rc-tree .rc-tree-treenode.drop-container>.draggable::after) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	box-shadow: inset 0 0 0 2px red;
+	content: '';
+}
+
+.container :global(.rc-tree .rc-tree-treenode.drop-container~.rc-tree-treenode) {
+	border-left: 2px solid chocolate;
+}
+
+.container :global(.rc-tree .rc-tree-treenode.drop-target) {
+	background-color: yellowgreen;
+}
+
+.container :global(.rc-tree .rc-tree-treenode.drop-target~.rc-tree-treenode) {
+	border-left: none;
+}
+
+.container :global(.rc-tree .rc-tree-treenode.filter-node>.rc-tree-node-content-wrapper) {
+	color: #a60000 !important;
+	font-weight: bold !important;
+}
+
+.container :global(.rc-tree .rc-tree-treenode ul) {
+	margin: 0;
+	padding: 0 0 0 18px;
+}
+
+.container :global(.rc-tree .rc-tree-treenode .rc-tree-node-content-wrapper) {
+	position: relative;
+	display: block;
+	min-height: 24px;
+	line-height: 24px;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	cursor: pointer;
+	overflow: hidden;
+	flex: 1;
+}
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-switcher),
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-checkbox),
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-iconEle) {
+	display: flex;
+	cursor: pointer;
+}
+
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-icon_loading) {
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-switcher.rc-tree-switcher-noop) {
+	cursor: auto;
+}
+
+
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-checkbox) {
+	width: 13px;
+	height: 13px;
+	margin: 0 3px;
+}
+
+
+
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-checkbox.rc-tree-checkbox-indeterminate.rc-tree-checkbox-disabled) {
+	position: relative;
+	background: #ccc;
+	border-radius: 3px;
+}
+
+.container :global(.rc-tree .rc-tree-treenode span.rc-tree-checkbox.rc-tree-checkbox-indeterminate.rc-tree-checkbox-disabled::after) {
+	position: absolute;
+	top: 5px;
+	left: 3px;
+	width: 5px;
+	height: 0;
+	border: 2px solid #fff;
+	border-top: 0;
+	border-left: 0;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	content: ' ';
+}
+
+.container :global(.rc-tree:not(.rc-tree-show-line) .rc-tree-treenode .rc-tree-switcher-noop) {
+	background: none;
+}
+
+.container :global(.rc-tree.rc-tree-show-line .rc-tree-treenode:not(:last-child)>ul) {
+	background: url('data:image/gif;base64,R0lGODlhCQACAIAAAMzMzP///yH5BAEAAAEALAAAAAAJAAIAAAIEjI9pUAA7') 0 0 repeat-y;
+}
+
+
+.container :global(.rc-tree-child-tree) {
+	display: none;
+}
+
+.container :global(.rc-tree-child-tree-open) {
+	display: block;
+}
+
+.container :global(.rc-tree-treenode-disabled>span:not(.rc-tree-switcher)),
+.container :global(.rc-tree-treenode-disabled>a),
+.container :global(.rc-tree-treenode-disabled>a span) {
+	color: #767676;
+	cursor: not-allowed;
+}
+
+.container :global(.rc-tree-treenode-active) {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.container :global(.rc-tree-node-selected) {
+	background-color: #ffe6b0;
+	box-shadow: 0 0 0 1px #ffb951;
+	opacity: 0.8;
+}
+
+.container :global(.rc-tree-icon__open) {
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+.container :global(.rc-tree-icon__close) {
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+.container :global(.rc-tree-icon__docu) {
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+.container :global(.rc-tree-icon__customize) {
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+.container :global(.rc-tree-title) {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.container :global(.rc-tree-indent) {
+	display: block;
+	height: 0;
+}
+
+.container :global(.rc-tree-indent-unit) {
+	display: inline-block;
+	width: 16px;
+}
+
+.container :global(.rc-tree-draggable-icon) {
+	display: flex;
+	justify-content: center;
+	width: 16px;
+}

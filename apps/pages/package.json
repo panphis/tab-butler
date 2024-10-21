@@ -1,0 +1,27 @@
+{
+	"name": "@repo/pages",
+	"version": "0.2.2",
+	"description": "chrome extension pages",
+	"private": true,
+	"scripts": {
+		"build": "vite build",
+		"build:watch": "cross-env __DEV__=true vite build --mode development",
+		"dev": "pnpm build:watch",
+		"lint": "eslint . --ext .ts,.tsx",
+		"lint:fix": "pnpm lint --fix",
+		"prettier": "prettier . --write --ignore-path ../../.prettierignore",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/shared": "workspace:*",
+		"@repo/ui": "workspace:*"
+	},
+	"devDependencies": {
+		"@repo/tailwindcss-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
+		"@types/react": "^18.2.61",
+		"@types/react-dom": "^18.2.19",
+		"vite": "^5.4.0"
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "extends": "@repo/typescript-config/utils",
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": [
+      "chrome"
+    ],
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "index.ts",
+    "lib"
+  ]
+}

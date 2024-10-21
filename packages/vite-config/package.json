@@ -1,0 +1,13 @@
+{
+  "name": "@repo/vite-config",
+  "version": "0.2.2",
+  "description": "Vite base configuration",
+  "main": "index.mjs",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@repo/hmr": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "deepmerge": "^4.3.1"
+  }
+}

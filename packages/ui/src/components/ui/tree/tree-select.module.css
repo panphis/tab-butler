@@ -1,0 +1,625 @@
+.container :global(.rc-tree-select) {
+	position: relative;
+	border-radius: 0.375rem;
+	border-width: 1px;
+	background-color: transparent;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-weight: 500;
+	border-color: hsl(var(--input));
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+
+.container :global(.rc-tree-select-disabled),
+.container :global(.rc-tree-select-disabled input) {
+	cursor: not-allowed;
+}
+
+.container :global(.rc-tree-select-disabled .rc-tree-select-selector) {
+	opacity: 0.3;
+}
+
+.container :global(.rc-tree-select-show-arrow.rc-tree-select-loading .rc-tree-select-arrow-icon::after) {
+	box-sizing: border-box;
+	width: 12px;
+	height: 12px;
+	border-radius: 100%;
+	border: 2px solid #999;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	transform: none;
+	margin-top: 4px;
+	animation: rcSelectLoadingIcon 0.5s infinite;
+}
+
+.container :global(.rc-tree-select .rc-tree-select-selection-placeholder) {
+	opacity: 0.4;
+}
+
+.container :global(.rc-tree-select .rc-tree-select-selection-search-input) {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.container :global(.rc-tree-select .rc-tree-select-selection-search-input::-webkit-search-cancel-button) {
+	display: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.container :global(.rc-tree-select-single .rc-tree-select-selector) {
+	display: flex;
+	position: relative;
+	flex: 1;
+}
+
+.container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search) {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+.container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-search-input) {
+	width: 0;
+}
+
+.container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-item),
+.container :global(.rc-tree-select-single .rc-tree-select-selector .rc-tree-select-selection-placeholder) {
+	pointer-events: none;
+	position: relative;
+}
+
+.container :global(.rc-tree-select-single:not(.rc-tree-select-customize-input) .rc-tree-select-selector) {
+	padding: 1px;
+	border-color: hsl(var(--input))
+}
+
+.container :global(.rc-tree-select-single:not(.rc-tree-select-customize-input) .rc-tree-select-selector .rc-tree-select-selection-search-input) {
+	outline: none;
+	border: none;
+	display: flex;
+	width: 100%;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector) {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 1px;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-item) {
+	flex: none;
+	background: #bbb;
+	border-radius: 4px;
+	margin-right: 2px;
+	padding: 0 8px;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-item-disabled) {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-overflow) {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-overflow-item) {
+	flex: none;
+	max-width: 100%;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search) {
+	position: relative;
+	max-width: 100%;
+	width: 0;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search-input),
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search-mirror) {
+	padding: 1px;
+	font-family: system-ui;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search-mirror) {
+	position: absolute;
+	z-index: 999;
+	white-space: nowrap;
+	position: none;
+	left: 0;
+	top: 0;
+	visibility: hidden;
+}
+
+.container :global(.rc-tree-select-multiple .rc-tree-select-selector .rc-tree-select-selection-search-input) {
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.container :global(.rc-tree-select-allow-clear.rc-tree-select-multiple .rc-tree-select-selector) {
+	padding-right: 20px;
+}
+
+.container :global(.rc-tree-select-show-arrow.rc-tree-select-multiple .rc-tree-select-selector) {
+	padding-right: 20px;
+}
+
+.container :global(.rc-tree-select-show-arrow .rc-tree-select-arrow) {
+	pointer-events: none;
+	position: absolute;
+	right: 5px;
+	top: 0;
+}
+
+.container :global(.rc-tree-select-show-arrow .rc-tree-select-arrow-icon::after) {
+	content: '';
+	border: 5px solid transparent;
+	width: 0;
+	height: 0;
+	display: inline-block;
+	border-top-color: #999;
+	transform: translateY(5px);
+}
+
+.container :global(.rc-tree-select-focused .rc-tree-select-selector) {
+	border-color: blue !important;
+}
+
+.container :global(.rc-tree-select-dropdown) {
+	border: 1px solid hsl(var(--border));
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+	border-radius: calc(var(--radius));
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	min-height: 100px;
+	position: absolute;
+	background: #fff;
+}
+
+.container :global(.rc-tree-select-dropdown-hidden) {
+	display: none;
+}
+
+.container :global(.rc-tree-select-item) {
+	font-size: 16px;
+	line-height: 1.5;
+	padding: 4px 16px;
+}
+
+.container :global(.rc-tree-select-item-group) {
+	color: #999;
+	font-weight: bold;
+	font-size: 80%;
+}
+
+.container :global(.rc-tree-select-item-option) {
+	position: relative;
+}
+
+.container :global(.rc-tree-select-item-option-grouped) {
+	padding-left: 24px;
+}
+
+.container :global(.rc-tree-select-item-option .rc-tree-select-item-option-state) {
+	position: absolute;
+	right: 0;
+	top: 4px;
+	pointer-events: none;
+}
+
+.container :global(.rc-tree-select-item-option-active) {
+	background: #ddd;
+}
+
+.container :global(.rc-tree-select-item-option-disabled) {
+	color: #999;
+}
+
+.container :global(.rc-tree-select-item-empty) {
+	text-align: center;
+	color: #999;
+}
+
+.container :global(.rc-tree-select-selection__choice-zoom) {
+	transition: all 0.3s;
+}
+
+.container :global(.rc-tree-select-selection__choice-zoom-appear) {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.container :global(.rc-tree-select-selection__choice-zoom-appear.rc-tree-select-selection__choice-zoom-appear-active) {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.container :global(.rc-tree-select-selection__choice-zoom-leave) {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.container :global(.rc-tree-select-selection__choice-zoom-leave.rc-tree-select-selection__choice-zoom-leave-active) {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-enter),
+.container :global(.rc-tree-select-dropdown-slide-up-appear) {
+	animation-duration: 0.3s;
+	animation-fill-mode: both;
+	transform-origin: 0 0;
+	opacity: 0;
+	animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+	animation-play-state: paused;
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-leave) {
+	animation-duration: 0.3s;
+	animation-fill-mode: both;
+	transform-origin: 0 0;
+	opacity: 1;
+	animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+	animation-play-state: paused;
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-enter.rc-tree-select-dropdown-slide-up-enter-active.rc-tree-select-dropdown-placement-bottomLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-appear.rc-tree-select-dropdown-slide-up-appear-active.rc-tree-select-dropdown-placement-bottomLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-enter.rc-tree-select-dropdown-slide-up-enter-active.rc-tree-select-dropdown-placement-bottomRight),
+.container :global(.rc-tree-select-dropdown-slide-up-appear.rc-tree-select-dropdown-slide-up-appear-active.rc-tree-select-dropdown-placement-bottomRight) {
+	animation-name: rcSelectDropdownSlideUpIn;
+	animation-play-state: running;
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-leave.rc-tree-select-dropdown-slide-up-leave-active.rc-tree-select-dropdown-placement-bottomLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-leave.rc-tree-select-dropdown-slide-up-leave-active.rc-tree-select-dropdown-placement-bottomRight) {
+	animation-name: rcSelectDropdownSlideUpOut;
+	animation-play-state: running;
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-enter.rc-tree-select-dropdown-slide-up-enter-active.rc-tree-select-dropdown-placement-topLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-appear.rc-tree-select-dropdown-slide-up-appear-active.rc-tree-select-dropdown-placement-topLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-enter.rc-tree-select-dropdown-slide-up-enter-active.rc-tree-select-dropdown-placement-topRight),
+.container :global(.rc-tree-select-dropdown-slide-up-appear.rc-tree-select-dropdown-slide-up-appear-active.rc-tree-select-dropdown-placement-topRight) {
+	animation-name: rcSelectDropdownSlideDownIn;
+	animation-play-state: running;
+}
+
+.container :global(.rc-tree-select-dropdown-slide-up-leave.rc-tree-select-dropdown-slide-up-leave-active.rc-tree-select-dropdown-placement-topLeft),
+.container :global(.rc-tree-select-dropdown-slide-up-leave.rc-tree-select-dropdown-slide-up-leave-active.rc-tree-select-dropdown-placement-topRight) {
+	animation-name: rcSelectDropdownSlideDownOut;
+	animation-play-state: running;
+}
+
+
+.container :global(.rc-tree-select-tree) {
+	margin: 0;
+	border: 1px solid transparent;
+
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode) {
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	list-style: none;
+	outline: 0;
+	display: flex;
+	gap: 4px;
+	height: 24px;
+	flex-direction: row;
+	width: max-content;
+	justify-content: flex-start;
+	align-items: stretch;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode .draggable) {
+	color: #333;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.dragging) {
+	background: rgba(100, 100, 255, 0.1);
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.drop-container>.draggable::after) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	box-shadow: inset 0 0 0 2px red;
+	content: '';
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.drop-container~.rc-tree-select-tree-treenode) {
+	border-left: 2px solid chocolate;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.drop-target) {
+	background-color: yellowgreen;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.drop-target~.rc-tree-select-tree-treenode) {
+	border-left: none;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode.filter-node>.rc-tree-select-tree-node-content-wrapper) {
+	color: #a60000 !important;
+	font-weight: bold !important;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode ul) {
+	margin: 0;
+	padding: 0 0 0 18px;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode .rc-tree-select-tree-node-content-wrapper) {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 24px;
+	margin: 0;
+	padding: 2px 4px;
+	text-decoration: none;
+	vertical-align: top;
+	cursor: pointer;
+	flex: 1;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-switcher),
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox) {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	margin-right: 2px;
+	background-color: transparent;
+	background-attachment: scroll;
+	border: 0 none;
+	outline: none;
+	cursor: pointer;
+}
+
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-icon_loading) {
+	margin-right: 2px;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-switcher.rc-tree-select-tree-switcher-noop) {
+	cursor: auto;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-switcher.rc-tree-select-tree-switcher_open) {
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-switcher.rc-tree-select-tree-switcher_close) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox) {
+	width: 13px;
+	height: 13px;
+	margin: 0 3px;
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox-checked) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox-indeterminate) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox-disabled) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox.rc-tree-select-tree-checkbox-checked.rc-tree-select-tree-checkbox-disabled) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox.rc-tree-select-tree-checkbox-indeterminate.rc-tree-select-tree-checkbox-disabled) {
+	position: relative;
+	background: #ccc;
+	border-radius: 3px;
+}
+
+.container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox.rc-tree-select-tree-checkbox-indeterminate.rc-tree-select-tree-checkbox-disabled::after) {
+	position: absolute;
+	top: 5px;
+	left: 3px;
+	width: 5px;
+	height: 0;
+	border: 2px solid #fff;
+	border-top: 0;
+	border-left: 0;
+	transform: scale(1);
+	content: ' ';
+}
+
+.container :global(.rc-tree-select-tree:not(.rc-tree-select-tree-show-line) .rc-tree-select-tree-treenode .rc-tree-select-tree-switcher-noop) {
+	background: none;
+}
+
+.container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>ul) {}
+
+.container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>.rc-tree-select-tree-switcher-noop) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:last-child>.rc-tree-select-tree-switcher-noop) {
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree-child-tree) {
+	display: none;
+}
+
+.container :global(.rc-tree-select-tree-child-tree-open) {
+	display: block;
+}
+
+.container :global(.rc-tree-select-tree-treenode-disabled>span:not(.rc-tree-select-tree-switcher)),
+.container :global(.rc-tree-select-tree-treenode-disabled>a),
+.container :global(.rc-tree-select-tree-treenode-disabled>a span) {
+	color: #767676;
+	cursor: not-allowed;
+}
+
+.container :global(.rc-tree-select-tree-treenode-active) {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.container :global(.rc-tree-select-tree-node-selected) {
+	background-color: hsl(var(--accent));
+	opacity: 0.8;
+}
+
+.container :global(.rc-tree-select-tree-icon__open) {
+	margin-right: 2px;
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree-icon__close) {
+	margin-right: 2px;
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree-icon__docu) {
+	margin-right: 2px;
+
+	flex-shrink: 1;
+	flex-grow: 0;
+}
+
+.container :global(.rc-tree-select-tree-icon__customize) {
+	margin-right: 2px;
+}
+
+.container :global(.rc-tree-select-tree-title) {
+	display: block;
+}
+
+.container :global(.rc-tree-select-tree-indent) {
+	display: block;
+	height: 0;
+}
+
+.container :global(.rc-tree-select-tree-indent-unit) {
+	display: inline-block;
+	width: 16px;
+}
+
+.container :global(.rc-tree-select-tree-draggable-icon) {
+	display: inline-flex;
+	justify-content: center;
+	width: 16px;
+}
+
+
+
+@keyframes rcSelectDropdownSlideUpIn {
+	0% {
+		opacity: 0;
+		transform-origin: 0% 0%;
+		transform: scaleY(0);
+	}
+
+	100% {
+		opacity: 1;
+		transform-origin: 0% 0%;
+		transform: scaleY(1);
+	}
+}
+
+@keyframes rcSelectDropdownSlideUpOut {
+	0% {
+		opacity: 1;
+		transform-origin: 0% 0%;
+		transform: scaleY(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform-origin: 0% 0%;
+		transform: scaleY(0);
+	}
+}
+
+@keyframes rcSelectDropdownSlideDownIn {
+	0% {
+		transform: scaleY(0);
+		transform-origin: 100% 100%;
+		opacity: 0;
+	}
+
+	100% {
+		transform: scaleY(1);
+		transform-origin: 100% 100%;
+		opacity: 1;
+	}
+}
+
+@keyframes rcSelectDropdownSlideDownOut {
+	0% {
+		transform: scaleY(1);
+		transform-origin: 100% 100%;
+		opacity: 1;
+	}
+
+	100% {
+		transform: scaleY(0);
+		transform-origin: 100% 100%;
+		opacity: 0;
+	}
+}
+
+@keyframes rcSelectLoadingIcon {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

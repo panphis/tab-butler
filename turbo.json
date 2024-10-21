@@ -1,14 +1,15 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "tsc": {
-      "dependsOn": [
-        "^tsc"
+    "ready": {
+      "outputs": [
+        "dist/**",
+        "build/**"
       ]
     },
     "build": {
       "dependsOn": [
-        "tsc",
+        "ready",
         "^build"
       ],
       "inputs": [
@@ -27,8 +28,15 @@
       ]
     },
     "dev": {
-      "cache": false,
-      "persistent": true
+      "dependsOn": [
+        "^ready"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ],
+      "persistent": true,
+      "cache": false
     }
   }
 }
