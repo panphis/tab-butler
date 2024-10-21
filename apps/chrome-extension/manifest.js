@@ -15,10 +15,10 @@ const sidePanelConfig = {
  */
 const manifest = deepmerge(
 	{
-		name: "__MSG_appName__",
-		description: "__MSG_appDesc__",
 		manifest_version: 3,
 		default_locale: "zh_CN",
+		name: "__MSG_appName__",
+		description: "__MSG_appDesc__",
 		offline_enabled: true,
 		/**
 		 * if you want to support multiple languages, you can use the following reference
