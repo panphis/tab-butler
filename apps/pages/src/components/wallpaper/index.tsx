@@ -17,7 +17,7 @@ type WallpaperProps = {
 	className?: string;
 };
 
-export const Wallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc, children, className = '' }) => {
+export const PictureWallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc, children, className = '' }) => {
 
 	const wallpaper = useStorageSuspense(wallpaperStorage)
 	const { currentWallpaper, getCurrentWallpaper } = useWallpaperStore()
@@ -40,4 +40,3 @@ export const Wallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc, child
 		<Picture className={className} src={previewUrl}>{children}</Picture>
 	</Fragment>);
 };
-export default Wallpaper

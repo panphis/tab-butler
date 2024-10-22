@@ -21,5 +21,4 @@ export const WallpaperList: FC<WallpaperListProps> = ({ }) => {
 			wallpapers.map((wallpaper) => <WallpaperItem onSelect={wallpaperStorage.setWallpaper} key={wallpaper.id} wallpaper={wallpaper} />)
 		}
 	</Space>);
-};
-export default WallpaperList
+}; 

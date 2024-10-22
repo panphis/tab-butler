@@ -9,7 +9,7 @@ const runtimeKey = {
 
 const bookMarkClose = (sender: chrome.runtime.MessageSender) => {
 	chrome.scripting.executeScript({
-
+		world: 'MAIN',  // 在页面的上下文中执行
 		target: { tabId: sender?.tab?.id! },
 		files: ['./scriptCloseBookmark.js'],
 	});
@@ -30,20 +30,14 @@ const menus: CreateProperties[] = [
 
 // 打开书签保存弹框
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
-	const { frameId } = param;
-	chrome.scripting.executeScript(
-		{
-			target: { tabId: tabs?.id! },
-			files: ['./scriptCreateBookMark.js'],
-		},
-	);
+	chrome.scripting.executeScript({
+		world: 'MAIN',  // 在页面的上下文中执行
+		target: { tabId: tabs?.id! },
+		files: ['./scriptCreateBookMark.js'],
+	});
 };
 
 function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
-	console.log('handlerMessage');
-	console.log('request', request);
-	console.log('sender', sender);
-	console.log('response', response);
 	const { method } = request;
 	switch (method) {
 		case runtimeKey.bookMarkClose:

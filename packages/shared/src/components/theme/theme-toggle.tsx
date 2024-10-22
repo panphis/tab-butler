@@ -41,14 +41,18 @@ const ThemeRadioItem: FC<{ value: string }> = ({ value }) => {
 };
 
 
-export function ThemeToggle() {
-	const { setTheme, theme } = useContext(ThemeProviderContext);
+type Props = {
+	anchor?: string
+};
 
+export function ThemeToggle({ anchor }: Props) {
+	const { setTheme, theme } = useContext(ThemeProviderContext);
+	const id = useId();
 	return (
 		<div>
-			<Label>Theme</Label>
-
+			<Label id={anchor} htmlFor={id}>Theme</Label>
 			<RadioGroup
+				id={id}
 				onValueChange={setTheme}
 				defaultValue={theme}
 				className="flex flex-row space-1"
@@ -59,32 +63,6 @@ export function ThemeToggle() {
 					))
 				}
 			</RadioGroup>
-			{/* <DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant='outline' className='flex gap-2'>
-						{theme === "light" && (
-							<Sun className='h-[1rem] w-[1rem] transition-all' />
-						)}
-						{theme === "dark" && (
-							<Moon className='h-[1rem] w-[1rem] transition-all' />
-						)}
-						{theme === "system" && (
-							<SunMoon className='h-[1rem] w-[1rem] transition-all' />
-						)}
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent align='end'>
-					<DropdownMenuItem onClick={() => setTheme("light")}>
-						<Sun className='h-[1rem] w-[1rem] transition-all' />
-					</DropdownMenuItem>
-					<DropdownMenuItem onClick={() => setTheme("dark")}>
-						<Moon className='h-[1rem] w-[1rem] transition-all' />
-					</DropdownMenuItem>
-					<DropdownMenuItem onClick={() => setTheme("system")}>
-						<SunMoon className='h-[1rem] w-[1rem] transition-all' />
-					</DropdownMenuItem>
-				</DropdownMenuContent>
-			</DropdownMenu> */}
 		</div>
 	);
 }

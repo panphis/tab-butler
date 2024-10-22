@@ -15,8 +15,8 @@ export {
 	type Theme,
 	ThemeColors,
 	ThemeProvider,
-	ThemeProviderContext,
 	ThemeRadius,
+	ThemeProviderContext,
 	ThemeSetting,
 	ThemeToggle
 } from "./theme";
