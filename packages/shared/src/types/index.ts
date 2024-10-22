@@ -3,7 +3,7 @@
 export type { CreateSearchEngineParams, SearchEngine } from "./search-engine"
 
 
-export type { CreateWebSiteParams as CreateWallpaperParams, WebSite as Wallpaper } from './wallpaper'
+export type { CreateWallpaplerParams as CreateWallpaperParams, Wallpaper as Wallpaper } from './wallpaper'
 export type { CreateWebSiteParams, WebSite } from './website'
 
 

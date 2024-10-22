@@ -3,7 +3,7 @@ import { type FC } from "react";
 
 import { useWallpaperStore, wallpaperStorage, useStorageSuspense } from "@repo/shared";
 
-import { WallpaperItem } from "./wallpaper-item";
+import { WallpaperItem } from "./";
 import { Space } from "@repo/ui";
 
 

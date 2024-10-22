@@ -9,7 +9,6 @@ const runtimeKey = {
 
 const bookMarkClose = (sender: chrome.runtime.MessageSender) => {
 	chrome.scripting.executeScript({
-		world: 'MAIN',  // 在页面的上下文中执行
 		target: { tabId: sender?.tab?.id! },
 		files: ['./scriptCloseBookmark.js'],
 	});
@@ -31,7 +30,6 @@ const menus: CreateProperties[] = [
 // 打开书签保存弹框
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
 	chrome.scripting.executeScript({
-		world: 'MAIN',  // 在页面的上下文中执行
 		target: { tabId: tabs?.id! },
 		files: ['./scriptCreateBookMark.js'],
 	});
