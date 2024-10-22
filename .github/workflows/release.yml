@@ -33,6 +33,11 @@ jobs:
       - name: Build project
         run: pnpm run build
 
+      - name: Zip dist folder
+        run: |
+          cd dist
+          zip -r ../dist.zip .
+
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
