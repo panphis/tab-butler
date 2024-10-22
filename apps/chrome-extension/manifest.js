@@ -27,23 +27,32 @@ const manifest = deepmerge(
 		version: "1.0.0",
 		host_permissions: ["<all_urls>"],
 		permissions: [
-			"downloads",
+			// 最常访问
 			"topSites",
+			// 访问历史 首页搜索
 			"history",
+			// 获取网站图标
 			"favicon",
+			// 缓存
 			"storage",
+			// 执行脚本
 			"scripting",
+			// 获取tab 信息
 			"tabs",
-			"storage",
-			"scripting",
+			// 书签目录
 			"bookmarks",
+			// 粘贴板 读写
 			"clipboardRead",
 			"clipboardWrite",
+			// 右键菜单
 			"contextMenus",
+			// tab 信息
 			'activeTab',
 			'tabCapture',
 			'tabGroups',
+			// 获取网页信息
 			'contentSettings',
+			// 消息传输
 			'nativeMessaging'
 		],
 		options_page: "pages/options.html",
