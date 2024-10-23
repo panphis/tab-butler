@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 
+
+
 import {
 	ID, WebSite, CreateWebSiteParams,
 	createOrUpdateWebSite, queryAllWebSite, deleteWebSite, updateWebSiteById
-
 } from "../";
 
 
@@ -29,10 +30,7 @@ export const useWebSiteStore = create<State & Action>((set, get) => ({
 	loadingWebSite: false,
 
 	createOrUpdateWebSite: async (params) => {
-
-		const preSet =
-
-			await createOrUpdateWebSite(params)
+		const preSet = await createOrUpdateWebSite(params)
 		const list = await queryAllWebSite()
 		set({ websites: list })
 	},

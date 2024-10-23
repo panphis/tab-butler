@@ -12,7 +12,7 @@ import { Search } from 'lucide-react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { searchEnginesMap } from '@/utils'
+import { openTab, searchEnginesMap } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
@@ -58,7 +58,7 @@ export const SearchForm: FC = () => {
 		}
 		const searchEngine = searchEnginesMap.get(engine)!
 		const url = searchEngine.url + keyWords
-		chrome.tabs.create({ url });
+		openTab({ url });
 	}
 
 	return (

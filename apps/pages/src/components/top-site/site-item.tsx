@@ -8,29 +8,39 @@ import {
 	ContextMenuSeparator,
 	ContextMenuTrigger,
 	useToast,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
 } from "@repo/ui";
 
-import { History, Pin } from 'lucide-react'
+import { History, Pin, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
 import { useWebSiteStore, useCopy } from "@repo/shared";
 
-import { bg_transparent } from "@/utils";
+import { bg_transparent, openTab } from "@/utils";
 
-import type { MostVisitedURL } from '@repo/shared';
+import type { HistoryUrl, MostVisitedURL } from '@repo/shared';
+
 
 
 type SiteItemProps = {
-	site: MostVisitedURL
+	site: MostVisitedURL,
+	onRemove: (params: HistoryUrl) => Promise<void>
 };
 
-export const SiteItem: FC<SiteItemProps> = ({ site }) => {
+export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 	const onSiteClick = () => {
-		chrome.tabs.create({ url: site.url });
+		openTab({ url: site.url });
 	};
 
 	const { toast } = useToast()
 
 	const { createOrUpdateWebSite } = useWebSiteStore()
+
+	const removeSite = async (e?: MouseEvent<HTMLButtonElement>) => {
+		e?.stopPropagation()
+		await onRemove({ url: site.url })
+	}
 
 	const fixedSite = (e?: MouseEvent<HTMLButtonElement>) => {
 		e?.stopPropagation()
@@ -67,16 +77,34 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
-					<Space>
+					<Space className="items-start">
 						<span className="p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
 							<History size={16} />
 						</span>
 						<Favicon src={site.url} title={site.title} className="rounded-md" />
-						<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20" onClick={fixedSite}>
-							<Pin size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
-						</Button>
+
+
+						<Popover>
+							<PopoverTrigger onClick={(e) => { e.stopPropagation() }} >
+								<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
+									<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
+								</Button>
+							</PopoverTrigger>
+							<PopoverContent onClick={(e) => { e.stopPropagation() }} className={cn(bg_transparent, "w-fit h-fit")}>
+								<Space direction="col">
+
+									<Button size={'icon'} onClick={fixedSite}>
+										<Pin size={16} />
+									</Button>
+									<Button size={'icon'} onClick={removeSite}>
+										<Trash2 size={16} />
+									</Button>
+								</Space>
+							</PopoverContent>
+						</Popover>
 					</Space>
-					<p className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
+					<p title={`${site.title}-${site.url}`}
+						className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
 				</Space>
 			</ContextMenuTrigger>
 
@@ -90,6 +118,9 @@ export const SiteItem: FC<SiteItemProps> = ({ site }) => {
 				<ContextMenuSeparator />
 				<ContextMenuItem inset onSelect={() => copy()}>
 					Copy
+				</ContextMenuItem>
+				<ContextMenuItem inset onSelect={() => removeSite()}>
+					Remove
 				</ContextMenuItem>
 			</ContextMenuContent>
 		</ContextMenu>

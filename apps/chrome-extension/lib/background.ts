@@ -1,4 +1,4 @@
-import type { CreateProperties } from '@repo/shared';
+import type { ContextMenusCreateProperties } from '@repo/shared';
 import 'webextension-polyfill';
 
 
@@ -18,7 +18,7 @@ const menuIds = {
 	save_to_bookmark: 'save_to_bookmark',
 };
 
-const menus: CreateProperties[] = [
+const menus: ContextMenusCreateProperties[] = [
 	{
 		id: menuIds.save_to_bookmark,
 		title: '保存到书签',

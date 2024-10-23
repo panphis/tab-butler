@@ -68,8 +68,11 @@ export type {
 	BookmarkDestinationArg,
 	BookmarkChangesArg,
 	BookmarkCreateArg,
-	CreateProperties,
-	Tab
+	ContextMenusCreateProperties,
+	Tab,
+	TabsCreateProperties,
+	TabQueryInfo,
+	HistoryUrl
 } from './types';
 export type {
 	Theme,
