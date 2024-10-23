@@ -94,7 +94,7 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit }) 
 					name='files'
 					render={({ field }) => {
 						return (<FormItem>
-							<FormLabel>Wallpaper</FormLabel>
+							<FormLabel>File</FormLabel>
 							<FormControl>
 								<Upload {...field}
 									placeholder="Wallpaper file" />
