@@ -66,7 +66,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 
 
 
-	return <Card className={cn("w-[380px] overflow-hidden cursor-pointer", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
+	return <Card className={cn("overflow-hidden cursor-pointer", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
 		<CardHeader className="p-2 relative overflow-hidden">
 			<CardTitle>
 				{wallpaper.title}

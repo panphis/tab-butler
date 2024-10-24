@@ -49,7 +49,7 @@ export function ThemeToggle({ anchor }: Props) {
 	const { setTheme, theme } = useContext(ThemeProviderContext);
 	const id = useId();
 	return (
-		<div>
+		<div className="space-y-2">
 			<Label id={anchor} htmlFor={id}>Theme</Label>
 			<RadioGroup
 				id={id}

@@ -11,7 +11,7 @@ export function ThemeRadius({ anchor }: Props) {
 	const { radius: currentRadius, setRadius } = useContext(ThemeProviderContext);
 	const id = useId();
 	return (
-		<div>
+		<div className="space-y-2">
 			<Label id={anchor} htmlFor={id}>Radius</Label>
 			<div id={id} className='flex gap-2'>
 				{radius.map((value) => {

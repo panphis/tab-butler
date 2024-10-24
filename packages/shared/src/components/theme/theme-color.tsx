@@ -15,7 +15,7 @@ export function ThemeColors({ anchor }: Props) {
 	} = useContext(ThemeProviderContext);
 	const id = useId();
 	return (
-		<div>
+		<div className="space-y-2">
 			<Label id={anchor} htmlFor={id}>Color</Label>
 			<div id={id} className='flex gap-2 flex-wrap'>
 				{themes.map((theme) => {

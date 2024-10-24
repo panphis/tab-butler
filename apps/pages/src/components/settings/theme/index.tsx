@@ -1,7 +1,10 @@
-import React, { Fragment, type FC } from "react";
+import { Fragment, type FC } from "react";
 
 import { ThemeToggle, ThemeColors, ThemeRadius } from "@repo/shared";
 import { Separator } from "@repo/ui";
+
+import { AnchorIds } from "../enums";
+import { Wallpaper } from "..";
 
 type ThemeProps = {
 
@@ -9,11 +12,12 @@ type ThemeProps = {
 
 export const Theme: FC<ThemeProps> = ({ }) => {
 	return (<Fragment>
-		<ThemeToggle />
+		<ThemeToggle anchor={AnchorIds.theme} />
 		<Separator />
-		<ThemeColors />
+		<ThemeColors anchor={AnchorIds.color} />
 		<Separator />
-		<ThemeRadius />
+		<ThemeRadius anchor={AnchorIds.radius} />
 		<Separator />
+		<Wallpaper anchor={AnchorIds.wallpaper} />
 	</Fragment>);
 }; 

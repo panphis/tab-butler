@@ -1,4 +1,4 @@
-export enum anchorIds {
+export enum AnchorIds {
 	appearance = 'appearance',
 	theme = 'theme',
 	wallpaper = 'wallpaper',
