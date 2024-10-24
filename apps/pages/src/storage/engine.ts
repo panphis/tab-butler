@@ -1,11 +1,11 @@
-import { BaseStorage, createStorage, StorageType } from '@repo/shared';
-import { searchEngines } from "@/utils";
+import { BaseStorage, createStorage, StorageType, defaultSearchEngines } from '@repo/shared';
+
 
 type EngineStorage = BaseStorage<string> & {
   setEngine: (id: string) => Promise<void>;
 };
 
-const storage = createStorage<string>('engine-storage-key', searchEngines[0].id, {
+const storage = createStorage<string>('engine-storage-key', defaultSearchEngines[0].id, {
   storageType: StorageType.Local,
   liveUpdate: true,
 });

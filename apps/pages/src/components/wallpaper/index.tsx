@@ -22,7 +22,9 @@ export const PictureWallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc
 	const wallpaper = useStorageSuspense(wallpaperStorage)
 	const { currentWallpaper, getCurrentWallpaper } = useWallpaperStore()
 
-
+	/**
+	 * 多个页面的情况下 需要触发刷新
+	 */
 	useEffect(() => {
 		getCurrentWallpaper()
 	}, [wallpaper])

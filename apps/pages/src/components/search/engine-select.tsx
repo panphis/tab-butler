@@ -11,8 +11,8 @@ import {
 	SelectValue,
 	Space
 } from '@repo/ui'
-import { searchEngines, bg_transparent } from '@/utils'
 
+import { useSearchEngine } from '@/hooks';
 import { Favicon } from '@/components'
 import { SelectedEngineIcon } from "./";
 
@@ -24,6 +24,7 @@ interface EngineSelectProps {
 	}
 }
 export const EngineSelect = ({ field }: EngineSelectProps) => {
+	const { searchEngines } = useSearchEngine()
 	return (
 		<FormItem>
 			<Select
@@ -36,7 +37,7 @@ export const EngineSelect = ({ field }: EngineSelectProps) => {
 						className={cn(`bg-transparent border-none text-center focus:shadow-none focus:ring-color-transparent focus:ring-offset-0 focus:ring-0 text-inherit placeholder:text-inherit interactive:bg-transparent`)}
 					>
 						<SelectValue asChild>
-							<SelectedEngineIcon value={field.value} />
+							<SelectedEngineIcon />
 						</SelectValue>
 					</SelectTrigger>
 				</FormControl>

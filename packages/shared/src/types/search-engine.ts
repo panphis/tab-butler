@@ -9,5 +9,7 @@ export interface CreateSearchEngineParams {
 export interface SearchEngine {
 	id: ID
 	title: string
-	url: string
+	url: string,
+	supportIgnore: boolean
+	ignoreKeyStr?: string
 }

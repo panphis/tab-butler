@@ -46,7 +46,7 @@ export { useBookMarkQuery, useBookMarks, useHistory, useStorage, useStorageSuspe
 
 export { useWallpaperStore, useSearchEngines, useWebSiteStore } from './store';
 
-export { formatFileSize, Duration, themesEnum, copy } from "./utils"
+export { formatFileSize, Duration, themesEnum, copy, defaultSearchEngines } from "./utils"
 
 
 export {

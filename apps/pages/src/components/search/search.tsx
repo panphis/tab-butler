@@ -12,11 +12,12 @@ import { Search } from 'lucide-react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { openTab, searchEnginesMap } from '@/utils'
+import { openTab } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
 import { useStorageSuspense } from '@repo/shared';
+import { useSearchEngine } from "@/hooks";
 import { engineStorage } from "@/storage";
 
 import { bg_transparent } from "@/utils";
@@ -31,6 +32,7 @@ const schema = z.object({
 
 export const SearchForm: FC = () => {
 	const engine = useStorageSuspense(engineStorage);
+	const { searchEnginesMap } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
