@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { AnchorIds } from "../enums";
-import { CreateSearchEngine } from ".";
+import { CreateSearchEngine, SearchEngineList } from ".";
 import { Label, Space } from "@repo/ui";
 export const SearchEngine: FC = ({ }) => {
 	return (<div id={AnchorIds.searchEngine}>
@@ -8,5 +8,6 @@ export const SearchEngine: FC = ({ }) => {
 			<Label id="searchEngine">Search Engine</Label>
 			<CreateSearchEngine />
 		</Space>
+		<SearchEngineList />
 	</div>);
 };

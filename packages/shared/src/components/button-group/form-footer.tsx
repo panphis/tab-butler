@@ -32,12 +32,12 @@ export const FormFooter: FC<FormFooterProps> = ({
 				{submitText}
 			</Button>
 			{
-				!!onDelete && <Button type="button" size={buttonSize} variant={'destructive'} disabled={loading} onClick={onDelete}>
+				!!onDelete && <Button type="button" size={buttonSize} loading={loading} variant={'destructive'} disabled={loading} onClick={onDelete}>
 					{deleteText}
 				</Button>
 			}
 			{
-				!!onCancel && <Button type="reset" size={buttonSize} variant={'secondary'} disabled={loading} onClick={onCancel}>
+				!!onCancel && <Button type="reset" size={buttonSize} loading={loading} variant={'secondary'} disabled={loading} onClick={onCancel}>
 					{cancelText}
 				</Button>}
 		</Space >

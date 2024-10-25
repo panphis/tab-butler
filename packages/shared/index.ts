@@ -8,6 +8,7 @@ export {
 
 
 	// components
+	ButtonGroup,
 	FormFooter,
 	Layout,
 	IconDark, IconLight, IconAuto, IconStar,

@@ -1,7 +1,7 @@
 export { Layout } from "./layouts";
 export { CopyAction } from "./copy";
 
-export { FormFooter } from "./form"
+export { FormFooter, ButtonGroup } from "./button-group"
 
 
 export { IconDark, IconLight, IconAuto, IconStar } from "./icons";

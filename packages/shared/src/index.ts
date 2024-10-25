@@ -2,6 +2,7 @@ export {
 	// layout
 	Layout,
 	FormFooter,
+	ButtonGroup,
 	// icon
 	IconDark, IconLight, IconAuto,
 	IconStar,
