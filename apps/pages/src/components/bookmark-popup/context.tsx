@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useBookMarks } from "@repo/shared";
 import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@repo/shared";
-import { FormFooter } from "../bookmark";
+import { FormFooter } from "@repo/shared";
 import { sendMessage, MessageTypes } from "@/utils";
 
 
@@ -91,6 +91,7 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 	}
 
 	async function onCancel() {
+		form.reset()
 		const payload = { method: MessageTypes.bookMarkClose }
 		await sendMessage(payload)
 	}

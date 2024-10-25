@@ -155,7 +155,7 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 				<DialogHeader>
 					<DialogTitle>Edit website</DialogTitle>
 				</DialogHeader>
-				<SiteForm defaultValues={site} onSubmit={onSubmit} />
+				<SiteForm defaultValues={site} onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>
 		</Dialog>
 	</Fragment>);

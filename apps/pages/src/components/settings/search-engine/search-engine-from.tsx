@@ -1,9 +1,6 @@
-import React, { Fragment, type FC } from "react";
-
-import { z } from "zod"
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
+import { Fragment, type FC } from "react";
+import z from "zod";
+import { useForm } from "react-hook-form"; import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
 	FormControl,
@@ -15,7 +12,8 @@ import {
 	Input,
 	Textarea
 } from "@repo/ui"
-import { FormFooter } from "..";
+import { FormFooter } from "@repo/shared";
+
 
 
 const formSchema = z.object({
@@ -23,21 +21,26 @@ const formSchema = z.object({
 	url: z.string().min(1, { message: 'Url is required' }).max(255, { message: 'Url is too long' }),
 })
 
-export type SiteFormValues = z.infer<typeof formSchema>
-
-type SiteFormProps = {
-	onSubmit: (data: SiteFormValues) => void,
+export type FormValues = z.infer<typeof formSchema>
+type FromProps = {
+	onSubmit: (data: FormValues) => void,
 	onCancel?: () => void,
-	defaultValues?: SiteFormValues
+	defaultValues?: FormValues
 };
-
-export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues }) => {
+export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultValues }) => {
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues,
 	})
+
+	const handlerCancel = () => {
+		form.reset();
+		onCancel?.();
+	}
+
 	return (<Fragment>
+
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 				<FormField
@@ -76,8 +79,9 @@ export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues 
 						</FormItem>
 					)}
 				/>
-				<FormFooter onCancel={onCancel} />
+				<FormFooter onCancel={handlerCancel} />
 			</form>
 		</Form>
 	</Fragment>);
 };
+export default SearchEngineFrom

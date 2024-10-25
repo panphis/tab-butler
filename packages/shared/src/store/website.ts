@@ -17,10 +17,10 @@ type State = {
 
 
 type Action = {
-	createOrUpdateWebSite: (params: CreateWebSiteParams) => void;
-	getWebSites: () => void;
-	removeWebSite: (id: ID) => void;
-	updateWebSite: (params: WebSite) => void;
+	createOrUpdateWebSite: (params: CreateWebSiteParams) => Promise<void>;
+	getWebSites: () => Promise<void>;
+	removeWebSite: (id: ID) => Promise<void>;
+	updateWebSite: (params: WebSite) => Promise<void>;
 }
 
 const initValue = await queryAllWebSite()

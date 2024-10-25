@@ -1,6 +1,7 @@
 export {
 	// layout
 	Layout,
+	FormFooter,
 	// icon
 	IconDark, IconLight, IconAuto,
 	IconStar,

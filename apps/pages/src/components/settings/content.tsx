@@ -1,8 +1,7 @@
 import { Fragment, type FC } from "react";
 
 
-import { Theme, Wallpaper, AnchorIds, Sidebar } from "./";
-import { Label } from "@repo/ui";
+import { Theme, Sidebar, SearchEngine } from "./";
 type ContentProps = {
 
 };
@@ -15,8 +14,8 @@ export const SettingsContent: FC<ContentProps> = ({ }) => {
 				<Sidebar />
 			</aside>
 			<div className="flex flex-1 flex-col gap-4">
-				<Label id={AnchorIds.appearance}>Appearance</Label>
 				<Theme />
+				<SearchEngine />
 			</div>
 		</div>
 

@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form'
 
 import {
 	CreateWallpaperParams,
+	FormFooter,
 	Wallpaper
 } from "@repo/shared";
 
@@ -39,8 +40,9 @@ type WallpaperFormProps = {
 		files?: FileList | undefined
 	},
 	onSubmit: (params: CreateWallpaperParams | Wallpaper) => Promise<void>
+	onCancel?: () => Promise<void>
 }
-export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit }) => {
+export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, onCancel }) => {
 
 
 	const form = useForm<FormType>({
@@ -68,6 +70,10 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit }) 
 		form.reset()
 	}
 
+	function handlerCancel() {
+		form.reset()
+		onCancel?.()
+	}
 
 	return (
 
@@ -103,7 +109,7 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit }) 
 						)
 					}}
 				/>
-				<Button>Save</Button>
+				<FormFooter onCancel={handlerCancel} />
 			</form>
 		</Form>
 	);

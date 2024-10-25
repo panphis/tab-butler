@@ -1,8 +1,8 @@
 import { Fragment, type FC } from "react";
 import { BookmarkCreateArg, BookmarkTreeNode } from "@repo/shared";
 
+import { FormFooter } from "@repo/shared";
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -10,8 +10,7 @@ import {
 	FormLabel,
 	FormMessage,
 	Input,
-	Textarea,
-	Space
+	Textarea
 } from "@repo/ui"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -37,19 +36,6 @@ const bookMarkFormSchema = z.object({
 
 type BookMarkFormValues = z.infer<typeof bookMarkFormSchema>
 
-const buttonSize = 'sm'
-
-type FormFooterProps = Pick<Props, 'onDelete' | 'onCancel'> & { loading?: boolean }
-
-export const FormFooter = ({ onDelete, onCancel, loading = false }: FormFooterProps) => {
-	return (
-		<Space className="justify-end">
-			{!!onDelete && <Button type="button" size={buttonSize} variant={'destructive'} disabled={loading} onClick={onDelete}>Delete</Button>}
-			{!!onCancel && <Button type="reset" size={buttonSize} variant={'secondary'} disabled={loading} onClick={onCancel}>Cancel</Button>}
-			<Button type="submit" loading={loading} size={buttonSize}>Save</Button>
-		</Space>
-	)
-}
 
 
 export const BookMarkForm: FC<Props> = ({ item, onSubmit: submit, onDelete, onCancel }) => {
@@ -65,6 +51,11 @@ export const BookMarkForm: FC<Props> = ({ item, onSubmit: submit, onDelete, onCa
 
 	function onSubmit(values: BookMarkFormValues) {
 		submit(values)
+	}
+
+	function handlerCancel() {
+		form.reset();
+		onCancel?.();
 	}
 
 	return (<Fragment>
@@ -96,7 +87,7 @@ export const BookMarkForm: FC<Props> = ({ item, onSubmit: submit, onDelete, onCa
 						</FormItem>
 					)}
 				/>
-				<FormFooter onDelete={onDelete} onCancel={onCancel} />
+				<FormFooter onDelete={onDelete} onCancel={handlerCancel} />
 			</form>
 		</Form>
 	</Fragment>);
@@ -120,6 +111,11 @@ export const BookMarkDirForm: FC<Props> = ({ item, onSubmit: submit, onCancel, o
 			title: item.title,
 		},
 	})
+	function handlerCancel() {
+		form.reset();
+		onCancel?.();
+	}
+
 
 
 	async function onSubmit(values: BookMarkDirFormValues) {
@@ -143,7 +139,7 @@ export const BookMarkDirForm: FC<Props> = ({ item, onSubmit: submit, onCancel, o
 						</FormItem>
 					)}
 				/>
-				<FormFooter onDelete={onDelete} onCancel={onCancel} />
+				<FormFooter onDelete={onDelete} onCancel={handlerCancel} />
 			</form>
 		</Form>
 	</Fragment >);

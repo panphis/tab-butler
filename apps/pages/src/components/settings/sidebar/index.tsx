@@ -28,6 +28,10 @@ const sidebarNavItems: SidebarItem[] = [
 			},
 		]
 	},
+	{
+		title: "Search Engine",
+		anchor: AnchorIds.searchEngine,
+	},
 ]
 
 type SidebarItemProps = {

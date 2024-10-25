@@ -4,4 +4,5 @@ export enum AnchorIds {
 	wallpaper = 'wallpaper',
 	color = 'color',
 	radius = 'radius',
+	searchEngine = "searchEngine"
 }

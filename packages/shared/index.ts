@@ -8,6 +8,7 @@ export {
 
 
 	// components
+	FormFooter,
 	Layout,
 	IconDark, IconLight, IconAuto, IconStar,
 	themes,
