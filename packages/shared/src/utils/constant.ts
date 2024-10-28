@@ -23,3 +23,15 @@ export const themesEnum: Record<Themes, Themes> = {
 };
 
 export const languages = ["en-US", "zh-CN"];
+
+
+
+export enum MessageTypes {
+	bookMarkClose = 'book_mark_close',
+	bookMarkOpen = 'book_mark_open',
+	updateSearchEngines = 'update_search_engines',
+}
+
+
+
+

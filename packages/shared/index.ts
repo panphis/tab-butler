@@ -63,7 +63,9 @@ export {
 	// utils
 	Duration,
 	formatFileSize,
-	copy,
+	copy, equality,
+	sendMessage,
+	MessageTypes,
 
 
 	// storage

@@ -1,4 +1,5 @@
-import { Fragment, useState, type FC } from "react";
+import { Fragment, useState } from "react";
+import type { FC, MouseEvent } from "react";
 import { SearchEngineFrom } from ".";
 import {
 	Button,
@@ -8,7 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ui";
-import { Plus } from 'lucide-react';
+import { Edit } from 'lucide-react';
 import { FormValues } from "./search-engine-from";
 import { useSearchEngine } from "@/hooks";
 import { SearchEngine } from "@repo/shared";
@@ -32,13 +33,17 @@ export const EditSearchEngine: FC<EditSearchEngineProps> = ({ engine }) => {
 	const onCancel = () => {
 		setOpen(false)
 	};
+	const onEdit = (e: MouseEvent<HTMLButtonElement>) => {
+		e.stopPropagation()
+		setOpen(true)
+	}
 
 	return (<Fragment>
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={'secondary'} onClick={() => setOpen(true)} size={'sm'}>
-					<Plus />
-					Edit Search Engine
+				<Button variant={'secondary'} onClick={onEdit} size={'sm'}>
+					<Edit size={16} />
+					Edit
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">

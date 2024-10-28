@@ -17,9 +17,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useBookMarks } from "@repo/shared";
 import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@repo/shared";
-import { FormFooter } from "@repo/shared";
-import { sendMessage, MessageTypes } from "@/utils";
-
+import { FormFooter, sendMessage, MessageTypes } from "@repo/shared";
 
 const bookMarkFormSchema = z.object({
 	title: z.string().min(2, {

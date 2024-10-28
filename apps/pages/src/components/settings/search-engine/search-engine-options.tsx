@@ -1,21 +1,24 @@
-import { Fragment, type FC, MouseEvent } from "react";
+import type { FC, MouseEvent } from "react";
 import { SearchEngine } from "@repo/shared";
-import { EditSearchEngine } from "./";
+import { DeleteSearchEngine, EditSearchEngine } from "./";
+
+
+
 
 type SearchEngineOptionsProps = {
 	engine: SearchEngine;
 };
 
 export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) => {
-	const onEdit = (e: MouseEvent<HTMLButtonElement>) => {
+
+	function onClick(e: MouseEvent<HTMLDivElement>) {
 		e.stopPropagation()
+		e.preventDefault()
 	}
 
-	const onDelete = (e: MouseEvent<HTMLButtonElement>) => {
-		e.stopPropagation()
-	}
-	return (<Fragment>
+
+	return (<div onClick={onClick}>
 		<EditSearchEngine engine={engine} />
-
-	</Fragment>);
+		<DeleteSearchEngine engine={engine} />
+	</div>);
 }; 

@@ -9,7 +9,7 @@ import {
 } from "@repo/ui"
 import { useSearchEngine } from "@/hooks";
 
-import { SearchEngineInfo } from "./";
+import { SearchEngineInfo, SearchEngineOptions } from "./";
 
 type SearchEngineListProps = {
 
@@ -27,7 +27,7 @@ export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 					<AccordionTrigger>
 						<Space className="justify-between flex-1 items-center">
 							<SearchEngineInfo engine={engine} />
-
+							<SearchEngineOptions engine={engine} />
 						</Space>
 					</AccordionTrigger>
 					<AccordionContent>

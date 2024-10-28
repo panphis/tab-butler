@@ -24,7 +24,8 @@ export const Favicon = ({
 
 	const icon = useMemo(() => {
 		const faviconUrl = new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
-		faviconUrl.searchParams.append('pageUrl', src);
+		const loaction = new URL(src);
+		faviconUrl.searchParams.append('pageUrl', loaction.origin);
 		faviconUrl.searchParams.append('size', '32');
 		return faviconUrl.href;
 	}, [src]);

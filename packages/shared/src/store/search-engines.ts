@@ -1,10 +1,13 @@
 import { createStore } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
+import { MessageTypes, sendMessage } from "../";
+
 import {
 	queryAllSearchEngine, createSearchEngine, getSearchEngineById, deleteSearchEngine, updateSearchEngineById,
 	SearchEngine, CreateSearchEngineParams, ID,
-	defaultSearchEngines
+	defaultSearchEngines,
+	equality
 } from "..";
 
 
@@ -25,7 +28,7 @@ type State = {
 type Action = {
 	createSearchEngine: (params: CreateSearchEngineParams) => void;
 	getSearchEngines: () => void;
-	deleteSearchEngine: (id: ID) => void;
+	deleteSearchEngine: (id: ID) => Promise<void>;
 	getSearchEngineById: (id: ID) => Promise<SearchEngine | undefined>;
 	updateSearchEngine: (params: SearchEngine) => void;
 }
@@ -45,6 +48,7 @@ export const searchEnginesStore = createStore<SearchEnginesStore>()(subscribeWit
 		getSearchEngines: async () => {
 			set({ loadingSearchEngines: true })
 			const list = await queryAllSearchEngine()
+			console.log('list', list)
 			set({ searchEngines: list, loadingSearchEngines: false })
 		},
 		getSearchEngineById: async (id: ID) => {
@@ -66,58 +70,24 @@ export const searchEnginesStore = createStore<SearchEnginesStore>()(subscribeWit
 
 function subscribeSearchEngine() {
 	console.log('subscribeSearchEngine')
-	searchEnginesStore.getState().getSearchEngines()
-}
-
-function equalityFn(pre: any, next: any): boolean {    // 判断是否是同一个对象
-	if (pre === next) {
-		return true;
-	}
-
-	// 判断是否是对象
-	if (typeof pre === 'object' && pre !== null && typeof next === 'object' && next !== null) {
-		// 判断对象的键的数量是否相同
-		if (Object.keys(pre).length !== Object.keys(next).length) {
-			return false;
-		}
-
-		// 递归比较对象的每个键值对
-		for (let key in pre) {
-			if (next.hasOwnProperty(key)) {
-				if (!equalityFn(pre[key], next[key])) {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		}
-
-		return true;
-	} else if (Array.isArray(pre) && Array.isArray(next)) {
-		// 判断是否是数组
-		if (pre.length !== next.length) {
-			return false;
-		}
-
-		// 递归比较数组的每个元素
-		for (let i = 0; i < pre.length; i++) {
-			if (!equalityFn(pre[i], next[i])) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	// 其他情况
-	return false;
+	sendMessage({ method: MessageTypes.updateSearchEngines })
 }
 
 
+function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
+	const { method } = request;
+	switch (method) {
+		case MessageTypes.updateSearchEngines:
+			searchEnginesStore.getState().getSearchEngines()
+			break;
+		default:
+			break;
+	}
+}
+
+chrome.runtime.onMessage.addListener(handlerMessage);
 const unsubscribe = searchEnginesStore.subscribe((state) => state.searchEngines, subscribeSearchEngine, {
-	equalityFn: equalityFn
+	equalityFn: equality
 })
 
-window.addEventListener('unload', () => {
-	unsubscribe()
-})
+window.addEventListener('beforeunload', unsubscribe)

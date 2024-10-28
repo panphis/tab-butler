@@ -1,11 +1,6 @@
 import type { ContextMenusCreateProperties } from '@repo/shared';
 import 'webextension-polyfill';
-
-
-const runtimeKey = {
-	bookMarkOpen: 'book_mark_open',
-	bookMarkClose: 'book_mark_close',
-};
+import { MessageTypes } from "@repo/shared";
 
 const bookMarkClose = (sender: chrome.runtime.MessageSender) => {
 	chrome.scripting.executeScript({
@@ -38,7 +33,7 @@ const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tab
 function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
 	const { method } = request;
 	switch (method) {
-		case runtimeKey.bookMarkClose:
+		case MessageTypes.bookMarkClose:
 			bookMarkClose(sender);
 			response();
 			break;

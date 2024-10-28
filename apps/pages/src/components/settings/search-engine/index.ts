@@ -7,3 +7,4 @@ export { SearchEngineList } from "./search-engine-list"
 
 export { SearchEngineInfo } from "./search-engine-info"
 export { SearchEngineOptions } from "./search-engine-options"
+export { DeleteSearchEngine } from "./delete-search-engine"

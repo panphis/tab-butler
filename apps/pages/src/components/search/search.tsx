@@ -32,6 +32,7 @@ const schema = z.object({
 
 export const SearchForm: FC = () => {
 	const engine = useStorageSuspense(engineStorage);
+	console.log(engine)
 	const { searchEnginesMap } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),

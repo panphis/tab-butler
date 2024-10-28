@@ -24,13 +24,6 @@ export const queryBookMarker = async (params: chrome.bookmarks.BookmarkSearchQue
 	return res;
 };
 
-
-
-export async function sendMessage(message: any) {
-	return await chrome.runtime.sendMessage(message);
-}
-
-
 export async function removeFormHistory(params: HistoryUrl) {
 	chrome.history.deleteUrl(params)
 }
