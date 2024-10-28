@@ -43,7 +43,7 @@ export const EngineSelect = ({ field }: EngineSelectProps) => {
 				</FormControl>
 				<SelectContent>
 					{searchEngines.map(item => (
-						<SelectItem key={item.id} value={item.id}>
+						<SelectItem key={item.id} value={item.id + ''}>
 							<Space
 								direction='row'
 								className='flex-nowrap items-center'

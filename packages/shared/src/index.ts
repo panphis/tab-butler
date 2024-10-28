@@ -46,7 +46,7 @@ export { withSuspense, withErrorBoundary } from './hoc';
 export { useBookMarkQuery, useBookMarks, useHistory, useStorage, useStorageSuspense, useTopSites, useCopy } from './hooks';
 
 
-export { useWallpaperStore, useSearchEngines, useWebSiteStore } from './store';
+export { useWallpaperStore, searchEnginesStore, useWebSiteStore } from './store';
 
 export { formatFileSize, Duration, themesEnum, copy, defaultSearchEngines } from "./utils"
 

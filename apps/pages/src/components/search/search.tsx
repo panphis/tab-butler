@@ -58,7 +58,7 @@ export const SearchForm: FC = () => {
 		if (!engine || !keyWords) {
 			return;
 		}
-		const searchEngine = searchEnginesMap.get(engine)!
+		const searchEngine = searchEnginesMap.get(engine + '')!
 		const url = searchEngine.url + keyWords
 		openTab({ url });
 	}

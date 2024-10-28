@@ -1,5 +1,5 @@
 import { Fragment, useState, type FC } from "react";
-import { SearchEngineFrom } from "./";
+import { SearchEngineFrom } from ".";
 import {
 	Button,
 	Dialog,
@@ -11,19 +11,23 @@ import {
 import { Plus } from 'lucide-react';
 import { FormValues } from "./search-engine-from";
 import { useSearchEngine } from "@/hooks";
+import { SearchEngine } from "@repo/shared";
 
 
 
-type CreateSearchEngineProps = {
-
+type EditSearchEngineProps = {
+	engine: SearchEngine
 };
 
-
-export const CreateSearchEngine: FC<CreateSearchEngineProps> = ({ }) => {
+export const EditSearchEngine: FC<EditSearchEngineProps> = ({ engine }) => {
 	const [open, setOpen] = useState<boolean>(false)
-	const { createSearchEngine } = useSearchEngine()
+	const { updateSearchEngine } = useSearchEngine()
 	const onSubmit = async (value: FormValues) => {
-		createSearchEngine(value)
+		const params = {
+			...value,
+			id: engine.id,
+		}
+		updateSearchEngine(params)
 	};
 	const onCancel = () => {
 		setOpen(false)
@@ -32,16 +36,16 @@ export const CreateSearchEngine: FC<CreateSearchEngineProps> = ({ }) => {
 	return (<Fragment>
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button onClick={() => setOpen(true)} size={'sm'}>
+				<Button variant={'secondary'} onClick={() => setOpen(true)} size={'sm'}>
 					<Plus />
-					Create Search Engine
+					Edit Search Engine
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create Search Engine</DialogTitle>
+					<DialogTitle>Edit Search Engine</DialogTitle>
 				</DialogHeader>
-				<SearchEngineFrom onSubmit={onSubmit} onCancel={onCancel} />
+				<SearchEngineFrom defaultValues={engine} onSubmit={onSubmit} onCancel={onCancel} />
 			</DialogContent>
 		</Dialog>
 	</Fragment >);

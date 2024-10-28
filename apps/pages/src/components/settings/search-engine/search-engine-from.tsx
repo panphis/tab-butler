@@ -34,15 +34,20 @@ export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultVal
 		defaultValues,
 	})
 
-	const handlerCancel = () => {
+	function handlerCancel() {
 		form.reset();
 		onCancel?.();
+	}
+
+	function handleSubmit(values: FormValues) {
+		onSubmit(values)
+		handlerCancel();
 	}
 
 	return (<Fragment>
 
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+			<form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
 				<FormField
 					control={form.control}
 					name="title"

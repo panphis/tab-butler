@@ -30,7 +30,7 @@ export const Favicon = ({
 	}, [src]);
 
 	const iconTitle = useMemo(() => {
-		return title.charAt(0).toUpperCase()
+		return title?.charAt(0)?.toUpperCase()
 	}, [title]);
 
 

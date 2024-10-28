@@ -135,5 +135,4 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 			</TooltipPortal>
 		</Tooltip>
 	</div >);
-};
-export default SearchInput
+}; 

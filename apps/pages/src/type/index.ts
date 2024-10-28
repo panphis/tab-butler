@@ -1,3 +1,1 @@
-export * from "./chrome"
-
-export * from "./search-engine"
+export * from "./chrome" 

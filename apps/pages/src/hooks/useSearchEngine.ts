@@ -1,17 +1,25 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
-import { useStorageSuspense, useSearchEngines, SearchEngine } from "@repo/shared";
+import { useStorageSuspense, searchEnginesStore, SearchEngine } from "@repo/shared";
 import { engineStorage } from "@/storage";
 
 export const useSearchEngine = () => {
-	const { searchEngines, createSearchEngines, deleteSearchEngine, updateSearchEngine } = useSearchEngines();
-	const searchEnginesMap = useMemo(() => new Map<string, SearchEngine>(searchEngines.map(item => [item.id, item])), [searchEngines])
+	// todo
+	// createSearchEngine deleteSearchEngine updateSearchEngine 之后如何通知所有页面刷新 searchEngines
+	const { searchEngines, createSearchEngine, deleteSearchEngine, updateSearchEngine } = searchEnginesStore.getState();
+	const searchEnginesMap = useMemo(() => new Map<string, SearchEngine>(searchEngines.map(item => [item.id + '', item])), [searchEngines])
 	const currentEngineId = useStorageSuspense(engineStorage);
-	const currentEngine = useMemo(() => searchEnginesMap.get(currentEngineId)!, [currentEngineId])
+	const currentEngine = useMemo(() => {
+		return searchEnginesMap.get(currentEngineId)!
+	}, [currentEngineId])
+
 
 	return {
 		searchEngines,
 		currentEngine,
 		searchEnginesMap,
+		createSearchEngine,
+		deleteSearchEngine,
+		updateSearchEngine
 	}
 }

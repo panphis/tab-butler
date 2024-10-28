@@ -1,25 +1,18 @@
-import { SearchEngine, Themes } from "../types";
+import { CreateSearchEngineParams, Themes } from "../types";
 
 
-export const defaultSearchEngines: SearchEngine[] = [
+export const defaultSearchEngines: CreateSearchEngineParams[] = [
 	{
 		url: 'https://www.google.com/search?q=',
-		id: 'google',
-		title: 'Google',
-		supportIgnore: true
+		title: 'Google'
 	},
 	{
 		url: 'https://bing.com/search?q=',
-		id: 'bing',
-		title: 'Bing',
-		supportIgnore: false,
-		ignoreKeyStr: '',
+		title: 'Bing'
 	},
 	{
-		url: 'https://www.baidu.com/s?ie=utf-8&word=',
-		id: 'baidu',
+		url: 'https://www.baidu.com/s?q1=',
 		title: '百度',
-		supportIgnore: true
 	}
 ]
 
