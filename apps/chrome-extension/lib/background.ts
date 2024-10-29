@@ -52,7 +52,6 @@ const init = () => {
 	});
 
 	const menusHandler = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
-		console.log(param, tabs);
 		const { menuItemId } = param;
 		switch (menuItemId) {
 			case menuIds.save_to_bookmark:

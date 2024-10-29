@@ -1,4 +1,4 @@
-import { createStore } from 'zustand'
+import { createStore, create, useStore } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
 import { MessageTypes, sendMessage } from "../";
@@ -27,7 +27,7 @@ type State = {
 
 type Action = {
 	createSearchEngine: (params: CreateSearchEngineParams) => void;
-	getSearchEngines: () => void;
+	getSearchEngines: () => Promise<void>;
 	deleteSearchEngine: (id: ID) => Promise<void>;
 	getSearchEngineById: (id: ID) => Promise<SearchEngine | undefined>;
 	updateSearchEngine: (params: SearchEngine) => void;
@@ -48,8 +48,7 @@ export const searchEnginesStore = createStore<SearchEnginesStore>()(subscribeWit
 		getSearchEngines: async () => {
 			set({ loadingSearchEngines: true })
 			const list = await queryAllSearchEngine()
-			console.log('list', list)
-			set({ searchEngines: list, loadingSearchEngines: false })
+			set({ searchEngines: [...list], loadingSearchEngines: false })
 		},
 		getSearchEngineById: async (id: ID) => {
 			const result = await getSearchEngineById(id)
@@ -68,17 +67,24 @@ export const searchEnginesStore = createStore<SearchEnginesStore>()(subscribeWit
 	})
 }))
 
-function subscribeSearchEngine() {
-	console.log('subscribeSearchEngine')
-	sendMessage({ method: MessageTypes.updateSearchEngines })
+export const useSearchEnginesStore = () => {
+	const { searchEngines: _searchEngines, ...others } = searchEnginesStore.getState()
+	const searchEngines = useStore(searchEnginesStore, state => state.searchEngines)
+	return {
+		searchEngines, ...others
+	}
+}
+
+async function subscribeSearchEngine() {
+	await sendMessage({ method: MessageTypes.updateSearchEngines })
 }
 
 
-function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
+async function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
 	const { method } = request;
 	switch (method) {
 		case MessageTypes.updateSearchEngines:
-			searchEnginesStore.getState().getSearchEngines()
+			await searchEnginesStore.getState().getSearchEngines()
 			break;
 		default:
 			break;

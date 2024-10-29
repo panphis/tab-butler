@@ -25,8 +25,6 @@ interface EngineSelectProps {
 }
 export const EngineSelect = ({ field }: EngineSelectProps) => {
 	const { searchEngines } = useSearchEngine()
-
-	console.log('EngineSelect', searchEngines)
 	return (
 		<FormItem>
 			<Select

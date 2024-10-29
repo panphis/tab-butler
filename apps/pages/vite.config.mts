@@ -13,6 +13,7 @@ const config = withPageConfig({
   build: {
     outDir: resolve(rootDir, '..', '..', 'dist', 'pages'),
     rollupOptions: {
+      sourcemap: true,
       input: {
         "new-tab": resolve(__dirname, 'new-tab.html'),
         options: resolve(__dirname, 'options.html'),

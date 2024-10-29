@@ -1,5 +1,6 @@
 import type { FC, MouseEvent } from "react";
 import { SearchEngine } from "@repo/shared";
+import { Space } from "@repo/ui";
 import { DeleteSearchEngine, EditSearchEngine } from "./";
 
 
@@ -17,8 +18,8 @@ export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) =>
 	}
 
 
-	return (<div onClick={onClick}>
+	return (<Space onClick={onClick}>
 		<EditSearchEngine engine={engine} />
 		<DeleteSearchEngine engine={engine} />
-	</div>);
+	</Space>);
 }; 

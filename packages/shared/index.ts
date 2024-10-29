@@ -42,6 +42,7 @@ export {
 	// hooks
 	useWallpaperStore,
 	searchEnginesStore,
+	useSearchEnginesStore,
 	useWebSiteStore,
 	useCopy,
 

@@ -119,7 +119,6 @@ export const BookMarkDirForm: FC<Props> = ({ item, onSubmit: submit, onCancel, o
 
 
 	async function onSubmit(values: BookMarkDirFormValues) {
-		console.log('async function onSubmit BookMarkDirForm')
 		submit(values)
 	}
 

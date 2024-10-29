@@ -1,5 +1,5 @@
-import { Fragment, type FC, MouseEvent } from "react";
-
+import { Fragment } from "react";
+import type { FC } from "react";
 import {
 	Space,
 	Accordion,
@@ -18,7 +18,6 @@ type SearchEngineListProps = {
 export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 
 	const { searchEngines } = useSearchEngine()
-
 
 	return (<Fragment>
 		<Accordion type="multiple" className="w-full">
