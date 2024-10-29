@@ -23,7 +23,7 @@ const formSchema = z.object({
 
 export type FormValues = z.infer<typeof formSchema>
 type FromProps = {
-	onSubmit: (data: FormValues) => void,
+	onSubmit: (data: FormValues) => Promise<void>,
 	onCancel?: () => void,
 	defaultValues?: FormValues
 };
@@ -33,14 +33,15 @@ export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultVal
 		resolver: zodResolver(formSchema),
 		defaultValues,
 	})
-
 	function handlerCancel() {
 		form.reset();
 		onCancel?.();
 	}
 
-	function handleSubmit(values: FormValues) {
-		onSubmit(values)
+	async function handleSubmit(values: FormValues) {
+		console.log(form.getValues())
+		console.log(values)
+		await onSubmit(values)
 		handlerCancel();
 	}
 

@@ -30,7 +30,7 @@ type Action = {
 	getSearchEngines: () => Promise<void>;
 	deleteSearchEngine: (id: ID) => Promise<void>;
 	getSearchEngineById: (id: ID) => Promise<SearchEngine | undefined>;
-	updateSearchEngine: (params: SearchEngine) => void;
+	updateSearchEngine: (params: SearchEngine) => Promise<void>;
 }
 
 

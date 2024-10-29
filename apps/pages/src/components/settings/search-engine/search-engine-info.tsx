@@ -14,6 +14,9 @@ export const SearchEngineInfo: FC<SearchEngineInfoProps> = ({ engine }) => {
 			<p>
 				{engine.title}
 			</p>
+			<span>
+				<code>{engine.url}</code>
+			</span>
 		</Space>
 	</Fragment>);
 }; 

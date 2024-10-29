@@ -28,7 +28,9 @@ export const EditSearchEngine: FC<EditSearchEngineProps> = ({ engine }) => {
 			...value,
 			id: engine.id,
 		}
-		updateSearchEngine(params)
+		console.log('update search engine', params)
+		await updateSearchEngine(params)
+		setOpen(false)
 	};
 	const onCancel = () => {
 		setOpen(false)

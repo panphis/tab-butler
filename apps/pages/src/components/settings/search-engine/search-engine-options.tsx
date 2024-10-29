@@ -14,7 +14,6 @@ export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) =>
 
 	function onClick(e: MouseEvent<HTMLDivElement>) {
 		e.stopPropagation()
-		e.preventDefault()
 	}
 
 

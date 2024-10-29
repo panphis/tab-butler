@@ -9,7 +9,7 @@ import {
 } from "@repo/ui"
 import { useSearchEngine } from "@/hooks";
 
-import { SearchEngineInfo, SearchEngineOptions } from "./";
+import { SearchEngineInfo, SearchEngineOptions, SearchEngineArgs } from "./";
 
 type SearchEngineListProps = {
 
@@ -30,7 +30,7 @@ export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 						</Space>
 					</AccordionTrigger>
 					<AccordionContent>
-						Yes. It adheres to the WAI-ARIA design pattern.
+						<SearchEngineArgs engine={engine} />
 					</AccordionContent>
 				</AccordionItem>
 				)
