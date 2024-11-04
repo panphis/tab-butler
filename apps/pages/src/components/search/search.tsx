@@ -32,7 +32,6 @@ const schema = z.object({
 
 export const SearchForm: FC = () => {
 	const engine = useStorageSuspense(engineStorage);
-	console.log(engine)
 	const { searchEnginesMap } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
@@ -60,8 +59,9 @@ export const SearchForm: FC = () => {
 			return;
 		}
 		const searchEngine = searchEnginesMap.get(engine + '')!
-		const url = searchEngine.url + keyWords
-		openTab({ url });
+		const { url, argStr } = searchEngine
+		const path = `${url}${keyWords}&${argStr}`
+		openTab({ url: path });
 	}
 
 	return (

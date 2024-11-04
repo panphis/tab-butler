@@ -14,17 +14,17 @@ export interface CreateSearchEngineParams {
  */
 type Arg = {
 	key: string
-	name: string
-	description: string
-	value: string | string[],
-	connectors?: string,
 	prefix?: string
+	value: string[],
+	connectors?: string,
 	suffix?: string
+	description?: string
 }
 
 type Args = Arg[]
 
 export interface SearchEngine extends CreateSearchEngineParams {
 	id: ID,
-	args?: Args
+	args?: Args,
+	argStr?: string
 }

@@ -1,4 +1,4 @@
-import { BaseStorage, createStorage, StorageType, defaultSearchEngines, queryAllSearchEngine } from '@repo/shared';
+import { BaseStorage, createStorage, StorageType, queryAllSearchEngine } from '@repo/shared';
 
 const initValue = await queryAllSearchEngine()
 
