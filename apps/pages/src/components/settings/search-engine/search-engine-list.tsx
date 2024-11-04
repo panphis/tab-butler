@@ -12,10 +12,9 @@ type SearchEngineListProps = {
 
 export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 
-	const { searchEngines, updateSearchEngine, currentEngineId } = useSearchEngine()
+	const { searchEngines, currentEngineId } = useSearchEngine()
 
 	return (<Space direction="col">
-
 		{
 			searchEngines.map(engine =>
 				<Space key={engine.id} className="justify-between flex-1 items-center cursor-pointer py-2 hover:bg-muted/50">
