@@ -3,11 +3,11 @@ import { AnchorIds } from "../enums";
 import { CreateSearchEngine, SearchEngineList } from ".";
 import { Label, Space } from "@repo/ui";
 export const SearchEngine: FC = ({ }) => {
-	return (<div id={AnchorIds.searchEngine}>
+	return (<Space id={AnchorIds.searchEngine} direction="col">
 		<Space className="justify-between">
 			<Label id="searchEngine">Search Engine</Label>
 			<CreateSearchEngine />
 		</Space>
 		<SearchEngineList />
-	</div>);
+	</Space>);
 };

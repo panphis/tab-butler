@@ -2,15 +2,20 @@ import { Fragment } from "react";
 import type { FC } from "react";
 import {
 	Space,
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
+
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger
 } from "@repo/ui"
 import { useSearchEngine } from "@/hooks";
 
 import { SearchEngineInfo, SearchEngineOptions, SearchEngineArgs } from "./";
-import { SearchEngine } from "@repo/shared";
+import {
+	SearchEngine,
+} from "@repo/shared";
 
 type SearchEngineListProps = {
 
@@ -41,22 +46,28 @@ export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 		await updateSearchEngine(params)
 	}
 
-	return (<Fragment>
-		<Accordion type="multiple" className="w-full">
-			{
-				searchEngines.map(engine => <AccordionItem key={engine.id} value={engine.id}>
-					<AccordionTrigger>
-						<Space className="justify-between flex-1 items-center">
+	return (<Space direction="col">
+
+		{
+			searchEngines.map(engine =>
+				<Drawer key={engine.id} direction="right">
+					<DrawerTrigger asChild>
+						<Space className="justify-between flex-1 items-center cursor-pointer hover:bg-gray-100">
 							<SearchEngineInfo engine={engine} />
 							<SearchEngineOptions engine={engine} />
 						</Space>
-					</AccordionTrigger>
-					<AccordionContent>
-						<SearchEngineArgs engine={engine} onSubmitArgs={(args) => onSubmitArgs(engine, args)} />
-					</AccordionContent>
-				</AccordionItem>
-				)
-			}
-		</Accordion>
-	</Fragment>);
+					</DrawerTrigger>
+					<DrawerContent className="h-screen top-0 right-0 left-auto mt-0 rounded-none border-none" >
+						<div className="h-screen grow p-5 flex flex-col  min-w-[600px] w-max">
+							<DrawerHeader>
+								<DrawerTitle>Set Search Parameters</DrawerTitle>
+								<DrawerDescription>Refer to the field names provided by each search engine to configure specific search parameters. Once set, these parameters will be applied to all searches performed on that engine.</DrawerDescription>
+							</DrawerHeader>
+							<SearchEngineArgs engine={engine} onSubmitArgs={(args) => onSubmitArgs(engine, args)} />
+						</div>
+					</DrawerContent>
+				</Drawer>
+			)
+		}
+	</Space>);
 }; 
