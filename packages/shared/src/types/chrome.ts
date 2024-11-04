@@ -9,7 +9,13 @@ export type BookmarkCreateArg = chrome.bookmarks.BookmarkCreateArg
 export type BookmarkDestinationArg = chrome.bookmarks.BookmarkDestinationArg
 
 
-export type CreateProperties = chrome.contextMenus.CreateProperties
+export type ContextMenusCreateProperties = chrome.contextMenus.CreateProperties
 
 export type Tab = chrome.tabs.Tab
+
+export type TabQueryInfo = chrome.tabs.QueryInfo
+
+export type TabsCreateProperties = chrome.tabs.CreateProperties
+
+export type HistoryUrl = chrome.history.Url
 

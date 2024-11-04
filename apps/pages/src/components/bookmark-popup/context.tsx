@@ -17,9 +17,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useBookMarks } from "@repo/shared";
 import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@repo/shared";
-import { FormFooter } from "../bookmark";
-import { sendMessage, MessageTypes } from "@/utils";
-
+import { FormFooter, sendMessage, MessageTypes } from "@repo/shared";
 
 const bookMarkFormSchema = z.object({
 	title: z.string().min(2, {
@@ -91,6 +89,7 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 	}
 
 	async function onCancel() {
+		form.reset()
 		const payload = { method: MessageTypes.bookMarkClose }
 		await sendMessage(payload)
 	}

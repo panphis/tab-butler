@@ -18,26 +18,28 @@ import {
 	PopoverTrigger,
 } from "@repo/ui";
 
-import { PinOff, Star, Ellipsis } from 'lucide-react'
+import { PinOff, Star, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
 import {
 	useWebSiteStore, WebSite,
 	useCopy,
 	SiteFormValues,
-	SiteForm
+	SiteForm,
+	HistoryUrl
 } from "@repo/shared";
 import { EditSite } from "./";
-import { bg_transparent } from "@/utils";
+import { bg_transparent, openTab } from "@/utils";
 
 
 
 type FixedSiteIProps = {
-	site: WebSite
+	site: WebSite;
+	onRemove: (params: HistoryUrl) => Promise<void>
 };
 
-export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
+export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 	const onSiteClick = () => {
-		chrome.tabs.create({ url: site.url });
+		openTab({ url: site.url });
 	};
 
 	const { toast } = useToast()
@@ -59,6 +61,15 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 			})
 		}
 	})
+
+
+
+	const removeSite = async (e?: MouseEvent<HTMLButtonElement>) => {
+		e?.stopPropagation()
+		await onRemove({ url: site.url })
+		removeWebSite(site.id)
+	}
+
 
 	const unfixedSite = (e?: MouseEvent<HTMLButtonElement>) => {
 		e?.stopPropagation()
@@ -104,11 +115,15 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 										<PinOff size={16} />
 									</Button>
 									<EditSite website={site} />
+
+									<Button size={'icon'} onClick={removeSite}>
+										<Trash2 size={16} />
+									</Button>
 								</Space>
 							</PopoverContent>
 						</Popover>
 					</Space>
-					<p className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
+					<p title={`${site.title}-${site.url}`} className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
 				</Space>
 			</ContextMenuTrigger>
 
@@ -127,6 +142,9 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 				<ContextMenuItem inset onSelect={() => copy()}>
 					Copy website url
 				</ContextMenuItem>
+				<ContextMenuItem inset onSelect={() => removeSite()}>
+					Remove
+				</ContextMenuItem>
 			</ContextMenuContent>
 		</ContextMenu>
 		<Dialog open={open} onOpenChange={setOpen}>
@@ -137,7 +155,7 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site }) => {
 				<DialogHeader>
 					<DialogTitle>Edit website</DialogTitle>
 				</DialogHeader>
-				<SiteForm defaultValues={site} onSubmit={onSubmit} />
+				<SiteForm defaultValues={site} onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>
 		</Dialog>
 	</Fragment>);

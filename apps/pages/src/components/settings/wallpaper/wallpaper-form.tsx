@@ -16,7 +16,11 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { useWallpaperStore } from "@repo/shared";
+import {
+	CreateWallpaperParams,
+	FormFooter,
+	Wallpaper
+} from "@repo/shared";
 
 
 
@@ -28,36 +32,54 @@ const schema = z.object({
 
 type FormType = z.infer<typeof schema>
 
-export const WallpaperForm: FC = () => {
 
-	const { createWallpaper } = useWallpaperStore()
+
+type WallpaperFormProps = {
+	initValues?: {
+		title?: string
+		files?: FileList | undefined
+	},
+	onSubmit: (params: CreateWallpaperParams | Wallpaper) => Promise<void>
+	onCancel?: () => Promise<void>
+}
+export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, onCancel }) => {
+
 
 	const form = useForm<FormType>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			title: '',
-			files: undefined
+			title: initValues?.title || '',
+			files: initValues?.files ?? undefined
 		}
 	})
 
 
-	const onSubmit = (value: FormType) => {
+	const handleSubmit = async (value: FormType) => {
 		const { files, title } = value;
 		if (!files) {
 			return
 		}
 		const file = files[0]
 		const name = title || file.name
-		createWallpaper({ title: name, file })
+		const params = {
+			...initValues,
+			title: name,
+			file
+		}
+		await onSubmit(params)
 		form.reset()
 	}
 
+	function handlerCancel() {
+		form.reset()
+		onCancel?.()
+	}
 
 	return (
 
 
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2 items-start">
+			<form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-2 items-start">
 				<FormField
 					control={form.control}
 					name='title'
@@ -65,7 +87,9 @@ export const WallpaperForm: FC = () => {
 						return (<FormItem>
 							<FormLabel>Title</FormLabel>
 							<FormControl>
-								<Input {...field} />
+								<Input {...field}
+									placeholder="Wallpaper title"
+								/>
 							</FormControl>
 						</FormItem>
 						)
@@ -76,15 +100,16 @@ export const WallpaperForm: FC = () => {
 					name='files'
 					render={({ field }) => {
 						return (<FormItem>
-							<FormLabel>Wallpaper</FormLabel>
+							<FormLabel>File</FormLabel>
 							<FormControl>
-								<Upload {...field} />
+								<Upload {...field}
+									placeholder="Wallpaper file" />
 							</FormControl>
 						</FormItem>
 						)
 					}}
 				/>
-				<Button>Save</Button>
+				<FormFooter onCancel={handlerCancel} />
 			</form>
 		</Form>
 	);

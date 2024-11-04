@@ -17,6 +17,8 @@ import {
 } from "@repo/ui";
 
 import { useWallpaperStore, IconStar } from "@repo/shared";
+import { EditWallpaper } from "./";
+
 
 
 interface ImageContainerProps {
@@ -28,7 +30,7 @@ const ImageContainer = ({ file, title }: ImageContainerProps) => {
 	const previewUrl = useMemo(() => {
 		const url = URL.createObjectURL(file)
 		return url
-	}, [])
+	}, [file.lastModified])
 
 	return <img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={title} title={title} />
 }
@@ -64,7 +66,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 
 
 
-	return <Card className={cn("w-[380px] overflow-hidden cursor-pointer", isSelectCurrent && `border-primary shadow-2xl shadow-primary`)} onClick={onSelect} >
+	return <Card className={cn("overflow-hidden cursor-pointer", isSelectCurrent && `border-primary shadow-lg shadow-primary`)} onClick={onSelect} >
 		<CardHeader className="p-2 relative overflow-hidden">
 			<CardTitle>
 				{wallpaper.title}
@@ -93,7 +95,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 		<Separator />
 		<CardFooter className="p-2">
 			<Space>
-				<Button>Update</Button>
+				<EditWallpaper wallpaper={wallpaper} />
 				<Button variant="outline" onClick={() => removeWallpaper(wallpaper.id)}>Delete</Button>
 			</Space>
 		</CardFooter>

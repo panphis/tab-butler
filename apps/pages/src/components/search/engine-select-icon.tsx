@@ -1,18 +1,15 @@
 
 import { Favicon } from '@/components'
+import { useSearchEngine } from "@/hooks";
 
-import { searchEnginesMap } from '@/utils'
 
-interface SelectedEngineIconProps {
-	value: string
-}
-export const SelectedEngineIcon = ({ value }: SelectedEngineIconProps) => {
-	const currentEngine = searchEnginesMap.get(value)!
+export const SelectedEngineIcon = () => {
+	const { currentEngine } = useSearchEngine()
 	return (
 		<Favicon
 			className='w-4 h-4'
-			src={currentEngine.url}
-			title={currentEngine.title}
+			src={currentEngine?.url}
+			title={currentEngine?.title}
 		/>
 	)
 }

@@ -42,7 +42,7 @@ export const EditSite: FC<EditSiteProps> = ({ website }) => {
 				<DialogHeader>
 					<DialogTitle>Edit website</DialogTitle>
 				</DialogHeader>
-				<SiteForm defaultValues={website} onSubmit={onSubmit} />
+				<SiteForm defaultValues={website} onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>
 		</Dialog>
 	</Fragment>

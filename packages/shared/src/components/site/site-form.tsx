@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-	Button,
 	Form,
 	FormControl,
 	FormDescription,
@@ -14,9 +13,9 @@ import {
 	FormLabel,
 	FormMessage,
 	Input,
-	Textarea,
-	Space
+	Textarea
 } from "@repo/ui"
+import { FormFooter } from "..";
 
 
 const formSchema = z.object({
@@ -34,16 +33,11 @@ type SiteFormProps = {
 
 export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues }) => {
 
-
-
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues,
 	})
-
-
 	return (<Fragment>
-
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 				<FormField
@@ -82,16 +76,8 @@ export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues 
 						</FormItem>
 					)}
 				/>
-				<Space className="gap-2 justify-end">
-					<Button type="submit">Submit</Button>
-					{
-						!!onCancel && (
-							<Button variant="secondary" type="button" onClick={onCancel}>Cancel</Button>
-						)
-					}
-				</Space>
+				<FormFooter onCancel={onCancel} />
 			</form>
 		</Form>
 	</Fragment>);
 };
-export default SiteForm

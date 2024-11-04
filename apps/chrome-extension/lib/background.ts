@@ -1,15 +1,9 @@
-import type { CreateProperties } from '@repo/shared';
+import type { ContextMenusCreateProperties } from '@repo/shared';
 import 'webextension-polyfill';
-
-
-const runtimeKey = {
-	bookMarkOpen: 'book_mark_open',
-	bookMarkClose: 'book_mark_close',
-};
+import { MessageTypes } from "@repo/shared";
 
 const bookMarkClose = (sender: chrome.runtime.MessageSender) => {
 	chrome.scripting.executeScript({
-
 		target: { tabId: sender?.tab?.id! },
 		files: ['./scriptCloseBookmark.js'],
 	});
@@ -19,7 +13,7 @@ const menuIds = {
 	save_to_bookmark: 'save_to_bookmark',
 };
 
-const menus: CreateProperties[] = [
+const menus: ContextMenusCreateProperties[] = [
 	{
 		id: menuIds.save_to_bookmark,
 		title: '保存到书签',
@@ -30,23 +24,16 @@ const menus: CreateProperties[] = [
 
 // 打开书签保存弹框
 const saveToBookmark = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
-	const { frameId } = param;
-	chrome.scripting.executeScript(
-		{
-			target: { tabId: tabs?.id! },
-			files: ['./scriptCreateBookMark.js'],
-		},
-	);
+	chrome.scripting.executeScript({
+		target: { tabId: tabs?.id! },
+		files: ['./scriptCreateBookMark.js'],
+	});
 };
 
 function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
-	console.log('handlerMessage');
-	console.log('request', request);
-	console.log('sender', sender);
-	console.log('response', response);
 	const { method } = request;
 	switch (method) {
-		case runtimeKey.bookMarkClose:
+		case MessageTypes.bookMarkClose:
 			bookMarkClose(sender);
 			response();
 			break;
@@ -65,7 +52,6 @@ const init = () => {
 	});
 
 	const menusHandler = (param: chrome.contextMenus.OnClickData, tabs: chrome.tabs.Tab | undefined) => {
-		console.log(param, tabs);
 		const { menuItemId } = param;
 		switch (menuItemId) {
 			case menuIds.save_to_bookmark:

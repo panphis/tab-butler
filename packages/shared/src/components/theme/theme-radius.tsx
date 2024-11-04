@@ -1,15 +1,19 @@
 import { Button, Label } from "@repo/ui";
-import { useContext } from "react";
+import { useContext, useId } from "react";
 import { ThemeProviderContext, radius } from ".";
 
-import React from "react";
-export function ThemeRadius() {
-	const { radius: currentRadius, setRadius } = useContext(ThemeProviderContext);
 
+type Props = {
+	anchor?: string
+};
+
+export function ThemeRadius({ anchor }: Props) {
+	const { radius: currentRadius, setRadius } = useContext(ThemeProviderContext);
+	const id = useId();
 	return (
-		<div>
-			<Label>Radius</Label>
-			<div className='flex gap-2'>
+		<div className="space-y-2">
+			<Label id={anchor} htmlFor={id}>Radius</Label>
+			<div id={id} className='flex gap-2'>
 				{radius.map((value) => {
 					return (
 						<Button

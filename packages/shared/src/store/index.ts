@@ -1,5 +1,5 @@
 
-export { useSearchEngines } from "./search-engine"
+export { searchEnginesStore, useSearchEnginesStore } from "./search-engines"
 
 export { useWallpaperStore } from './wallpaper'
 
