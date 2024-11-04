@@ -16,9 +16,7 @@ import { openTab } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
-import { useStorageSuspense } from '@repo/shared';
 import { useSearchEngine } from "@/hooks";
-import { engineStorage } from "@/storage";
 
 import { bg_transparent } from "@/utils";
 
@@ -31,12 +29,11 @@ const schema = z.object({
 
 
 export const SearchForm: FC = () => {
-	const engine = useStorageSuspense(engineStorage);
-	const { searchEnginesMap } = useSearchEngine()
+	const { searchEnginesMap, currentEngineId, setCurrentEngineId } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			engine: engine,
+			engine: currentEngineId,
 			keyWords: ''
 		}
 	})
@@ -45,7 +42,7 @@ export const SearchForm: FC = () => {
 	useEffect(() => {
 		const subscription = watch((value) => {
 			const engine = value?.engine!
-			engineStorage.setEngine(engine)
+			setCurrentEngineId(engine)
 		})
 		return () => subscription.unsubscribe()
 	}, [watch])
@@ -59,7 +56,7 @@ export const SearchForm: FC = () => {
 			return;
 		}
 		const searchEngine = searchEnginesMap.get(engine + '')!
-		const { url, argStr } = searchEngine
+		const { url, argStr = '' } = searchEngine
 		const path = `${url}${keyWords}&${argStr}`
 		openTab({ url: path });
 	}

@@ -1,7 +1,7 @@
 import type { FC, MouseEvent } from "react";
 import { SearchEngine } from "@repo/shared";
 import { Space } from "@repo/ui";
-import { DeleteSearchEngine, EditSearchEngine } from "./";
+import { DeleteSearchEngine, EditSearchEngine, SearchEngineArgSetting } from "./";
 
 
 
@@ -9,8 +9,8 @@ import { DeleteSearchEngine, EditSearchEngine } from "./";
 type SearchEngineOptionsProps = {
 	engine: SearchEngine;
 };
-
 export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) => {
+
 
 	function onClick(e: MouseEvent<HTMLDivElement>) {
 		e.stopPropagation()
@@ -18,6 +18,7 @@ export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) =>
 
 
 	return (<Space onClick={onClick}>
+		<SearchEngineArgSetting engine={engine} />
 		<EditSearchEngine engine={engine} />
 		<DeleteSearchEngine engine={engine} />
 	</Space>);
