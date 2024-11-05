@@ -1,41 +1,31 @@
-import React, { Fragment, type FC, useMemo, useEffect } from "react";
+import React, { Fragment, type FC, useMemo } from "react";
 
 import defaultWallpaperSrc from "@/assets/images/wallpaper.png";
 
 import { Picture } from "./picture";
 
-import { useWallpaperStore, wallpaperStorage, useStorageSuspense } from "@repo/shared";
+import { useWallpaperStore } from "@repo/shared";
 
 
 
 
 type WallpaperProps = {
-	src?: string;
 	alt?: string;
 	type?: 'picture' | 'video';
 	children?: React.ReactNode;
 	className?: string;
 };
 
-export const PictureWallpaper: FC<WallpaperProps> = ({ src = defaultWallpaperSrc, children, className = '' }) => {
+export const PictureWallpaper: FC<WallpaperProps> = ({ children, className = '' }) => {
 
-	const wallpaper = useStorageSuspense(wallpaperStorage)
-	const { currentWallpaper, getCurrentWallpaper } = useWallpaperStore()
-
-	/**
-	 * 多个页面的情况下 需要触发刷新
-	 */
-	useEffect(() => {
-		getCurrentWallpaper()
-	}, [wallpaper])
-
+	const { currentWallpaper } = useWallpaperStore()
 	const previewUrl = useMemo(() => {
 		if (currentWallpaper?.file) {
 			const url = URL.createObjectURL(currentWallpaper.file)
 			return url
 		}
 		return defaultWallpaperSrc
-	}, [currentWallpaper])
+	}, [currentWallpaper?.id])
 
 
 	return (<Fragment>

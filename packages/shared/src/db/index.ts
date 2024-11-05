@@ -13,7 +13,7 @@ export {
 
 export {
 	createSearchEngine, updateSearchEngineById,
-	deleteSearchEngine, getSearchEngineById, queryAllSearchEngine
+	deleteSearchEngine, getSearchEngineById, queryAllSearchEngine, getCurrentSearchEngine
 } from './search-engine'
 
 export { createOrUpdateWebSite as createOrUpdateWebSite, queryAllWebSite, updateWebSiteById, deleteWebSite, } from "./website"

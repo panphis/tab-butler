@@ -111,7 +111,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 
 
 	return (<div>
-		<Tooltip open={open} delayDuration={100}>
+		<Tooltip open={open} delayDuration={100} onOpenChange={setOpen}>
 			<TooltipTrigger asChild>
 				<FormItem>
 					<FormControl>

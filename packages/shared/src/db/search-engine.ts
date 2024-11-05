@@ -18,6 +18,15 @@ export const getSearchEngineById = async (id: ID) => {
 	return result
 }
 
+
+
+export const getCurrentSearchEngine = () => {
+	return searchEngineDB.where({
+		selected: 1
+	}).first()
+}
+
+
 export const updateSearchEngineById = async (id: ID, params: CreateSearchEngineParams) => {
 	return searchEngineDB.update(id, { ...params })
 }

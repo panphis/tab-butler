@@ -2,6 +2,7 @@ import { ID } from "./common"
 export interface CreateSearchEngineParams {
 	title: string,
 	url: string,
+	selected?: number
 }
 
 /**

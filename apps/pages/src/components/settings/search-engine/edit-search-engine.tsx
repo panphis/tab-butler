@@ -28,7 +28,6 @@ export const EditSearchEngine: FC<EditSearchEngineProps> = ({ engine }) => {
 			...value,
 			id: engine.id,
 		}
-		console.log('update search engine', params)
 		await updateSearchEngine(params)
 		setOpen(false)
 	};

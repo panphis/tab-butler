@@ -72,7 +72,7 @@ export {
 	// storage
 	createStorage, StorageType, SessionAccessLevel,
 
-	colorStorage, radiusStorage, themeStorage, wallpaperStorage,
+	colorStorage, radiusStorage, themeStorage,
 	defaultSearchEngines
 } from './src'
 
