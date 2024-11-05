@@ -8,12 +8,15 @@ export const useSearchEngine = () => {
 	const searchEnginesMap = useMemo(() => new Map<string, SearchEngine>(searchEngines.map(item => [item.id + '', item])), [searchEngines])
 	const currentEngineId = useStorageSuspense(engineStorage);
 	const currentEngine = useMemo(() => {
-		return searchEnginesMap.get(currentEngineId)!
+		const engine = searchEnginesMap.get(currentEngineId.toString())!
+		return engine
 	}, [currentEngineId, searchEnginesMap])
 
 	return {
 		searchEngines: searchEngines,
 		currentEngine,
+		currentEngineId,
+		setCurrentEngineId: engineStorage.setCurrentEngine,
 		searchEnginesMap,
 		createSearchEngine,
 		deleteSearchEngine,

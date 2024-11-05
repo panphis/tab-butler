@@ -3,7 +3,7 @@ import { BaseStorage, createStorage, StorageType, queryAllSearchEngine } from '@
 const initValue = await queryAllSearchEngine()
 
 type EngineStorage = BaseStorage<string> & {
-	setEngine: (id: string) => Promise<void>;
+	setCurrentEngine: (id: string) => Promise<void>;
 };
 
 
@@ -23,7 +23,7 @@ const storage = createStorage<string>('engine-storage-key', JSON.stringify(initV
 
 export const engineStorage: EngineStorage = {
 	...storage,
-	setEngine: async (id) => {
-		await storage.set(() => id);
+	setCurrentEngine: async (id) => {
+		await storage.set(() => id.toString());
 	},
 };

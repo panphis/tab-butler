@@ -43,7 +43,7 @@ export const EditSearchEngine: FC<EditSearchEngineProps> = ({ engine }) => {
 	return (<Fragment>
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button variant={'secondary'} onClick={onEdit} size={'sm'}>
+				<Button onClick={onEdit} size={'sm'}>
 					<Edit size={16} />
 					Edit
 				</Button>
