@@ -26,8 +26,7 @@
     "noEmitOnError": false
   },
   "include": [
-    "./src",
-    "../../apps/pages/src/components/bookmark/loading.tsx",
+    "./src"
   ],
   "exclude": [
     "node_modules",

@@ -8,6 +8,8 @@ export {
 
 
 	// components
+	ButtonGroup,
+	FormFooter,
 	Layout,
 	IconDark, IconLight, IconAuto, IconStar,
 	themes,
@@ -39,7 +41,8 @@ export {
 
 	// hooks
 	useWallpaperStore,
-	useSearchEngines,
+	searchEnginesStore,
+	useSearchEnginesStore,
 	useWebSiteStore,
 	useCopy,
 
@@ -61,13 +64,16 @@ export {
 	// utils
 	Duration,
 	formatFileSize,
-	copy,
+	copy, equality,
+	sendMessage,
+	MessageTypes,
 
 
 	// storage
 	createStorage, StorageType, SessionAccessLevel,
 
-	colorStorage, radiusStorage, themeStorage, wallpaperStorage
+	colorStorage, radiusStorage, themeStorage, wallpaperStorage,
+	defaultSearchEngines
 } from './src'
 
 export type {
@@ -80,6 +86,9 @@ export type {
 	BookmarkDestinationArg,
 	BookmarkChangesArg,
 	BookmarkCreateArg,
-	CreateProperties,
-	Tab
+	ContextMenusCreateProperties,
+	TabsCreateProperties,
+	Tab,
+	TabQueryInfo,
+	HistoryUrl
 } from './src';

@@ -1,20 +1,23 @@
 import { CheckIcon } from "lucide-react";
 import { themes, ThemeProviderContext } from ".";
 import { Button, Label } from "@repo/ui";
-import { useContext } from "react";
+import { useContext, useId } from "react";
 import React from "react";
 
-export function ThemeColors() {
+type Props = {
+	anchor?: string
+};
+export function ThemeColors({ anchor }: Props) {
 	const {
 		theme: mode,
 		setColor,
 		color,
 	} = useContext(ThemeProviderContext);
-
+	const id = useId();
 	return (
-		<div>
-			<Label>Color</Label>
-			<div className='flex gap-2 py-2 flex-wrap'>
+		<div className="space-y-2">
+			<Label id={anchor} htmlFor={id}>Color</Label>
+			<div id={id} className='flex gap-2 flex-wrap'>
 				{themes.map((theme) => {
 					const isActive = color === theme.name;
 					return (

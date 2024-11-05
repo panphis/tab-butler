@@ -1,7 +1,8 @@
 
-import { withErrorBoundary, withSuspense, Layout, ThemeSetting } from "@repo/shared";
+import { withErrorBoundary, withSuspense, Layout } from "@repo/shared";
+
 import { Space } from "@repo/ui";
-import { WallpaperForm, WallpaperList } from "@/components";
+import { SettingsContent } from "@/components";
 
 // style for ui components
 import "@repo/ui/dist/globals.css";
@@ -15,9 +16,7 @@ function App() {
 	return (
 		<Layout>
 			<Space className="container mx-auto p-4 md:max-w-xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl" direction="col" gap={2}>
-				<ThemeSetting />
-				<WallpaperForm />
-				<WallpaperList />
+				<SettingsContent />
 			</Space>
 		</Layout>
 	);

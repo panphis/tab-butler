@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 
+
+
 import {
 	ID, WebSite, CreateWebSiteParams,
 	createOrUpdateWebSite, queryAllWebSite, deleteWebSite, updateWebSiteById
-
 } from "../";
 
 
@@ -16,10 +17,10 @@ type State = {
 
 
 type Action = {
-	createOrUpdateWebSite: (params: CreateWebSiteParams) => void;
-	getWebSites: () => void;
-	removeWebSite: (id: ID) => void;
-	updateWebSite: (params: WebSite) => void;
+	createOrUpdateWebSite: (params: CreateWebSiteParams) => Promise<void>;
+	getWebSites: () => Promise<void>;
+	removeWebSite: (id: ID) => Promise<void>;
+	updateWebSite: (params: WebSite) => Promise<void>;
 }
 
 const initValue = await queryAllWebSite()
@@ -29,10 +30,7 @@ export const useWebSiteStore = create<State & Action>((set, get) => ({
 	loadingWebSite: false,
 
 	createOrUpdateWebSite: async (params) => {
-
-		const preSet =
-
-			await createOrUpdateWebSite(params)
+		const preSet = await createOrUpdateWebSite(params)
 		const list = await queryAllWebSite()
 		set({ websites: list })
 	},

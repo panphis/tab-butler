@@ -18,11 +18,12 @@ type State = {
 
 
 type Action = {
-	createWallpaper: (params: CreateWallpaperParams) => void;
-	getWallpapers: () => void;
-	removeWallpaper: (id: ID) => void;
-	setCurrentWallpaper: (id: ID) => void;
-	getWallpaper: (id: ID) => void;
+	createWallpaper: (params: CreateWallpaperParams) => Promise<void>;
+	updateWallpaper: (params: Wallpaper) => Promise<void>;
+	getWallpapers: () => Promise<void>;
+	removeWallpaper: (id: ID) => Promise<void>;
+	setCurrentWallpaper: (id: ID) => Promise<void>;
+	getWallpaper: (id: ID) => Promise<Wallpaper | undefined>;
 	getCurrentWallpaper: () => Promise<Wallpaper | undefined>;
 }
 
@@ -36,6 +37,12 @@ export const useWallpaperStore = create<State & Action>((set, get) => ({
 
 	createWallpaper: async (params) => {
 		await createWallpaper(params)
+		const list = await queryAllWallpaper()
+		set({ wallpapers: list })
+	},
+	updateWallpaper: async (params) => {
+		const { id, ...others } = params
+		await updateWallpaperById(id, others)
 		const list = await queryAllWallpaper()
 		set({ wallpapers: list })
 	},
@@ -62,7 +69,7 @@ export const useWallpaperStore = create<State & Action>((set, get) => ({
 
 
 	getWallpaper: async (id) => {
-		return await getWallpaperById(id)
+		return await getWallpaperById(id)!
 	},
 
 	getCurrentWallpaper: async () => {

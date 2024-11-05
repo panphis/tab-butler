@@ -1,14 +1,14 @@
 import { ID } from "."
 
 
-export interface CreateWebSiteParams {
+export interface CreateWallpaplerParams {
 	title: string
 	file: File
-	selected: number,
-	createdAt: Date
+	selected?: number,
+	createdAt?: Date
 }
 
 
-export interface WebSite extends CreateWebSiteParams {
+export interface Wallpaper extends CreateWallpaplerParams {
 	id: ID
 }

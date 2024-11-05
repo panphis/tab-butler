@@ -1,6 +1,8 @@
 export {
 	// layout
 	Layout,
+	FormFooter,
+	ButtonGroup,
 	// icon
 	IconDark, IconLight, IconAuto,
 	IconStar,
@@ -44,9 +46,9 @@ export { withSuspense, withErrorBoundary } from './hoc';
 export { useBookMarkQuery, useBookMarks, useHistory, useStorage, useStorageSuspense, useTopSites, useCopy } from './hooks';
 
 
-export { useWallpaperStore, useSearchEngines, useWebSiteStore } from './store';
+export { useWallpaperStore, searchEnginesStore, useSearchEnginesStore, useWebSiteStore } from './store';
 
-export { formatFileSize, Duration, themesEnum, copy } from "./utils"
+export { formatFileSize, Duration, themesEnum, copy, defaultSearchEngines, equality, sendMessage, MessageTypes } from "./utils"
 
 
 export {
@@ -68,8 +70,11 @@ export type {
 	BookmarkDestinationArg,
 	BookmarkChangesArg,
 	BookmarkCreateArg,
-	CreateProperties,
-	Tab
+	ContextMenusCreateProperties,
+	Tab,
+	TabsCreateProperties,
+	TabQueryInfo,
+	HistoryUrl
 } from './types';
 export type {
 	Theme,

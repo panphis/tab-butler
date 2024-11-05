@@ -1,9 +1,7 @@
-import React, { Fragment, type FC, useState } from "react";
+import { Fragment, type FC, useState } from "react";
 import {
 	Button,
-
 	cn,
-
 	Dialog,
 	DialogContent,
 	DialogHeader,
@@ -47,7 +45,7 @@ export const CreateSite: FC<CreateSiteProps> = ({ }) => {
 				<DialogHeader>
 					<DialogTitle>Create website</DialogTitle>
 				</DialogHeader>
-				<SiteForm onSubmit={onSubmit} />
+				<SiteForm onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>
 		</Dialog>
 	</Fragment>

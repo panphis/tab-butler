@@ -1,18 +1,29 @@
-import { BaseStorage, createStorage, StorageType } from '@repo/shared';
-import { searchEngines } from "@/utils";
+import { BaseStorage, createStorage, StorageType, queryAllSearchEngine } from '@repo/shared';
+
+const initValue = await queryAllSearchEngine()
 
 type EngineStorage = BaseStorage<string> & {
-  setEngine: (id: string) => Promise<void>;
+	setCurrentEngine: (id: string) => Promise<void>;
 };
 
-const storage = createStorage<string>('engine-storage-key', searchEngines[0].id, {
-  storageType: StorageType.Local,
-  liveUpdate: true,
+
+
+const storage = createStorage<string>('engine-storage-key', JSON.stringify(initValue[0].id!), {
+	storageType: StorageType.Local,
+	liveUpdate: true,
+	serialization: {
+		serialize: value => {
+			return value
+		},
+		deserialize: value => {
+			return value
+		}
+	}
 });
 
 export const engineStorage: EngineStorage = {
-  ...storage,
-  setEngine: async (id) => {
-    await storage.set(() => id);
-  },
+	...storage,
+	setCurrentEngine: async (id) => {
+		await storage.set(() => id.toString());
+	},
 };

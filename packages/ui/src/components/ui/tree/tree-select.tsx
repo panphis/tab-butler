@@ -30,13 +30,11 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 	const [searchValue, setSearchValue] = useState('');
 
 	function onSearch(value, ...rest) {
-		console.log('onChange', value, rest);
 		setSearchValue(value)
 	}
 
 
 	function onSelect(value, ...args) {
-		console.log('onSelect:', value, args);
 		onChange(value)
 	}
 	function onClear() {

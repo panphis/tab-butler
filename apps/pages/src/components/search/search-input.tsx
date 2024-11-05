@@ -20,6 +20,7 @@ import { useHistory, useBookMarkQuery } from "@repo/shared";
 
 import { History, Bookmark } from 'lucide-react'
 import type { BookmarkTreeNode, HistoryItem } from '@repo/shared';
+import { openTab } from '@/utils';
 
 
 
@@ -35,7 +36,7 @@ interface HistoryProps {
 }
 const HistoryList = ({ history }: HistoryProps) => {
 	const onClick = (history: HistoryItem) => {
-		chrome.tabs.create({ url: history.url });
+		openTab({ url: history.url });
 	};
 	return history.length > 0 && (<Space direction='col' gap={0}>
 		<Label className='my-2 px-2 text-inherit'>History</Label>
@@ -43,7 +44,13 @@ const HistoryList = ({ history }: HistoryProps) => {
 		<Fragment>
 			{
 				history.map((item) => {
-					return <Button variant="link" className='max-w-[100%] text-inherit truncate w-80 flex gap-2 flex-row justify-start items-center' key={item.id} onClick={() => onClick(item)}>
+					return <Button
+						variant="link"
+						className='max-w-[100%] text-inherit truncate w-80 flex gap-2 flex-row justify-start items-center'
+						title={`${item.title}-${item.url}`}
+						key={item.id}
+						onClick={() => onClick(item)}
+					>
 						<History className="h-4 w-4 flex-shrink-0" />
 						<span>{item.title}</span>
 					</Button>
@@ -61,7 +68,7 @@ interface BookMarkProps {
 }
 const BookMarkList = ({ bookMarks }: BookMarkProps) => {
 	const onClick = (bookMark: HistoryItem) => {
-		chrome.tabs.create({ url: bookMark.url });
+		openTab({ url: bookMark.url });
 	};
 	return bookMarks.length > 0 && <Fragment>
 		<Space direction='col' gap={0}>
@@ -70,7 +77,13 @@ const BookMarkList = ({ bookMarks }: BookMarkProps) => {
 			<Fragment>
 				{
 					bookMarks.map((item) => {
-						return <Button variant="link" className='max-w-[100%] w-80 flex gap-2 flex-row justify-start items-center truncate text-inherit' key={item.id} onClick={() => onClick(item)}>
+						return <Button
+							variant="link"
+							className='max-w-[100%] w-80 flex gap-2 flex-row justify-start items-center truncate text-inherit'
+							key={item.id}
+							title={`${item.title}-${item.url}`}
+							onClick={() => onClick(item)}
+						>
 							<Bookmark className="h-4 w-4 flex-shrink-0" />
 							<span>{item.title}</span>
 						</Button>
@@ -86,8 +99,8 @@ const BookMarkList = ({ bookMarks }: BookMarkProps) => {
 
 export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 
-	const history = useHistory(field.value, 5)
-	const bookMarks = useBookMarkQuery(field.value, 5)
+	const history = useHistory(field.value, 10)
+	const bookMarks = useBookMarkQuery(field.value, 10)
 	const [open, setOpen] = useState<boolean>(false)
 
 
@@ -122,5 +135,4 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 			</TooltipPortal>
 		</Tooltip>
 	</div >);
-};
-export default SearchInput
+}; 

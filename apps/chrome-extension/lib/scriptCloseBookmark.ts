@@ -1,6 +1,14 @@
 (function () {
-  const ele = document.getElementById('extensions_bookmark_create');
-  if (ele) {
-    ele.remove();
-  }
+	const tagName = 'extensions-bookmark-popup';
+	const extensionId = chrome.runtime.id;
+	const prefix = 'extensions_bookmark_create'
+	const id = `${prefix}_${extensionId}`
+
+
+	const nodes = document.querySelectorAll(`${tagName}#${id}`);
+	if (nodes) {
+		nodes.forEach(node => {
+			node.remove();
+		});
+	}
 })();

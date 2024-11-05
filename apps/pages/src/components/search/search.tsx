@@ -12,12 +12,11 @@ import { Search } from 'lucide-react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { searchEnginesMap } from '@/utils'
+import { openTab } from '@/utils'
 
 import { EngineSelect, SearchInput } from "./";
 
-import { useStorageSuspense } from '@repo/shared';
-import { engineStorage } from "@/storage";
+import { useSearchEngine } from "@/hooks";
 
 import { bg_transparent } from "@/utils";
 
@@ -30,11 +29,11 @@ const schema = z.object({
 
 
 export const SearchForm: FC = () => {
-	const engine = useStorageSuspense(engineStorage);
+	const { searchEnginesMap, currentEngineId, setCurrentEngineId } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			engine: engine,
+			engine: currentEngineId,
 			keyWords: ''
 		}
 	})
@@ -43,7 +42,7 @@ export const SearchForm: FC = () => {
 	useEffect(() => {
 		const subscription = watch((value) => {
 			const engine = value?.engine!
-			engineStorage.setEngine(engine)
+			setCurrentEngineId(engine)
 		})
 		return () => subscription.unsubscribe()
 	}, [watch])
@@ -56,9 +55,10 @@ export const SearchForm: FC = () => {
 		if (!engine || !keyWords) {
 			return;
 		}
-		const searchEngine = searchEnginesMap.get(engine)!
-		const url = searchEngine.url + keyWords
-		chrome.tabs.create({ url });
+		const searchEngine = searchEnginesMap.get(engine + '')!
+		const { url, argStr = '' } = searchEngine
+		const path = `${url}${keyWords}&${argStr}`
+		openTab({ url: path });
 	}
 
 	return (
