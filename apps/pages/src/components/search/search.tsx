@@ -22,18 +22,18 @@ import { bg_transparent } from "@/utils";
 
 
 const schema = z.object({
-	engine: z.string(),
+	engine: z.number(),
 	keyWords: z.string()
 })
 
 
 
 export const SearchForm: FC = () => {
-	const { searchEnginesMap, currentEngineId, setCurrentEngineId } = useSearchEngine()
+	const { searchEnginesMap, currentEngine, setCurrentEngine } = useSearchEngine()
 	const { watch, ...form } = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			engine: currentEngineId,
+			engine: currentEngine.id,
 			keyWords: ''
 		}
 	})
@@ -42,7 +42,7 @@ export const SearchForm: FC = () => {
 	useEffect(() => {
 		const subscription = watch((value) => {
 			const engine = value?.engine!
-			setCurrentEngineId(engine)
+			setCurrentEngine(engine)
 		})
 		return () => subscription.unsubscribe()
 	}, [watch])
@@ -55,7 +55,7 @@ export const SearchForm: FC = () => {
 		if (!engine || !keyWords) {
 			return;
 		}
-		const searchEngine = searchEnginesMap.get(engine + '')!
+		const searchEngine = searchEnginesMap.get(engine)!
 		const { url, argStr = '' } = searchEngine
 		const path = `${url}${keyWords}&${argStr}`
 		openTab({ url: path });

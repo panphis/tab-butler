@@ -33,6 +33,7 @@ export {
 	setCurrentWallpaper,
 
 	createSearchEngine,
+	getCurrentSearchEngine,
 	updateSearchEngineById,
 	deleteSearchEngine,
 	getSearchEngineById,
@@ -53,7 +54,7 @@ export { formatFileSize, Duration, themesEnum, copy, defaultSearchEngines, equal
 
 export {
 	createStorage, StorageType, SessionAccessLevel,
-	colorStorage, radiusStorage, themeStorage, wallpaperStorage
+	colorStorage, radiusStorage, themeStorage
 } from "./storage"
 
 

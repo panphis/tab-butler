@@ -1,25 +1,18 @@
 import { useMemo } from "react";
 
-import { useStorageSuspense, SearchEngine, useSearchEnginesStore } from "@repo/shared";
-import { engineStorage } from "@/storage";
+import { SearchEngine, useSearchEnginesStore } from "@repo/shared";
 
 export const useSearchEngine = () => {
-	const { searchEngines, createSearchEngine, deleteSearchEngine, updateSearchEngine } = useSearchEnginesStore();
-	const searchEnginesMap = useMemo(() => new Map<string, SearchEngine>(searchEngines.map(item => [item.id + '', item])), [searchEngines])
-	const currentEngineId = useStorageSuspense(engineStorage);
-	const currentEngine = useMemo(() => {
-		const engine = searchEnginesMap.get(currentEngineId.toString())!
-		return engine
-	}, [currentEngineId, searchEnginesMap])
+	const { searchEngines, currentEngine, createSearchEngine, deleteSearchEngine, updateSearchEngine, setCurrentEngine } = useSearchEnginesStore();
+	const searchEnginesMap = useMemo(() => new Map<number, SearchEngine>(searchEngines.map(item => [item.id, item])), [searchEngines])
 
 	return {
-		searchEngines: searchEngines,
+		searchEngines,
 		currentEngine,
-		currentEngineId,
-		setCurrentEngineId: engineStorage.setCurrentEngine,
 		searchEnginesMap,
 		createSearchEngine,
 		deleteSearchEngine,
-		updateSearchEngine
+		updateSearchEngine,
+		setCurrentEngine
 	}
 }

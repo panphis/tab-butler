@@ -26,7 +26,8 @@ export const Wallpaper: FC<WallpaperProps> = ({ anchor }) => {
 	const { createWallpaper } = useWallpaperStore()
 
 	const onSubmit = async (values: CreateWallpaperParams) => {
-		createWallpaper(values)
+		await createWallpaper(values)
+		setOpen(false)
 	}
 
 	return (<Fragment>

@@ -1,10 +1,14 @@
-import { create } from 'zustand'
+import { create, createStore, useStore } from 'zustand'
+import { subscribeWithSelector } from 'zustand/middleware'
 
 import {
 	createWallpaper, queryAllWallpaper,
 	getWallpaperById, updateWallpaperById, getCurrentWallpaper,
 	deleteWallpaper, Wallpaper, CreateWallpaperParams, ID,
-	setCurrentWallpaper
+	setCurrentWallpaper,
+	MessageTypes,
+	sendMessage,
+	equality
 } from "../";
 
 
@@ -25,58 +29,105 @@ type Action = {
 	setCurrentWallpaper: (id: ID) => Promise<void>;
 	getWallpaper: (id: ID) => Promise<Wallpaper | undefined>;
 	getCurrentWallpaper: () => Promise<Wallpaper | undefined>;
+	refresh: () => Promise<void>;
 }
 
 const initValue = await queryAllWallpaper()
 const currentWallpaper = await getCurrentWallpaper()
 
-export const useWallpaperStore = create<State & Action>((set, get) => ({
-	wallpapers: initValue,
-	loadingWallpapers: false,
-	currentWallpaper,
 
-	createWallpaper: async (params) => {
-		await createWallpaper(params)
-		const list = await queryAllWallpaper()
-		set({ wallpapers: list })
-	},
-	updateWallpaper: async (params) => {
-		const { id, ...others } = params
-		await updateWallpaperById(id, others)
-		const list = await queryAllWallpaper()
-		set({ wallpapers: list })
-	},
+type WallpaperStore = State & Action
+export const wallpaperStore = createStore<WallpaperStore>()(subscribeWithSelector((set, get) => {
+	return {
+		wallpapers: initValue,
+		loadingWallpapers: false,
+		currentWallpaper,
 
-	getWallpapers: async () => {
-		set({ loadingWallpapers: true })
-		const list = await queryAllWallpaper()
-		set({ wallpapers: list, loadingWallpapers: false })
-	},
+		createWallpaper: async (params) => {
+			await createWallpaper(params)
+			const list = await queryAllWallpaper()
+			set({ wallpapers: list })
+		},
+		updateWallpaper: async (params) => {
+			const { id, ...others } = params
+			await updateWallpaperById(id, others)
+			const list = await queryAllWallpaper()
+			set({ wallpapers: list })
+		},
 
-	removeWallpaper: async (id) => {
-		await deleteWallpaper(id)
-		const list = await queryAllWallpaper()
-		set({ wallpapers: list })
-	},
+		getWallpapers: async () => {
+			set({ loadingWallpapers: true })
+			const list = await queryAllWallpaper()
+			set({ wallpapers: list, loadingWallpapers: false })
+		},
 
-	setCurrentWallpaper: async (id) => {
-		await setCurrentWallpaper(id)
-		const { getWallpapers, getCurrentWallpaper } = get()
-		const currentWallpaper = await getCurrentWallpaper()
-		set({ currentWallpaper })
-		getWallpapers()
-	},
+		removeWallpaper: async (id) => {
+			await deleteWallpaper(id)
+			const list = await queryAllWallpaper()
+			set({ wallpapers: list })
+		},
+
+		setCurrentWallpaper: async (id) => {
+			await setCurrentWallpaper(id)
+			const { getWallpapers, getCurrentWallpaper } = get()
+			const currentWallpaper = await getCurrentWallpaper()
+			set({ currentWallpaper })
+			getWallpapers()
+		},
 
 
-	getWallpaper: async (id) => {
-		return await getWallpaperById(id)!
-	},
+		getWallpaper: async (id) => {
+			return await getWallpaperById(id)!
+		},
 
-	getCurrentWallpaper: async () => {
-		const wallpaper = await getCurrentWallpaper()
-		set({ currentWallpaper: wallpaper })
-		return wallpaper
+		getCurrentWallpaper: async () => {
+			const wallpaper = await getCurrentWallpaper()
+			set({ currentWallpaper: wallpaper })
+			return wallpaper
+		},
+
+
+		refresh: async () => {
+			const list = queryAllWallpaper()
+			const wallpaper = getCurrentWallpaper()
+			const [currentWallpaper, wallpapers] = await Promise.all([wallpaper, list])
+			set({ currentWallpaper, wallpapers })
+
+		}
 	}
-
 }))
 
+
+async function handlerMessage(request: any, sender: chrome.runtime.MessageSender, response: Function) {
+	const { method } = request;
+	switch (method) {
+		case MessageTypes.updateCurrentWallpaper:
+			await wallpaperStore.getState().refresh()
+			break;
+		default:
+			break;
+	}
+}
+export const useWallpaperStore = () => {
+	const {
+		wallpapers: _wallpapers,
+		loadingWallpapers: _loadingWallpapers,
+		currentWallpaper: _currentWallpaper,
+		...others } = wallpaperStore.getState()
+	const wallpapers = useStore(wallpaperStore, state => state.wallpapers)
+	const loadingWallpapers = useStore(wallpaperStore, state => state.loadingWallpapers)
+	const currentWallpaper = useStore(wallpaperStore, state => state.currentWallpaper)
+	return {
+		wallpapers, loadingWallpapers, currentWallpaper, ...others
+	}
+}
+
+async function subscribeSearchEngine() {
+	await sendMessage({ method: MessageTypes.updateCurrentWallpaper })
+}
+
+chrome.runtime.onMessage.addListener(handlerMessage);
+const unsubscribeList = wallpaperStore.subscribe((state) => state.currentWallpaper, subscribeSearchEngine, {
+	equalityFn: equality
+})
+window.addEventListener('beforeunload', unsubscribeList)

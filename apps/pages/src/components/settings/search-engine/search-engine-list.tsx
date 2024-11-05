@@ -12,14 +12,16 @@ type SearchEngineListProps = {
 
 export const SearchEngineList: FC<SearchEngineListProps> = ({ }) => {
 
-	const { searchEngines, currentEngineId } = useSearchEngine()
+	const { searchEngines } = useSearchEngine()
 
 	return (<Space direction="col">
 		{
 			searchEngines.map(engine =>
-				<Space key={engine.id} className="justify-between flex-1 items-center cursor-pointer py-2 hover:bg-muted/50">
-					<SearchEngineInfo engine={engine} selected={engine.id + '' === currentEngineId + ''} />
-					<SearchEngineOptions engine={engine} />
+				<Space key={engine.id}
+					className="justify-between flex-1 items-start cursor-pointer py-2 flex-col hover:bg-muted/50 lg:flex-row "
+				>
+					<SearchEngineInfo engine={engine} selected={!!engine?.selected || false} />
+					<SearchEngineOptions className="self-end" engine={engine} />
 				</Space>
 			)
 		}
