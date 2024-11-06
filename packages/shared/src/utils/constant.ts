@@ -11,8 +11,8 @@ export const defaultSearchEngines: CreateSearchEngineParams[] = [
 		title: 'Bing'
 	},
 	{
-		url: 'https://www.baidu.com/s?q1=',
-		title: '百度',
+		url: 'https://cn.bing.com/search?q=',
+		title: '必应',
 	}
 ]
 
