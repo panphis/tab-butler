@@ -12,7 +12,6 @@ export const WallpaperSetting: FC = () => {
 
 	return (
 		<Fragment>
-			<WallpaperForm />
 			<Separator />
 			<WallpaperList />
 		</Fragment>

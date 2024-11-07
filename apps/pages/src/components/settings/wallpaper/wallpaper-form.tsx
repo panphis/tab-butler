@@ -4,7 +4,6 @@ import { type FC } from "react";
 import { Upload } from "@/components";
 
 import {
-	Button,
 	Form,
 	FormField,
 	FormItem,
@@ -21,6 +20,8 @@ import {
 	FormFooter,
 	Wallpaper
 } from "@repo/shared";
+
+import { createWallpaper } from "@/utils";
 
 
 
@@ -61,13 +62,23 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, on
 		}
 		const file = files[0]
 		const name = title || file.name
-		const params = {
-			...initValues,
-			title: name,
-			file
-		}
-		await onSubmit(params)
-		form.reset()
+		createWallpaper({
+			file,
+			callback: async (wallpaper) => {
+				const { type, width, height } = wallpaper
+				const poster = wallpaper.poster as Wallpaper['poster']
+				const params = {
+					...initValues,
+					type,
+					poster,
+					title: name,
+					file,
+					width, height
+				}
+				await onSubmit(params)
+				form.reset()
+			}
+		})
 	}
 
 	function handlerCancel() {
