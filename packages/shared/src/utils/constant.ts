@@ -11,8 +11,8 @@ export const defaultSearchEngines: CreateSearchEngineParams[] = [
 		title: 'Bing'
 	},
 	{
-		url: 'https://www.baidu.com/s?q1=',
-		title: '百度',
+		url: 'https://cn.bing.com/search?q=',
+		title: '必应',
 	}
 ]
 
@@ -30,6 +30,8 @@ export enum MessageTypes {
 	bookMarkClose = 'book_mark_close',
 	bookMarkOpen = 'book_mark_open',
 	updateSearchEngines = 'update_search_engines',
+	updateCurrentEngin = 'update_current_engine',
+	updateCurrentWallpaper = 'update_current_wallpaper'
 }
 
 

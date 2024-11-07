@@ -10,7 +10,7 @@ import { TooltipProvider } from "@repo/ui";
 import { Layout } from "@repo/shared";
 
 
-import { PictureWallpaper, Clock, SearchForm, Sites, Setting } from "@/components";
+import { WallpaperContainer, Clock, SearchForm, Sites, Setting } from "@/components";
 
 
 // style for ui components
@@ -25,12 +25,12 @@ const NewTab = () => {
 	return (
 		<Layout>
 			<TooltipProvider>
-				<Setting />
-				<PictureWallpaper className="flex flex-col justify-start items-center pt-20 pb-16 gap-8">
+				<WallpaperContainer className="flex flex-col justify-start items-center pt-20 pb-16 gap-8">
 					<Clock />
 					<SearchForm />
 					<Sites />
-				</PictureWallpaper>
+					<Setting />
+				</WallpaperContainer>
 			</TooltipProvider>
 		</Layout>
 	);

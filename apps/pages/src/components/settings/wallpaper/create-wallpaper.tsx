@@ -19,14 +19,15 @@ type WallpaperProps = {
 	anchor?: string
 };
 
-export const Wallpaper: FC<WallpaperProps> = ({ anchor }) => {
+export const CreateWallpaper: FC<WallpaperProps> = ({ anchor }) => {
 
 	const [open, setOpen] = useState<boolean>(false)
 
 	const { createWallpaper } = useWallpaperStore()
 
 	const onSubmit = async (values: CreateWallpaperParams) => {
-		createWallpaper(values)
+		await createWallpaper(values)
+		setOpen(false)
 	}
 
 	return (<Fragment>

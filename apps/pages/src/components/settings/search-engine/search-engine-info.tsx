@@ -11,12 +11,11 @@ type SearchEngineInfoProps = {
 };
 
 export const SearchEngineInfo: FC<SearchEngineInfoProps> = ({ engine, selected }) => {
-	const { setCurrentEngineId } = useSearchEngine()
+	const { setCurrentEngine } = useSearchEngine()
 
 
 	function onSelectEngine() {
-		console.log('select engine', engine.id)
-		setCurrentEngineId(engine.id)
+		setCurrentEngine(engine.id)
 	}
 
 	return (<Fragment>

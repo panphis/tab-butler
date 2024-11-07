@@ -19,7 +19,7 @@ import {
 import { useWallpaperStore, IconStar } from "@repo/shared";
 import { EditWallpaper } from "./";
 
-
+import { PreviewWallpaper } from "@/components/upload/preview";
 
 interface ImageContainerProps {
 	file: File,
@@ -89,7 +89,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 		<Separator />
 		<CardContent className="p-0">
 			<AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
-				<ImageContainer file={wallpaper.file} title={wallpaper.title} />
+				<PreviewWallpaper file={wallpaper.file} title={wallpaper.title} />
 			</AspectRatio>
 		</CardContent>
 		<Separator />

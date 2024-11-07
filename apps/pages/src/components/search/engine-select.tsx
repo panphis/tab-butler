@@ -19,8 +19,8 @@ import { SelectedEngineIcon } from "./";
 
 interface EngineSelectProps {
 	field: {
-		value: string
-		onChange: (value: string) => void
+		value: number
+		onChange: (value: number) => void
 	}
 }
 export const EngineSelect = ({ field }: EngineSelectProps) => {
@@ -29,8 +29,9 @@ export const EngineSelect = ({ field }: EngineSelectProps) => {
 		<FormItem>
 			<Select
 				{...field}
-				onValueChange={field.onChange}
-				defaultValue={field.value}
+				onValueChange={v => field.onChange(Number(v))}
+				value={field.value + ''}
+				defaultValue={field.value + ''}
 			>
 				<FormControl>
 					<SelectTrigger

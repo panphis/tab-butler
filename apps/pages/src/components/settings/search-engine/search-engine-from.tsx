@@ -39,8 +39,6 @@ export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultVal
 	}
 
 	async function handleSubmit(values: FormValues) {
-		console.log(form.getValues())
-		console.log(values)
 		await onSubmit(values)
 		handlerCancel();
 	}

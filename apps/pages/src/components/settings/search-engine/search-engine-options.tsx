@@ -8,8 +8,9 @@ import { DeleteSearchEngine, EditSearchEngine, SearchEngineArgSetting } from "./
 
 type SearchEngineOptionsProps = {
 	engine: SearchEngine;
+	className?: string
 };
-export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) => {
+export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine, className }) => {
 
 
 	function onClick(e: MouseEvent<HTMLDivElement>) {
@@ -17,7 +18,7 @@ export const SearchEngineOptions: FC<SearchEngineOptionsProps> = ({ engine }) =>
 	}
 
 
-	return (<Space onClick={onClick}>
+	return (<Space onClick={onClick} className={className}>
 		<SearchEngineArgSetting engine={engine} />
 		<EditSearchEngine engine={engine} />
 		<DeleteSearchEngine engine={engine} />

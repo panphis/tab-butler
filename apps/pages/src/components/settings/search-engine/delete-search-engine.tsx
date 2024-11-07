@@ -27,7 +27,7 @@ export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine }) => {
 	}
 
 	return (
-		<Button loading={loading} variant={'destructive'} onClick={onDelete} size={'sm'}>
+		<Button loading={loading} disabled={!!engine.selected} variant={'destructive'} onClick={onDelete} size={'sm'}>
 			<Trash2 size={16} />
 			Delete
 		</Button>);
