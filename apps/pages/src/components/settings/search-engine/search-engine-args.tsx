@@ -253,7 +253,9 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 										</Space>
 									</TableCell>
 								</Fragment>) : (
-								<TableCell colSpan={7}><Empty onAppend={onAppend} /></TableCell>)}
+								<TableCell colSpan={7}>
+									<Empty onAppend={onAppend} />
+								</TableCell>)}
 						</TableRow>
 					</TableFooter>
 				</Table>
