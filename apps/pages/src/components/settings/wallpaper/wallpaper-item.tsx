@@ -89,7 +89,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 		<Separator />
 		<CardContent className="p-0">
 			<AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
-				<PreviewWallpaper file={wallpaper.file} title={wallpaper.title} />
+				<PreviewWallpaper wallpaper={wallpaper} title={wallpaper.title} />
 			</AspectRatio>
 		</CardContent>
 		<Separator />
