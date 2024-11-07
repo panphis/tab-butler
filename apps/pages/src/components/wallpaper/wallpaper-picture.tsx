@@ -13,7 +13,6 @@ type WallpaperPictureProps = {
 
 export const WallpaperPicture: FC<WallpaperPictureProps> = ({ wallpaper, className, children }) => {
 	const { poster: posterFile, file } = wallpaper
-	console.log(wallpaper)
 	const [imgUrl, setImgUrl] = useState(URL.createObjectURL(posterFile as Blob))
 	const [wallpaperName, setWallpaperName] = useState<string>('')
 	useEffect(() => {
