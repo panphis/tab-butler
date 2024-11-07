@@ -70,8 +70,11 @@ export const searchEnginesStore = createStore<SearchEnginesStore>()(subscribeWit
 			await updateSearchEngineById(currentEngine.id, { ...currentEngine, selected: 0 })
 			const nextSelected = await getSearchEngineById(id) as SearchEngine
 			await updateSearchEngineById(id, { ...nextSelected, selected: 1 })
-			const next = await getCurrentSearchEngine()
-			set({ currentEngine: next })
+			const [next, list] = await Promise.all([
+				getCurrentSearchEngine(),
+				queryAllSearchEngine()
+			])
+			set({ currentEngine: next, searchEngines: list })
 		},
 		refresh: async () => {
 			const list = queryAllSearchEngine()
