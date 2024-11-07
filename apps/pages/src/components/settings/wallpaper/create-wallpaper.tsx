@@ -19,7 +19,7 @@ type WallpaperProps = {
 	anchor?: string
 };
 
-export const Wallpaper: FC<WallpaperProps> = ({ anchor }) => {
+export const CreateWallpaper: FC<WallpaperProps> = ({ anchor }) => {
 
 	const [open, setOpen] = useState<boolean>(false)
 

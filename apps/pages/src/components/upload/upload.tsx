@@ -1,16 +1,7 @@
-import React, { Fragment, type FC, useState, useMemo } from 'react';
-import { Input, AspectRatio, InputProps, cn } from '@repo/ui';
+import React, { Fragment, type FC, useMemo } from 'react';
+import { Input, InputProps, cn } from '@repo/ui';
 
-interface PreviewImageProps {
-	file: File
-}
-const PreviewImage = ({ file }: PreviewImageProps) => {
-	const previewUrl = useMemo(() => URL.createObjectURL(file), [file]);
-	return <AspectRatio ratio={16 / 9} className="bg-muted flex justify-center items-center" >
-		<img className='max-w-full max-h-full' src={previewUrl} alt={file.name} title={file.name} />
-	</AspectRatio>
-}
-
+import { PreviewWallpaper } from "./preview";
 
 interface UploadProps extends Omit<InputProps, 'onChange' | 'value'> {
 	onChange?: (file: FileList | null) => void,
@@ -31,9 +22,9 @@ export const Upload: FC<UploadProps> = ({ onChange, className, ...others }) => {
 		onChange?.(files)
 	};
 	return (<Fragment>
-		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full')} onChange={handleFileChange} accept='image/*' />
+		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full')} onChange={handleFileChange} accept='image/*,video/*' />
 		<section className='h-max'>
-			{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewImage key={index} file={file} />)}
+			{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewWallpaper key={index} file={file} />)}
 		</section>
 	</Fragment>);
 }; 
