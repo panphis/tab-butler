@@ -30,16 +30,21 @@ export const SearchEngineArgSetting: FC<SearchEngineArgSettingProps> = ({ engine
 	const [open, setOpen] = useState<boolean>(false)
 
 	const onSubmitArgs = async (searchEngine: SearchEngine, args: SearchEngine['args'] = []) => {
-		const argMap = args.reduce((acc, arg) => {
+		const argMap: Record<string, string> = {}
+		let argSymbol = ''
+		args.forEach((arg) => {
 			const { key, value, connectors, prefix, suffix } = arg
 			if (key) {
-				acc[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
+				argMap[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
+			} else {
+				argSymbol += `${prefix}${value.join(connectors) || ''}${suffix}`
 			}
-			return acc
-		}, {} as Record<string, string>)
+		})
 		const addition = new URLSearchParams(argMap)
 		const resultStr = `${addition.toString()}`
-		const argStr = decodeURIComponent(resultStr)
+		let argStr = decodeURIComponent(resultStr)
+		argStr = argStr.replace(/&$/, '')
+		argStr += argSymbol
 		const params = {
 			...searchEngine,
 			args: args,

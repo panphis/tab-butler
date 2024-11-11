@@ -14,7 +14,7 @@ export interface CreateSearchEngineParams {
  * q4: csdn+CSDN
  */
 type Arg = {
-	key: string
+	key?: string
 	prefix?: string
 	value: string[],
 	connectors?: string,

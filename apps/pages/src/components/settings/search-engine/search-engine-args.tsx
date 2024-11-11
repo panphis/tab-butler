@@ -50,7 +50,7 @@ type SearchEngineArgsProps = {
 
 const schema = z.object({
 	args: z.array(z.object({
-		key: z.string().min(1, { message: 'Name is required' }),
+		key: z.string().optional(),
 		value: z.array(z.string()),
 		description: z.string().optional(),
 		connectors: z.string().optional(),
@@ -82,21 +82,25 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 	const urlWithParams = useMemo(() => {
 		let result = encodeURIComponent(`${engine.url}%s`)
 		const args = watchAllFields.args
-		const argMap = args.reduce((acc, arg) => {
+		const argMap: Record<string, string> = {}
+		let argSymbol = ''
+		args.forEach((arg) => {
 			const { key, value, connectors, prefix, suffix } = arg
 			if (key) {
-				acc[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
+				argMap[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
+			} else {
+				argSymbol += `${prefix}${value.join(connectors) || ''}${suffix}`
 			}
-			return acc
-		}, {} as Record<string, string>)
+		})
 		const addition = new URLSearchParams(argMap)
 		result += `&${addition.toString()}`
+		// 去除末尾的 &
+		result = result.replace(/&$/, '')
+		result += argSymbol
 		return decodeURIComponent(result)
 	}, [watchAllFields, engine])
 
-	const { fields, append, remove,
-		// prepend, swap, move, insert
-	} = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control: control, // control props comes from useForm (optional: if you are using FormProvider)
 		name: "args", // unique name for your Field Array
 	});
@@ -137,125 +141,127 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						<Fragment>
-							{fields.map((field, number) => (
-								<TableRow key={field.id} className="bg-[hsl(var(--background))] hover:bg-muted">
-									<TableCell className="p-1 align-top sticky left-0 bg-inherit">
-										<FormField
-											control={control}
-											name={`args.${number}.key`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Input className="p-2" placeholder="key" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<FormField
-											control={control}
-											name={`args.${number}.prefix`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Input className="p-2" placeholder="prefix" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<FormField
-											control={control}
-											name={`args.${number}.connectors`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Input className="p-2" placeholder="connectors" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<FormField
-											control={control}
-											name={`args.${number}.value`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Tags className="p-2" placeholder="value" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<FormField
-											control={control}
-											name={`args.${number}.suffix`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Input className="p-2" placeholder="suffix" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<FormField
-											control={control}
-											name={`args.${number}.description`}
-											render={({ field }) => (
-												<FormItem>
-													<FormControl>
-														<Input className="p-2" placeholder="description" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</TableCell>
-									<TableCell className="p-1 align-top">
-										<Button size="sm" variant="outline" onClick={() => remove(number)}>
-											<X size={16} />
-										</Button>
-									</TableCell>
-								</TableRow>
-							))}
-						</Fragment>
+						{fields.length > 0 ? (
+							<Fragment>
+								{fields.map((field, number) => (
+									<TableRow key={field.id} className="bg-[hsl(var(--background))] hover:bg-muted">
+										<TableCell className="p-1 align-top sticky left-0 bg-inherit">
+											<FormField
+												control={control}
+												name={`args.${number}.key`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Input className="p-2" placeholder="key" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<FormField
+												control={control}
+												name={`args.${number}.prefix`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Input className="p-2" placeholder="prefix" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<FormField
+												control={control}
+												name={`args.${number}.connectors`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Input className="p-2" placeholder="connectors" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<FormField
+												control={control}
+												name={`args.${number}.value`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Tags className="p-2" placeholder="value" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<FormField
+												control={control}
+												name={`args.${number}.suffix`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Input className="p-2" placeholder="suffix" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<FormField
+												control={control}
+												name={`args.${number}.description`}
+												render={({ field }) => (
+													<FormItem>
+														<FormControl>
+															<Input className="p-2" placeholder="description" {...field} />
+														</FormControl>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
+										</TableCell>
+										<TableCell className="p-1 align-top">
+											<Button size="sm" variant="outline" onClick={() => remove(number)}>
+												<X size={16} />
+											</Button>
+										</TableCell>
+									</TableRow>
+								))}
+							</Fragment>) : (
+							<TableCell colSpan={7}>
+								<Empty onAppend={onAppend} />
+							</TableCell>)
+						}
 					</TableBody>
 
 					<TableFooter>
 						<TableRow>
-							{fields.length > 0 ? (
-								<Fragment>
-									<TableCell colSpan={4} className="align-top">
-										<span className="break-all">{urlWithParams}</span>
-									</TableCell>
-									<TableCell colSpan={3} className="align-top">
-										<Space direction="row" className="min-w-full justify-end">
-											<Button type="button" onClick={onAppend}>
-												<Plus size={16} />
-												Add Argument
-											</Button>
-											<Button type="submit">
-												Submit
-											</Button>
-										</Space>
-									</TableCell>
-								</Fragment>) : (
-								<TableCell colSpan={7}>
-									<Empty onAppend={onAppend} />
-								</TableCell>)}
+
+							<Fragment>
+								<TableCell colSpan={4} className="align-top">
+									<span className="break-all">{urlWithParams}</span>
+								</TableCell>
+								<TableCell colSpan={3} className="align-top">
+									<Space direction="row" className="min-w-full justify-end">
+										<Button type="button" onClick={onAppend}>
+											<Plus size={16} />
+											Add Argument
+										</Button>
+										<Button type="submit">
+											Submit
+										</Button>
+									</Space>
+								</TableCell>
+							</Fragment>
 						</TableRow>
 					</TableFooter>
 				</Table>
