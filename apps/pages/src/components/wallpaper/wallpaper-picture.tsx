@@ -11,8 +11,8 @@ type WallpaperPictureProps = {
 	className?: string;
 };
 
-export const WallpaperPicture: FC<WallpaperPictureProps> = ({ wallpaper, className, children }) => {
-	const { poster: posterFile, file } = wallpaper
+export const WallpaperPicture: FC<WallpaperPictureProps> = ({ wallpaper: { poster: posterFile, file, id, width, height }, className, children }) => {
+
 	const [imgUrl, setImgUrl] = useState(URL.createObjectURL(posterFile as Blob))
 	const [wallpaperName, setWallpaperName] = useState<string>('')
 	useEffect(() => {
@@ -23,12 +23,12 @@ export const WallpaperPicture: FC<WallpaperPictureProps> = ({ wallpaper, classNa
 			setImgUrl(src)
 			setWallpaperName(file.name)
 		}
-	}, [file])
+	}, [id])
 
 
 	return (<Fragment>
 		<div className="relative">
-			<img src={imgUrl} alt={wallpaperName} className={cn('min-h-dvh min-w-dvw fixed top-0 left-0 right-0 bottom-0 object-cover')} style={{ backgroundSize: `${wallpaper.width}px ${wallpaper.height}px` }} />
+			<img src={imgUrl} alt={wallpaperName} className={cn('min-h-dvh w-full fixed top-0 left-0 right-0 bottom-0 object-cover')} style={{ backgroundSize: `${width}px ${height}px` }} />
 
 			<div className={cn("min-h-dvh min-w-dvw", className)}>
 				{children}

@@ -28,7 +28,6 @@ type Action = {
 	removeWallpaper: (id: ID) => Promise<void>;
 	setCurrentWallpaper: (id: ID) => Promise<void>;
 	getWallpaper: (id: ID) => Promise<Wallpaper | undefined>;
-	getCurrentWallpaper: () => Promise<Wallpaper | undefined>;
 	refresh: () => Promise<void>;
 }
 
@@ -68,8 +67,8 @@ export const wallpaperStore = createStore<WallpaperStore>()(subscribeWithSelecto
 		},
 
 		setCurrentWallpaper: async (id) => {
+			const { getWallpapers } = get()
 			await setCurrentWallpaper(id)
-			const { getWallpapers, getCurrentWallpaper } = get()
 			const currentWallpaper = await getCurrentWallpaper()
 			set({ currentWallpaper })
 			getWallpapers()
@@ -78,12 +77,6 @@ export const wallpaperStore = createStore<WallpaperStore>()(subscribeWithSelecto
 
 		getWallpaper: async (id) => {
 			return await getWallpaperById(id)!
-		},
-
-		getCurrentWallpaper: async () => {
-			const wallpaper = await getCurrentWallpaper()
-			set({ currentWallpaper: wallpaper })
-			return wallpaper
 		},
 
 
@@ -122,12 +115,12 @@ export const useWallpaperStore = () => {
 	}
 }
 
-async function subscribeSearchEngine() {
+async function subscribeUpdateWallpaper() {
 	await sendMessage({ method: MessageTypes.updateCurrentWallpaper })
 }
 
 chrome.runtime.onMessage.addListener(handlerMessage);
-const unsubscribeList = wallpaperStore.subscribe((state) => state.currentWallpaper, subscribeSearchEngine, {
+const unsubscribe = wallpaperStore.subscribe((state) => state.currentWallpaper?.id, subscribeUpdateWallpaper, {
 	equalityFn: equality
 })
-window.addEventListener('beforeunload', unsubscribeList)
+window.addEventListener('beforeunload', unsubscribe)
