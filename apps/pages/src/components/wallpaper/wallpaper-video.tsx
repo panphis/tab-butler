@@ -25,6 +25,7 @@ export const WallpaperVideo: FC<WallpaperVideoProps> = ({ wallpaper: { poster, f
 			className={cn('min-h-dvh w-full fixed top-0 left-0 right-0 bottom-0 object-cover')}
 			muted
 			autoPlay
+			loop
 			poster={imgUrl}
 			src={src}
 		/>
