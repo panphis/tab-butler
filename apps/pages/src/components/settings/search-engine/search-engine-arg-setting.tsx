@@ -56,14 +56,14 @@ export const SearchEngineArgSetting: FC<SearchEngineArgSettingProps> = ({ engine
 
 	return (<Fragment>
 
-		<Drawer key={engine.id} direction="right" open={open} onOpenChange={setOpen}>
+		<Drawer dismissible={false} key={engine.id} direction="right" open={open} onOpenChange={setOpen}>
 			<DrawerTrigger asChild>
 				<Button variant="outline" size={"sm"} onClick={() => setOpen(true)}>
 					<SettingsIcon size={16} />
 					Settings
 				</Button>
 			</DrawerTrigger>
-			<DrawerContent className="h-screen top-0 right-0 left-auto mt-0 rounded-none border-none" >
+			<DrawerContent className="h-screen top-0 right-0 left-auto mt-0 rounded-none border-none !select-text" >
 				<div className="h-screen grow p-5 flex flex-col  min-w-[600px] w-max">
 					<DrawerHeader>
 						<DrawerTitle>Set Search Parameters</DrawerTitle>
