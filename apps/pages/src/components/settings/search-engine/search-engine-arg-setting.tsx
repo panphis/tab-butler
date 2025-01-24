@@ -1,8 +1,3 @@
-import { Fragment, useState } from "react";
-import type { FC } from "react"
-import { useSearchEngine } from "@/hooks";
-import { SettingsIcon } from "lucide-react";
-
 import {
 	Button,
 	Drawer,
@@ -12,13 +7,16 @@ import {
 	DrawerTitle,
 	DrawerTrigger
 } from "@repo/ui";
+import { Fragment, useState } from "react";
 
+import type { FC } from "react"
 import type {
 	SearchEngine,
 } from "@repo/shared";
-
-
 import { SearchEngineArgs } from "./";
+import { SearchEngineArgsSubmitValues } from "./search-engine-args";
+import { SettingsIcon } from "lucide-react";
+import { useSearchEngine } from "@/hooks";
 
 type SearchEngineArgSettingProps = {
 	engine: SearchEngine
@@ -29,26 +27,10 @@ export const SearchEngineArgSetting: FC<SearchEngineArgSettingProps> = ({ engine
 	const { updateSearchEngine } = useSearchEngine()
 	const [open, setOpen] = useState<boolean>(false)
 
-	const onSubmitArgs = async (searchEngine: SearchEngine, args: SearchEngine['args'] = []) => {
-		const argMap: Record<string, string> = {}
-		let argSymbol = ''
-		args.forEach((arg) => {
-			const { key, value, connectors, prefix, suffix } = arg
-			if (key) {
-				argMap[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
-			} else {
-				argSymbol += `${prefix}${value.join(connectors) || ''}${suffix}`
-			}
-		})
-		const addition = new URLSearchParams(argMap)
-		const resultStr = `${addition.toString()}`
-		let argStr = decodeURIComponent(resultStr)
-		argStr = argStr.replace(/&$/, '')
-		argStr += argSymbol
+	const onSubmitArgs = async (searchEngine: SearchEngine, args: SearchEngineArgsSubmitValues) => {
 		const params = {
 			...searchEngine,
-			args: args,
-			argStr: argStr
+			...args
 		}
 		await updateSearchEngine(params)
 		setOpen(false)

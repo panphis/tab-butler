@@ -56,24 +56,11 @@ export const SearchForm: FC = () => {
 			return;
 		}
 		const searchEngine = searchEnginesMap.get(engine)!
-		const { url, args = [] } = searchEngine
-
+		const { url, args = '' } = searchEngine
 		let result = `${url}${keyWords}`
-		let argSymbol = ''
-		const argMap: Record<string, string> = {}
-		args.forEach((arg) => {
-			const { key, value, connectors, prefix, suffix } = arg
-			if (key) {
-				argMap[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
-			} else {
-				argSymbol += `${prefix}${value.join(connectors) || ''}${suffix}`
-			}
-		})
-		const addition = new URLSearchParams(argMap)
-		result += `&${addition.toString()}`
+		result += `${args.toString()}`
 		// 去除末尾的 &
 		result = result.replace(/&$/, '')
-		result += argSymbol
 		openTab({ url: result });
 	}
 

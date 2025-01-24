@@ -1,81 +1,81 @@
-# Turborepo starter
+# 谷歌浏览器插件
 
-This is an official starter Turborepo.
+一个谷歌浏览器 tab 插件，带有书签搜索，管理功能。
 
-## Using this example
+可以根据用户爱好，自定义搜索参数
 
-Run the following command:
+## 使用介绍
 
-```sh
-npx create-turbo@latest
+### 通过谷歌浏览器插件市场下载
+
+### 手动打包导入
+
+1. 从代码仓库获取代码
+
+```bash
+git clone xxx
 ```
 
-## What's inside?
+2. 根据运行环境要求 安装 nodejs（18）并安装包管理工具 pnpm
+3. 安装依赖并打包
 
-This Turborepo includes the following packages/apps:
+```bash
+pnpm i
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+pnpm run build
 ```
 
-### Develop
+## 内容介绍
 
-To develop all apps and packages, run the following command:
+### Apps
 
-```
-cd my-turborepo
-pnpm dev
-```
+- `pages`: 由 vite react typescript 构建的多页面应用
+- `chrome-extension`: 由 vite typescript 浏览器插件后台运行脚本
 
-### Remote Caching
+### Packages
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- `@repo/eslint-config`: eslint 配置
+- `@repo/hmr`: vite 关于浏览器插件热更新的 ws 推送插件
+- `@repo/tailwind-config`: 在项目中用到的 tailwind 配置
+- `@repo/typescript-config`: tsconfig 拓展模板
+- `@repo/ui`: shadcn ui 构建的组件库
+- `@repo/vite`: vite 配置
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+## 备注
 
-```
-cd my-turborepo
-npx turbo login
-```
+### 关于搜索引擎高级搜索参数配置文档地址
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+1. google: https://www.google.com/advanced_search?q=
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+2. Bing/必应:https://support.microsoft.com/zh-cn/topic/%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E9%80%89%E9%A1%B9-b92e25f1-0085-4271-bdf9-14aaea720930
 
-```
-npx turbo link
-```
+3. 百度: 百度首页 > 设置 > 高级搜索
 
-## Useful Links
+以排除搜索结果包含 csdn CSDN 为例
 
-Learn more about the power of Turborepo:
+google ` -csdn -CSDN` (注意前端有个空格)
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Bing/必应 ` -site:csdn.net` (注意前端有个空格)
+
+百度 ` -(csdn | CSDN)` (注意前端有个空格)
+
+### 关于添加搜索引擎
+
+以 github 为例
+
+1. 打开GitHub 搜索 chrome 得到页面 url 地址
+   `https://github.com/search?q=chrome&type=repositories`
+
+2. 删除无用参数并去掉上一步搜索关键次得到我们所需要的搜索地址
+   `https://github.com/search?q=`
+
+常用搜索引擎
+
+| 名称   | 搜索地址                         |
+| :----- | :------------------------------- |
+| google | https://www.google.com/search?q= |
+| Bing   | https://bing.com/search?q=       |
+| 必应   | https://cn.bing.com/search?q=    |
+| 百度   | https://www.baidu.com/s?wd=less  |
+| GitHub | https://github.com/search?q=     |
+| npm    | https://www.npmjs.com/search?q=  |

@@ -1,270 +1,128 @@
-import { Fragment, useMemo } from "react";
-import type { FC } from "react";
-import { SearchEngine } from "@repo/shared";
-import { useFieldArray, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import { FolderPlus, Plus, X } from "lucide-react";
 import {
-	Button, Space, Input,
+	Button,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-
-	Table,
-	TableBody,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableRow,
+	Input,
+	Space,
+	Textarea
 } from "@repo/ui";
-import { Tags } from "./";
 
-
-
-type EmptyProps = {
-	onAppend: () => void
-}
-const Empty = ({ onAppend }: EmptyProps) => {
-	return (<Space direction="col" className="items-center justify-center w-full h-full">
-		<FolderPlus className="w-12 h-12 text-muted-foreground" />
-		<p className="font-bold">No arguments</p>
-		<p className="text-sm text-muted-foreground">No search engine arguments</p>
-		<Button size={'sm'} onClick={onAppend}>
-			<Plus size={16} />
-			Create arguments
-		</Button>
-	</Space>);
-};
-
-
-
-type SearchEngineArgsProps = {
-	engine: SearchEngine;
-	onSubmitArgs: (params: SearchEngine['args']) => void
-};
-
+import type { FC } from "react";
+import { SearchEngine } from "@repo/shared";
+import { useForm } from "react-hook-form";
+import { useMemo } from "react";
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const schema = z.object({
-	args: z.array(z.object({
-		key: z.string().optional(),
-		value: z.array(z.string()),
-		description: z.string().optional(),
-		connectors: z.string().optional(),
-		required: z.string().optional(),
-		prefix: z.string().optional(),
-		suffix: z.string().optional(),
-	}))
+	args: z.string().optional(),
+	keyword: z.string().optional(),
+	docUrl: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof schema>
 
+
+export type SearchEngineArgsSubmitValues = Omit<FormValues, 'keyword'>
+
+type SearchEngineArgsProps = {
+	engine: SearchEngine;
+	onSubmitArgs: (params: SearchEngineArgsSubmitValues) => void
+};
 
 
 
 export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitArgs }) => {
 
 
-	const args = useMemo<SearchEngine['args']>(() => engine?.args || [], []);
+	const args = useMemo<SearchEngine['args']>(() => engine?.args || "", []);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			args
+			args,
+			keyword: 'hello world'
 		}
 	});
 
 	const { control, handleSubmit, watch } = form
 	const watchAllFields = watch()
 	const urlWithParams = useMemo(() => {
-		let result = encodeURIComponent(`${engine.url}%s`)
-		const args = watchAllFields.args
-		const argMap: Record<string, string> = {}
-		let argSymbol = ''
-		args.forEach((arg) => {
-			const { key, value, connectors, prefix, suffix } = arg
-			if (key) {
-				argMap[key] = `${prefix}${value.join(connectors) || ''}${suffix}`
-			} else {
-				argSymbol += `${prefix}${value.join(connectors) || ''}${suffix}`
-			}
-		})
-		const addition = new URLSearchParams(argMap)
-		result += `&${addition.toString()}`
-		// 去除末尾的 &
+		const keyword = watchAllFields.keyword ?? 'hello world'
+		let result = encodeURIComponent(`${engine.url}${keyword}`)
+		const args = watchAllFields.args ?? ''
+		result += `${args.toString()}`
 		result = result.replace(/&$/, '')
-		result += argSymbol
 		return decodeURIComponent(result)
 	}, [watchAllFields, engine])
 
-	const { fields, append, remove } = useFieldArray({
-		control: control, // control props comes from useForm (optional: if you are using FormProvider)
-		name: "args", // unique name for your Field Array
-	});
-
-	const onAppend = () => {
-		append({ key: "", value: [], description: '', connectors: '', prefix: '', suffix: '' });
-	};
 
 	const onSubmit = (data: FormValues) => {
-		const { args } = data
-		onSubmitArgs?.(args)
+		const { args, docUrl } = data
+		onSubmitArgs?.({ args, docUrl })
 	};
 
+	const onTest = () => {
+		window.open(urlWithParams, '_blank')
+	};
 
 
 	return (
 		<Form {...form}>
-			<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-				<Table className="bg-[hsl(var(--background))] w-full max-w-full overflow-auto">
-					<colgroup>
-						<col className="key sticky left-0 bg-[hsl(var(--background))]" style={{ width: "60px" }} />
-						<col className="prefix" style={{ width: "64px" }} />
-						<col className="connectors" style={{ width: "64px" }} />
-						<col className="values" style={{ width: "min-content" }} />
-						<col className="suffix" style={{ width: "64px" }} />
-						<col className="description" style={{ width: "120px" }} />
-						<col className="buttons" style={{ width: "60px" }} />
-					</colgroup>
-					<TableHeader>
-						<TableRow>
-							<TableHead className="p-1 sticky left-0 bg-[hsl(var(--background))]">Key</TableHead>
-							<TableHead className="p-1">Prefix</TableHead>
-							<TableHead className="p-1">Connectors</TableHead>
-							<TableHead className="p-1">Values</TableHead>
-							<TableHead className="p-1">Suffix</TableHead>
-							<TableHead className="p-1">Description</TableHead>
-							<TableHead className="p-1">Buttons</TableHead>
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						{fields.length > 0 ? (
-							<Fragment>
-								{fields.map((field, number) => (
-									<TableRow key={field.id} className="bg-[hsl(var(--background))] hover:bg-muted">
-										<TableCell className="p-1 align-top sticky left-0 bg-inherit">
-											<FormField
-												control={control}
-												name={`args.${number}.key`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Input className="p-2" placeholder="key" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<FormField
-												control={control}
-												name={`args.${number}.prefix`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Input className="p-2" placeholder="prefix" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<FormField
-												control={control}
-												name={`args.${number}.connectors`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Input className="p-2" placeholder="connectors" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<FormField
-												control={control}
-												name={`args.${number}.value`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Tags className="p-2" placeholder="value" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<FormField
-												control={control}
-												name={`args.${number}.suffix`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Input className="p-2" placeholder="suffix" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<FormField
-												control={control}
-												name={`args.${number}.description`}
-												render={({ field }) => (
-													<FormItem>
-														<FormControl>
-															<Input className="p-2" placeholder="description" {...field} />
-														</FormControl>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										</TableCell>
-										<TableCell className="p-1 align-top">
-											<Button size="sm" variant="outline" onClick={() => remove(number)}>
-												<X size={16} />
-											</Button>
-										</TableCell>
-									</TableRow>
-								))}
-							</Fragment>) : (
-							<TableCell colSpan={7}>
-								<Empty onAppend={onAppend} />
-							</TableCell>)
-						}
-					</TableBody>
+			<form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
 
-					<TableFooter>
-						<TableRow>
-
-							<Fragment>
-								<TableCell colSpan={4} className="align-top">
-									<span className="break-all">{urlWithParams}</span>
-								</TableCell>
-								<TableCell colSpan={3} className="align-top">
-									<Space direction="row" className="min-w-full justify-end">
-										<Button type="button" onClick={onAppend}>
-											<Plus size={16} />
-											Add Argument
-										</Button>
-										<Button type="submit">
-											Submit
-										</Button>
-									</Space>
-								</TableCell>
-							</Fragment>
-						</TableRow>
-					</TableFooter>
-				</Table>
+				<FormField
+					control={control}
+					name={`args`}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Textarea className="p-2" placeholder="please input search config" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={control}
+					name={`docUrl`}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Textarea className="p-2" placeholder="please input comment" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<div>
+					<code className="break-all relative rounded bg-muted px-[0.3rem] font-mono text-sm font-semibold">
+						{urlWithParams}
+					</code>
+				</div>
+				<Space direction="row" className="min-w-full justify-end">
+					<FormField
+						control={control}
+						name={`keyword`}
+						render={({ field }) => (
+							<FormItem className="flex-1">
+								<FormControl>
+									<Input className="p-2" placeholder="some kwy word for test" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<Button variant="secondary" type="button" onClick={onTest}>
+						Test
+					</Button>
+					<Button type="submit">
+						Submit
+					</Button>
+				</Space>
 			</form >
 		</Form>
 	);
