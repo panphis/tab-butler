@@ -56,7 +56,7 @@ export const SearchEngineArgSetting: FC<SearchEngineArgSettingProps> = ({ engine
 							Once set, these parameters will be applied to all searches performed on that engine.
 						</DrawerDescription>
 					</DrawerHeader>
-					<SearchEngineArgs engine={engine} onSubmitArgs={(args) => onSubmitArgs(engine, args)} />
+					<SearchEngineArgs engine={engine} onSubmitArgs={(args) => onSubmitArgs(engine, args)} onCancel={() => setOpen(false)} />
 				</div>
 			</DrawerContent>
 		</Drawer>

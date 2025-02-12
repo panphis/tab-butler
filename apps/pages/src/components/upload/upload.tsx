@@ -1,4 +1,4 @@
-import React, { Fragment, type FC, useMemo } from 'react';
+import React, { Fragment, type FC, useMemo, useId } from 'react';
 import { Input, InputProps, cn } from '@repo/ui';
 
 import { PreviewWallpaper } from "./preview";
@@ -16,7 +16,6 @@ export const Upload: FC<UploadProps> = ({ onChange, className, ...others }) => {
 	}, [others.value]);
 
 
-
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files;
 		onChange?.(files)
@@ -24,7 +23,14 @@ export const Upload: FC<UploadProps> = ({ onChange, className, ...others }) => {
 	return (<Fragment>
 		<Input {...others} value={undefined} type="file" className={cn(className, 'w-max max-w-full')} onChange={handleFileChange} accept='image/*,video/*' />
 		<section className='h-max'>
-			{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map((file, index) => <PreviewWallpaper key={index} file={file} />)}
+			{(!!selectedFiles.length && selectedFiles.length > 0) && selectedFiles.map(
+				(file, index) => <PreviewWallpaper
+					key={index}
+					wallpaper={{
+						file,
+						id: file.name,
+						title: ""
+					}} />)}
 		</section>
 	</Fragment>);
 }; 

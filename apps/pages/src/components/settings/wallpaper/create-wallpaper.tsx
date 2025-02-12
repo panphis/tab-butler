@@ -35,7 +35,7 @@ export const CreateWallpaper: FC = () => {
 				<DialogHeader>
 					<DialogTitle>Upload wallpaper</DialogTitle>
 				</DialogHeader>
-				<WallpaperForm onSubmit={onSubmit} />
+				<WallpaperForm onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>
 		</Dialog>
 	</Fragment>);

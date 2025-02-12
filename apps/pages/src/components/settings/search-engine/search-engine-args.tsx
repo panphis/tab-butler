@@ -31,11 +31,12 @@ export type SearchEngineArgsSubmitValues = Omit<FormValues, 'keyword'>
 type SearchEngineArgsProps = {
 	engine: SearchEngine;
 	onSubmitArgs: (params: SearchEngineArgsSubmitValues) => void
+	onCancel: () => void
 };
 
 
 
-export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitArgs }) => {
+export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitArgs, onCancel }) => {
 
 
 	const args = useMemo<SearchEngine['args']>(() => engine?.args || "", []);
@@ -116,8 +117,11 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 							</FormItem>
 						)}
 					/>
-					<Button variant="secondary" type="button" onClick={onTest}>
+					<Button variant="outline" type="button" onClick={onTest}>
 						Test
+					</Button>
+					<Button variant="secondary" type="button" onClick={onCancel}>
+						Cancel
 					</Button>
 					<Button type="submit">
 						Submit

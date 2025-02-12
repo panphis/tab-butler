@@ -41,7 +41,7 @@ type WallpaperFormProps = {
 		files?: FileList | undefined
 	},
 	onSubmit: (params: CreateWallpaperParams | Wallpaper) => Promise<void>
-	onCancel?: () => Promise<void>
+	onCancel?: () => Promise<void> | void
 }
 export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, onCancel }) => {
 

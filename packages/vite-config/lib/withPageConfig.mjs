@@ -13,6 +13,10 @@ export const watchOption = isDev ? {
   }
 } : undefined;
 
+const esbuildConfig = isProduction ? {
+  drop: ['console', 'debugger'],
+} : {}
+
 /**
  * @typedef {import('vite').UserConfig} UserConfig
  * @param {UserConfig} config
@@ -21,7 +25,10 @@ export const watchOption = isDev ? {
 
 const defaultConfig = {
   base: '',
-  plugins: [react(), isDev && watchRebuildPlugin({ refresh: true })],
+  plugins: [
+    react(),
+    isDev && watchRebuildPlugin({ refresh: true })
+  ],
   build: {
     sourcemap: isDev,
     minify: isProduction,
@@ -33,6 +40,7 @@ const defaultConfig = {
     },
     target: ['esnext']
   },
+  esbuild: esbuildConfig,
   define: {
     'process.env.NODE_ENV': isDev ? `"development"` : `"production"`,
   },
