@@ -190,7 +190,7 @@
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 	min-height: 100px;
 	position: absolute;
-	background: inherit;
+	background-color: hsl(var(--background));
 }
 
 .container :global(.rc-tree-select-dropdown-hidden) {
@@ -471,10 +471,7 @@
 	background: none;
 }
 
-.container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>ul) {}
-
 .container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>.rc-tree-select-tree-switcher-noop) {
-
 	flex-shrink: 1;
 	flex-grow: 0;
 }
