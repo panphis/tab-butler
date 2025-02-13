@@ -13,9 +13,10 @@ import { useSearchEngine } from "@/hooks";
 
 type DeleteSearchEngineProps = {
 	engine: SearchEngine
+	disabled: boolean
 };
 
-export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine }) => {
+export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine, disabled }) => {
 	const [loading, setLoading] = useState<boolean>(false)
 	const { deleteSearchEngine } = useSearchEngine()
 
@@ -27,7 +28,7 @@ export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine }) => {
 	}
 
 	return (
-		<Button loading={loading} disabled={!!engine.selected} variant={'destructive'} onClick={onDelete} size={'sm'}>
+		<Button loading={loading} disabled={!!engine.selected || disabled} variant={'destructive'} onClick={onDelete} size={'sm'}>
 			<Trash2 size={16} />
 			Delete
 		</Button>);

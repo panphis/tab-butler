@@ -23,11 +23,13 @@ export const Favicon = ({
 }: FaviconProps) => {
 
 	const icon = useMemo(() => {
-		const faviconUrl = new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
+		//  部分图标加载不出来
+		// https://issuetracker.google.com/issues/334120886
 		const location = new URL(src ?? '');
-		faviconUrl.searchParams.append('pageUrl', location.origin);
-		faviconUrl.searchParams.append('size', '32');
-		return faviconUrl.href;
+		const url = new URL(chrome.runtime.getURL('/_favicon/'));
+		url.searchParams.set('pageUrl', location.origin); // this encodes the URL as well
+		url.searchParams.set('size', '32');
+		return url.toString();
 	}, [src]);
 
 	const iconTitle = useMemo(() => {

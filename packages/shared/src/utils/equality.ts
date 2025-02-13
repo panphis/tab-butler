@@ -1,4 +1,5 @@
-export function equality(pre: any, next: any): boolean {    // 判断是否是同一个对象
+export function equality(pre: any, next: any): boolean {
+	// 判断是否是同一个对象
 	if (pre === next) {
 		return true;
 	}
@@ -34,7 +35,6 @@ export function equality(pre: any, next: any): boolean {    // 判断是否是�
 				return false;
 			}
 		}
-
 		return true;
 	}
 

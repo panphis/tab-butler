@@ -23,7 +23,6 @@ type WallpaperProps = {
 export const WallpaperContainer: FC<WallpaperProps> = ({ children, className = '' }) => {
 
 	const { currentWallpaper } = useWallpaperStore()
-	console.log(currentWallpaper)
 	switch (currentWallpaper?.type) {
 		case 'picture':
 			return <WallpaperPicture className={className} wallpaper={currentWallpaper}>{children}</WallpaperPicture>

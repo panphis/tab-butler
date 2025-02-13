@@ -38,26 +38,27 @@ const HistoryList = ({ history }: HistoryProps) => {
 	const onClick = (history: HistoryItem) => {
 		openTab({ url: history.url });
 	};
-	return history.length > 0 && (<Space direction='col' gap={0}>
-		<Label className='my-2 px-2 text-inherit'>History</Label>
-		<Separator />
-		<Fragment>
-			{
-				history.map((item) => {
-					return <Button
-						variant="link"
-						className='max-w-[100%] text-inherit truncate w-80 flex gap-2 flex-row justify-start items-center'
-						title={`${item.title}-${item.url}`}
-						key={item.id}
-						onClick={() => onClick(item)}
-					>
-						<History className="h-4 w-4 flex-shrink-0" />
-						<span>{item.title}</span>
-					</Button>
-				})
-			}
-		</Fragment>
-	</Space>
+	return history.length > 0 && (
+		<Space direction='col' gap={0}>
+			<Label className='my-2 px-2 text-inherit'>History</Label>
+			<Separator />
+			<Fragment>
+				{
+					history.map((item) => {
+						return <Button
+							variant="link"
+							className='max-w-[100%] text-inherit truncate w-80 flex gap-2 flex-row justify-start items-center'
+							title={`${item.title}-${item.url}`}
+							key={item.id}
+							onClick={() => onClick(item)}
+						>
+							<History className="h-4 w-4 flex-shrink-0" />
+							<span>{item.title}</span>
+						</Button>
+					})
+				}
+			</Fragment>
+		</Space>
 	)
 }
 
@@ -70,28 +71,30 @@ const BookMarkList = ({ bookMarks }: BookMarkProps) => {
 	const onClick = (bookMark: HistoryItem) => {
 		openTab({ url: bookMark.url });
 	};
-	return bookMarks.length > 0 && <Fragment>
-		<Space direction='col' gap={0}>
-			<Label className='my-2 px-2 text-inherit'>BookMark</Label>
-			<Separator />
-			<Fragment>
-				{
-					bookMarks.map((item) => {
-						return <Button
-							variant="link"
-							className='max-w-[100%] w-80 flex gap-2 flex-row justify-start items-center truncate text-inherit'
-							key={item.id}
-							title={`${item.title}-${item.url}`}
-							onClick={() => onClick(item)}
-						>
-							<Bookmark className="h-4 w-4 flex-shrink-0" />
-							<span>{item.title}</span>
-						</Button>
-					})
-				}
-			</Fragment>
-		</Space>
-	</Fragment>
+	return bookMarks.length > 0 && (
+		<Fragment>
+			<Space direction='col' gap={0}>
+				<Label className='my-2 px-2 text-inherit'>BookMark</Label>
+				<Separator />
+				<Fragment>
+					{
+						bookMarks.map((item) => {
+							return <Button
+								variant="link"
+								className='max-w-[100%] w-80 flex gap-2 flex-row justify-start items-center truncate text-inherit'
+								key={item.id}
+								title={`${item.title}-${item.url}`}
+								onClick={() => onClick(item)}
+							>
+								<Bookmark className="h-4 w-4 flex-shrink-0" />
+								<span>{item.title}</span>
+							</Button>
+						})
+					}
+				</Fragment>
+			</Space>
+		</Fragment>
+	)
 }
 
 
@@ -110,29 +113,34 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 
 
 
-	return (<div>
-		<Tooltip open={open} delayDuration={100} onOpenChange={setOpen}>
-			<TooltipTrigger asChild>
-				<FormItem>
-					<FormControl>
-						<Input
-							autoComplete='off'
-							className={`bg-transparent placeholder:text-inherit border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
-							placeholder='Search'
-							{...field}
-						/>
-					</FormControl>
-				</FormItem>
-			</TooltipTrigger>
-			<TooltipPortal>
-				<TooltipContent onEscapeKeyDown={() => setOpen(false)} side='bottom' className='px-0 border-none bg-transparent text-light/80 shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.2)_0_0_10px] hover:backdrop-blur-[20px] hover:bg-dark/50 hover:text-light dark:hover:bg-light/50 dark:hover:text-light transition-all
-				'>
-					<ScrollArea className="h-56">
-						<BookMarkList bookMarks={bookMarks} />
-						<HistoryList history={history} />
-					</ScrollArea>
-				</TooltipContent>
-			</TooltipPortal>
-		</Tooltip>
-	</div >);
-}; 
+	return (
+		<div>
+			<Tooltip open={open} delayDuration={100} onOpenChange={setOpen}>
+				<TooltipTrigger asChild>
+					<FormItem>
+						<FormControl>
+							<Input
+								autoComplete='off'
+								className={`bg-transparent placeholder:text-inherit border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
+								placeholder='Search'
+								{...field}
+							/>
+						</FormControl>
+					</FormItem>
+				</TooltipTrigger>
+				<TooltipPortal>
+					<TooltipContent
+						onEscapeKeyDown={() => setOpen(false)}
+						side='bottom'
+						className='px-0 border-none bg-transparent text-inherit shadow-[rgba(0,0,0,0.2)_0_0_10px] backdrop-blur-[10px] backdrop-saturate-150 hover:shadow-[rgba(255,255,255,0.2)_0_0_10px] hover:backdrop-blur-[20px] transition-all dark:shadow-[rgba(255,255,255,0.2)_0_0_10px] dark:backdrop-blur-[20px]'
+					>
+						<ScrollArea className="h-56">
+							<BookMarkList bookMarks={bookMarks} />
+							<HistoryList history={history} />
+						</ScrollArea>
+					</TooltipContent>
+				</TooltipPortal>
+			</Tooltip>
+		</div>
+	);
+};

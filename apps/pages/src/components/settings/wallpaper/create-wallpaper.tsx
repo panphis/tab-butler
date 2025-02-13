@@ -1,10 +1,8 @@
-import { Fragment, useState, type FC } from "react";
-import { WallpaperForm, WallpaperList } from ".";
-import { Label, Separator, Space } from "@repo/ui";
+import { Fragment, ReactDOM, useState, type FC } from "react";
+import { WallpaperForm } from ".";
 import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
 import {
 	Button,
-	cn,
 	Dialog,
 	DialogContent,
 	DialogHeader,
@@ -14,12 +12,7 @@ import {
 import { Plus } from "lucide-react";
 
 
-type WallpaperProps = {
-
-	anchor?: string
-};
-
-export const CreateWallpaper: FC<WallpaperProps> = ({ anchor }) => {
+export const CreateWallpaper: FC = () => {
 
 	const [open, setOpen] = useState<boolean>(false)
 
@@ -31,24 +24,19 @@ export const CreateWallpaper: FC<WallpaperProps> = ({ anchor }) => {
 	}
 
 	return (<Fragment>
-		<Space className="justify-between">
-			<Label id={anchor}>Wallpaper</Label>
-			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogTrigger asChild>
-					<Button onClick={() => setOpen(true)} size={'sm'} >
-						<Plus />
-						Create wallpaper
-					</Button>
-				</DialogTrigger>
-				<DialogContent className="sm:max-w-[425px]">
-					<DialogHeader>
-						<DialogTitle>Create wallpaper</DialogTitle>
-					</DialogHeader>
-
-					<WallpaperForm onSubmit={onSubmit} />
-				</DialogContent>
-			</Dialog>
-		</Space>
-		<WallpaperList />
+		<Dialog open={open} onOpenChange={setOpen}>
+			<DialogTrigger asChild>
+				<Button onClick={() => setOpen(true)} size={'sm'} >
+					<Plus />
+					Upload wallpaper
+				</Button>
+			</DialogTrigger>
+			<DialogContent className="sm:max-w-[425px]">
+				<DialogHeader>
+					<DialogTitle>Upload wallpaper</DialogTitle>
+				</DialogHeader>
+				<WallpaperForm onSubmit={onSubmit} onCancel={() => setOpen(false)} />
+			</DialogContent>
+		</Dialog>
 	</Fragment>);
 };

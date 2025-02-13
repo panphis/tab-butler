@@ -5,6 +5,7 @@ import { Bookmarks } from "@/components";
 
 // style for ui components
 import "@repo/ui/dist/globals.css";
+import "@repo/ui/dist/style.css";
 
 // style for theme
 import "@repo/shared/dist/globals.css";

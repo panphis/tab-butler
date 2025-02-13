@@ -1,3 +1,4 @@
+export * from "./wallpaper"
 export * from "./create-wallpaper"
 
 export * from "./wallpaper-list"

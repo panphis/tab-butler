@@ -87,6 +87,8 @@
 	border: none;
 	display: flex;
 	width: 100%;
+	background-color: transparent;
+	color: inherit;
 }
 
 .container :global(.rc-tree-select-multiple .rc-tree-select-selector) {
@@ -188,7 +190,7 @@
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 	min-height: 100px;
 	position: absolute;
-	background: #fff;
+	background-color: hsl(var(--background));
 }
 
 .container :global(.rc-tree-select-dropdown-hidden) {
@@ -222,9 +224,6 @@
 	pointer-events: none;
 }
 
-.container :global(.rc-tree-select-item-option-active) {
-	background: #ddd;
-}
 
 .container :global(.rc-tree-select-item-option-disabled) {
 	color: #999;
@@ -452,7 +451,6 @@
 
 .container :global(.rc-tree-select-tree .rc-tree-select-tree-treenode span.rc-tree-select-tree-checkbox.rc-tree-select-tree-checkbox-indeterminate.rc-tree-select-tree-checkbox-disabled) {
 	position: relative;
-	background: #ccc;
 	border-radius: 3px;
 }
 
@@ -473,10 +471,7 @@
 	background: none;
 }
 
-.container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>ul) {}
-
 .container :global(.rc-tree-select-tree.rc-tree-select-tree-show-line .rc-tree-select-tree-treenode:not(:last-child)>.rc-tree-select-tree-switcher-noop) {
-
 	flex-shrink: 1;
 	flex-grow: 0;
 }

@@ -4,7 +4,7 @@ import { ThemeToggle, ThemeColors, ThemeRadius } from "@repo/shared";
 import { Label, Separator } from "@repo/ui";
 
 import { AnchorIds } from "../enums";
-import { CreateWallpaper } from "..";
+import { Wallpaper } from "..";
 
 type ThemeProps = {
 
@@ -19,7 +19,7 @@ export const Theme: FC<ThemeProps> = ({ }) => {
 		<Separator />
 		<ThemeRadius anchor={AnchorIds.radius} />
 		<Separator />
-		<CreateWallpaper anchor={AnchorIds.wallpaper} />
+		<Wallpaper anchor={AnchorIds.wallpaper} />
 		<Separator />
 	</Fragment>);
 }; 

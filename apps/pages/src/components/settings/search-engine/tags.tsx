@@ -3,6 +3,7 @@ import { Input, Badge, Space, InputProps } from "@repo/ui";
 
 import { generateRandomColorPairs } from "@/utils";
 
+import { XCircle } from "lucide-react";
 
 
 
@@ -44,6 +45,10 @@ const Tags = forwardRef<TagsRef, TagsProps>(({ onChange, value, onBlur, disabled
 		}
 	}
 
+	const handleRemove = (tag: string) => {
+		onChange?.(value.filter(v => v !== tag))
+	}
+
 	useImperativeHandle(ref, () => ({
 		focus: () => {
 			if (inputRef.current) {
@@ -79,8 +84,12 @@ const Tags = forwardRef<TagsRef, TagsProps>(({ onChange, value, onBlur, disabled
 						return (
 							<Badge key={`${tag}`}
 								style={style}
+								className="flex items-center gap-2"
 							>
 								{tag}
+								<button onClick={() => handleRemove(tag)} className="outline-none border-inherit bg-none text-white">
+									<XCircle size={12} />
+								</button>
 							</Badge>
 						)
 					})

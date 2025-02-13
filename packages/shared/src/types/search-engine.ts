@@ -1,8 +1,10 @@
 import { ID } from "./common"
+
 export interface CreateSearchEngineParams {
 	title: string,
 	url: string,
-	selected?: number
+	selected?: number,
+	docUrl?: string
 }
 
 /**
@@ -14,7 +16,7 @@ export interface CreateSearchEngineParams {
  * q4: csdn+CSDN
  */
 type Arg = {
-	key: string
+	key?: string
 	prefix?: string
 	value: string[],
 	connectors?: string,
@@ -24,8 +26,14 @@ type Arg = {
 
 type Args = Arg[]
 
+// export interface SearchEngine extends CreateSearchEngineParams {
+// 	id: ID,
+// 	args?: Args,
+// 	argStr?: string
+// }
+
+
 export interface SearchEngine extends CreateSearchEngineParams {
 	id: ID,
-	args?: Args,
-	argStr?: string
+	args?: string
 }

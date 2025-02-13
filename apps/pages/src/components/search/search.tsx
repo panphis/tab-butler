@@ -56,9 +56,12 @@ export const SearchForm: FC = () => {
 			return;
 		}
 		const searchEngine = searchEnginesMap.get(engine)!
-		const { url, argStr = '' } = searchEngine
-		const path = `${url}${keyWords}&${argStr}`
-		openTab({ url: path });
+		const { url, args = '' } = searchEngine
+		let result = `${url}${keyWords}`
+		result += `${args.toString()}`
+		// 去除末尾的 &
+		result = result.replace(/&$/, '')
+		openTab({ url: result });
 	}
 
 	return (
