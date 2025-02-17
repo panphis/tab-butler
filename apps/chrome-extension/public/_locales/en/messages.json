@@ -1,8 +1,8 @@
 {
   "appName": {
-    "message": "chrome extension name"
+    "message": "Tab Butler"
   },
   "appDesc": {
-    "message": "chrome extension description"
+    "message": "A Google Chrome tab extension with bookmark search and management features, You can customize search engines and search parameters according to user preferences."
   }
 }
