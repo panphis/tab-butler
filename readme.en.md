@@ -4,6 +4,21 @@ A Google Chrome tab extension with bookmark search and management features.
 
 You can customize search engines and search parameters according to user preferences.
 
+[中文版](./README.md) | English
+
+## Content Introduction
+
+1. Home page background and fixed commonly used websites.
+   ![Home](./docs/home.png "Home")
+2. Bookmark directory search
+   ![Bookmark](./docs/bookmark.png "Bookmark")
+3. Save any website to bookmarks
+   ![Save Bookmark](./docs/save%20bookmark.png "Save Bookmark")
+4. Theme color background image/video settings
+   ![Appearance Settings](./docs/appearance.png "Appearance Settings")
+5. Search engine and additional search parameter handling
+   ![Search Parameters](./docs/search%20engine.png "Search Parameters")
+
 ## Usage Instructions
 
 ### Download from Chrome Web Store
