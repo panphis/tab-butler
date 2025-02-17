@@ -75,23 +75,6 @@ const manifest = deepmerge(
 			48: "icon-48.png",
 			128: "icon-128.png",
 		},
-		content_scripts: [
-			// {
-			// 	// matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-			// 	// js: ['content/index.iife.js'],
-			// },
-			// {
-			// 	matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-			// 	// js: ['content-ui/index.iife.js'],
-			// },
-			// {
-			// 	matches: ['http://*/*', 'https://*/*', '<all_urls>'],
-			// 	// css: ['content.css'], // public folder
-			// },
-		],
-		// devtools_page: 'devtools/index.html',
-		content_security_policy: {
-		},
 		web_accessible_resources: [
 			{
 				resources: ["*.js", "*.css", "*.svg", "*.png", "*.ico"],
