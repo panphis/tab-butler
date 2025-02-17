@@ -1,4 +1,4 @@
-# Google Chrome Extension
+# Tab 管家 (Tab Butler)
 
 A Google Chrome tab extension with bookmark search and management features.
 
