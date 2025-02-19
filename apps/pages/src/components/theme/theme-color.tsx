@@ -1,5 +1,6 @@
 import { CheckIcon } from "lucide-react";
-import { themes, ThemeProviderContext } from ".";
+import { ThemeProviderContext } from ".";
+import { themes } from "@/utils/constant";
 import { Button, Label } from "@repo/ui";
 import { useContext, useId } from "react";
 import React from "react";

@@ -17,9 +17,13 @@ import { useForm } from 'react-hook-form'
 
 import {
 	CreateWallpaperParams,
-	FormFooter,
 	Wallpaper
 } from "@repo/shared";
+
+
+import {
+	FormFooter
+} from "@/components";
 
 import { createWallpaper } from "@/utils";
 

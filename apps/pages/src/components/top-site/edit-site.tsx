@@ -8,7 +8,13 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ui";
-import { SiteForm, SiteFormValues, useWebSiteStore, WebSite } from "@repo/shared"
+import { useWebSiteStore, WebSite } from "@repo/shared"
+
+
+import {
+	SiteFormValues,
+	SiteForm
+} from "@/components/site";
 
 import { Pencil } from 'lucide-react';
 

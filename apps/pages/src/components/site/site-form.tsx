@@ -15,7 +15,7 @@ import {
 	Input,
 	Textarea
 } from "@repo/ui"
-import { FormFooter } from "..";
+import { FormFooter } from "@/components/button-group";
 
 
 const formSchema = z.object({

@@ -1,7 +1,7 @@
 import { Fragment, type FC } from "react";
 import { BookmarkCreateArg, BookmarkTreeNode } from "@repo/shared";
 
-import { FormFooter } from "@repo/shared";
+import { FormFooter } from "@/components/button-group";
 import {
 	Form,
 	FormControl,

@@ -1,6 +1,6 @@
 
-import { withErrorBoundary, withSuspense, Layout } from "@repo/shared";
-
+import { withErrorBoundary, withSuspense } from "@repo/shared";
+import { Layout } from "@/components";
 import { Space } from "@repo/ui";
 import { SettingsContent } from "@/components";
 

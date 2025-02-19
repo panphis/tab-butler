@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import {
 	withErrorBoundary,
 	withSuspense,
-	Layout,
 } from "@repo/shared";
-
+import { Layout } from "@/components";
 
 import type {
 	BookmarkTreeNode, Tab

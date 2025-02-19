@@ -1,8 +1,4 @@
-export {
-	themes,
-	radius,
-	type Theme,
-} from "./themes";
+
 export { ThemeColors } from "./theme-color";
 export * from "./theme-toggle";
 export * from "./theme-provider";

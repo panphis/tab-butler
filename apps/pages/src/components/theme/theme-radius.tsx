@@ -1,7 +1,7 @@
 import { Button, Label } from "@repo/ui";
 import { useContext, useId } from "react";
-import { ThemeProviderContext, radius } from ".";
-
+import { ThemeProviderContext } from ".";
+import { radius } from "@/utils/constant";
 
 type Props = {
 	anchor?: string

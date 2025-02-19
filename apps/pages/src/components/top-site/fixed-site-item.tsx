@@ -23,10 +23,15 @@ import { Favicon } from "@/components";
 import {
 	useWebSiteStore, WebSite,
 	useCopy,
-	SiteFormValues,
-	SiteForm,
 	HistoryUrl
 } from "@repo/shared";
+
+
+
+import {
+	SiteFormValues,
+	SiteForm
+} from "@/components/site";
 import { EditSite } from "./";
 import { bg_transparent, openTab } from "@/utils";
 

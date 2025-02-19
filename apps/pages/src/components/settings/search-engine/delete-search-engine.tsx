@@ -1,9 +1,6 @@
 import { useState } from "react";
-import type { FC, MouseEvent } from "react";
-import {
-	Button,
-} from "@repo/ui";
-import { FormValues } from "./search-engine-from";
+import type { FC } from "react";
+import { Button } from "@repo/ui";
 import { SearchEngine } from "@repo/shared";
 
 import { Trash2 } from "lucide-react";

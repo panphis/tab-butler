@@ -16,9 +16,9 @@ import {
 	cn,
 } from "@repo/ui";
 
-import { useWallpaperStore, IconStar } from "@repo/shared";
+import { useWallpaperStore } from "@repo/shared";
 import { EditWallpaper } from "./";
-
+import { IconStar } from "@/components";
 import { PreviewWallpaper } from "@/components/upload/preview";
 
 interface ImageContainerProps {

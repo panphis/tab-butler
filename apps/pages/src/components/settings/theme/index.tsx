@@ -1,6 +1,6 @@
 import { Fragment, type FC } from "react";
 
-import { ThemeToggle, ThemeColors, ThemeRadius } from "@repo/shared";
+import { ThemeToggle, ThemeColors, ThemeRadius } from "@/components";
 import { Label, Separator } from "@repo/ui";
 
 import { AnchorIds } from "../enums";

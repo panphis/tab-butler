@@ -1,6 +1,7 @@
 
-import { withErrorBoundary, withSuspense, Layout, formatFileSize } from "@repo/shared";
+import { withErrorBoundary, withSuspense } from "@repo/shared";
 import { Space } from "@repo/ui";
+import { Layout } from "@/components";
 import { Bookmarks } from "@/components";
 
 // style for ui components

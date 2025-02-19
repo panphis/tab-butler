@@ -12,7 +12,7 @@ import {
 	Input,
 	Textarea
 } from "@repo/ui"
-import { FormFooter } from "@repo/shared";
+import { FormFooter } from "@/components";
 
 
 
