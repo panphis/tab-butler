@@ -3,7 +3,7 @@
 import {
 	CreateWebSiteParams,
 	ID
-} from "../types";
+} from "@/type";
 import { websiteDB } from ".";
 
 

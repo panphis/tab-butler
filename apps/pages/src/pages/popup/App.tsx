@@ -1,5 +1,9 @@
 
-import { withErrorBoundary, withSuspense } from "@repo/shared";
+
+import {
+	withErrorBoundary,
+	withSuspense,
+} from "@/components/hoc";
 import { Space } from "@repo/ui";
 import { Layout } from "@/components";
 import { Bookmarks } from "@/components";
@@ -8,8 +12,6 @@ import { Bookmarks } from "@/components";
 import "@repo/ui/dist/globals.css";
 import "@repo/ui/dist/style.css";
 
-// style for theme
-import "@repo/shared/dist/globals.css";
 
 import "@/styles/globals.css";
 

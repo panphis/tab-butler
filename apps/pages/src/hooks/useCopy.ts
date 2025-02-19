@@ -1,4 +1,4 @@
-import { copy } from "../utils"
+import { copy } from "@/utils"
 
 
 interface UesCopyProps {

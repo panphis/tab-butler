@@ -1,4 +1,4 @@
-import type { ContextMenusCreateProperties } from '@repo/shared';
+import type { ContextMenusCreateProperties } from '../type';
 import 'webextension-polyfill';
 import { MessageTypes } from "@repo/shared";
 

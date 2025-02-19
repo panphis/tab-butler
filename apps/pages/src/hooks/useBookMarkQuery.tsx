@@ -1,4 +1,4 @@
-import { BookmarkTreeNode } from "@/types";
+import { BookmarkTreeNode } from "@/type";
 import { useEffect, useState } from "react";
 
 

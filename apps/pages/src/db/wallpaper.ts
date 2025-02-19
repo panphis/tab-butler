@@ -3,7 +3,7 @@
 import {
 	CreateWallpaperParams,
 	ID
-} from "@/types";
+} from "@/type";
 import { wallpaperDB } from "./";
 
 

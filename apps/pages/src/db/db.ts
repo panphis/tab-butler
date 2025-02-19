@@ -1,6 +1,6 @@
 
 
-import { Wallpaper, SearchEngine, WebSite } from "@/types";
+import { Wallpaper, SearchEngine, WebSite } from "@/type";
 import Dexie, { type EntityTable } from 'dexie';
 
 export const dbName = 'indexed_db'

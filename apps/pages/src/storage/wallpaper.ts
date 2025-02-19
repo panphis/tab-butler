@@ -1,15 +1,10 @@
+import { createWallpaper, deleteWallpaper, getCurrentWallpaper, getWallpaperById, queryAllWallpaper, setCurrentWallpaper, updateWallpaperById } from '@/db';
+import { CreateWallpaperParams, ID, Wallpaper } from '@/type';
+import { equality, MessageTypes, sendMessage } from '@/utils';
 import { create, createStore, useStore } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-import {
-	createWallpaper, queryAllWallpaper,
-	getWallpaperById, updateWallpaperById, getCurrentWallpaper,
-	deleteWallpaper, Wallpaper, CreateWallpaperParams, ID,
-	setCurrentWallpaper,
-	MessageTypes,
-	sendMessage,
-	equality
-} from "../";
+
 
 
 type State = {

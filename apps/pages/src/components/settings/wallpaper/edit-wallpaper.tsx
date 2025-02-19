@@ -1,8 +1,8 @@
 import React, { Fragment, type FC, useMemo, useState } from "react";
 import { WallpaperForm } from "./wallpaper-form";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Button } from "@repo/ui";
-import type { Wallpaper } from "@repo/shared";
-import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
+import type { Wallpaper, CreateWallpaperParams } from "@/type";
+import type { useWallpaperStore } from "@/storage";
 
 
 type EditWallpaperProps = {

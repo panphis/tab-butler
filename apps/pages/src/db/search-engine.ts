@@ -1,6 +1,6 @@
 
 
-import { CreateSearchEngineParams, ID } from "../";
+import { CreateSearchEngineParams, ID } from "@/type";
 
 import { searchEngineDB } from "./";
 

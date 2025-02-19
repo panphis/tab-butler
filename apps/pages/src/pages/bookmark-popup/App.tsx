@@ -1,16 +1,11 @@
 
 import { useState, useEffect } from "react";
-import {
-	withErrorBoundary,
-	withSuspense,
-} from "@repo/shared";
+
 import { Layout } from "@/components";
 
-import type {
-	BookmarkTreeNode, Tab
-} from "@repo/shared";
 
-import { Skeleton } from "@repo/ui";
+
+import { Skeleton, Space } from "@repo/ui";
 
 import { Context } from "@/components/bookmark-popup";
 
@@ -18,11 +13,11 @@ import { Context } from "@/components/bookmark-popup";
 import '@repo/ui/dist/globals.css';
 import "@repo/ui/dist/style.css";
 // style for theme
-import '@repo/shared/dist/globals.css';
 import "@/styles/globals.css";
-import { Space } from "@repo/ui";
 
 import { queryBookMarker, getCurrentTab } from "@/utils";
+import { BookmarkTreeNode, Tab } from "@/type";
+import { withErrorBoundary, withSuspense } from "@/components/hoc";
 
 const BookmarkPopup = () => {
 

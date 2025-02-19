@@ -20,11 +20,7 @@ import {
 
 import { PinOff, Star, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
-import {
-	useWebSiteStore, WebSite,
-	useCopy,
-	HistoryUrl
-} from "@repo/shared";
+
 
 
 
@@ -34,6 +30,9 @@ import {
 } from "@/components/site";
 import { EditSite } from "./";
 import { bg_transparent, openTab } from "@/utils";
+import { HistoryUrl, WebSite } from "@/type";
+import { useWebSiteStore } from "@/storage";
+import { useCopy } from "@/hooks";
 
 
 

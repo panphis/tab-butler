@@ -12,7 +12,7 @@ import {
 import { Edit } from 'lucide-react';
 import { FormValues } from "./search-engine-from";
 import { useSearchEngine } from "@/hooks";
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 
 
 

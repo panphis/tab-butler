@@ -4,8 +4,11 @@ import { create } from 'zustand'
 
 import {
 	ID, WebSite, CreateWebSiteParams,
+} from "@/type";
+
+import {
 	createOrUpdateWebSite, queryAllWebSite, deleteWebSite, updateWebSiteById
-} from "../";
+} from "@/db";
 
 
 type State = {

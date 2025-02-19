@@ -8,7 +8,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ui";
-import { useWebSiteStore, WebSite } from "@repo/shared"
 
 
 import {
@@ -17,6 +16,8 @@ import {
 } from "@/components/site";
 
 import { Pencil } from 'lucide-react';
+import { useWebSiteStore } from "@/storage";
+import { WebSite } from "@/type";
 
 type EditSiteProps = {
 	website: WebSite

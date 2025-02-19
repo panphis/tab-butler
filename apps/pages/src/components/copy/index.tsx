@@ -1,6 +1,6 @@
 import React, { Fragment, type FC } from "react";
 import { Button, cn, useToast } from "@repo/ui";
-import { useCopy } from "@repo/shared";
+import { useCopy } from "@/hooks";
 
 type CopyActionProps = {
 	text: string,

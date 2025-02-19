@@ -1,4 +1,4 @@
-import { BookmarkTreeNode, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg } from "@/types";
+import { BookmarkTreeNode, BookmarkDestinationArg, BookmarkChangesArg, BookmarkCreateArg } from "@/type";
 import { useEffect, useState, useMemo } from "react";
 
 

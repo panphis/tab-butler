@@ -1,6 +1,6 @@
 
 
-import { MostVisitedURL, HistoryUrl } from '@/types';
+import { MostVisitedURL, HistoryUrl } from '@/type';
 import { useEffect, useState } from 'react';
 
 async function pollTopSites(previousSites: MostVisitedURL[], interval = 50, maxAttempts = 5) {

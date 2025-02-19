@@ -15,10 +15,11 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useBookMarks } from "@repo/shared";
-import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@repo/shared";
-import { sendMessage, MessageTypes } from "@repo/shared";
+import { useBookMarks } from "@/hooks";
+import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@/type";
+import { MessageTypes } from "@repo/shared";
 import { FormFooter } from "@/components";
+import { sendMessage } from "@/utils";
 
 const bookMarkFormSchema = z.object({
 	title: z.string().min(2, {

@@ -16,10 +16,10 @@ import {
 	ScrollArea
 } from '@repo/ui'
 
-import { useHistory, useBookMarkQuery } from "@repo/shared";
+import { useHistory, useBookMarkQuery } from "@/hooks";
 
 import { History, Bookmark } from 'lucide-react'
-import type { BookmarkTreeNode, HistoryItem } from '@repo/shared';
+import type { BookmarkTreeNode, HistoryItem } from '@/type';
 import { openTab } from '@/utils';
 
 

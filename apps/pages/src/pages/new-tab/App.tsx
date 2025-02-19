@@ -3,7 +3,7 @@
 import {
 	withErrorBoundary,
 	withSuspense,
-} from "@repo/shared";
+} from "@/components/hoc";
 
 
 import { TooltipProvider } from "@repo/ui";
@@ -15,8 +15,6 @@ import { WallpaperContainer, Clock, SearchForm, Sites, Setting } from "@/compone
 
 // style for ui components
 import '@repo/ui/dist/globals.css';
-// style for theme
-import '@repo/shared/dist/globals.css';
 import "@/styles/globals.css";
 
 

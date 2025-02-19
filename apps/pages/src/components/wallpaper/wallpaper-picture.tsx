@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import type { FC } from "react"
 
 import { cn } from "@repo/ui";
-import { Wallpaper } from "@repo/shared";
+import { Wallpaper } from "@/type";
 
 type WallpaperPictureProps = {
 	wallpaper: Wallpaper;

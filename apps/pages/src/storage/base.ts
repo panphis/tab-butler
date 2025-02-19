@@ -1,4 +1,4 @@
-import type { BaseStorage, ValueOrUpdate } from "../types/storage";
+import type { BaseStorage, ValueOrUpdate } from "@/type";
 
 
 /**

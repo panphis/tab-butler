@@ -15,11 +15,12 @@ import {
 
 import { History, Pin, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
-import { useWebSiteStore, useCopy } from "@repo/shared";
+import { useCopy } from "@/hooks";
 
 import { bg_transparent, openTab } from "@/utils";
 
-import type { HistoryUrl, MostVisitedURL } from '@repo/shared';
+import type { HistoryUrl, MostVisitedURL } from '@/type';
+import { useWebSiteStore } from "@/storage";
 
 
 

@@ -2,12 +2,11 @@
 
 import React, { createContext, useState } from "react";
 
-import { useStorageSuspense } from '@repo/shared';
+import { useStorageSuspense } from '@/hooks';
 
-import { themesEnum } from "@repo/shared";
-import type { Themes } from "@repo/shared";
-
-import { themeStorage, colorStorage, radiusStorage } from "@repo/shared";
+import { themesEnum } from "@/utils";
+import type { Themes } from "@/type"; 
+import { colorStorage, radiusStorage, themeStorage } from "@/storage";
 
 type ThemeProviderState = {
 	theme: Themes;

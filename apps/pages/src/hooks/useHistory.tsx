@@ -1,4 +1,4 @@
-import { HistoryItem } from "@/types";
+import { HistoryItem } from "@/type";
 import { useState, useEffect } from "react";
 
 

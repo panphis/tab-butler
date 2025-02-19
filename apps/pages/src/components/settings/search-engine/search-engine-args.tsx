@@ -11,7 +11,7 @@ import {
 } from "@repo/ui";
 
 import type { FC } from "react";
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 import { z } from "zod"

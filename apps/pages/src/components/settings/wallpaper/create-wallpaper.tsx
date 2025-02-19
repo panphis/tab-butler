@@ -1,6 +1,7 @@
 import { Fragment, ReactDOM, useState, type FC } from "react";
 import { WallpaperForm } from ".";
-import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
+import { CreateWallpaperParams } from "@/type";
+import { useWallpaperStore } from "@/storage";
 import {
 	Button,
 	Dialog,

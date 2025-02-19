@@ -1,8 +1,14 @@
 import { createStore, useStore } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-import { MessageTypes, sendMessage } from "../";
+import { MessageTypes, } from "@repo/shared";
+import { defaultSearchEngines, sendMessage, equality } from "@/utils";
 
+import {
+	SearchEngine,
+	CreateSearchEngineParams,
+	ID,
+} from "@/type";
 import {
 	queryAllSearchEngine,
 	createSearchEngine,
@@ -10,12 +16,7 @@ import {
 	getSearchEngineById,
 	deleteSearchEngine,
 	updateSearchEngineById,
-	SearchEngine,
-	CreateSearchEngineParams,
-	ID,
-	defaultSearchEngines,
-	equality
-} from "..";
+} from "@/db";
 
 
 let initValue = await queryAllSearchEngine()

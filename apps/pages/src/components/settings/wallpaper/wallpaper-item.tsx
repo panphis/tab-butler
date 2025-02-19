@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 
 
-import { ID, Wallpaper, formatFileSize } from "@repo/shared";
+import { ID, Wallpaper, } from "@/type";
+import { formatFileSize } from "@/utils";
 import {
 	AspectRatio,
 	Separator,
@@ -16,7 +17,7 @@ import {
 	cn,
 } from "@repo/ui";
 
-import { useWallpaperStore } from "@repo/shared";
+import { useWallpaperStore } from "@/storage";
 import { EditWallpaper } from "./";
 import { IconStar } from "@/components";
 import { PreviewWallpaper } from "@/components/upload/preview";

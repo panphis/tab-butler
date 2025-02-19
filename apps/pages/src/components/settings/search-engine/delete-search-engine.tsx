@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FC } from "react";
 import { Button } from "@repo/ui";
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 
 import { Trash2 } from "lucide-react";
 import { useSearchEngine } from "@/hooks";

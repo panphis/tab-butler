@@ -12,7 +12,7 @@ import { Fragment, useState } from "react";
 import type { FC } from "react"
 import type {
 	SearchEngine,
-} from "@repo/shared";
+} from "@/type";
 import { SearchEngineArgs } from "./";
 import { SearchEngineArgsSubmitValues } from "./search-engine-args";
 import { SettingsIcon } from "lucide-react";

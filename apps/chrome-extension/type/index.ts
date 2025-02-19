@@ -1,0 +1,2 @@
+
+export type ContextMenusCreateProperties = chrome.contextMenus.CreateProperties

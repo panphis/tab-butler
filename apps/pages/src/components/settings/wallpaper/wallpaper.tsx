@@ -1,8 +1,8 @@
 import { Fragment, useState, type FC } from "react";
 import { WallpaperList, CreateWallpaper } from ".";
 import { Label, Space } from "@repo/ui";
-import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
-import { WallpaperIcon, Plus } from "lucide-react";
+import { useWallpaperStore } from "@/storage";
+import { CreateWallpaperParams } from "@/type";
 
 type WallpaperProps = {
 
