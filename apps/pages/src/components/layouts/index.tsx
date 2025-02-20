@@ -5,7 +5,7 @@ import { ThemeProvider, ThemeProviderContext } from "../theme";
 
 import { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
 import { Toaster } from "@repo/ui"
-import "../../styles/globals.css";
+import "@/styles/themes.css";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
