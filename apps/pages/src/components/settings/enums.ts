@@ -1,4 +1,5 @@
 export enum AnchorIds {
+	language = 'language',
 	appearance = 'appearance',
 	theme = 'theme',
 	wallpaper = 'wallpaper',

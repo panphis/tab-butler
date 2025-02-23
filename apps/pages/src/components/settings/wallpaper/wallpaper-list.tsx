@@ -1,8 +1,7 @@
 import { type FC } from "react";
 
 
-import { useWallpaperStore } from "@/storage";
-import { CreateWallpaperParams } from "@/type";
+import { useWallpaperStore } from "@/hooks";
 
 import { WallpaperItem, CreateWallpaper } from "./";
 import { Space } from "@repo/ui";

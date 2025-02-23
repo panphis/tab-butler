@@ -24,8 +24,6 @@ export const themesEnum: Record<Themes, Themes> = {
 	system: "system",
 };
 
-export const languages = ["en-US", "zh-CN"];
-
 
 
 export enum MessageTypes {
@@ -33,14 +31,9 @@ export enum MessageTypes {
 	bookMarkOpen = 'book_mark_open',
 	updateSearchEngines = 'update_search_engines',
 	updateCurrentEngin = 'update_current_engine',
-	updateCurrentWallpaper = 'update_current_wallpaper'
+	updateCurrentWallpaper = 'update_current_wallpaper',
+	updateCurrentLanguage = 'update_current_language'
 }
-
-
-
-
-
-
 
 
 
@@ -682,5 +675,11 @@ export const themes = [
 export const radius = [0, 0.3, 0.5, 0.75, 1.0]
 
 export type Theme = (typeof themes)[number]
+
+
+export enum languages {
+	zh = 'zh',
+	en = 'en'
+}
 
 

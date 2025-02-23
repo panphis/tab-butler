@@ -20,7 +20,7 @@ import { useCopy } from "@/hooks";
 import { bg_transparent, openTab } from "@/utils";
 
 import type { HistoryUrl, MostVisitedURL } from '@/type';
-import { useWebSiteStore } from "@/storage";
+import { useWebSiteStore } from "@/hooks";
 
 
 

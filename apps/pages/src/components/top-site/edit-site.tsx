@@ -16,7 +16,7 @@ import {
 } from "@/components/site";
 
 import { Pencil } from 'lucide-react';
-import { useWebSiteStore } from "@/storage";
+import { useWebSiteStore } from "@/hooks";
 import { WebSite } from "@/type";
 
 type EditSiteProps = {

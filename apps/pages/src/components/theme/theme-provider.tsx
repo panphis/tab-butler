@@ -5,7 +5,8 @@ import React, { createContext, useState } from "react";
 import { useStorageSuspense } from '@/hooks';
 
 import { themesEnum } from "@/utils";
-import type { Themes } from "@/type"; 
+import type { Themes } from "@/type";
+import { languageStorage } from "@/storage/languages-storage";
 import { colorStorage, radiusStorage, themeStorage } from "@/storage";
 
 type ThemeProviderState = {
@@ -15,6 +16,8 @@ type ThemeProviderState = {
 	setColor: (key: string) => void;
 	radius: string | number;
 	setRadius: (radius: string | number) => void;
+	language: string;
+	setLanguage: (radius: string) => void;
 };
 
 const initialState: ThemeProviderState = {
@@ -24,6 +27,8 @@ const initialState: ThemeProviderState = {
 	setColor: () => null,
 	radius: 0.5,
 	setRadius: () => null,
+	language: '',
+	setLanguage: () => null,
 };
 
 export const ThemeProviderContext =
@@ -47,6 +52,7 @@ export function ThemeProvider({
 	const theme = useStorageSuspense(themeStorage);
 	const color = useStorageSuspense(colorStorage);
 	const radius = useStorageSuspense(radiusStorage);
+	const language = useStorageSuspense(languageStorage);
 
 
 	const value = {
@@ -56,6 +62,8 @@ export function ThemeProvider({
 		setColor: colorStorage.setColor,
 		radius,
 		setRadius: radiusStorage.setRadius,
+		language,
+		setLanguage: languageStorage.setLanguage
 	};
 
 	return (

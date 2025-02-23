@@ -23,6 +23,9 @@ import type { BookmarkTreeNode, HistoryItem } from '@/type';
 import { openTab } from '@/utils';
 
 
+import { useTranslation } from 'react-i18next';
+
+
 
 type SearchInputProps = {
 	field: {
@@ -106,6 +109,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 	const bookMarks = useBookMarkQuery(field.value, 10)
 	const [open, setOpen] = useState<boolean>(false)
 
+	const { t, i18n } = useTranslation();
 
 	useEffect(() => {
 		setOpen(history.length > 0 || bookMarks.length > 0)
@@ -122,7 +126,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 							<Input
 								autoComplete='off'
 								className={`bg-transparent placeholder:text-inherit border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
-								placeholder='Search'
+								placeholder={t('new_tab.search')}
 								{...field}
 							/>
 						</FormControl>

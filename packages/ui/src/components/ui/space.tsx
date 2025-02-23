@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface SpaceProps extends React.InputHTMLAttributes<HTMLDivElement> {
+export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
 	gap?: number | string;
 	direction?: "row" | "col";
 }

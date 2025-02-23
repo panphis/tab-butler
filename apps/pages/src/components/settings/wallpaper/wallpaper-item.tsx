@@ -17,24 +17,10 @@ import {
 	cn,
 } from "@repo/ui";
 
-import { useWallpaperStore } from "@/storage";
+import { useWallpaperStore } from "@/hooks";
 import { EditWallpaper } from "./";
 import { IconStar } from "@/components";
 import { PreviewWallpaper } from "@/components/upload/preview";
-
-interface ImageContainerProps {
-	file: File,
-	title: string
-}
-const ImageContainer = ({ file, title }: ImageContainerProps) => {
-
-	const previewUrl = useMemo(() => {
-		const url = URL.createObjectURL(file)
-		return url
-	}, [file.lastModified])
-
-	return <img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={title} title={title} />
-}
 
 
 const FileSize = ({ size }: { size: number }) => {

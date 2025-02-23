@@ -17,7 +17,10 @@ import "@/styles/globals.css";
 
 import { queryBookMarker, getCurrentTab } from "@/utils";
 import { BookmarkTreeNode, Tab } from "@/type";
-import { withErrorBoundary, withSuspense } from "@/components/hoc";
+import { withSuspense } from "@/components/hoc";
+
+import "@/locales/i18n";
+import ErrorBoundary from "@/components/error-boundary";
 
 const BookmarkPopup = () => {
 
@@ -48,7 +51,9 @@ const BookmarkPopup = () => {
 	);
 };
 
-export default withErrorBoundary(
-	withSuspense(BookmarkPopup, <div> Loading ... </div>),
-	<div> Error Occur </div>
-);
+const SuspendedBookmarkPopup = withSuspense(BookmarkPopup, <div> Loading ... </div>);
+
+const WithErrorBoundary = () => <ErrorBoundary><SuspendedBookmarkPopup /></ErrorBoundary>
+export default WithErrorBoundary
+
+

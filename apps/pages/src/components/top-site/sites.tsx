@@ -2,7 +2,7 @@ import { Fragment, type FC, useMemo } from "react";
 
 import { SiteItem, FixedSiteItem } from "./";
 import { CreateSite } from "./create-site";
-import { useWebSiteStore } from "@/storage";
+import { useWebSiteStore } from "@/hooks";
 import { useTopSites } from "@/hooks";
 
 

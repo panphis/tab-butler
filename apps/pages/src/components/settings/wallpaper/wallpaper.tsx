@@ -1,7 +1,7 @@
 import { Fragment, useState, type FC } from "react";
 import { WallpaperList, CreateWallpaper } from ".";
 import { Label, Space } from "@repo/ui";
-import { useWallpaperStore } from "@/storage";
+import { useWallpaperStore } from "@/hooks";
 import { CreateWallpaperParams } from "@/type";
 
 type WallpaperProps = {

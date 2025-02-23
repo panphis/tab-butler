@@ -6,7 +6,7 @@ import {
 	RadioGroup, RadioGroupItem
 } from "@repo/ui";
 import { ThemeProviderContext } from ".";
-import { Themes } from "@/types";
+import { Themes } from "@/type";
 
 
 const themes: Themes[] = ["light", "dark", "system"];

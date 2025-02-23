@@ -8,7 +8,7 @@ import { WallpaperVideo } from "./wallpaper-video";
 
 // @ts-ignore
 import defaultWallpaperSrc from "@/assets/images/wallpaper.png";
-import { useWallpaperStore } from "@/storage";
+import { useWallpaperStore } from "@/hooks";
 
 
 

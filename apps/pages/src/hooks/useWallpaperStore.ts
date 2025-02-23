@@ -98,6 +98,7 @@ async function handlerMessage(request: any, sender: chrome.runtime.MessageSender
 }
 export const useWallpaperStore = () => {
 	const {
+		
 		wallpapers: _wallpapers,
 		loadingWallpapers: _loadingWallpapers,
 		currentWallpaper: _currentWallpaper,

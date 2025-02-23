@@ -31,7 +31,7 @@ import {
 import { EditSite } from "./";
 import { bg_transparent, openTab } from "@/utils";
 import { HistoryUrl, WebSite } from "@/type";
-import { useWebSiteStore } from "@/storage";
+import { useWebSiteStore } from "@/hooks";
 import { useCopy } from "@/hooks";
 
 
