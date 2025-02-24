@@ -16,6 +16,7 @@ import {
 	Textarea
 } from "@repo/ui"
 import { FormFooter } from "@/components/button-group";
+import { useTranslation } from "react-i18next";
 
 
 const formSchema = z.object({
@@ -33,6 +34,7 @@ type SiteFormProps = {
 
 export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues }) => {
 
+	const { t } = useTranslation();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues,
@@ -45,12 +47,12 @@ export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues 
 					name="title"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Title</FormLabel>
+							<FormLabel>{t('new_tab.site_form.title')}</FormLabel>
 							<FormControl>
 								<Input placeholder="Website title" {...field} />
 							</FormControl>
 							<FormDescription>
-								This is website display name.
+								{t('new_tab.site_form.title_description')}
 							</FormDescription>
 							<FormMessage />
 						</FormItem>
@@ -62,15 +64,15 @@ export const SiteForm: FC<SiteFormProps> = ({ onCancel, onSubmit, defaultValues 
 					name="url"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Url</FormLabel>
+							<FormLabel>{t('new_tab.site_form.url')}</FormLabel>
 							<FormControl>
 								<Textarea
-									placeholder="Website url"
+									placeholder={t('new_tab.site_form.url_placeholder')}
 									{...field}
 								/>
 							</FormControl>
 							<FormDescription>
-								This is website url.
+								{t('new_tab.site_form.url_description')}
 							</FormDescription>
 							<FormMessage />
 						</FormItem>

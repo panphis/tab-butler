@@ -38,12 +38,16 @@ interface HistoryProps {
 	history: HistoryItem[]
 }
 const HistoryList = ({ history }: HistoryProps) => {
+
+	const { t } = useTranslation();
 	const onClick = (history: HistoryItem) => {
 		openTab({ url: history.url });
 	};
 	return history.length > 0 && (
 		<Space direction='col' gap={0}>
-			<Label className='my-2 px-2 text-inherit'>History</Label>
+			<Label className='my-2 px-2 text-inherit'>{
+				t('new_tab.history')
+			}</Label>
 			<Separator />
 			<Fragment>
 				{
@@ -71,13 +75,17 @@ interface BookMarkProps {
 	bookMarks: BookmarkTreeNode[]
 }
 const BookMarkList = ({ bookMarks }: BookMarkProps) => {
+
+	const { t } = useTranslation();
 	const onClick = (bookMark: HistoryItem) => {
 		openTab({ url: bookMark.url });
 	};
 	return bookMarks.length > 0 && (
 		<Fragment>
 			<Space direction='col' gap={0}>
-				<Label className='my-2 px-2 text-inherit'>BookMark</Label>
+				<Label className='my-2 px-2 text-inherit'>{
+					t('new_tab.bookmark')
+				}</Label>
 				<Separator />
 				<Fragment>
 					{
@@ -109,7 +117,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 	const bookMarks = useBookMarkQuery(field.value, 10)
 	const [open, setOpen] = useState<boolean>(false)
 
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		setOpen(history.length > 0 || bookMarks.length > 0)

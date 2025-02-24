@@ -25,3 +25,6 @@ i18n
 
 i18n.addResourceBundle(languages.zh, 'translation', zh);
 i18n.addResourceBundle(languages.en, 'translation', en);
+
+
+export default i18n;
