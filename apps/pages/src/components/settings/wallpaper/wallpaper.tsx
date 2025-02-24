@@ -3,6 +3,7 @@ import { WallpaperList, CreateWallpaper } from ".";
 import { Label, Space } from "@repo/ui";
 import { useWallpaperStore } from "@/hooks";
 import { CreateWallpaperParams } from "@/type";
+import { useTranslation } from "react-i18next";
 
 type WallpaperProps = {
 
@@ -13,6 +14,7 @@ export const Wallpaper: FC<WallpaperProps> = ({ anchor }) => {
 
 	const [open, setOpen] = useState<boolean>(false)
 
+	const { t } = useTranslation();
 	const { createWallpaper } = useWallpaperStore()
 
 	const onSubmit = async (values: CreateWallpaperParams) => {
@@ -22,7 +24,7 @@ export const Wallpaper: FC<WallpaperProps> = ({ anchor }) => {
 
 	return (<Fragment>
 		<Space className="justify-between">
-			<Label id={anchor}>Wallpaper</Label>
+			<Label id={anchor}>{t('options.wallpaper')}</Label>
 			<CreateWallpaper />
 		</Space>
 		<WallpaperList />

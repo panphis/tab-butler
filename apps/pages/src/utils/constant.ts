@@ -4,17 +4,17 @@ export const defaultSearchEngines: CreateSearchEngineParams[] = [
 	{
 		url: 'https://www.google.com/search?q=',
 		title: 'Google',
-		docUrl: "https://www.google.com/advanced_search?q="
+		comment: "https://www.google.com/advanced_search?q="
 	},
 	{
 		url: 'https://bing.com/search?q=',
 		title: 'Bing',
-		docUrl: "https://support.microsoft.com/zh-cn/topic/%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E9%80%89%E9%A1%B9-b92e25f1-0085-4271-bdf9-14aaea720930"
+		comment: "https://support.microsoft.com/zh-cn/topic/%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E9%80%89%E9%A1%B9-b92e25f1-0085-4271-bdf9-14aaea720930"
 	},
 	{
 		url: 'https://cn.bing.com/search?q=',
 		title: '必应',
-		docUrl: "https://support.microsoft.com/zh-cn/topic/%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E9%80%89%E9%A1%B9-b92e25f1-0085-4271-bdf9-14aaea720930"
+		comment: "https://support.microsoft.com/zh-cn/topic/%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E9%80%89%E9%A1%B9-b92e25f1-0085-4271-bdf9-14aaea720930"
 	}
 ]
 

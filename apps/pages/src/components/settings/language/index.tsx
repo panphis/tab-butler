@@ -11,6 +11,7 @@ import {
 import { languageNames } from "@/locales/languages";
 import { languages } from "@/utils/constant";
 import { ThemeProviderContext } from "@/components/theme";
+import { useTranslation } from "react-i18next";
 
 type LanguageSettingProps = {
 	anchor?: string
@@ -18,13 +19,14 @@ type LanguageSettingProps = {
 
 export const Language: FC<LanguageSettingProps> = ({ anchor }) => {
 	const id = useId();
+	const { t } = useTranslation();
 	const { language, setLanguage } = useContext(ThemeProviderContext);
 	const onValueChange = (value: string) => {
 		setLanguage(value);
 	};
 
 	return (<Fragment>
-		<Label id={anchor} htmlFor={id}>Language</Label>
+		<Label id={anchor} htmlFor={id}>{t('options.language')}</Label>
 		<Select onValueChange={onValueChange} value={language}>
 			<SelectTrigger className="w-[180px]">
 				<SelectValue placeholder="Language" />

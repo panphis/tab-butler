@@ -70,6 +70,10 @@ export const Sidebar: FC<SideBarProps> = ({ className, ...props }) => {
 			anchor: AnchorIds.appearance,
 			children: [
 				{
+					title: t('options.language'),
+					anchor: AnchorIds.language,
+				},
+				{
 					title: t('options.theme'),
 					anchor: AnchorIds.theme,
 				},
@@ -88,7 +92,7 @@ export const Sidebar: FC<SideBarProps> = ({ className, ...props }) => {
 			]
 		},
 		{
-			title: t('options.searchEngine'),
+			title: t('options.search_engine'),
 			anchor: AnchorIds.searchEngine,
 		},
 	]

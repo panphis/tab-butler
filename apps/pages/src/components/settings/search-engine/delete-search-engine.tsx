@@ -5,6 +5,7 @@ import { SearchEngine } from "@/type";
 
 import { Trash2 } from "lucide-react";
 import { useSearchEngine } from "@/hooks";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -14,6 +15,8 @@ type DeleteSearchEngineProps = {
 };
 
 export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine, disabled }) => {
+
+	const { t } = useTranslation();
 	const [loading, setLoading] = useState<boolean>(false)
 	const { deleteSearchEngine } = useSearchEngine()
 
@@ -25,8 +28,8 @@ export const DeleteSearchEngine: FC<DeleteSearchEngineProps> = ({ engine, disabl
 	}
 
 	return (
-		<Button loading={loading} disabled={!!engine.selected || disabled} variant={'destructive'} onClick={onDelete} size={'sm'}>
+		<Button loading={loading} disabled={!!engine.selected || disabled} variant={'destructive'} className="gap-1" onClick={onDelete} size={'sm'}>
 			<Trash2 size={16} />
-			Delete
+			{t('common.delete')}
 		</Button>);
 };

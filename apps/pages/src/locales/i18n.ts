@@ -18,7 +18,7 @@ i18n
 			escapeValue: false,
 		},
 		react: {
-			useSuspense: false
+			useSuspense: true
 		},
 		load: 'languageOnly', // 只加载语言代码，不加载区域设置
 	});

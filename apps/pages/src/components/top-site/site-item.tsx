@@ -22,6 +22,7 @@ import { bg_transparent, openTab } from "@/utils";
 import type { HistoryUrl, MostVisitedURL } from '@/type';
 import { useWebSiteStore } from "@/hooks";
 
+import { useTranslation } from "react-i18next";
 
 
 type SiteItemProps = {
@@ -30,6 +31,10 @@ type SiteItemProps = {
 };
 
 export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
+
+
+
+	const { t } = useTranslation();
 	const onSiteClick = () => {
 		openTab({ url: site.url });
 	};
@@ -56,16 +61,16 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 		text: site.url,
 		onSuccess: () => {
 			toast({
-				title: "Copied!",
+				title: t('common.copied'),
 				description: site.url
 			})
 		},
 		onError: () => {
 			toast({
-				title: "Copy failed",
+				title: t('common.copy_failed'),
 				variant: "destructive",
 				description: site.url,
-				action: <Button variant="outline" onClick={copy}>Try Again</Button>
+				action: <Button variant="outline" onClick={copy}>{t('common.try_again')}</Button>
 			})
 		}
 	})
@@ -111,17 +116,17 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 
 			<ContextMenuContent className={cn(bg_transparent, "w-fit")}>
 				<ContextMenuItem inset onSelect={() => onSiteClick()}>
-					Open
+					{t('new_tab.open')}
 				</ContextMenuItem>
 				<ContextMenuItem inset onSelect={() => fixedSite()}>
-					Fixed
+					{t('new_tab.edit')}
 				</ContextMenuItem>
 				<ContextMenuSeparator />
 				<ContextMenuItem inset onSelect={() => copy()}>
-					Copy
+					{t('new_tab.copy')}
 				</ContextMenuItem>
 				<ContextMenuItem inset onSelect={() => removeSite()}>
-					Remove
+					{t('new_tab.remove')}
 				</ContextMenuItem>
 			</ContextMenuContent>
 		</ContextMenu>

@@ -7,6 +7,7 @@ import {
 } from "@repo/ui";
 import { ThemeProviderContext } from ".";
 import { Themes } from "@/type";
+import { useTranslation } from "react-i18next";
 
 
 const themes: Themes[] = ["light", "dark", "system"];
@@ -48,9 +49,11 @@ type Props = {
 export function ThemeToggle({ anchor }: Props) {
 	const { setTheme, theme } = useContext(ThemeProviderContext);
 	const id = useId();
+	const { t } = useTranslation();
+
 	return (
 		<div className="space-y-2">
-			<Label id={anchor} htmlFor={id}>Theme</Label>
+			<Label id={anchor} htmlFor={id}>{t('options.theme')}</Label>
 			<RadioGroup
 				id={id}
 				onValueChange={setTheme}

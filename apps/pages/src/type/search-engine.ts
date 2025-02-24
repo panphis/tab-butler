@@ -4,7 +4,7 @@ export interface CreateSearchEngineParams {
 	title: string,
 	url: string,
 	selected?: number,
-	docUrl?: string
+	comment?: string
 }
 
 /**

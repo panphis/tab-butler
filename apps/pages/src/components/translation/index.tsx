@@ -4,13 +4,12 @@ import type { FC } from "react"
 import { Translation } from 'react-i18next';
 
 
-type TranslationWithKeyProps = {
-	key: string
+type TranslationWithIdProps = {
+	id: string
 };
 
-export const TranslationWithKey: FC<TranslationWithKeyProps> = ({ key }) => {
-	console.log(key)
-	return (<Translation>
-		{(t, { i18n }) => <p>{t(key)}</p>}
+export const TranslationWithId: FC<TranslationWithIdProps> = ({ id }) => {
+	return (<Translation key={id}>
+		{(t, { i18n }) => t(id)}
 	</Translation>);
 }; 

@@ -21,9 +21,6 @@ import {
 import { PinOff, Star, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
 
-
-
-
 import {
 	SiteFormValues,
 	SiteForm
@@ -55,16 +52,16 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 		text: site.url,
 		onSuccess: () => {
 			toast({
-				title: "Copied!",
+				title: t('common.copied'),
 				description: site.url
 			})
 		},
 		onError: () => {
 			toast({
-				title: "Copy failed",
+				title: t('common.copy_failed'),
 				variant: "destructive",
 				description: site.url,
-				action: <Button variant="outline" onClick={copy}>Try Again</Button>
+				action: <Button variant="outline" onClick={copy}>{t('common.try_again')}</Button>
 			})
 		}
 	})

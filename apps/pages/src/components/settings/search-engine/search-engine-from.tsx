@@ -13,6 +13,7 @@ import {
 	Textarea
 } from "@repo/ui"
 import { FormFooter } from "@/components";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -29,6 +30,7 @@ type FromProps = {
 };
 export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultValues }) => {
 
+	const { t } = useTranslation();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues,
@@ -52,12 +54,12 @@ export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultVal
 					name="title"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Title</FormLabel>
+							<FormLabel>{t('options.search_engine_create.title')}</FormLabel>
 							<FormControl>
-								<Input placeholder="Website title" {...field} />
+								<Input placeholder={t('options.search_engine_create.title_placeholder')} {...field} />
 							</FormControl>
 							<FormDescription>
-								This is website display name.
+								{t('options.search_engine_create.title_description')}
 							</FormDescription>
 							<FormMessage />
 						</FormItem>
@@ -69,15 +71,15 @@ export const SearchEngineFrom: FC<FromProps> = ({ onCancel, onSubmit, defaultVal
 					name="url"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Url</FormLabel>
+							<FormLabel>{t('options.search_engine_create.url')}</FormLabel>
 							<FormControl>
 								<Textarea
-									placeholder="Website url"
+									placeholder={t('options.search_engine_create.url_placeholder')}
 									{...field}
 								/>
 							</FormControl>
 							<FormDescription>
-								This is website url.
+								{t('options.search_engine_create.url_description')}
 							</FormDescription>
 							<FormMessage />
 						</FormItem>

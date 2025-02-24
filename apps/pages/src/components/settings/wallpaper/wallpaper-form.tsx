@@ -9,7 +9,8 @@ import {
 	FormItem,
 	FormControl,
 	FormLabel,
-	Input
+	Input,
+	FormDescription
 } from '@repo/ui'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -26,6 +27,7 @@ import {
 } from "@/components";
 
 import { createWallpaper } from "@/utils";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -50,6 +52,7 @@ type WallpaperFormProps = {
 export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, onCancel }) => {
 
 
+	const { t } = useTranslation();
 	const form = useForm<FormType>({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -100,10 +103,10 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, on
 					name='title'
 					render={({ field }) => {
 						return (<FormItem>
-							<FormLabel>Title</FormLabel>
+							<FormLabel>{t('options.upload_wallpaper_form.title')}</FormLabel>
 							<FormControl>
 								<Input {...field}
-									placeholder="Wallpaper title"
+									placeholder={t('options.upload_wallpaper_form.title_placeholder')}
 								/>
 							</FormControl>
 						</FormItem>
@@ -115,11 +118,12 @@ export const WallpaperForm: FC<WallpaperFormProps> = ({ initValues, onSubmit, on
 					name='files'
 					render={({ field }) => {
 						return (<FormItem>
-							<FormLabel>File</FormLabel>
+							<FormLabel>{t('options.upload_wallpaper_form.file')}</FormLabel>
 							<FormControl>
 								<Upload {...field}
-									placeholder="Wallpaper file" />
+									placeholder={t('options.upload_wallpaper_form.file_placeholder')} />
 							</FormControl>
+							<FormDescription>{t('options.upload_wallpaper_form.file_description')}</FormDescription>
 						</FormItem>
 						)
 					}}

@@ -4,6 +4,7 @@ import { themes } from "@/utils/constant";
 import { Button, Label } from "@repo/ui";
 import { useContext, useId } from "react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 type Props = {
 	anchor?: string
@@ -15,9 +16,12 @@ export function ThemeColors({ anchor }: Props) {
 		color,
 	} = useContext(ThemeProviderContext);
 	const id = useId();
+	const { t } = useTranslation();
+
+
 	return (
 		<div className="space-y-2">
-			<Label id={anchor} htmlFor={id}>Color</Label>
+			<Label id={anchor} htmlFor={id}>{t('options.color')}</Label>
 			<div id={id} className='flex gap-2 flex-wrap'>
 				{themes.map((theme) => {
 					const isActive = color === theme.name;

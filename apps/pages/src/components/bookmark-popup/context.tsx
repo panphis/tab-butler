@@ -20,6 +20,7 @@ import type { BookmarkTreeNode, Tab, BookmarkCreateArg } from "@/type";
 import { MessageTypes } from "@repo/shared";
 import { FormFooter } from "@/components";
 import { sendMessage } from "@/utils";
+import { useTranslation } from "react-i18next";
 
 const bookMarkFormSchema = z.object({
 	title: z.string().min(2, {
@@ -39,6 +40,7 @@ type ContextProps = {
 };
 export const Context: FC<ContextProps> = ({ currentTab }) => {
 
+	const { t } = useTranslation()
 
 	const isBookmarkTreeNode = (tab: BookmarkTreeNode | Tab): tab is BookmarkTreeNode => {
 		return (tab as BookmarkTreeNode).parentId !== undefined;
@@ -105,9 +107,11 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 					name="title"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Title</FormLabel>
+							<FormLabel>{t('bookmark_popup.site_bookmark_form.title')}</FormLabel>
 							<FormControl>
-								<Input placeholder="please input title" {...field} />
+								<Input
+									placeholder={t('bookmark_popup.site_bookmark_form.title_placeholder')}
+									{...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -118,9 +122,9 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 					name="url"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Url</FormLabel>
+							<FormLabel>{t('bookmark_popup.site_bookmark_form.url')}</FormLabel>
 							<FormControl>
-								<Textarea placeholder="please input url" {...field} />
+								<Textarea placeholder={t('bookmark_popup.site_bookmark_form.url_placeholder')} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -131,9 +135,9 @@ export const Context: FC<ContextProps> = ({ currentTab }) => {
 					name="parentId"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Folder</FormLabel>
+							<FormLabel>{t('bookmark_popup.site_bookmark_form.folder')}</FormLabel>
 							<FormControl>
-								<TreeSelect placeholder="please select folder" loading={loading} treeData={treeData[0]?.children || []} {...field} />
+								<TreeSelect placeholder={t('bookmark_popup.site_bookmark_form.folder_placeholder')} loading={loading} treeData={treeData[0]?.children || []} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

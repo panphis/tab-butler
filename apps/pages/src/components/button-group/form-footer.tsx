@@ -1,7 +1,7 @@
 import { ReactNode, type FC } from "react";
 import { Space, Button, cn } from "@repo/ui";
 
-import { TranslationWithKey } from "..";
+import { TranslationWithId } from "..";
 interface FormFooterProps {
 	loading?: boolean;
 	prefix?: ReactNode;
@@ -21,9 +21,9 @@ export const FormFooter: FC<FormFooterProps> = ({
 	buttonSize = "default",
 	loading = false,
 	className = '',
-	deleteText = <TranslationWithKey key='common.form_footer.delete' />,
-	cancelText = <TranslationWithKey key='common.form_footer.cancel' />,
-	submitText = <TranslationWithKey key='common.form_footer.save' />,
+	deleteText = <TranslationWithId id='common.form_footer.delete' />,
+	cancelText = <TranslationWithId id='common.form_footer.cancel' />,
+	submitText = <TranslationWithId id='common.form_footer.save' />,
 	...props
 }) => {
 	return (
