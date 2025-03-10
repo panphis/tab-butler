@@ -6,9 +6,9 @@ import { WallpaperPicture } from "./wallpaper-picture";
 import { WallpaperVideo } from "./wallpaper-video";
 
 
-import { useWallpaperStore } from "@repo/shared";
 // @ts-ignore
 import defaultWallpaperSrc from "@/assets/images/wallpaper.png";
+import { useWallpaperStore } from "@/hooks";
 
 
 

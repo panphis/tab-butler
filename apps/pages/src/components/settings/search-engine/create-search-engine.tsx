@@ -11,6 +11,7 @@ import {
 import { Plus } from 'lucide-react';
 import { FormValues } from "./search-engine-from";
 import { useSearchEngine } from "@/hooks";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -25,6 +26,7 @@ export const CreateSearchEngine: FC<CreateSearchEngineProps> = ({ }) => {
 	const onSubmit = async (value: FormValues) => {
 		createSearchEngine(value)
 	};
+	const { t } = useTranslation();
 	const onCancel = () => {
 		setOpen(false)
 	};
@@ -32,14 +34,14 @@ export const CreateSearchEngine: FC<CreateSearchEngineProps> = ({ }) => {
 	return (<Fragment>
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button onClick={() => setOpen(true)} size={'sm'}>
+				<Button onClick={() => setOpen(true)} size={'sm'} className="gap-1">
 					<Plus />
-					Create Search Engine
+					{t('options.search_engine_create.trigger')}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create Search Engine</DialogTitle>
+					<DialogTitle>{t('options.search_engine_create.form_title')}</DialogTitle>
 				</DialogHeader>
 				<SearchEngineFrom onSubmit={onSubmit} onCancel={onCancel} />
 			</DialogContent>

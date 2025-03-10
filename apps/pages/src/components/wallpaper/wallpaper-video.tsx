@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import type { FC } from "react"
 import { cn } from "@repo/ui";
-import { Wallpaper } from "@repo/shared";
+import { Wallpaper } from "@/type";
 
 type WallpaperVideoProps = {
 	wallpaper: Wallpaper;

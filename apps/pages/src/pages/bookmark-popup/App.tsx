@@ -1,17 +1,11 @@
 
 import { useState, useEffect } from "react";
-import {
-	withErrorBoundary,
-	withSuspense,
-	Layout,
-} from "@repo/shared";
+
+import { Layout } from "@/components";
 
 
-import type {
-	BookmarkTreeNode, Tab
-} from "@repo/shared";
 
-import { Skeleton } from "@repo/ui";
+import { Skeleton, Space } from "@repo/ui";
 
 import { Context } from "@/components/bookmark-popup";
 
@@ -19,11 +13,14 @@ import { Context } from "@/components/bookmark-popup";
 import '@repo/ui/dist/globals.css';
 import "@repo/ui/dist/style.css";
 // style for theme
-import '@repo/shared/dist/globals.css';
 import "@/styles/globals.css";
-import { Space } from "@repo/ui";
 
 import { queryBookMarker, getCurrentTab } from "@/utils";
+import { BookmarkTreeNode, Tab } from "@/type";
+import { withSuspense } from "@/components/hoc";
+
+import "@/locales/i18n";
+import ErrorBoundary from "@/components/error-boundary";
 
 const BookmarkPopup = () => {
 
@@ -54,7 +51,9 @@ const BookmarkPopup = () => {
 	);
 };
 
-export default withErrorBoundary(
-	withSuspense(BookmarkPopup, <div> Loading ... </div>),
-	<div> Error Occur </div>
-);
+const SuspendedBookmarkPopup = withSuspense(BookmarkPopup, <div> Loading ... </div>);
+
+const WithErrorBoundary = () => <ErrorBoundary><SuspendedBookmarkPopup /></ErrorBoundary>
+export default WithErrorBoundary
+
+

@@ -1,27 +1,25 @@
 
 
 import {
-	withErrorBoundary,
 	withSuspense,
-} from "@repo/shared";
+} from "@/components/hoc";
 
 
 import { TooltipProvider } from "@repo/ui";
-import { Layout } from "@repo/shared";
+import { Layout } from "@/components";
 
 
 import { WallpaperContainer, Clock, SearchForm, Sites, Setting } from "@/components";
+import "@/locales/i18n";
 
 
 // style for ui components
 import '@repo/ui/dist/globals.css';
-// style for theme
-import '@repo/shared/dist/globals.css';
 import "@/styles/globals.css";
+import ErrorBoundary from "@/components/error-boundary";
 
 
 const NewTab = () => {
-
 	return (
 		<Layout>
 			<TooltipProvider>
@@ -36,7 +34,6 @@ const NewTab = () => {
 	);
 };
 
-export default withErrorBoundary(
-	withSuspense(NewTab, <div> Loading ... </div>),
-	<div> Error Occur </div>
-);
+const SuspendedBookmarkNewTab = withSuspense(NewTab, <div> Loading ... </div>);
+const WithErrorBoundary = () => <ErrorBoundary><SuspendedBookmarkNewTab /></ErrorBoundary>
+export default WithErrorBoundary

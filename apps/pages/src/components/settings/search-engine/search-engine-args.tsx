@@ -11,16 +11,17 @@ import {
 } from "@repo/ui";
 
 import type { FC } from "react";
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslation } from "react-i18next";
 
 const schema = z.object({
 	args: z.string().optional(),
 	keyword: z.string().optional(),
-	docUrl: z.string().optional(),
+	comment: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof schema>
@@ -39,8 +40,8 @@ type SearchEngineArgsProps = {
 export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitArgs, onCancel }) => {
 
 
+	const { t } = useTranslation();
 	const args = useMemo<SearchEngine['args']>(() => engine?.args || "", []);
-
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -62,8 +63,8 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 
 
 	const onSubmit = (data: FormValues) => {
-		const { args, docUrl } = data
-		onSubmitArgs?.({ args, docUrl })
+		const { args, comment } = data
+		onSubmitArgs?.({ args, comment })
 	};
 
 	const onTest = () => {
@@ -74,14 +75,13 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 	return (
 		<Form {...form}>
 			<form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
-
 				<FormField
 					control={control}
 					name={`args`}
 					render={({ field }) => (
 						<FormItem>
 							<FormControl>
-								<Textarea className="p-2" placeholder="please input search config" {...field} />
+								<Textarea className="p-2" placeholder={t('options.search_engine_settings.args_placeholder')} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -89,11 +89,11 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 				/>
 				<FormField
 					control={control}
-					name={`docUrl`}
+					name={`comment`}
 					render={({ field }) => (
 						<FormItem>
 							<FormControl>
-								<Textarea className="p-2" placeholder="please input comment" {...field} />
+								<Textarea className="p-2" placeholder={t('options.search_engine_settings.comment_placeholder')} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -118,13 +118,13 @@ export const SearchEngineArgs: FC<SearchEngineArgsProps> = ({ engine, onSubmitAr
 						)}
 					/>
 					<Button variant="outline" type="button" onClick={onTest}>
-						Test
+						{t('common.test')}
 					</Button>
 					<Button variant="secondary" type="button" onClick={onCancel}>
-						Cancel
+						{t('common.cancel')}
 					</Button>
 					<Button type="submit">
-						Submit
+						{t('common.submit')}
 					</Button>
 				</Space>
 			</form >

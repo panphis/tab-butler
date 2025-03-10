@@ -1,4 +1,4 @@
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 import { Button, Space } from "@repo/ui";
 import { Fragment, type FC } from "react";
 import { Favicon } from "@/components";

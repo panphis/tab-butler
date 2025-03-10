@@ -20,15 +20,18 @@ import {
 
 import { PinOff, Star, Ellipsis, Trash2 } from 'lucide-react'
 import { Favicon } from "@/components";
+
 import {
-	useWebSiteStore, WebSite,
-	useCopy,
 	SiteFormValues,
-	SiteForm,
-	HistoryUrl
-} from "@repo/shared";
+	SiteForm
+} from "@/components/site";
 import { EditSite } from "./";
 import { bg_transparent, openTab } from "@/utils";
+import { HistoryUrl, WebSite } from "@/type";
+import { useWebSiteStore } from "@/hooks";
+import { useCopy } from "@/hooks";
+import { useTranslation } from "react-i18next";
+
 
 
 
@@ -42,22 +45,23 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 		openTab({ url: site.url });
 	};
 
+	const { t } = useTranslation();
 	const { toast } = useToast()
 	const { removeWebSite } = useWebSiteStore()
 	const copy = useCopy({
 		text: site.url,
 		onSuccess: () => {
 			toast({
-				title: "Copied!",
+				title: t('common.copied'),
 				description: site.url
 			})
 		},
 		onError: () => {
 			toast({
-				title: "Copy failed",
+				title: t('common.copy_failed'),
 				variant: "destructive",
 				description: site.url,
-				action: <Button variant="outline" onClick={copy}>Try Again</Button>
+				action: <Button variant="outline" onClick={copy}>{t('common.try_again')}</Button>
 			})
 		}
 	})
@@ -129,31 +133,33 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 
 			<ContextMenuContent className={cn(bg_transparent, "w-fit")}>
 				<ContextMenuItem inset onSelect={() => setOpen(true)}>
-					Edit website
+					{t('new_tab.edit')}
 				</ContextMenuItem>
 				<ContextMenuSeparator />
 				<ContextMenuItem inset onSelect={() => onSiteClick()}>
-					Open website
+					{t('new_tab.open')}
 				</ContextMenuItem>
 				<ContextMenuItem inset onSelect={() => unfixedSite()}>
-					Unfixed website
+					{t('new_tab.unfixed')}
 				</ContextMenuItem>
 				<ContextMenuSeparator />
 				<ContextMenuItem inset onSelect={() => copy()}>
-					Copy website url
+					{t('new_tab.copy')}
 				</ContextMenuItem>
 				<ContextMenuItem inset onSelect={() => removeSite()}>
-					Remove
+					{t('new_tab.remove')}
 				</ContextMenuItem>
 			</ContextMenuContent>
 		</ContextMenu>
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger className="hidden">
-				Edit website
+				{t('new_tab.edit_website')}
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Edit website</DialogTitle>
+					<DialogTitle>
+						{t('new_tab.edit_website')}
+					</DialogTitle>
 				</DialogHeader>
 				<SiteForm defaultValues={site} onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>

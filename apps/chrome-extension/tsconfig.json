@@ -1,20 +1,24 @@
 {
-  "extends": "@repo/typescript-config/app.json",
-  "compilerOptions": {
-    "baseUrl": "./",
-    "module": "ESNext",
-    "target": "ESNext",
-    "types": [
-      "vite/client",
-      "node",
-      "chrome"
-    ],
-    "paths": {}
-  },
-  "include": [
-    "lib",
-    "utils",
-    "vite.config.mts",
-    "node_modules/@types"
-  ]
+	"extends": "@repo/typescript-config/app.json",
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
+		"module": "ESNext",
+		"target": "ESNext",
+		"types": [
+			"vite/client",
+			"node",
+			"chrome"
+		],
+	},
+	"include": [
+		"lib",
+		"utils",
+		"vite.config.mts",
+		"node_modules/@types"
+	]
 }

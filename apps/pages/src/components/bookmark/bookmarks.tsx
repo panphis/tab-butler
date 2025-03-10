@@ -5,7 +5,7 @@ import {
 } from "@repo/ui";
 import "@repo/ui/dist/style.css";
 
-import { useBookMarks } from "@repo/shared";
+import { useBookMarks } from "@/hooks";
 import { TreeNode } from "./";
 
 import { Loading } from "./";

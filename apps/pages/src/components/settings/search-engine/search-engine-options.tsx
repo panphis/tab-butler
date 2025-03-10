@@ -1,5 +1,5 @@
 import type { FC, MouseEvent } from "react";
-import { SearchEngine } from "@repo/shared";
+import { SearchEngine } from "@/type";
 import { Space } from "@repo/ui";
 import { DeleteSearchEngine, EditSearchEngine, SearchEngineArgSetting } from "./";
 

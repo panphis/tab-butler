@@ -1,4 +1,4 @@
-import { TabsCreateProperties, TabQueryInfo, HistoryUrl } from "@repo/shared";
+import { TabsCreateProperties, TabQueryInfo, HistoryUrl } from "@/type";
 
 export const openTab = async (params: TabsCreateProperties) => {
 	chrome.tabs.create(params);
@@ -26,4 +26,10 @@ export const queryBookMarker = async (params: chrome.bookmarks.BookmarkSearchQue
 
 export async function removeFormHistory(params: HistoryUrl) {
 	chrome.history.deleteUrl(params)
+}
+
+
+
+export async function sendMessage(message: any) {
+	return await chrome.runtime.sendMessage(message);
 }

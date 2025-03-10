@@ -1,8 +1,9 @@
 import React, { Fragment, type FC, useMemo, useState } from "react";
 import { WallpaperForm } from "./wallpaper-form";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Button } from "@repo/ui";
-import type { Wallpaper } from "@repo/shared";
-import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
+import type { Wallpaper, CreateWallpaperParams } from "@/type";
+import { useWallpaperStore } from "@/hooks";
+import { useTranslation } from "react-i18next";
 
 
 type EditWallpaperProps = {
@@ -12,6 +13,7 @@ type EditWallpaperProps = {
 export const EditWallpaper: FC<EditWallpaperProps> = ({ wallpaper }) => {
 
 	const { updateWallpaper } = useWallpaperStore()
+	const { t } = useTranslation();
 
 	const onSubmit = async (values: CreateWallpaperParams) => {
 		await updateWallpaper({ ...wallpaper, ...values, id: wallpaper?.id! })
@@ -34,21 +36,28 @@ export const EditWallpaper: FC<EditWallpaperProps> = ({ wallpaper }) => {
 		setOpen(open)
 	}
 
+	const onCancel = () => {
+		setOpen(false)
+	}
+
 
 	return (<Fragment>
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogTrigger>
-				<Button>Update</Button>
+				<Button>{t('common.update')}</Button>
 			</DialogTrigger>
 			<DialogContent>
-
 				<DialogHeader>
-					<DialogTitle>Edit wallpaper</DialogTitle>
+					<DialogTitle>{t('options.edit_wallpaper_form.form_title')}</DialogTitle>
 				</DialogHeader>
-				<WallpaperForm initValues={{
-					title: wallpaper?.title,
-					files: fileList,
-				}} onSubmit={onSubmit} />
+				<WallpaperForm
+					initValues={{
+						title: wallpaper?.title,
+						files: fileList,
+					}}
+					onSubmit={onSubmit}
+					onCancel={onCancel}
+				/>
 			</DialogContent>
 		</Dialog>
 	</Fragment>);
