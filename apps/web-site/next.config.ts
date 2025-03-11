@@ -8,15 +8,17 @@ import nextra from 'nextra'
 
 
 const withNextra = nextra({
-  // ... Other Nextra config options
+	search: true,
+	defaultShowCopyCode: true,
+	// ... Other Nextra config options
 })
 
 
 
 // You can include other Next.js configuration options here, in addition to Nextra settings:
 const nextConfig: NextConfig = {
-  // ... Other Next.js config options
-  /* config options here */
+	// ... Other Next.js config options
+	/* config options here */
 };
 const nextConfigWithNextra = withNextra(nextConfig)
 
