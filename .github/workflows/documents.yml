@@ -31,15 +31,15 @@ jobs:
         run: npm ci
       
       - name: Build with Turborepo
-        run: npx turbo build --filter=your-app-name
+        run: npx turbo build --filter=web-site
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
       
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: './apps/your-app-name/out'
+          path: './apps/web-site/out'
 
   deploy:
     environment:
