@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 import { AspectRatio, } from '@repo/ui';
 import { getFileType } from '@/utils';
 import { FileQuestion } from 'lucide-react';
-import { Wallpaper } from '@repo/shared';
+import { Wallpaper } from '@/type';
 
 
 interface PreviewImageProps {

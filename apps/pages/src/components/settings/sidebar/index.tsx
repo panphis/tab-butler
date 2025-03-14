@@ -3,43 +3,16 @@ import { buttonVariants, cn } from "@repo/ui";
 import type { FC, HTMLAttributes } from "react";
 import { AnchorIds } from "..";
 
+import { useTranslation } from "react-i18next";
+
 
 type SidebarItem = { title: string; anchor: string; children?: SidebarItem[] };
-const sidebarNavItems: SidebarItem[] = [
-	{
-		title: "Appearance",
-		anchor: AnchorIds.appearance,
-		children: [
-			{
-				title: "Theme",
-				anchor: AnchorIds.theme,
-			},
-			{
-				title: "Color",
-				anchor: AnchorIds.color,
-			},
-			{
-				title: "Radius",
-				anchor: AnchorIds.radius
-			},
-			{
-				title: "Wallpaper",
-				anchor: AnchorIds.wallpaper
-			},
-		]
-	},
-	{
-		title: "Search Engine",
-		anchor: AnchorIds.searchEngine,
-	},
-]
 
 type SidebarItemProps = {
 	item: SidebarItem;
 	hash: string
 }
 const SidebarItem: FC<SidebarItemProps> = ({ item, hash }) => {
-
 	if (item.children) {
 		return <Fragment>
 			<a
@@ -87,6 +60,44 @@ const SidebarItem: FC<SidebarItemProps> = ({ item, hash }) => {
 
 interface SideBarProps extends HTMLAttributes<HTMLElement> { }
 export const Sidebar: FC<SideBarProps> = ({ className, ...props }) => {
+
+
+
+	const { t } = useTranslation();
+	const sidebarNavItems: SidebarItem[] = [
+		{
+			title: t('options.appearance'),
+			anchor: AnchorIds.appearance,
+			children: [
+				{
+					title: t('options.language'),
+					anchor: AnchorIds.language,
+				},
+				{
+					title: t('options.theme'),
+					anchor: AnchorIds.theme,
+				},
+				{
+					title: t('options.color'),
+					anchor: AnchorIds.color,
+				},
+				{
+					title: t('options.radius'),
+					anchor: AnchorIds.radius
+				},
+				{
+					title: t('options.wallpaper'),
+					anchor: AnchorIds.wallpaper
+				},
+			]
+		},
+		{
+			title: t('options.search_engine'),
+			anchor: AnchorIds.searchEngine,
+		},
+	]
+
+
 	const [hash, setHash] = useState(window.location.hash);
 	useEffect(() => {
 		const handleHashChange = () => {

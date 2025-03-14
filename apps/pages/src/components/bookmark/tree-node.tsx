@@ -5,7 +5,7 @@ import {
 	DialogContent,
 	DialogTrigger
 } from "@repo/ui";
-import type { BookmarkTreeNode, BookmarkChangesArg } from "@repo/shared";
+import type { BookmarkTreeNode, BookmarkChangesArg } from "@/type";
 import { BookMarkForm, BookMarkDirForm } from "./";
 
 

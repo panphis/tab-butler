@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import type { FC } from "react"
 
 import { cn } from "@repo/ui";
-import { Wallpaper } from "@repo/shared";
+import { Wallpaper } from "@/type";
 
 type WallpaperPictureProps = {
 	wallpaper: Wallpaper;
@@ -29,7 +29,6 @@ export const WallpaperPicture: FC<WallpaperPictureProps> = ({ wallpaper: { poste
 	return (<Fragment>
 		<div className="relative">
 			<img src={imgUrl} alt={wallpaperName} className={cn('min-h-dvh w-full fixed top-0 left-0 right-0 bottom-0 object-cover')} style={{ backgroundSize: `${width}px ${height}px` }} />
-
 			<div className={cn("min-h-dvh min-w-dvw", className)}>
 				{children}
 			</div>

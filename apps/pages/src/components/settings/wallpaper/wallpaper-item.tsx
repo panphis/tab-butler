@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 
 
-import { ID, Wallpaper, formatFileSize } from "@repo/shared";
+import { ID, Wallpaper, } from "@/type";
+import { formatFileSize } from "@/utils";
 import {
 	AspectRatio,
 	Separator,
@@ -16,24 +17,11 @@ import {
 	cn,
 } from "@repo/ui";
 
-import { useWallpaperStore, IconStar } from "@repo/shared";
+import { useWallpaperStore } from "@/hooks";
 import { EditWallpaper } from "./";
-
+import { IconStar } from "@/components";
 import { PreviewWallpaper } from "@/components/upload/preview";
-
-interface ImageContainerProps {
-	file: File,
-	title: string
-}
-const ImageContainer = ({ file, title }: ImageContainerProps) => {
-
-	const previewUrl = useMemo(() => {
-		const url = URL.createObjectURL(file)
-		return url
-	}, [file.lastModified])
-
-	return <img className='max-w-full max-h-full' loading="lazy" src={previewUrl} alt={title} title={title} />
-}
+import { useTranslation } from "react-i18next";
 
 
 const FileSize = ({ size }: { size: number }) => {
@@ -56,6 +44,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 	}, [wallpaper.selected])
 
 
+	const { t } = useTranslation();
 	const { removeWallpaper } = useWallpaperStore()
 
 	const { setCurrentWallpaper } = useWallpaperStore()
@@ -96,7 +85,7 @@ export const WallpaperItem = ({ wallpaper, onSelect: onSelectCurrentWallpaper }:
 		<CardFooter className="p-2">
 			<Space>
 				<EditWallpaper wallpaper={wallpaper} />
-				<Button variant="outline" onClick={() => removeWallpaper(wallpaper.id)}>Delete</Button>
+				<Button variant="outline" onClick={() => removeWallpaper(wallpaper.id)}>{t('common.delete')}</Button>
 			</Space>
 		</CardFooter>
 	</Card >;

@@ -8,9 +8,16 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ui";
-import { SiteForm, SiteFormValues, useWebSiteStore, WebSite } from "@repo/shared"
+
+
+import {
+	SiteFormValues,
+	SiteForm
+} from "@/components/site";
 
 import { Pencil } from 'lucide-react';
+import { useWebSiteStore } from "@/hooks";
+import { WebSite } from "@/type";
 
 type EditSiteProps = {
 	website: WebSite

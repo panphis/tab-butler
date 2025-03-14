@@ -1,6 +1,7 @@
 import { Fragment, ReactDOM, useState, type FC } from "react";
 import { WallpaperForm } from ".";
-import { CreateWallpaperParams, useWallpaperStore } from "@repo/shared";
+import { CreateWallpaperParams } from "@/type";
+import { useWallpaperStore } from "@/hooks";
 import {
 	Button,
 	Dialog,
@@ -10,12 +11,14 @@ import {
 	DialogTrigger,
 } from "@repo/ui";
 import { Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 
 export const CreateWallpaper: FC = () => {
 
 	const [open, setOpen] = useState<boolean>(false)
 
+	const { t } = useTranslation();
 	const { createWallpaper } = useWallpaperStore()
 
 	const onSubmit = async (values: CreateWallpaperParams) => {
@@ -28,12 +31,12 @@ export const CreateWallpaper: FC = () => {
 			<DialogTrigger asChild>
 				<Button onClick={() => setOpen(true)} size={'sm'} >
 					<Plus />
-					Upload wallpaper
+					{t('options.upload_wallpaper_form.trigger')}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Upload wallpaper</DialogTitle>
+					<DialogTitle>{t('options.upload_wallpaper_form.form_title')}</DialogTitle>
 				</DialogHeader>
 				<WallpaperForm onSubmit={onSubmit} onCancel={() => setOpen(false)} />
 			</DialogContent>

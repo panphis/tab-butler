@@ -16,11 +16,14 @@ import {
 	ScrollArea
 } from '@repo/ui'
 
-import { useHistory, useBookMarkQuery } from "@repo/shared";
+import { useHistory, useBookMarkQuery } from "@/hooks";
 
 import { History, Bookmark } from 'lucide-react'
-import type { BookmarkTreeNode, HistoryItem } from '@repo/shared';
+import type { BookmarkTreeNode, HistoryItem } from '@/type';
 import { openTab } from '@/utils';
+
+
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -35,12 +38,16 @@ interface HistoryProps {
 	history: HistoryItem[]
 }
 const HistoryList = ({ history }: HistoryProps) => {
+
+	const { t } = useTranslation();
 	const onClick = (history: HistoryItem) => {
 		openTab({ url: history.url });
 	};
 	return history.length > 0 && (
 		<Space direction='col' gap={0}>
-			<Label className='my-2 px-2 text-inherit'>History</Label>
+			<Label className='my-2 px-2 text-inherit'>{
+				t('new_tab.history')
+			}</Label>
 			<Separator />
 			<Fragment>
 				{
@@ -68,13 +75,17 @@ interface BookMarkProps {
 	bookMarks: BookmarkTreeNode[]
 }
 const BookMarkList = ({ bookMarks }: BookMarkProps) => {
+
+	const { t } = useTranslation();
 	const onClick = (bookMark: HistoryItem) => {
 		openTab({ url: bookMark.url });
 	};
 	return bookMarks.length > 0 && (
 		<Fragment>
 			<Space direction='col' gap={0}>
-				<Label className='my-2 px-2 text-inherit'>BookMark</Label>
+				<Label className='my-2 px-2 text-inherit'>{
+					t('new_tab.bookmark')
+				}</Label>
 				<Separator />
 				<Fragment>
 					{
@@ -106,6 +117,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 	const bookMarks = useBookMarkQuery(field.value, 10)
 	const [open, setOpen] = useState<boolean>(false)
 
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		setOpen(history.length > 0 || bookMarks.length > 0)
@@ -122,7 +134,7 @@ export const SearchInput: FC<SearchInputProps> = ({ field }) => {
 							<Input
 								autoComplete='off'
 								className={`bg-transparent placeholder:text-inherit border-none text-center focus-visible:shadow-none focus-visible:ring-color-transparent focus-visible:ring-offset-0 focus-visible:ring-0 text-inherit`}
-								placeholder='Search'
+								placeholder={t('new_tab.search')}
 								{...field}
 							/>
 						</FormControl>

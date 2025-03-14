@@ -11,26 +11,18 @@
 	"types": "index.ts",
 	"main": "/dist/index.es.js",
 	"scripts": {
-		"ready": "vite build --mode development && npm run build:styles",
-		"build": "vite build && npm run build:styles",
-		"build:styles": "postcss ./src/styles/globals.css -o ./dist/globals.css",
+		"ready": "vite build --mode development",
+		"build": "vite build",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "pnpm lint --fix",
 		"prettier": "prettier . --write --ignore-path ../../.prettierignore",
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
-		"dexie": "^4.0.8",
-		"dexie-react-hooks": "^1.1.7",
-		"zustand": "^4.5.5"
 	},
 	"devDependencies": {
-		"@repo/ui": "workspace:*",
 		"@repo/typescript-config": "workspace:*"
 	},
 	"peerDependencies": {
-		"react": "18.3.1",
-		"react-dom": "18.3.1",
-		"react-router-dom": "^6.26.1"
 	}
 }

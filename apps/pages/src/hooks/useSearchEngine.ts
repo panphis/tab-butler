@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
-import { SearchEngine, useSearchEnginesStore } from "@repo/shared";
+import { SearchEngine, } from "@/type";
+import { useSearchEnginesStore } from "./"
 
 export const useSearchEngine = () => {
 	const { searchEngines, currentEngine, createSearchEngine, deleteSearchEngine, updateSearchEngine, setCurrentEngine } = useSearchEnginesStore();
