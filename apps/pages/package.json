@@ -1,5 +1,5 @@
 {
-	"name": "@repo/pages",
+	"name": "pages",
 	"version": "0.2.2",
 	"description": "chrome extension pages",
 	"private": true,
