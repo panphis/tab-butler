@@ -1,0 +1,127 @@
+---
+title: 安装
+description: 安装引导
+keywords: ["安装", "setting", "node", "guide", "documents"]
+---
+
+
+## 安装 Tab 管家
+
+### 通过谷歌浏览器插件市场
+
+[前往 Chrome Web Store](https://chromewebstore.google.com/detail/tab-%E7%AE%A1%E5%AE%B6/eagggkcfbcppooefalomddjkfgknokmp 'Chrome Web Store下载地址')
+
+### 手动下载安装
+
+[通过 Github 下载发布版本下载并安装](https://github.com/panphis/tab-butler/releases 'Github 发布地址')
+
+
+### 构建安装包安装
+
+<Step>
+<StepItem title="构建要求">
+
+- **Node.js:** 确认 **Nodejs** 被安装，该项目需要使用 `nodejs` 提供运行环境。
+- **pnpm** 该项目使用多仓库方式构建，需要使用到 `pnpm` 作为包管理工具 
+
+使用如下命令依赖是否被安装成功
+
+```bash
+node -v
+# version for nodejs
+
+pnpm -v
+# version for pnpm
+```
+
+</StepItem>
+<StepItem title="Git （可选）">
+安装 `git` 使用 `git clone` 命令下载代码。
+
+或者通过点击下载来下载代码。
+
+[下载地址](https://github.com/panphis/tab-butler)
+
+```bash
+git --version
+```
+
+</StepItem>
+<StepItem title="Code Editor">
+现在仅仅需要一款代码编辑器来运行该项目
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [WebStorm](https://www.jetbrains.com/webstorm/)
+- Any other text editor you prefer.
+
+</StepItem>
+<StepItem title="涉及到的内容">
+
+- **[Turborepo](https://turbo.build/repo/docs 'Turborepo')**: 使用 `Turborepo` 作为项目多仓库管理工具。
+- **[Vite](https://vite.dev/ 'Vite')**: 使用 `Vite` 构建项目页面以及依赖包。
+- **[Chrome Extensions](https://developer.chrome.com/docs/extensions 'Chrome Extensions')**: 根据 `Chrome Extensions` 提供的插件浏览器交互方法实现具体功能。
+- **[React](https://react.dev/ 'React')**: 项目使用 `React` 构建页面，熟悉`React`会提供很大帮助。
+- **[TypeScript](https://www.typescriptlang.org/ 'TypeScript')**: 完全使用 `TypeScript` 编写。
+- **[Shadcn](https://ui.shadcn.com/ 'Shadcn')**: 使用 `Shadcn` 封装组件。
+- **[Tailwind](https://tailwindcss.com/ 'Tailwind'):**: 使用 `Tailwind` 实现页面样式
+
+</StepItem>
+</Step>
+
+#### 安装
+
+<Step>
+<StepItem title="下载项目">
+首先, 需要使用`git` clone 代码到本地:
+
+```bash
+git clone https://github.com/panphis/tab-butler
+```
+
+或者通过点击下载来下载代码。
+
+</StepItem>
+<StepItem title="安装依赖">
+
+进入到项目目录，执行安装依赖命令
+
+```bash
+pnpm install
+```
+</StepItem>
+
+<StepItem title="运行构建依赖包命令">
+
+在真正运行项目前需要将多仓库内的依赖先构建出来。并再次执行安装命令，将 `package` 中构建好的依赖 安装到 `app` 项目中。
+
+```bash
+pnpm run ready
+
+pnpm i
+```
+</StepItem>
+
+<StepItem title="打包">
+
+在项目根目录下运行构建命令。生成一个 `dist` 文件夹
+
+```bash
+# 打包测试环境
+pnpm run dev 
+
+# 打包生产环境
+pnpm run build
+```
+
+</StepItem>
+
+
+<StepItem title="安装">
+
+1. 打开`[chrome://extensions/](chrome://extensions/ 'chrome://extensions/')` 进入浏览器插件管理页面
+2. 点击 `开发者模式` 进入到开发模式。
+3. 点击 `加载未压缩的安装宝` 弹出加载窗口。
+4. 选择上一步生成的文件夹。
+</StepItem>
+
+</Step>

@@ -26,7 +26,10 @@ coverage
 out/
 build
 dist
-
+# Ignore only the root /docs folder
+/docs
+# Do not ignore /docs folders in other directories
+!**/docs/
 
 # Debug
 npm-debug.log*
