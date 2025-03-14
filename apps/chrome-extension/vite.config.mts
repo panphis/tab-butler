@@ -23,6 +23,7 @@ export default defineConfig({
 	],
 	publicDir: resolve(rootDir, 'public'),
 	build: {
+		emptyOutDir: false,
 		lib: {
 			entry: [
 				resolve(__dirname, 'lib/background.ts'),

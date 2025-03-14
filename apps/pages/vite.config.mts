@@ -12,6 +12,7 @@ const config = withPageConfig({
   publicDir: resolve(rootDir, 'public'),
   build: {
     outDir: resolve(rootDir, '..', '..', 'dist', 'pages'),
+    emptyOutDir: false,
     rollupOptions: {
       sourcemap: true,
       input: {
