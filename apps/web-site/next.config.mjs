@@ -1,7 +1,12 @@
+import { basePath } from "./settings/settings";
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  images: { unoptimized: true },
+	output: "export",
+
+	basePath,
+	images: { unoptimized: true },
 }
 
 export default nextConfig
