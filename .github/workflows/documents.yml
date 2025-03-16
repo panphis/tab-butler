@@ -49,7 +49,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       
       - name: Install dependencies
-        run: npm install --no-frozen-lockfile
+        run: pnpm install
       
       - name: Build with Turborepo
         run: npx turbo build --filter=web-site
