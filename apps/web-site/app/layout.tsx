@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import React from "react"
 import { GoogleTagManager } from "@next/third-parties/google"
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"

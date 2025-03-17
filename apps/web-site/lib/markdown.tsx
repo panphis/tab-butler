@@ -12,7 +12,7 @@ import remarkGfm from "remark-gfm"
 import { Node } from "unist"
 import { visit } from "unist-util-visit"
 
-import { components as originalComponents } from "@/lib/components"
+import { components } from "@/lib/components"
 import { Settings } from "@/lib/meta"
 import { PageRoutes } from "@/lib/pageroutes"
 
@@ -28,12 +28,7 @@ type BaseMdxFrontmatter = {
 	keywords: string
 }
 
-const components = {
-	...originalComponents,
-	a: (props: React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => (
-		<a {...props} />
-	),
-}
+
 
 async function parseMdx<Frontmatter>(rawMdx: string) {
 	return await compileMDX<Frontmatter>({
@@ -53,6 +48,9 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
 				remarkPlugins: [remarkGfm],
 			},
 		},
+		// compileMDX 类型似乎是原生传参，与自定义组件的类型对不上。
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
 		components,
 	})
 }

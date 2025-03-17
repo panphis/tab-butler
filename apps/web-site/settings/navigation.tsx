@@ -1,4 +1,5 @@
 import { PageRoutes } from "@/lib/pageroutes"
+import { github, downloadUrl } from "./settings"
 
 export const Navigations = [
 	{
@@ -7,11 +8,11 @@ export const Navigations = [
 	},
 	{
 		title: "下载",
-		href: "/",
+		href: downloadUrl,
 		external: true,
 	},
 ]
 
 export const GitHubLink = {
-	href: "https://github.com/panphis/tab-butler",
+	href: github
 }

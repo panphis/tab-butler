@@ -8,6 +8,7 @@ import RoutedLink from "@/components/markdown/link"
 import Mermaid from "@/components/markdown/mermaid"
 import Note from "@/components/markdown/note"
 import { Step, StepItem } from "@/components/markdown/step"
+import Image from "@/components/markdown/image"
 
 export const components = {
   a: RoutedLink,
@@ -25,4 +26,5 @@ export const components = {
   TabsContent,
   TabsList,
   TabsTrigger,
+  img: Image,
 }
