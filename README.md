@@ -9,15 +9,15 @@
 ## 内容介绍
 
 1. 首页背景，以及固定常用网址。
-   ![首页](./docs/home.png "首页")
+   ![首页](./apps/web-site/public/images/home.png "首页")
 2. 书签目录搜索
-   ![书签](./docs/bookmark.png "书签")
+   ![书签](./apps/web-site/public/images/bookmark.png "书签")
 3. 任意网站保存到书签
-   ![保存书签](./docs/save%20bookmark.png "保存书签")
+   ![保存书签](./apps/web-site/public/images/save_bookmark.png "保存书签")
 4. 主题色背景图/视频设置
-   ![外观设置](./docs/appearance.png "外观设置")
+   ![外观设置](./apps/web-site/public/images/appearance.png "外观设置")
 5. 搜索引擎，额外搜索参数处理
-   ![搜索参数](./docs/search%20engine.png "搜索参数")
+   ![搜索参数](./apps/web-site/public/images/search_engine.png "搜索参数")
 
 ## 使用介绍
 
