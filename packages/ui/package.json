@@ -4,14 +4,14 @@
 	"private": true,
 	"scripts": {
 		"tsc": "tsc --pretty",
-		"ready": "vite build && npm run build:styles",
-		"build": "vite build && npm run build:styles",
+		"ready": "npm run tsc && npm run build:styles",
+		"build": "npm run tsc && npm run build:styles",
 		"build:styles": "postcss ./src/globals.css -o ./dist/globals.css",
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"type": "module",
-	"main": "dist/ui.js",
-	"module": "dist/ui.js",
+	"main": "dist/src/index.js",
+	"module": "dist/src/index.js",
 	"types": "dist/src/index.d.ts",
 	"sideEffects": false,
 	"files": [

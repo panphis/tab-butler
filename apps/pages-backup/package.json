@@ -1,0 +1,36 @@
+{
+	"name": "pages-backup",
+	"version": "0.2.2",
+	"description": "chrome extension pages",
+	"private": true,
+	"scripts": {
+		"build": "vite build",
+		"lint": "eslint . --ext .ts,.tsx",
+		"lint:fix": "pnpm lint --fix",
+		"prettier": "prettier . --write --ignore-path ../../.prettierignore",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/shared": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"@tailwindcss/postcss": "^4.0.7",
+		"dexie": "^4.0.8",
+		"dexie-react-hooks": "^1.1.7",
+		"i18next": "^24.2.2",
+		"postcss": "^8.4.41",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"react-i18next": "^15.4.1",
+		"tailwindcss": "^3.4.10",
+		"tailwindcss-animate": "^1.0.7",
+		"zustand": "^4.5.5"
+	},
+	"devDependencies": {
+		"@repo/tailwindcss-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
+		"@types/react": "^18.2.61",
+		"@types/react-dom": "^18.2.19",
+		"vite": "^5.4.0"
+	}
+}

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
 	gap?: number | string;
 	direction?: "row" | "col";
 }
@@ -20,4 +20,4 @@ const Space = React.forwardRef<HTMLDivElement, SpaceProps>(
 );
 Space.displayName = "Space";
 
-export { Space };
+export { type SpaceProps, Space };

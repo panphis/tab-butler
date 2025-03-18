@@ -1,3 +1,3 @@
-export * from './tree'
+export { Tree } from './tree';
+export { TreeSelect, type TreeSelectProps } from './tree-select';
 
-export * from "./tree-select"

@@ -1,4 +1,4 @@
-import { Fragment, ReactNode, useState, type FC } from "react";
+import { Fragment, ReactNode, SetStateAction, useState, type FC } from "react";
 
 // import styles from "./tree.module.css";
 import { TreeDataType } from "./tree";
@@ -7,7 +7,7 @@ import RCTreeSelect from "rc-tree-select";
 import styles from "./tree-select.module.css";
 import { Folder, FolderOpen } from 'lucide-react';
 import { TreeNodeProps } from "rc-tree";
-type TreeSelectProps = {
+export type TreeSelectProps = {
 	loading?: boolean;
 	treeData: TreeDataType[];
 
@@ -29,12 +29,12 @@ export const TreeSelect: FC<TreeSelectProps> = ({
 }) => {
 	const [searchValue, setSearchValue] = useState('');
 
-	function onSearch(value, ...rest) {
+	function onSearch(value: SetStateAction<string>, ..._rest: any[]) {
 		setSearchValue(value)
 	}
 
 
-	function onSelect(value, ...args) {
+	function onSelect(value: any, ...args: any[]) {
 		onChange(value)
 	}
 	function onClear() {

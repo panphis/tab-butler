@@ -8,7 +8,7 @@ import { Toaster } from "@repo/ui"
 import "@/styles/themes.css";
 
 interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
-	children: ReactNode;
+	children?: ReactNode;
 }
 
 const getSystemTheme = () =>
