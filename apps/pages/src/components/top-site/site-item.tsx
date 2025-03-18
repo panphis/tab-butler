@@ -119,7 +119,7 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 					{t('new_tab.open')}
 				</ContextMenuItem>
 				<ContextMenuItem inset onSelect={() => fixedSite()}>
-					{t('new_tab.edit')}
+					{t('new_tab.fixed')}
 				</ContextMenuItem>
 				<ContextMenuSeparator />
 				<ContextMenuItem inset onSelect={() => copy()}>
