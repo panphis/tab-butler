@@ -80,18 +80,16 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 	return (<Fragment>
 		<ContextMenu>
 			<ContextMenuTrigger asChild>
-				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
+				<Space className={cn(bg_transparent, "p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
 					<Space className="items-start">
-						<span className="p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
+						<span className="hidden md:block p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
 							<History size={16} />
 						</span>
-						<Favicon src={site.url} title={site.title} className="rounded-md" />
-
-
+						<Favicon src={site.url} title={site.title} className="rounded-md w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
 						<Popover>
-							<PopoverTrigger onClick={(e) => { e.stopPropagation() }} >
+							<PopoverTrigger className="hidden md:block" onClick={(e) => { e.stopPropagation() }} >
 								<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
 									<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
 								</Button>
@@ -110,7 +108,8 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 						</Popover>
 					</Space>
 					<p title={`${site.title}-${site.url}`}
-						className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
+						className="hidden md:block max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate"
+					>{site.title}</p>
 				</Space>
 			</ContextMenuTrigger>
 

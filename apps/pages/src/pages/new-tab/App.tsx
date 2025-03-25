@@ -23,7 +23,7 @@ const NewTab = () => {
 	return (
 		<Layout>
 			<TooltipProvider>
-				<WallpaperContainer className="flex flex-col justify-start items-center pt-20 pb-16 gap-8">
+				<WallpaperContainer className="flex flex-col justify-start items-center pt-20 gap-8">
 					<Clock />
 					<SearchForm />
 					<Sites />

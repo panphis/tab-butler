@@ -97,7 +97,7 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 	return (<Fragment>
 		<ContextMenu modal={false}>
 			<ContextMenuTrigger asChild>
-				<Space className={cn(bg_transparent, "h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
+				<Space className={cn("h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
 					<Space className="items-start">
