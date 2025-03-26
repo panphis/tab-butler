@@ -1,7 +1,10 @@
-export * from "./dnd-site"
+export { Sites } from "./sites"
 
-export * from "./site-item"
+export { SiteItem } from "./site-item"
 
-export * from "./fixed-site-item"
+export { FixedSiteItem } from "./fixed-site-item"
 
-export * from "./edit-site"
+export { EditSite } from "./edit-site"
+
+
+export { DndSite } from "./dnd-site"

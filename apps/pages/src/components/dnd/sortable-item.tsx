@@ -6,11 +6,9 @@ interface SortableItemProps {
 	id: number;
 	children?: React.ReactNode;
 	className?: string;
-	width?: number;
-	height?: number;
 }
 
-const SortableItem: FC<SortableItemProps> = (({ id, children, className = '', width = 1, height = 1 }) => {
+const SortableItem: FC<SortableItemProps> = (({ id, children, className = '' }) => {
 	const {
 		setNodeRef,
 		attributes,

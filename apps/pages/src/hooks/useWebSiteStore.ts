@@ -9,6 +9,7 @@ import {
 import {
 	createOrUpdateWebSite, queryAllWebSite, deleteWebSite, updateWebSiteById
 } from "@/db";
+import { reorderWebSite } from '@/db/website';
 
 
 type State = {
@@ -53,6 +54,12 @@ export const useWebSiteStore = create<State & Action>((set, get) => ({
 	updateWebSite: async (params) => {
 		const { id, ...others } = params
 		await updateWebSiteById(id, others)
+		const list = await queryAllWebSite()
+		set({ websites: list })
+	},
+
+	reorderWebSite: async (websites: WebSite[]) => {
+		await reorderWebSite(websites)
 		const list = await queryAllWebSite()
 		set({ websites: list })
 	}

@@ -19,7 +19,7 @@ const db = new Dexie(dbName) as DexieType;
 db.version(dbVersion).stores({
 	wallpaper: "++id, title, selected, type, createdAt",
 	searchEngine: "++id, title, url, selected",
-	website: '++id, url, title, createdAt',
+	website: '++id, url, title, createdAt, index',
 });
 
 

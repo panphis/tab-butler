@@ -35,8 +35,7 @@ interface GridLayoutProps<T> {
 
 type GridItem = {
 	id: number;
-	width?: number;
-	height?: number;
+	index?: number;
 }
 
 const GridLayout = <T extends GridItem>({ list, node, className, columns = 6 }: GridLayoutProps<T>) => {
@@ -91,8 +90,6 @@ const GridLayout = <T extends GridItem>({ list, node, className, columns = 6 }: 
 								className={`hover:cursor-pointer`}
 								key={id}
 								id={id}
-								width={item.width}
-								height={item.height}
 							>
 								{node(item)}
 							</SortableItem>
