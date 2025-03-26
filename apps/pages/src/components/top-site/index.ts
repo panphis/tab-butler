@@ -1,4 +1,4 @@
-export * from "./sites"
+export * from "./dnd-site"
 
 export * from "./site-item"
 

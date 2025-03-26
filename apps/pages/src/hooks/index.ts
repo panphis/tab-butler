@@ -20,3 +20,7 @@ export { useSearchEnginesStore, searchEnginesStore } from "./useSearchEnginesSto
 export { useSearchEngine } from "./useSearchEngine"
 
 export { useWebSiteStore } from "./useWebSiteStore"
+
+
+export { useWindowWidth } from "./useWindowWidth";
+export { useResponsiveSize } from "./useResponsiveSize";
