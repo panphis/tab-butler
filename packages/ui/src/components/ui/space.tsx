@@ -8,7 +8,7 @@ export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Space = React.forwardRef<HTMLDivElement, SpaceProps>(
-	({ className, gap = 2, direction = "row", ...props }, ref) => {
+	({ className, gap = 0, direction = "row", ...props }, ref) => {
 		return (
 			<div
 				className={cn(`flex gap-${gap} flex-${direction}`, className)}

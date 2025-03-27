@@ -80,19 +80,17 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 	return (<Fragment>
 		<ContextMenu>
 			<ContextMenuTrigger asChild>
-				<Space className={cn(bg_transparent, "p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
+				<Space className={cn(bg_transparent, "items-stretch p-2 flex flex-col justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
-					<Space className="items-start">
+					<Space className="items-start justify-between" gap={1}>
 						<span className="hidden md:block p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
 							<History size={16} />
 						</span>
-						<Favicon src={site.url} title={site.title} className="rounded-md w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
+						<Favicon src={site.url} title={site.title} className="mx-auto rounded-md w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8" />
 						<Popover>
-							<PopoverTrigger className="hidden md:block" onClick={(e) => { e.stopPropagation() }} >
-								<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
-									<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
-								</Button>
+							<PopoverTrigger className="hidden md:block p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20" onClick={(e) => { e.stopPropagation() }} >
+								<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
 							</PopoverTrigger>
 							<PopoverContent onClick={(e) => { e.stopPropagation() }} className={cn(bg_transparent, "w-fit h-fit")}>
 								<Space direction="col">
@@ -108,7 +106,7 @@ export const SiteItem: FC<SiteItemProps> = ({ site, onRemove }) => {
 						</Popover>
 					</Space>
 					<p title={`${site.title}-${site.url}`}
-						className="hidden md:block max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate"
+						className="text-center hidden md:block max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate"
 					>{site.title}</p>
 				</Space>
 			</ContextMenuTrigger>
