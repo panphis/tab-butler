@@ -1,48 +1,50 @@
 import GridLayout from "../dnd/grid-layout";
-import { useResponsiveSize } from "@/hooks";
+import { useResponsiveSize, useTopSites } from "@/hooks";
 import { WebSite } from "@/type";
 import { FC, useMemo } from "react";
+import { FixedSiteItem } from "./fixed-site-item";
 
 
 type DndSiteProps = {
 	websites: WebSite[]
+	onOrderChange: (websites: WebSite[]) => void
 }
 
-export const DndSite: FC<DndSiteProps> = ({ websites }) => {
+export const DndSite: FC<DndSiteProps> = ({ websites, onOrderChange }) => {
 
 	const { breakpoint } = useResponsiveSize();
+
+	const { onRemove } = useTopSites();
 	const columns = useMemo(() => {
 		switch (breakpoint) {
 			case '2xl':
-				return 6;
+				return 8;
 			case 'xl':
-				return 5;
+				return 6;
 			case 'lg':
 				return 4;
 			case 'md':
+				return 4;
+			case 'sm':
 				return 3;
+			default:
+				return 6;
 		}
 	}, [breakpoint]);
 
-
+	if (websites.length === 0) {
+		return <></>
+	}
 
 
 	return (
 		<GridLayout<WebSite>
-			list={[]}
-			columns={columns}
-			className="w-full h-full p-4"
-			node={(item) => {
-				return (
-					<a
-						href={item.url}
-						target="_blank"
-					>
-						<div className="w-full h-full min-h-16 shadow-md rounded-md flex items-center justify-center">
-							<h1>{item.title}</h1>
-						</div>
-					</a>
-				);
+			list={websites}
+			columns={Math.min(columns, websites.length)}
+			className="w-full h-full"
+			onOrderChange={onOrderChange}
+			node={(site) => {
+				return (<FixedSiteItem site={site} key={site.url} onRemove={onRemove} />);
 			}}
 		/>
 	);

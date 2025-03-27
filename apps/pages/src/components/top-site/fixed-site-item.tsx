@@ -97,19 +97,19 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 	return (<Fragment>
 		<ContextMenu modal={false}>
 			<ContextMenuTrigger asChild>
-				<Space className={cn("h-24 p-2 flex flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
+				<Space className={cn("h-18 md:h-24 p-2 flex w-full max-w-24 overflow-hidden hover:max-w-28 flex-col items-center justify-center group/site rounded-md cursor-pointer transition-all")}
 					onClick={onSiteClick}
 				>
 					<Space className="items-start">
-						<span className="p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
+						<span className="hidden md:block p-1 w-fit h-fit opacity-0 group-hover/site:opacity-100  bg-transparent">
 							<Star size={16} />
 						</span>
-						<Favicon src={site.url} title={site.title} className="rounded-md" />
+						<Favicon src={site.url} title={site.title} className="rounded-md w-10 h-10 group-hover/site:w-12 group-hover/site:h-12 transition-all" />
 
 
 						<Popover>
 							<PopoverTrigger onClick={(e) => { e.stopPropagation() }} >
-								<Button className="p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
+								<Button className="hidden md:block p-1 w-fit h-fit bg-transparent text-inherit hover:bg-black/20"  >
 									<Ellipsis size={16} className="opacity-0 group-hover/site:opacity-100 transition-all" />
 								</Button>
 							</PopoverTrigger>
@@ -127,7 +127,7 @@ export const FixedSiteItem: FC<FixedSiteIProps> = ({ site, onRemove }) => {
 							</PopoverContent>
 						</Popover>
 					</Space>
-					<p title={`${site.title}-${site.url}`} className="max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
+					<p title={`${site.title}-${site.url}`} className="hidden md:block max-w-[100%] transition-all group-site:text-light leading-7 group-hover/site:text-xl truncate">{site.title}</p>
 				</Space>
 			</ContextMenuTrigger>
 

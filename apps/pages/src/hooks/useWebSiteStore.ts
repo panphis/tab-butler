@@ -25,6 +25,7 @@ type Action = {
 	getWebSites: () => Promise<void>;
 	removeWebSite: (id: ID) => Promise<void>;
 	updateWebSite: (params: WebSite) => Promise<void>;
+	reorderWebSite: (websites: WebSite[]) => Promise<void>;
 }
 
 const initValue = await queryAllWebSite()
@@ -60,7 +61,9 @@ export const useWebSiteStore = create<State & Action>((set, get) => ({
 
 	reorderWebSite: async (websites: WebSite[]) => {
 		await reorderWebSite(websites)
+		console.log('reorderWebSite', websites);	
 		const list = await queryAllWebSite()
+		console.log('list', list);
 		set({ websites: list })
 	}
 }))

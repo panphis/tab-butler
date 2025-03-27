@@ -24,7 +24,7 @@ export const createOrUpdateWebSite = async (website: CreateWebSiteParams) => {
 }
 
 export const queryAllWebSite = () => {
-	return websiteDB.orderBy('index').reverse().toArray()
+	return websiteDB.orderBy('index').toArray()
 }
 export const reorderWebSite = async (websites: WebSite[]) => {
 	// 更新数据库中的顺序

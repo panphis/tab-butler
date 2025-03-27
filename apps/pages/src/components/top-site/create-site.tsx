@@ -38,7 +38,7 @@ export const CreateSite: FC<CreateSiteProps> = ({ }) => {
 
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button onClick={() => setOpen(true)} variant="ghost" className={cn(bg_transparent, "h-8 w-8 flex flex-col items-center justify-center group/site rounded-md cursor-pointer")} >
+				<Button onClick={() => setOpen(true)} variant="ghost" className={cn(bg_transparent, "h-8 w-8 p-1 flex flex-col items-center justify-center group/site rounded-md cursor-pointer")} >
 					<Plus size={32} />
 				</Button>
 			</DialogTrigger>

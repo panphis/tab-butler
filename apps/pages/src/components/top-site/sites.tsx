@@ -7,16 +7,21 @@ import { useTopSites } from "@/hooks";
 import { cn } from "@repo/ui";
 import { bg_transparent } from "@/utils";
 import { DndSite } from "./";
+import { WebSite } from "@/type";
 
 
 export const Sites: FC = () => {
 	const { topSites, onRemove } = useTopSites();
 
-	const { websites } = useWebSiteStore();
+	const { websites, reorderWebSite } = useWebSiteStore();
 
 	const recentSites = useMemo(() => {
 		return topSites.slice(0, 3);
 	}, [topSites]);
+
+	const onOrderChange = async (websites: WebSite[]) => {
+		await reorderWebSite(websites);
+	}
 
 
 	return (<Fragment>
@@ -32,15 +37,15 @@ export const Sites: FC = () => {
 		<div
 			className={cn(
 				bg_transparent,
-				"sticky bottom-4 backdrop-blur-[18px] hover:backdrop-blur-[36px] rounded-xl p-6 container mx-auto mt-auto mb-4 max-w-lg md:max-w-xl lg:max-w-3xl w-fit flex items-center gap-4"
+				"rounded-xl px-6 py-2 sticky bottom-4 backdrop-blur-[18px] hover:backdrop-blur-[36px] container mx-auto mt-auto mb-4 max-w-full w-fit flex items-center gap-4"
 			)}>
-			<DndSite websites={websites} />
-			{
+			<DndSite websites={websites} onOrderChange={onOrderChange} />
+			{/* {
 				websites.map(site => <FixedSiteItem site={site} key={site.url} onRemove={onRemove} />)
-			}
-			{
+			} */}
+			{/* {
 				recentSites.map(site => <SiteItem site={site} key={site.url} onRemove={onRemove} />)
-			}
+			} */}
 			<CreateSite />
 		</div>
 	</Fragment>);
